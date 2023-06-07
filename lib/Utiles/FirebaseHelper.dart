@@ -1,3 +1,4 @@
+import 'package:classes_app/Screen/AddStudent/Model/StudentModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -57,11 +58,38 @@ class FirebaseHelper {
 
   // login End
 
-  void InsertStudentDetail() {
-    User? user = firebaseAuth.currentUser;
+  // Database Start
 
-    firebaseFirestore.collection("Student").doc("${user!.uid}").collection("").add({
-
+  void InsertStudentDetail({
+    required StudentModel s1,
+  }) {
+    print(FindUid());
+    firebaseFirestore
+        .collection("school")
+        .doc("${FindUid()}")
+        .collection("data")
+        .add({
+      "f_name": s1.f_name,
+      "l_name": s1.l_name,
+      "mobile_no": s1.mobile_no,
+      "email_id": s1.email_id,
+      "total_fees": s1.total_fees,
+      "paid_fees": s1.paid_fees,
     });
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> readStudentDetail() {
+    return firebaseFirestore
+        .collection("school")
+        .doc("${FindUid()}")
+        .collection("data")
+        .snapshots();
+  }
+
+  String FindUid() {
+    User? user = firebaseAuth.currentUser;
+    String uid = user!.uid;
+    print("${uid}");
+    return uid;
   }
 }

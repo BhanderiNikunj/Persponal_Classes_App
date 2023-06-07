@@ -123,6 +123,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           password: signUpControllor.txtPassword.text,
                         );
 
+                        if (msg == "success") {
+                          Get.back();
+                        }
+                        Get.snackbar(
+                          "$msg",
+                          "",
+                        );
+
                         print(msg);
                       },
                       child: Container(

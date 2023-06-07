@@ -126,12 +126,12 @@ class _SignInScreenState extends State<SignInScreen> {
                         print(msg);
 
                         if (msg == "success") {
-                          Get.offAndToNamed('/home');
+                          Get.offAndToNamed('/bottom');
                         }
 
                         Get.snackbar(
                           "$msg",
-                          "message",
+                          "",
                         );
                       },
                       child: Container(

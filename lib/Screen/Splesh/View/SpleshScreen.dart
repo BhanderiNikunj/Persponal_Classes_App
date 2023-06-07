@@ -13,13 +13,14 @@ class SpleshScreen extends StatefulWidget {
 }
 
 class _SpleshScreenState extends State<SpleshScreen> {
-
   @override
   Widget build(BuildContext context) {
     Timer(
       Duration(seconds: 3),
       () {
-        FirebaseHelper.firebaseHelper.checkLogin() == false ? Get.offAndToNamed('/signIn') : Get.offAndToNamed('/home');
+        FirebaseHelper.firebaseHelper.checkLogin() == false
+            ? Get.offAndToNamed('/signIn')
+            : Get.offAndToNamed('/bottom');
       },
     );
 

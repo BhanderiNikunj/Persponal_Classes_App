@@ -9,7 +9,7 @@ class HomeControllor extends GetxController {
     ),
     HomeModel(
       image: "Assets/Images/student.png",
-      name: "courses",
+      name: "Student",
     ),
   ];
 }
