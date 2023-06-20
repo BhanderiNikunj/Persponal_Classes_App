@@ -14,9 +14,9 @@ class readStudentScreen extends StatefulWidget {
 }
 
 class _readStudentScreenState extends State<readStudentScreen> {
-
   ReadStudentControllor readStudentControllor = Get.put(
-    ReadStudentControllor(),);
+    ReadStudentControllor(),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -42,17 +42,52 @@ class _readStudentScreenState extends State<readStudentScreen> {
                   mobile_no: Data['mobile_no'],
                   l_name: Data['l_name'],
                   f_name: Data['f_name'],
+                  image: Data['image'],
                 );
 
                 readStudentControllor.StudentDataList.add(s1);
               }
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  return Container(
-                    color: Colors.black,
-                    height: 80.sp,
+                  return Padding(
+                    padding: EdgeInsets.all(10.sp),
+                    child: Container(
+                      height: 80.sp,
+                      color: Colors.black12,
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 25.sp,
+                          ),
+                          SizedBox(
+                            width: 10.sp,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Name :- ${readStudentControllor.StudentDataList[index].f_name} ${readStudentControllor.StudentDataList[index].l_name}",
+                              ),
+                              SizedBox(height: 5.sp),
+                              Text(
+                                "Mobile No :- +91 ${readStudentControllor.StudentDataList[index].mobile_no}",
+                              ),
+                              SizedBox(height: 5.sp),
+                              Text(
+                                "Email Id :- ${readStudentControllor.StudentDataList[index].email_id}",
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            width: 10.sp,
+                          ),
+                        ],
+                      ),
+                    ),
                   );
                 },
+                itemCount: readStudentControllor.StudentDataList.length,
               );
             }
             return Center(
@@ -61,7 +96,9 @@ class _readStudentScreenState extends State<readStudentScreen> {
           },
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.toNamed('/addStudent');
+          },
           child: Icon(Icons.add),
         ),
       ),

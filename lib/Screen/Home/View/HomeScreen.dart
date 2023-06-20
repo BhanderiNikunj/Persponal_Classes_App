@@ -97,6 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     InkWell(
                       onTap: () {
+                        print("--------------------------------------------------");
                         Get.toNamed('/showStudent');
                       },
                       child: Container(

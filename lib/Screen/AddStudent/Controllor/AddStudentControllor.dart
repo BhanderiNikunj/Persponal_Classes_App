@@ -1,6 +1,7 @@
 import 'package:classes_app/Screen/AddStudent/Model/StudentModel.dart';
 import 'package:classes_app/Utiles/FirebaseHelper.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class AddStudentControllor extends GetxController {
@@ -18,4 +19,8 @@ class AddStudentControllor extends GetxController {
       s1: s1,
     );
   }
+
+  Uint8List? imageBytes;
+  RxString ipath = "".obs;
+
 }

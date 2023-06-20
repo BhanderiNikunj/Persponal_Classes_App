@@ -41,6 +41,7 @@ dependencies:
   sizer: ^2.0.15
   cloud_firestore: ^4.8.0
   water_drop_nav_bar: ^2.2.0+5
+  image_picker: ^0.8.9
 
 dev_dependencies:
   flutter_test:

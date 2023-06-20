@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:classes_app/Screen/AddStudent/Controllor/AddStudentControllor.dart';
 import 'package:classes_app/Screen/AddStudent/Model/StudentModel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:sizer/sizer.dart';
 
 class AddStudentScreen extends StatefulWidget {
@@ -43,7 +47,43 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20.sp),
+                SizedBox(height: 10.sp),
+                Center(
+                  child: Obx(
+                    () => InkWell(
+                      onTap: () async {
+                        ImagePicker imagePicker = ImagePicker();
+                        XFile? xfile = await imagePicker.pickImage(
+                          source: ImageSource.gallery,
+                        );
+                        print(xfile!.path);
+                        File file = File(xfile.path);
+
+                        await file.readAsBytes().then((value) {
+                          addStudentControllor.imageBytes = value;
+                        });
+
+                        addStudentControllor.ipath.value = String.fromCharCodes(
+                          addStudentControllor.imageBytes!,
+                        );
+
+                        print(addStudentControllor.imageBytes);
+                        print(addStudentControllor.imageBytes);
+                      },
+                      child: CircleAvatar(
+                        backgroundImage: addStudentControllor.ipath.isEmpty
+                            ? null
+                            : MemoryImage(
+                                Uint8List.fromList(
+                                  addStudentControllor.ipath.codeUnits,
+                                ),
+                              ),
+                        radius: 40.sp,
+                        backgroundColor: Color(0xff2ED0FF),
+                      ),
+                    ),
+                  ),
+                ),
                 Text(
                   "Enter First Name",
                 ),
@@ -190,14 +230,15 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                   child: InkWell(
                     onTap: () {
                       StudentModel s1 = StudentModel(
+                        image: addStudentControllor.ipath.value,
                         email_id: addStudentControllor.txtemail_id.text,
                         f_name: addStudentControllor.txtf_name.text,
                         l_name: addStudentControllor.txtl_name.text,
                         mobile_no: addStudentControllor.txtmobile_no.text,
-                        paid_fees:
-                            int.parse("${addStudentControllor.txtpaid_fees.text}"),
-                        total_fees:
-                            int.parse("${addStudentControllor.txttotal_fees.text}"),
+                        paid_fees: int.parse(
+                            "${addStudentControllor.txtpaid_fees.text}"),
+                        total_fees: int.parse(
+                            "${addStudentControllor.txttotal_fees.text}"),
                       );
 
                       addStudentControllor.InsertData(

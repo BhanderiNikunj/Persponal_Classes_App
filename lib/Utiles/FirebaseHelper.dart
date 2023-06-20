@@ -75,6 +75,7 @@ class FirebaseHelper {
       "email_id": s1.email_id,
       "total_fees": s1.total_fees,
       "paid_fees": s1.paid_fees,
+      "image": s1.image,
     });
   }
 
