@@ -7,11 +7,13 @@ import 'package:get/get.dart';
 class AddStudentControllor extends GetxController {
   TextEditingController txtf_name = TextEditingController();
   TextEditingController txtl_name = TextEditingController();
+  TextEditingController txtfatherName = TextEditingController();
   TextEditingController txtmobile_no = TextEditingController();
   TextEditingController txtemail_id = TextEditingController();
   TextEditingController txtpaid_fees = TextEditingController();
   TextEditingController txttotal_fees = TextEditingController();
   TextEditingController txtAddress = TextEditingController();
+  RxInt std = 1.obs;
 
   void insertData({
     required StudentModel s1,

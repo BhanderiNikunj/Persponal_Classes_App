@@ -188,6 +188,78 @@ class _AddHomeWorkScreenState extends State<AddHomeWorkScreen> {
                       },
                     ),
                   ),
+                  SizedBox(height: 10.sp),
+                  Obx(
+                    () => DropdownButton(
+                      isExpanded: true,
+                      value: addHomeWorkControllor.std.value,
+                      items: [
+                        DropdownMenuItem(
+                          child: Text(
+                            "Std 1",
+                          ),
+                          value: 1,
+                        ),
+                        DropdownMenuItem(
+                          child: Text(
+                            "Std 2",
+                          ),
+                          value: 2,
+                        ),
+                        DropdownMenuItem(
+                          child: Text(
+                            "Std 3",
+                          ),
+                          value: 3,
+                        ),
+                        DropdownMenuItem(
+                          child: Text(
+                            "Std 4",
+                          ),
+                          value: 4,
+                        ),
+                        DropdownMenuItem(
+                          child: Text(
+                            "Std 5",
+                          ),
+                          value: 5,
+                        ),
+                        DropdownMenuItem(
+                          child: Text(
+                            "Std 6",
+                          ),
+                          value: 6,
+                        ),
+                        DropdownMenuItem(
+                          child: Text(
+                            "Std 7",
+                          ),
+                          value: 7,
+                        ),
+                        DropdownMenuItem(
+                          child: Text(
+                            "Std 8",
+                          ),
+                          value: 8,
+                        ),
+                        DropdownMenuItem(
+                          child: Text(
+                            "Std 9",
+                          ),
+                          value: 9,
+                        ),
+                        DropdownMenuItem(
+                          child: Text(
+                            "Std 10",
+                          ),
+                          value: 10,
+                        ),
+                      ],
+                      onChanged: (value) {
+                        addHomeWorkControllor.std.value = value!;
+                      },
+                    ),
+                  ),
                   SizedBox(height: 20.sp),
                   Center(
                     child: InkWell(
@@ -196,6 +268,7 @@ class _AddHomeWorkScreenState extends State<AddHomeWorkScreen> {
                           dueDate: addHomeWorkControllor.txtDueData.text,
                           subject: addHomeWorkControllor.subject.value,
                           title: addHomeWorkControllor.txtTitle.text,
+                          std: addHomeWorkControllor.std.value,
                         );
 
                         String msg = await addHomeWorkControllor.insertHomeWork(

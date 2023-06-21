@@ -40,6 +40,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
       addStudentControllor.txttotal_fees =
           TextEditingController(text: "${s1.total_fees}");
       addStudentControllor.ipath.value = s1.image!;
+      // addStudentControllor.std.value = s1.std!;
     }
   }
 
@@ -190,6 +191,123 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                     ),
                     SizedBox(height: 10.sp),
                     Text(
+                      "Enter Father Name",
+                    ),
+                    SizedBox(height: 5.sp),
+                    TextField(
+                      controller: addStudentControllor.txtfatherName,
+                      decoration: InputDecoration(
+                        hintText: "Ex. abcd",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.sp),
+                        ),
+                        disabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.sp),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.sp),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.sp),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10.sp),
+                    Text(
+                      "Select Student Std",
+                    ),
+                    SizedBox(height: 5.sp),
+                    Obx(
+                      () => DropdownButton(
+                        isExpanded: true,
+                        value: addStudentControllor.std.value,
+                        items: [
+                          DropdownMenuItem(
+                            child: Text(
+                              "Std 1",
+                            ),
+                            value: 1,
+                          ),
+                          DropdownMenuItem(
+                            child: Text(
+                              "Std 2",
+                            ),
+                            value: 2,
+                          ),
+                          DropdownMenuItem(
+                            child: Text(
+                              "Std 3",
+                            ),
+                            value: 3,
+                          ),
+                          DropdownMenuItem(
+                            child: Text(
+                              "Std 4",
+                            ),
+                            value: 4,
+                          ),
+                          DropdownMenuItem(
+                            child: Text(
+                              "Std 5",
+                            ),
+                            value: 5,
+                          ),
+                          DropdownMenuItem(
+                            child: Text(
+                              "Std 6",
+                            ),
+                            value: 6,
+                          ),
+                          DropdownMenuItem(
+                            child: Text(
+                              "Std 7",
+                            ),
+                            value: 7,
+                          ),
+                          DropdownMenuItem(
+                            child: Text(
+                              "Std 8",
+                            ),
+                            value: 8,
+                          ),
+                          DropdownMenuItem(
+                            child: Text(
+                              "Std 9",
+                            ),
+                            value: 9,
+                          ),
+                          DropdownMenuItem(
+                            child: Text(
+                              "Std 10",
+                            ),
+                            value: 10,
+                          ),
+                        ],
+                        onChanged: (value) {
+                          addStudentControllor.std.value = value!;
+                        },
+                      ),
+                    ),
+                    // TextField(
+                    //   controller: addStudentControllor.txtfatherName,
+                    //   decoration: InputDecoration(
+                    //     hintText: "Ex. abcd",
+                    //     border: OutlineInputBorder(
+                    //       borderRadius: BorderRadius.circular(10.sp),
+                    //     ),
+                    //     disabledBorder: OutlineInputBorder(
+                    //       borderRadius: BorderRadius.circular(10.sp),
+                    //     ),
+                    //     enabledBorder: OutlineInputBorder(
+                    //       borderRadius: BorderRadius.circular(10.sp),
+                    //     ),
+                    //     focusedBorder: OutlineInputBorder(
+                    //       borderRadius: BorderRadius.circular(10.sp),
+                    //     ),
+                    //   ),
+                    // ),
+                    SizedBox(height: 10.sp),
+                    Text(
                       "Enter Mobile No.",
                     ),
                     SizedBox(height: 5.sp),
@@ -314,6 +432,9 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                         onTap: () {
                           if (s1.isCheck == 1) {
                             StudentModel studentModel = StudentModel(
+                              std: addStudentControllor.std.value,
+                              father_name:
+                                  addStudentControllor.txtfatherName.text,
                               image: addStudentControllor.ipath.value,
                               email_id: addStudentControllor.txtemail_id.text,
                               f_name: addStudentControllor.txtf_name.text,
@@ -332,6 +453,9 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                             );
                           } else {
                             StudentModel studentModel = StudentModel(
+                              std: addStudentControllor.std.value,
+                              father_name:
+                                  addStudentControllor.txtfatherName.text,
                               image: addStudentControllor.ipath.value,
                               email_id: addStudentControllor.txtemail_id.text,
                               f_name: addStudentControllor.txtf_name.text,

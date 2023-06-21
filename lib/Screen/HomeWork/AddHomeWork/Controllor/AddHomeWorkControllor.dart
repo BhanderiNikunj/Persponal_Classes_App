@@ -11,6 +11,7 @@ class AddHomeWorkControllor extends GetxController {
           "${DateTime.now().day} / ${DateTime.now().month} / ${DateTime.now().year}");
   RxString subject = "math".obs;
   List<HomeWorkModel> homeWorkList = [];
+  RxInt std = 1.obs;
 
   Future<String> insertHomeWork({
     required HomeWorkModel h1,

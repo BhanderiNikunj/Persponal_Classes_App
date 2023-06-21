@@ -19,17 +19,7 @@ class _ShowDetailScreenState extends State<ShowDetailScreen> {
     return SafeArea(
       child: Scaffold(
         body: Container(
-          decoration: BoxDecoration(
-              // gradient: LinearGradient(
-              //   transform: GradientRotation(pi / 4),
-              //   colors: [
-              //     Color(0xff2ED0FF),
-              //     Color(0xff50AFFF),
-              //     Color(0xff6E92FF),
-              //     Color(0xff7E82FF),
-              //   ],
-              // ),
-              ),
+          decoration: BoxDecoration(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -79,6 +69,20 @@ class _ShowDetailScreenState extends State<ShowDetailScreen> {
                         ),
                       ),
                       SizedBox(height: 10.sp),
+                      Text(
+                        "Father Name     :-    ${s1.father_name}",
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                        ),
+                      ),
+                      // SizedBox(height: 10.sp),
+                      // Text(
+                      //   "Surname            :-    ${s1.l_name}",
+                      //   style: TextStyle(
+                      //     fontSize: 12.sp,
+                      //   ),
+                      // ),
+                      SizedBox(height: 10.sp),
                       Container(
                         width: 275.sp,
                         child: Text(
@@ -99,6 +103,27 @@ class _ShowDetailScreenState extends State<ShowDetailScreen> {
                       SizedBox(height: 10.sp),
                       Text(
                         "Address             :-    ${s1.address}",
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                        ),
+                      ),
+                      SizedBox(height: 10.sp),
+                      Text(
+                        "Total Fees         :-    ${s1.total_fees}",
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                        ),
+                      ),
+                      SizedBox(height: 10.sp),
+                      Text(
+                        "Paid Fees          :-    ${s1.paid_fees}",
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                        ),
+                      ),
+                      SizedBox(height: 10.sp),
+                      Text(
+                        "Less Fees          :-    ${s1.total_fees! - s1.paid_fees!}",
                         style: TextStyle(
                           fontSize: 12.sp,
                         ),

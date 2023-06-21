@@ -67,6 +67,8 @@ class FirebaseHelper {
         .add({
       "f_name": s1.f_name,
       "l_name": s1.l_name,
+      "father": s1.father_name,
+      "std": s1.std,
       "mobile_no": s1.mobile_no,
       "email_id": s1.email_id,
       "total_fees": s1.total_fees,
@@ -88,6 +90,8 @@ class FirebaseHelper {
         .set({
           "f_name": s1.f_name,
           "l_name": s1.l_name,
+          "father": s1.father_name,
+          "std": s1.std,
           "mobile_no": s1.mobile_no,
           "email_id": s1.email_id,
           "total_fees": s1.total_fees,
@@ -141,6 +145,7 @@ class FirebaseHelper {
         .add(
           {
             "title": h1.title,
+            "std": h1.title,
             "dueDate": h1.dueDate,
             "subject": h1.subject,
           },
@@ -154,6 +159,10 @@ class FirebaseHelper {
   }
 
   Stream<QuerySnapshot<Map<String, dynamic>>> readHomeWork() {
-    return firebaseFirestore.collection("school").doc(FindUid()).collection("homeWork").snapshots();
+    return firebaseFirestore
+        .collection("school")
+        .doc(FindUid())
+        .collection("homeWork")
+        .snapshots();
   }
 }
