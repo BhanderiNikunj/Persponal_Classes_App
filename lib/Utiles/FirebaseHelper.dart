@@ -1,4 +1,5 @@
-import 'package:classes_app/Screen/AddStudent/Model/StudentModel.dart';
+import 'package:classes_app/Screen/HomeWork/ShowHomeWork/Model/HomeWorkModel.dart';
+import 'package:classes_app/Screen/Student/AddStudent/Model/StudentModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -41,13 +42,8 @@ class FirebaseHelper {
   bool checkLogin() {
     User? user = firebaseAuth.currentUser;
     if (user?.uid == null) {
-      print(
-          "---------------------------------------------------------------hello");
-
       return false;
     } else {
-      print(
-          "---------------------------------------------------------------hii");
       return true;
     }
   }
@@ -76,6 +72,7 @@ class FirebaseHelper {
       "total_fees": s1.total_fees,
       "paid_fees": s1.paid_fees,
       "image": s1.image,
+      "address": s1.address,
     });
   }
 
@@ -96,6 +93,7 @@ class FirebaseHelper {
           "total_fees": s1.total_fees,
           "paid_fees": s1.paid_fees,
           "image": s1.image,
+          "address": s1.address,
         })
         .then(
           (value) => "success",
@@ -129,5 +127,33 @@ class FirebaseHelper {
     String uid = user!.uid;
     print("${uid}");
     return uid;
+  }
+
+  // Homework
+
+  Future<String> insertHomeWork({
+    required HomeWorkModel h1,
+  }) async {
+    return await firebaseFirestore
+        .collection("school")
+        .doc(FindUid())
+        .collection("homeWork")
+        .add(
+          {
+            "title": h1.title,
+            "dueDate": h1.dueDate,
+            "subject": h1.subject,
+          },
+        )
+        .then(
+          (value) => "success",
+        )
+        .catchError(
+          (e) => "$e",
+        );
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> readHomeWork() {
+    return firebaseFirestore.collection("school").doc(FindUid()).collection("homeWork").snapshots();
   }
 }

@@ -1,10 +1,13 @@
-import 'package:classes_app/Screen/AddStudent/View/AddStudentScreen.dart';
-import 'package:classes_app/Screen/Bottom/View/BottomScreen.dart';
-import 'package:classes_app/Screen/Home/View/HomeScreen.dart';
-import 'package:classes_app/Screen/SignIn/View/SignInScreen.dart';
-import 'package:classes_app/Screen/SignUp/View/SignUpScreen.dart';
-import 'package:classes_app/Screen/Splesh/View/SpleshScreen.dart';
-import 'package:classes_app/Screen/readStudent/View/readStudentScreen.dart';
+import 'package:classes_app/Screen/HomeWork/AddHomeWork/View/AddHomeWorkScreen.dart';
+import 'package:classes_app/Screen/HomeWork/ShowHomeWork/View/ShowHomeWork.dart';
+import 'package:classes_app/Screen/Login/SignIn/View/SignInScreen.dart';
+import 'package:classes_app/Screen/Login/SignUp/View/SignUpScreen.dart';
+import 'package:classes_app/Screen/Login/Splesh/View/SpleshScreen.dart';
+import 'package:classes_app/Screen/Main/Bottom/View/BottomScreen.dart';
+import 'package:classes_app/Screen/Main/Home/View/HomeScreen.dart';
+import 'package:classes_app/Screen/Student/AddStudent/View/AddStudentScreen.dart';
+import 'package:classes_app/Screen/Student/ShowDetail/View/ShowDetailScreen.dart';
+import 'package:classes_app/Screen/Student/readStudent/View/readStudentScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -49,10 +52,18 @@ Future<void> main() async {
               name: '/showStudent',
               page: () => readStudentScreen(),
             ),
-            // GetPage(
-            //   name: '/updateStudent',
-            //   page: () => UpdateStudentScreen(),
-            // ),
+            GetPage(
+              name: '/showDetail',
+              page: () => ShowDetailScreen(),
+            ),
+            GetPage(
+              name: '/homeWork',
+              page: () => ShowHomeWorkScreen(),
+            ),
+            GetPage(
+              name: '/addHomeWork',
+              page: () => AddHomeWorkScreen(),
+            ),
           ],
         );
       },
