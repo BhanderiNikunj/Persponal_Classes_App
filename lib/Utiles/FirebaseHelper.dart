@@ -79,6 +79,43 @@ class FirebaseHelper {
     });
   }
 
+  Future<String> updateStudentDetail({
+    required StudentModel s1,
+  }) async {
+    print(FindUid());
+    return await firebaseFirestore
+        .collection("school")
+        .doc("${FindUid()}")
+        .collection("data")
+        .doc(s1.key)
+        .set({
+          "f_name": s1.f_name,
+          "l_name": s1.l_name,
+          "mobile_no": s1.mobile_no,
+          "email_id": s1.email_id,
+          "total_fees": s1.total_fees,
+          "paid_fees": s1.paid_fees,
+          "image": s1.image,
+        })
+        .then(
+          (value) => "success",
+        )
+        .catchError(
+          (e) => "$e",
+        );
+  }
+
+  void deleteDetail({
+    required StudentModel s1,
+  }) {
+    firebaseFirestore
+      ..collection("school")
+          .doc("${FindUid()}")
+          .collection("data")
+          .doc(s1.key)
+          .delete();
+  }
+
   Stream<QuerySnapshot<Map<String, dynamic>>> readStudentDetail() {
     return firebaseFirestore
         .collection("school")

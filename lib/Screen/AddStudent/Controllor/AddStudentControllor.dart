@@ -12,7 +12,7 @@ class AddStudentControllor extends GetxController {
   TextEditingController txtpaid_fees = TextEditingController();
   TextEditingController txttotal_fees = TextEditingController();
 
-  void InsertData({
+  void insertData({
     required StudentModel s1,
   }) {
     FirebaseHelper.firebaseHelper.InsertStudentDetail(
@@ -20,7 +20,14 @@ class AddStudentControllor extends GetxController {
     );
   }
 
+  void updateData({
+    required StudentModel s1,
+  }) {
+    FirebaseHelper.firebaseHelper.updateStudentDetail(
+      s1: s1,
+    );
+  }
+
   Uint8List? imageBytes;
   RxString ipath = "".obs;
-
 }

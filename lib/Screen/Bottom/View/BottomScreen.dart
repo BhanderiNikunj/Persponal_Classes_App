@@ -31,10 +31,6 @@ class _BottomScreenState extends State<BottomScreen> {
                 outlinedIcon: Icons.home_outlined,
               ),
               BarItem(
-                filledIcon: Icons.search,
-                outlinedIcon: Icons.search_outlined,
-              ),
-              BarItem(
                 filledIcon: Icons.person,
                 outlinedIcon: Icons.person_outline,
               ),

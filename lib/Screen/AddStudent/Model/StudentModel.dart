@@ -1,6 +1,6 @@
 class StudentModel {
-  String? f_name, l_name, mobile_no, email_id, image;
-  int? total_fees, paid_fees;
+  String? f_name, l_name, mobile_no, email_id, image, key;
+  int? total_fees, paid_fees, isCheck;
 
   StudentModel({
     this.f_name,
@@ -10,5 +10,7 @@ class StudentModel {
     this.total_fees,
     this.paid_fees,
     this.image,
+    this.key,
+    this.isCheck,
   });
 }

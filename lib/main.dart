@@ -49,6 +49,10 @@ Future<void> main() async {
               name: '/showStudent',
               page: () => readStudentScreen(),
             ),
+            // GetPage(
+            //   name: '/updateStudent',
+            //   page: () => UpdateStudentScreen(),
+            // ),
           ],
         );
       },

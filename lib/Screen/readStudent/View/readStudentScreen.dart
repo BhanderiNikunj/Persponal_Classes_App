@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:classes_app/Screen/AddStudent/Model/StudentModel.dart';
 import 'package:classes_app/Screen/readStudent/Controllo/readStudentControllor.dart';
 import 'package:classes_app/Utiles/FirebaseHelper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
@@ -43,6 +46,7 @@ class _readStudentScreenState extends State<readStudentScreen> {
                   l_name: Data['l_name'],
                   f_name: Data['f_name'],
                   image: Data['image'],
+                  key: Data.id,
                 );
 
                 readStudentControllor.StudentDataList.add(s1);
@@ -53,10 +57,30 @@ class _readStudentScreenState extends State<readStudentScreen> {
                     padding: EdgeInsets.all(10.sp),
                     child: Container(
                       height: 80.sp,
-                      color: Colors.black12,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.sp),
+                        ),
+                        gradient: LinearGradient(
+                          transform: GradientRotation(pi / 4),
+                          colors: [
+                            Color(0xff2ED0FF),
+                            Color(0xff50AFFF),
+                            Color(0xff6E92FF),
+                            Color(0xff7E82FF),
+                          ],
+                        ),
+                      ),
                       child: Row(
                         children: [
+                          SizedBox(width: 10.sp),
                           CircleAvatar(
+                            backgroundImage: MemoryImage(
+                              Uint8List.fromList(
+                                readStudentControllor
+                                    .StudentDataList[index].image!.codeUnits,
+                              ),
+                            ),
                             radius: 25.sp,
                           ),
                           SizedBox(
@@ -66,8 +90,12 @@ class _readStudentScreenState extends State<readStudentScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                "Name :- ${readStudentControllor.StudentDataList[index].f_name} ${readStudentControllor.StudentDataList[index].l_name}",
+                              Container(
+                                width: 150.sp,
+                                child: Text(
+                                  overflow: TextOverflow.ellipsis,
+                                  "Name :- ${readStudentControllor.StudentDataList[index].f_name} ${readStudentControllor.StudentDataList[index].l_name}",
+                                ),
                               ),
                               SizedBox(height: 5.sp),
                               Text(
@@ -80,7 +108,54 @@ class _readStudentScreenState extends State<readStudentScreen> {
                             ],
                           ),
                           SizedBox(
-                            width: 10.sp,
+                            width: 15.sp,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  StudentModel s1 = StudentModel(
+                                    key: readStudentControllor
+                                        .StudentDataList[index].key,
+                                    image: readStudentControllor
+                                        .StudentDataList[index].image,
+                                    l_name: readStudentControllor
+                                        .StudentDataList[index].l_name,
+                                    mobile_no: readStudentControllor
+                                        .StudentDataList[index].mobile_no,
+                                    f_name: "nikunj",
+                                    email_id: readStudentControllor
+                                        .StudentDataList[index].email_id,
+                                    paid_fees: readStudentControllor
+                                        .StudentDataList[index].paid_fees,
+                                    total_fees: readStudentControllor
+                                        .StudentDataList[index].total_fees,
+                                    isCheck: 1,
+                                  );
+                                  // readStudentControllor.updateStudentDetail(
+                                  //   s1: s1,
+                                  // );
+                                  print(s1.isCheck);
+                                  Get.toNamed(
+                                    '/addStudent',
+                                    arguments: s1,
+                                  );
+                                },
+                                icon: Icon(
+                                  Icons.edit,
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  StudentModel s1 = StudentModel(key: readStudentControllor.StudentDataList[index].key,);
+                                  readStudentControllor.deleteDetail(s1: s1,);
+                                },
+                                icon: Icon(
+                                  Icons.delete,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -97,7 +172,14 @@ class _readStudentScreenState extends State<readStudentScreen> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Get.toNamed('/addStudent');
+            StudentModel s1 = StudentModel(
+              isCheck: 0,
+            );
+
+            Get.toNamed(
+              '/addStudent',
+              arguments: s1,
+            );
           },
           child: Icon(Icons.add),
         ),
