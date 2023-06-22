@@ -124,7 +124,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         );
 
                         if (msg == "success") {
-                          Get.back();
+                          Get.offAndToNamed('/addUserDetail');
                         }
                         Get.snackbar(
                           "$msg",

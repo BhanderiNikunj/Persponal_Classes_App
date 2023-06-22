@@ -99,6 +99,14 @@ class _ShowHomeWorkScreenState extends State<ShowHomeWorkScreen> {
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
+                              SizedBox(height: 5.sp),
+                              Container(
+                                width: 150.sp,
+                                child: Text(
+                                  "Std :- ${addHomeWorkControllor.homeWorkList[index].std}",
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
                             ],
                           ),
                           SizedBox(

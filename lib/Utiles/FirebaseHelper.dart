@@ -1,7 +1,9 @@
 import 'package:classes_app/Screen/HomeWork/ShowHomeWork/Model/HomeWorkModel.dart';
+import 'package:classes_app/Screen/Login/AddUserDetail/Model/AddUserDetailModel.dart';
 import 'package:classes_app/Screen/Student/AddStudent/Model/StudentModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 
 class FirebaseHelper {
   static FirebaseHelper firebaseHelper = FirebaseHelper._();
@@ -50,6 +52,7 @@ class FirebaseHelper {
 
   void signOut() {
     firebaseAuth.signOut();
+    Get.offAndToNamed('/signIn');
   }
 
   // login End
@@ -200,4 +203,8 @@ class FirebaseHelper {
         .collection("homeWork")
         .snapshots();
   }
+
+  // user
+
+
 }

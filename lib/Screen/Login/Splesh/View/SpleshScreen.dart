@@ -20,7 +20,7 @@ class _SpleshScreenState extends State<SpleshScreen> {
       () {
         FirebaseHelper.firebaseHelper.checkLogin() == false
             ? Get.offAndToNamed('/signIn')
-            : Get.offAndToNamed('/bottom');
+            : Get.offAndToNamed('/home');
       },
     );
 
