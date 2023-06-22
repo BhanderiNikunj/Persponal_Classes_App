@@ -21,6 +21,22 @@ class AddHomeWorkControllor extends GetxController {
     );
   }
 
+  Future<String> updateHomeWork({
+    required HomeWorkModel h1,
+  }) async {
+    return await FirebaseHelper.firebaseHelper.updateHomeWork(
+      h1: h1,
+    );
+  }
+
+  void deleteHomeWork({
+    required HomeWorkModel h1,
+  }) {
+    FirebaseHelper.firebaseHelper.deleteHomeWork(
+      h1: h1,
+    );
+  }
+
   Stream<QuerySnapshot<Map<String, dynamic>>> readHomeWork() {
     return FirebaseHelper.firebaseHelper.readHomeWork();
   }

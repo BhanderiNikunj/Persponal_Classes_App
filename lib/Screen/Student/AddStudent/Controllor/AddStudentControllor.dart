@@ -14,6 +14,7 @@ class AddStudentControllor extends GetxController {
   TextEditingController txttotal_fees = TextEditingController();
   TextEditingController txtAddress = TextEditingController();
   RxInt std = 1.obs;
+  String key = "";
 
   void insertData({
     required StudentModel s1,

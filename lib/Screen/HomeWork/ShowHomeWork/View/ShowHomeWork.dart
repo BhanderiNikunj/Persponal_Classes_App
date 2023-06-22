@@ -38,17 +38,14 @@ class _ShowHomeWorkScreenState extends State<ShowHomeWorkScreen> {
 
               for (var x in snapData!.docs) {
                 HomeWorkModel h1 = HomeWorkModel(
-                  key: x.id,
-                  subject: x['subject'],
-                  dueDate: x['dueDate'],
-                  title: x['title'],
-                );
+                    key: x.id,
+                    subject: x['subject'],
+                    dueDate: x['dueDate'],
+                    title: x['title'],
+                    std: x['std']);
 
                 addHomeWorkControllor.homeWorkList.add(h1);
               }
-              // return Text(
-              //   "Work In Process",
-              // );
               return ListView.builder(
                 itemCount: addHomeWorkControllor.homeWorkList.length,
                 itemBuilder: (context, index) {
@@ -111,13 +108,41 @@ class _ShowHomeWorkScreenState extends State<ShowHomeWorkScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  HomeWorkModel h1 = HomeWorkModel(
+                                    std: addHomeWorkControllor
+                                        .homeWorkList[index].std,
+                                    title: addHomeWorkControllor
+                                        .homeWorkList[index].title,
+                                    dueDate: addHomeWorkControllor
+                                        .homeWorkList[index].dueDate,
+                                    key: addHomeWorkControllor
+                                        .homeWorkList[index].key,
+                                    subject: addHomeWorkControllor
+                                        .homeWorkList[index].subject,
+                                    check: 1,
+                                  );
+
+                                  print(h1.std);
+                                  Get.toNamed(
+                                    '/addHomeWork',
+                                    arguments: h1,
+                                  );
+                                },
                                 icon: Icon(
                                   Icons.edit,
                                 ),
                               ),
                               IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  HomeWorkModel h1 = HomeWorkModel(
+                                    key: addHomeWorkControllor
+                                        .homeWorkList[index].key,
+                                  );
+                                  addHomeWorkControllor.deleteHomeWork(
+                                    h1: h1,
+                                  );
+                                },
                                 icon: Icon(
                                   Icons.delete,
                                 ),
@@ -138,7 +163,13 @@ class _ShowHomeWorkScreenState extends State<ShowHomeWorkScreen> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Get.toNamed('/addHomeWork');
+            HomeWorkModel h1 = HomeWorkModel(
+              check: 0,
+            );
+            Get.toNamed(
+              '/addHomeWork',
+              arguments: h1,
+            );
           },
           child: Icon(
             Icons.add,

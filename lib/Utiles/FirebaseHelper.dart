@@ -145,7 +145,7 @@ class FirebaseHelper {
         .add(
           {
             "title": h1.title,
-            "std": h1.title,
+            "std": h1.std,
             "dueDate": h1.dueDate,
             "subject": h1.subject,
           },
@@ -156,6 +156,41 @@ class FirebaseHelper {
         .catchError(
           (e) => "$e",
         );
+  }
+
+  Future<String> updateHomeWork({
+    required HomeWorkModel h1,
+  }) async {
+    return await firebaseFirestore
+        .collection("school")
+        .doc(FindUid())
+        .collection("homeWork")
+        .doc(h1.key)
+        .set(
+          {
+            "title": h1.title,
+            "std": h1.std,
+            "dueDate": h1.dueDate,
+            "subject": h1.subject,
+          },
+        )
+        .then(
+          (value) => "success",
+        )
+        .catchError(
+          (e) => "$e",
+        );
+  }
+
+  void deleteHomeWork({
+    required HomeWorkModel h1,
+  }) {
+    firebaseFirestore
+        .collection("school")
+        .doc(FindUid())
+        .collection("homeWork")
+        .doc(h1.key)
+        .delete();
   }
 
   Stream<QuerySnapshot<Map<String, dynamic>>> readHomeWork() {

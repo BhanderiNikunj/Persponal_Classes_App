@@ -16,6 +16,22 @@ class _AddHomeWorkScreenState extends State<AddHomeWorkScreen> {
     AddHomeWorkControllor(),
   );
 
+  HomeWorkModel h1 = Get.arguments;
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (h1.check == 1) {
+      addHomeWorkControllor.std.value = h1.std!;
+      addHomeWorkControllor.subject.value = h1.subject!;
+      addHomeWorkControllor.txtDueData =
+          TextEditingController(text: "${h1.dueDate}");
+      addHomeWorkControllor.txtTitle =
+          TextEditingController(text: "${h1.title}");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -62,7 +78,6 @@ class _AddHomeWorkScreenState extends State<AddHomeWorkScreen> {
                   SizedBox(width: 65.sp),
                   Center(
                     child: Text(
-                      // s1.isCheck == 1 ? "Update Detail" : "Add Detail",
                       "Add Home Work",
                       style: TextStyle(
                         fontSize: 15.sp,
@@ -264,23 +279,47 @@ class _AddHomeWorkScreenState extends State<AddHomeWorkScreen> {
                   Center(
                     child: InkWell(
                       onTap: () async {
-                        HomeWorkModel h1 = HomeWorkModel(
-                          dueDate: addHomeWorkControllor.txtDueData.text,
-                          subject: addHomeWorkControllor.subject.value,
-                          title: addHomeWorkControllor.txtTitle.text,
-                          std: addHomeWorkControllor.std.value,
-                        );
+                        if (h1.check == 1) {
+                          HomeWorkModel homeWork = HomeWorkModel(
+                            dueDate: addHomeWorkControllor.txtDueData.text,
+                            subject: addHomeWorkControllor.subject.value,
+                            title: addHomeWorkControllor.txtTitle.text,
+                            std: addHomeWorkControllor.std.value,
+                            key: h1.key,
+                          );
+                          String msg =
+                              await addHomeWorkControllor.updateHomeWork(
+                            h1: homeWork,
+                          );
 
-                        String msg = await addHomeWorkControllor.insertHomeWork(
-                          h1: h1,
-                        );
+                          if (msg == "success") {
+                            Get.back();
+                            Get.snackbar(
+                              "$msg",
+                              "",
+                            );
+                          }
+                        }
+                        else {
+                          HomeWorkModel homeWork = HomeWorkModel(
+                            dueDate: addHomeWorkControllor.txtDueData.text,
+                            subject: addHomeWorkControllor.subject.value,
+                            title: addHomeWorkControllor.txtTitle.text,
+                            std: addHomeWorkControllor.std.value,
+                          );
 
-                        Get.snackbar(
-                          "$msg",
-                          "",
-                        );
-                        if (msg == "success") {
-                          Get.back();
+                          String msg =
+                              await addHomeWorkControllor.insertHomeWork(
+                            h1: homeWork,
+                          );
+
+                          if (msg == "success") {
+                            Get.back();
+                            Get.snackbar(
+                              "$msg",
+                              "",
+                            );
+                          }
                         }
                       },
                       child: Container(
@@ -300,7 +339,7 @@ class _AddHomeWorkScreenState extends State<AddHomeWorkScreen> {
                         ),
                         alignment: Alignment.center,
                         child: Text(
-                          "Submit",
+                          h1.check == 1 ? "Update" : "Submit",
                           style: TextStyle(
                             color: Colors.white,
                           ),

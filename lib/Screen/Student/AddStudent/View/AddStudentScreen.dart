@@ -40,7 +40,10 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
       addStudentControllor.txttotal_fees =
           TextEditingController(text: "${s1.total_fees}");
       addStudentControllor.ipath.value = s1.image!;
-      // addStudentControllor.std.value = s1.std!;
+      addStudentControllor.std.value = s1.std!;
+      addStudentControllor.txtfatherName =
+          TextEditingController(text: "${s1.father_name}");
+      addStudentControllor.key = s1.key!;
     }
   }
 
@@ -288,24 +291,6 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                         },
                       ),
                     ),
-                    // TextField(
-                    //   controller: addStudentControllor.txtfatherName,
-                    //   decoration: InputDecoration(
-                    //     hintText: "Ex. abcd",
-                    //     border: OutlineInputBorder(
-                    //       borderRadius: BorderRadius.circular(10.sp),
-                    //     ),
-                    //     disabledBorder: OutlineInputBorder(
-                    //       borderRadius: BorderRadius.circular(10.sp),
-                    //     ),
-                    //     enabledBorder: OutlineInputBorder(
-                    //       borderRadius: BorderRadius.circular(10.sp),
-                    //     ),
-                    //     focusedBorder: OutlineInputBorder(
-                    //       borderRadius: BorderRadius.circular(10.sp),
-                    //     ),
-                    //   ),
-                    // ),
                     SizedBox(height: 10.sp),
                     Text(
                       "Enter Mobile No.",
@@ -440,6 +425,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                               f_name: addStudentControllor.txtf_name.text,
                               l_name: addStudentControllor.txtl_name.text,
                               mobile_no: addStudentControllor.txtmobile_no.text,
+                              address: addStudentControllor.txtAddress.text,
                               paid_fees: int.parse(
                                   "${addStudentControllor.txtpaid_fees.text}"),
                               total_fees: int.parse(
@@ -495,7 +481,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                             s1.isCheck == 1 ? "Update" : "Submit",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 15.sp,
+                              fontSize: 12.sp,
                               color: Colors.white,
                             ),
                           ),

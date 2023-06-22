@@ -69,6 +69,10 @@ class _readStudentScreenState extends State<readStudentScreen> {
                     padding: EdgeInsets.all(10.sp),
                     child: InkWell(
                       onTap: () {
+                        print(readStudentControllor
+                            .StudentDataList[index].father_name);
+                        print(readStudentControllor
+                            .StudentDataList[index].address);
                         StudentModel s1 = StudentModel(
                           image: readStudentControllor
                               .StudentDataList[index].image,
@@ -165,11 +169,18 @@ class _readStudentScreenState extends State<readStudentScreen> {
                                           .StudentDataList[index].key,
                                       image: readStudentControllor
                                           .StudentDataList[index].image,
+                                      address: readStudentControllor
+                                          .StudentDataList[index].address,
+                                      father_name: readStudentControllor
+                                          .StudentDataList[index].father_name,
+                                      std: readStudentControllor
+                                          .StudentDataList[index].std,
                                       l_name: readStudentControllor
                                           .StudentDataList[index].l_name,
                                       mobile_no: readStudentControllor
                                           .StudentDataList[index].mobile_no,
-                                      f_name: "nikunj",
+                                      f_name: readStudentControllor
+                                          .StudentDataList[index].f_name,
                                       email_id: readStudentControllor
                                           .StudentDataList[index].email_id,
                                       paid_fees: readStudentControllor
@@ -178,9 +189,6 @@ class _readStudentScreenState extends State<readStudentScreen> {
                                           .StudentDataList[index].total_fees,
                                       isCheck: 1,
                                     );
-                                    // readStudentControllor.updateStudentDetail(
-                                    //   s1: s1,
-                                    // );
                                     print(s1.isCheck);
                                     Get.toNamed(
                                       '/addStudent',

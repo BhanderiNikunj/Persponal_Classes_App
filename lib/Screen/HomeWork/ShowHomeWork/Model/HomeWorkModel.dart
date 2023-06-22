@@ -1,6 +1,6 @@
 class HomeWorkModel {
   String? title, subject, dueDate, key;
-  int? std;
+  int? std, check;
 
   HomeWorkModel({
     this.title,
@@ -8,5 +8,6 @@ class HomeWorkModel {
     this.dueDate,
     this.key,
     this.std,
+    this.check,
   });
 }
