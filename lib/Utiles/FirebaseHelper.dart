@@ -206,5 +206,65 @@ class FirebaseHelper {
 
   // user
 
+  Future<String> insertUserDetail({
+    required AddUserDetailModel a1,
+  }) async {
+    return await firebaseFirestore
+        .collection("school")
+        .doc(FindUid())
+        .collection("detail")
+        .add(
+          {
+            "name": a1.name,
+            "surname": a1.surname,
+            "mobile": a1.mobileNo,
+            "email": a1.emailId,
+            "adminUser": a1.checkAdmin,
+            "image": a1.image,
+          },
+        )
+        .then(
+          (value) => "success",
+        )
+        .catchError(
+          (e) => "$e",
+        );
+  }
 
+  Future<String> updateUserDetail({
+    required AddUserDetailModel a1,
+  }) async {
+    return await firebaseFirestore
+        .collection("school")
+        .doc(FindUid())
+        .collection("detail")
+        .doc(a1.key)
+        .set(
+          {
+            "name": a1.name,
+            "surname": a1.surname,
+            "mobile": a1.mobileNo,
+            "email": a1.emailId,
+            "adminUser": a1.checkAdmin,
+            "image": a1.image,
+          },
+        )
+        .then(
+          (value) => "success",
+        )
+        .catchError(
+          (e) => "$e",
+        );
+  }
+
+  Stream<DocumentSnapshot<Map<String, dynamic>>> readUSerDetail({
+    required AddUserDetailModel a1,
+  }) {
+    return firebaseFirestore
+        .collection("school")
+        .doc(FindUid())
+        .collection("detail")
+        .doc(a1.key)
+        .snapshots();
+  }
 }

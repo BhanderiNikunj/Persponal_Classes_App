@@ -24,7 +24,6 @@ Future<void> main() async {
     Sizer(
       builder: (context, orientation, deviceType) {
         return GetMaterialApp(
-          initialRoute: '/addUserDetail',
           debugShowCheckedModeBanner: false,
           getPages: [
             GetPage(

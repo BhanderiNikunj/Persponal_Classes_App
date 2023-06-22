@@ -1,5 +1,5 @@
 class AddUserDetailModel {
-  String? image, name, surname, mobileNo, emailId;
+  String? image, name, surname, mobileNo, emailId, key;
   int? checkAdmin;
 
   AddUserDetailModel({
@@ -9,5 +9,6 @@ class AddUserDetailModel {
     this.mobileNo,
     this.emailId,
     this.checkAdmin,
+    this.key,
   });
 }
