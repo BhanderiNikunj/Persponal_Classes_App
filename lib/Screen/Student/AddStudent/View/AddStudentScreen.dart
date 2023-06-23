@@ -134,7 +134,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                             print(addStudentControllor.imageBytes);
                           },
                           child: CircleAvatar(
-                            backgroundImage: addStudentControllor.ipath.isEmpty
+                            backgroundImage: addStudentControllor.ipath.value == null
                                 ? null
                                 : MemoryImage(
                                     Uint8List.fromList(

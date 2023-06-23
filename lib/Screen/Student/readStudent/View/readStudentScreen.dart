@@ -39,25 +39,15 @@ class _readStudentScreenState extends State<readStudentScreen> {
               for (var Data in snapData.docs) {
                 StudentModel s1 = StudentModel(
                   total_fees: int.parse("${Data['total_fees']}"),
-                  //
                   paid_fees: int.parse("${Data['paid_fees']}"),
-                  //
                   email_id: Data['email_id'],
-                  //
                   mobile_no: Data['mobile_no'],
-                  //
                   l_name: Data['l_name'],
-                  //
                   f_name: Data['f_name'],
-                  //
                   image: Data['image'],
-                  //
                   father_name: Data['father'],
-                  //
                   key: Data.id,
-                  //
                   address: Data['address'],
-                  //
                   std: Data['std'],
                 );
 
