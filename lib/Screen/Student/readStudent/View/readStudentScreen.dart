@@ -53,165 +53,215 @@ class _readStudentScreenState extends State<readStudentScreen> {
 
                 readStudentControllor.StudentDataList.add(s1);
               }
-              return ListView.builder(
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.all(10.sp),
-                    child: InkWell(
-                      onTap: () {
-                        print(readStudentControllor
-                            .StudentDataList[index].father_name);
-                        print(readStudentControllor
-                            .StudentDataList[index].address);
-                        StudentModel s1 = StudentModel(
-                          image: readStudentControllor
-                              .StudentDataList[index].image,
-                          key: readStudentControllor.StudentDataList[index].key,
-                          email_id: readStudentControllor
-                              .StudentDataList[index].email_id,
-                          f_name: readStudentControllor
-                              .StudentDataList[index].f_name,
-                          l_name: readStudentControllor
-                              .StudentDataList[index].l_name,
-                          mobile_no: readStudentControllor
-                              .StudentDataList[index].mobile_no,
-                          paid_fees: readStudentControllor
-                              .StudentDataList[index].paid_fees,
-                          total_fees: readStudentControllor
-                              .StudentDataList[index].total_fees,
-                          address: readStudentControllor
-                              .StudentDataList[index].address,
-                          std: readStudentControllor.StudentDataList[index].std,
-                          father_name: readStudentControllor
-                              .StudentDataList[index].father_name,
-                        );
-                        Get.toNamed(
-                          '/showDetail',
-                          arguments: s1,
-                        );
-                      },
-                      child: Container(
-                        height: 80.sp,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10.sp),
-                          ),
-                          gradient: LinearGradient(
-                            transform: GradientRotation(pi / 4),
-                            colors: [
-                              Color(0xff2ED0FF),
-                              Color(0xff50AFFF),
-                              Color(0xff6E92FF),
-                              Color(0xff7E82FF),
-                            ],
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            SizedBox(width: 10.sp),
-                            CircleAvatar(
-                              backgroundImage: MemoryImage(
-                                Uint8List.fromList(
-                                  readStudentControllor
-                                      .StudentDataList[index].image!.codeUnits,
-                                ),
-                              ),
-                              radius: 25.sp,
-                            ),
-                            SizedBox(
-                              width: 10.sp,
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: 150.sp,
-                                  child: Text(
-                                    overflow: TextOverflow.ellipsis,
-                                    "Name :- ${readStudentControllor.StudentDataList[index].f_name} ${readStudentControllor.StudentDataList[index].l_name}",
-                                  ),
-                                ),
-                                SizedBox(height: 5.sp),
-                                Text(
-                                  "Mobile No :- +91 ${readStudentControllor.StudentDataList[index].mobile_no}",
-                                ),
-                                SizedBox(height: 5.sp),
-                                Container(
-                                  width: 150.sp,
-                                  child: Text(
-                                    "Email Id :- ${readStudentControllor.StudentDataList[index].email_id}",
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              width: 15.sp,
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                IconButton(
-                                  onPressed: () {
-                                    StudentModel s1 = StudentModel(
-                                      key: readStudentControllor
-                                          .StudentDataList[index].key,
-                                      image: readStudentControllor
-                                          .StudentDataList[index].image,
-                                      address: readStudentControllor
-                                          .StudentDataList[index].address,
-                                      father_name: readStudentControllor
-                                          .StudentDataList[index].father_name,
-                                      std: readStudentControllor
-                                          .StudentDataList[index].std,
-                                      l_name: readStudentControllor
-                                          .StudentDataList[index].l_name,
-                                      mobile_no: readStudentControllor
-                                          .StudentDataList[index].mobile_no,
-                                      f_name: readStudentControllor
-                                          .StudentDataList[index].f_name,
-                                      email_id: readStudentControllor
-                                          .StudentDataList[index].email_id,
-                                      paid_fees: readStudentControllor
-                                          .StudentDataList[index].paid_fees,
-                                      total_fees: readStudentControllor
-                                          .StudentDataList[index].total_fees,
-                                      isCheck: 1,
-                                    );
-                                    print(s1.isCheck);
-                                    Get.toNamed(
-                                      '/addStudent',
-                                      arguments: s1,
-                                    );
-                                  },
-                                  icon: Icon(
-                                    Icons.edit,
-                                  ),
-                                ),
-                                IconButton(
-                                  onPressed: () {
-                                    StudentModel s1 = StudentModel(
-                                      key: readStudentControllor
-                                          .StudentDataList[index].key,
-                                    );
-                                    readStudentControllor.deleteDetail(
-                                      s1: s1,
-                                    );
-                                  },
-                                  icon: Icon(
-                                    Icons.delete,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+              return Column(
+                children: [
+                  Container(
+                    height: 50.sp,
+                    decoration: BoxDecoration(
+                      color: Color(0xffE85720),
+                      borderRadius: BorderRadius.only(
+                        bottomRight: Radius.circular(25.sp),
+                        bottomLeft: Radius.circular(25.sp),
                       ),
                     ),
-                  );
-                },
-                itemCount: readStudentControllor.StudentDataList.length,
+                    alignment: Alignment.center,
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Get.back();
+                          },
+                          icon: Icon(
+                            Icons.arrow_back,
+                            size: 20.sp,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(width: 60.sp,),
+                        Text(
+                          "Student Detail",
+                          style: TextStyle(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.all(10.sp),
+                          child: InkWell(
+                            onTap: () {
+                              print(readStudentControllor
+                                  .StudentDataList[index].father_name);
+                              print(readStudentControllor
+                                  .StudentDataList[index].address);
+                              StudentModel s1 = StudentModel(
+                                image: readStudentControllor
+                                    .StudentDataList[index].image,
+                                key: readStudentControllor
+                                    .StudentDataList[index].key,
+                                email_id: readStudentControllor
+                                    .StudentDataList[index].email_id,
+                                f_name: readStudentControllor
+                                    .StudentDataList[index].f_name,
+                                l_name: readStudentControllor
+                                    .StudentDataList[index].l_name,
+                                mobile_no: readStudentControllor
+                                    .StudentDataList[index].mobile_no,
+                                paid_fees: readStudentControllor
+                                    .StudentDataList[index].paid_fees,
+                                total_fees: readStudentControllor
+                                    .StudentDataList[index].total_fees,
+                                address: readStudentControllor
+                                    .StudentDataList[index].address,
+                                std: readStudentControllor
+                                    .StudentDataList[index].std,
+                                father_name: readStudentControllor
+                                    .StudentDataList[index].father_name,
+                              );
+                              Get.toNamed(
+                                '/showDetail',
+                                arguments: s1,
+                              );
+                            },
+                            child: Container(
+                              height: 80.sp,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.sp),
+                                ),
+                                gradient: LinearGradient(
+                                  transform: GradientRotation(pi / 4),
+                                  colors: [
+                                    Color(0xff2ED0FF),
+                                    Color(0xff50AFFF),
+                                    Color(0xff6E92FF),
+                                    Color(0xff7E82FF),
+                                  ],
+                                ),
+                              ),
+                              child: Row(
+                                children: [
+                                  SizedBox(width: 10.sp),
+                                  CircleAvatar(
+                                    backgroundImage: MemoryImage(
+                                      Uint8List.fromList(
+                                        readStudentControllor
+                                            .StudentDataList[index]
+                                            .image!
+                                            .codeUnits,
+                                      ),
+                                    ),
+                                    radius: 25.sp,
+                                  ),
+                                  SizedBox(
+                                    width: 10.sp,
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width: 150.sp,
+                                        child: Text(
+                                          overflow: TextOverflow.ellipsis,
+                                          "Name :- ${readStudentControllor.StudentDataList[index].f_name} ${readStudentControllor.StudentDataList[index].l_name}",
+                                        ),
+                                      ),
+                                      SizedBox(height: 5.sp),
+                                      Text(
+                                        "Mobile No :- +91 ${readStudentControllor.StudentDataList[index].mobile_no}",
+                                      ),
+                                      SizedBox(height: 5.sp),
+                                      Container(
+                                        width: 150.sp,
+                                        child: Text(
+                                          "Email Id :- ${readStudentControllor.StudentDataList[index].email_id}",
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    width: 15.sp,
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      IconButton(
+                                        onPressed: () {
+                                          StudentModel s1 = StudentModel(
+                                            key: readStudentControllor
+                                                .StudentDataList[index].key,
+                                            image: readStudentControllor
+                                                .StudentDataList[index].image,
+                                            address: readStudentControllor
+                                                .StudentDataList[index].address,
+                                            father_name: readStudentControllor
+                                                .StudentDataList[index]
+                                                .father_name,
+                                            std: readStudentControllor
+                                                .StudentDataList[index].std,
+                                            l_name: readStudentControllor
+                                                .StudentDataList[index].l_name,
+                                            mobile_no: readStudentControllor
+                                                .StudentDataList[index]
+                                                .mobile_no,
+                                            f_name: readStudentControllor
+                                                .StudentDataList[index].f_name,
+                                            email_id: readStudentControllor
+                                                .StudentDataList[index]
+                                                .email_id,
+                                            paid_fees: readStudentControllor
+                                                .StudentDataList[index]
+                                                .paid_fees,
+                                            total_fees: readStudentControllor
+                                                .StudentDataList[index]
+                                                .total_fees,
+                                            isCheck: 1,
+                                          );
+                                          print(s1.isCheck);
+                                          Get.toNamed(
+                                            '/addStudent',
+                                            arguments: s1,
+                                          );
+                                        },
+                                        icon: Icon(
+                                          Icons.edit,
+                                        ),
+                                      ),
+                                      IconButton(
+                                        onPressed: () {
+                                          StudentModel s1 = StudentModel(
+                                            key: readStudentControllor
+                                                .StudentDataList[index].key,
+                                          );
+                                          readStudentControllor.deleteDetail(
+                                            s1: s1,
+                                          );
+                                        },
+                                        icon: Icon(
+                                          Icons.delete,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                      itemCount: readStudentControllor.StudentDataList.length,
+                    ),
+                  ),
+                ],
               );
             }
             return Center(

@@ -42,8 +42,24 @@ class _ShowDetailScreenState extends State<ShowDetailScreen> {
                 ),
                 alignment: Alignment.center,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: IconButton(
+                            onPressed: () {
+                              Get.back();
+                            },
+                            icon: Icon(
+                              Icons.arrow_back,
+                              size: 20.sp,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                     CircleAvatar(
                       radius: 60.sp,
                       backgroundImage: MemoryImage(

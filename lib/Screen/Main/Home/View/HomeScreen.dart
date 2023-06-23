@@ -32,15 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(20.sp),
                       bottomRight: Radius.circular(20.sp)),
-                  gradient: LinearGradient(
-                    transform: GradientRotation(100),
-                    colors: [
-                      Color(0xff2ED0FF),
-                      Color(0xff50AFFF),
-                      Color(0xff6E92FF),
-                      Color(0xff7E82FF),
-                    ],
-                  ),
+                  color: Color(0xffE85720),
                 ),
                 child: Stack(
                   children: [
