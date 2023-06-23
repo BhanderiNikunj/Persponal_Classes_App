@@ -70,7 +70,7 @@ class _SpleshScreenState extends State<SpleshScreen> {
                   Duration(seconds: 3),
                   () {
                     if (dataList[0].checkAdmin == 1) {
-                      Get.offAndToNamed('/home');
+                      Get.offAndToNamed('/bottom');
                     } else {
                       Get.offAndToNamed('/userHome');
                     }
@@ -89,7 +89,12 @@ class _SpleshScreenState extends State<SpleshScreen> {
           );
         }
         return Center(
-          child: CircularProgressIndicator(),
+          child: Container(
+            height: 150.sp,
+            child: Image.asset(
+              "Assets/Images/bright.jpg",
+            ),
+          ),
         );
       },
     );

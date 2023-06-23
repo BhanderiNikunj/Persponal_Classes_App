@@ -1,7 +1,7 @@
 import 'package:classes_app/Screen/Main/Bottom/Controllor/BottomControllor.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
+import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
 
 class BottomScreen extends StatefulWidget {
   const BottomScreen({Key? key}) : super(key: key);
@@ -21,24 +21,17 @@ class _BottomScreenState extends State<BottomScreen> {
       child: Scaffold(
         body: bottomControllor.Screens[bottomControllor.isBottom.value],
         bottomNavigationBar: Obx(
-          () => WaterDropNavBar(
-            inactiveIconColor: Colors.black,
-            bottomPadding: 10,
-            waterDropColor: Colors.black,
+          () => SlidingClippedNavBar(
             barItems: [
-              BarItem(
-                filledIcon: Icons.home,
-                outlinedIcon: Icons.home_outlined,
-              ),
-              BarItem(
-                filledIcon: Icons.person,
-                outlinedIcon: Icons.person_outline,
-              ),
+              BarItem(title: 'Home', icon: Icons.home),
+              BarItem(title: 'Profile', icon: Icons.person),
             ],
             selectedIndex: bottomControllor.isBottom.value,
-            onItemSelected: (index) {
+            onButtonPressed: (index) {
               bottomControllor.isBottom.value = index;
             },
+            inactiveColor: Color(0xff6E92FF),
+            activeColor: Color(0xff7E82FF),
           ),
         ),
       ),
