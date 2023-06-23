@@ -44,7 +44,8 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
                       });
 
                       setState(() {
-                        addUserDetailControllor.iPath.value = String.fromCharCodes(
+                        addUserDetailControllor.iPath.value =
+                            String.fromCharCodes(
                           addUserDetailControllor.imageBytes!,
                         );
                       });
@@ -55,10 +56,10 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
                       radius: 50.sp,
                       backgroundColor: Color(0xffE85720),
                       backgroundImage: MemoryImage(
-                              Uint8List.fromList(
-                                addUserDetailControllor.iPath.value.codeUnits,
-                              ),
-                            ),
+                        Uint8List.fromList(
+                          addUserDetailControllor.iPath.value.codeUnits,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -220,6 +221,15 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
                 Center(
                   child: InkWell(
                     onTap: () async {
+                      print("--------------------------------------");
+                      print(addUserDetailControllor.txtName.text);
+                      print(addUserDetailControllor.txtSurname.text);
+                      print(addUserDetailControllor.txtMobileNo.text);
+                      print(addUserDetailControllor.txtEmail.text);
+                      print(addUserDetailControllor.checkAdmin.value);
+                      print("--------------------------------------");
+
+
                       AddUserDetailModel a1 = AddUserDetailModel(
                         name: addUserDetailControllor.txtName.text,
                         image: addUserDetailControllor.iPath.value,
@@ -229,7 +239,8 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
                         mobileNo: addUserDetailControllor.txtMobileNo.text,
                       );
 
-                      String msg = await addUserDetailControllor.insertUserDetail(
+                      String msg =
+                          await addUserDetailControllor.insertUserDetail(
                         a1: a1,
                       );
 

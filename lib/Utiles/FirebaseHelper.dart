@@ -257,14 +257,11 @@ class FirebaseHelper {
         );
   }
 
-  Stream<DocumentSnapshot<Map<String, dynamic>>> readUSerDetail({
-    required AddUserDetailModel a1,
-  }) {
+  Stream<QuerySnapshot<Map<String, dynamic>>> readUSerDetail() {
     return firebaseFirestore
         .collection("school")
         .doc(FindUid())
         .collection("detail")
-        .doc(a1.key)
         .snapshots();
   }
 }

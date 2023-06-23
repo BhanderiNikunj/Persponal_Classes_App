@@ -33,7 +33,7 @@ class AddUserDetailControllor extends GetxController {
     required AddUserDetailModel a1,
   }) {
     FirebaseHelper.firebaseHelper.readUSerDetail(
-      a1: a1,
+      // a1: a1,
     );
   }
 }
