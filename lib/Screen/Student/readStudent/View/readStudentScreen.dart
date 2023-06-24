@@ -270,6 +270,7 @@ class _readStudentScreenState extends State<readStudentScreen> {
           },
         ),
         floatingActionButton: FloatingActionButton(
+          backgroundColor: Color(0xff01957f),
           onPressed: () {
             StudentModel s1 = StudentModel(
               isCheck: 0,

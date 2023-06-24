@@ -28,7 +28,9 @@ class _BottomScreenState extends State<BottomScreen> {
             ],
             selectedIndex: bottomControllor.isBottom.value,
             onButtonPressed: (index) {
-              bottomControllor.isBottom.value = index;
+              setState(() {
+                bottomControllor.isBottom.value = index;
+              });
             },
             inactiveColor: Color(0xff6E92FF),
             activeColor: Color(0xff7E82FF),

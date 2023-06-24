@@ -147,8 +147,8 @@ class _SignInScreenState extends State<SignInScreen> {
                         );
                       },
                       child: Container(
-                        height: 40.sp,
-                        width: 80.sp,
+                        height: 30.sp,
+                        width: 60.sp,
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: Color(0xff007060),
@@ -161,7 +161,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           "LogIn",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 15.sp,
+                            fontSize: 12.sp,
                             color: Colors.white,
                           ),
                         ),

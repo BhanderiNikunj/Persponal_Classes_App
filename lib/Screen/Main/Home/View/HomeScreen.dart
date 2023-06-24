@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:classes_app/Screen/Main/Home/Controllor/HomeControllor.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -62,7 +63,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 SizedBox(width: 50.sp),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
                                     InkWell(
                                       onTap: () {
@@ -72,7 +74,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                         height: 30.sp,
                                         width: 60.sp,
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10.sp),
+                                          borderRadius:
+                                              BorderRadius.circular(10.sp),
                                           gradient: LinearGradient(
                                             transform: GradientRotation(100),
                                             colors: [
@@ -102,7 +105,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                         height: 30.sp,
                                         width: 60.sp,
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10.sp),
+                                          borderRadius:
+                                              BorderRadius.circular(10.sp),
                                           gradient: LinearGradient(
                                             transform: GradientRotation(100),
                                             colors: [
@@ -137,6 +141,27 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ],
+                ),
+              ),
+              CarouselSlider.builder(
+                itemCount: homeControllor.imageList.length,
+                disableGesture: true,
+                carouselController: homeControllor.buttonCarouselController,
+                itemBuilder: (context, index, realIndex) {
+                  return Container(
+                    width: double.infinity,
+                    height: 150.sp,
+                    margin: EdgeInsets.all(10),
+                    // color: Colors.black12,
+                    alignment: Alignment.center,
+                    child: Image.asset("${homeControllor.imageList[index]}"),
+                  );
+                },
+                options: CarouselOptions(
+                  scrollDirection: Axis.horizontal,
+                  autoPlay: true,
+                  autoPlayInterval: Duration(seconds: 3),
+                  height: 200.sp,
                 ),
               ),
               Padding(
@@ -282,6 +307,292 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
+              // Padding(
+              //   padding: EdgeInsets.all(8.sp),
+              //   child: Column(
+              //     children: [
+              //       Row(
+              //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //         children: [
+              //           InkWell(
+              //             onTap: () {
+              //               // Get.toNamed('/courses');
+              //               Get.toNamed('/showStudent');
+              //             },
+              //             child: Container(
+              //               height: 135.sp,
+              //               width: 125.sp,
+              //               decoration: BoxDecoration(
+              //                 borderRadius: BorderRadius.circular(10.sp),
+              //                 boxShadow: [
+              //                   BoxShadow(
+              //                     offset: Offset(4, 1),
+              //                     spreadRadius: 5,
+              //                     blurRadius: 5,
+              //                     color: Color(0xffb0b5f8),
+              //                   ),
+              //                 ],
+              //               ),
+              //               margin: EdgeInsets.all(10),
+              //               child: Column(
+              //                 children: [
+              //                   Container(
+              //                     decoration: BoxDecoration(
+              //                       borderRadius: BorderRadius.only(
+              //                         topRight: Radius.circular(10.sp),
+              //                         topLeft: Radius.circular(10.sp),
+              //                       ),
+              //                       gradient: LinearGradient(
+              //                         transform: GradientRotation(pi / 2),
+              //                         colors: [
+              //                           Color(0xff2ED0FF),
+              //                           Color(0xff50AFFF),
+              //                           Color(0xff6E92FF),
+              //                           Color(0xff7E82FF),
+              //                         ],
+              //                       ),
+              //                     ),
+              //                     height: 15.h,
+              //                     alignment: Alignment.center,
+              //                     child: Image.asset(
+              //                         "${homeControllor.Types[0].image}"),
+              //                   ),
+              //                   Container(
+              //                     decoration: BoxDecoration(
+              //                       borderRadius: BorderRadius.only(
+              //                         bottomLeft: Radius.circular(10.sp),
+              //                         bottomRight: Radius.circular(10.sp),
+              //                       ),
+              //                       color: Color(0xffffffff),
+              //                     ),
+              //                     alignment: Alignment.center,
+              //                     child: Text(
+              //                       "${homeControllor.Types[0].name}",
+              //                       style: TextStyle(
+              //                         fontWeight: FontWeight.bold,
+              //                         fontSize: 15.sp,
+              //                         color: Color(0xff4754ff),
+              //                       ),
+              //                     ),
+              //                     height: 35.sp,
+              //                   ),
+              //                 ],
+              //               ),
+              //             ),
+              //           ),
+              //           InkWell(
+              //             onTap: () {
+              //               Get.toNamed('/homeWork');
+              //             },
+              //             child: Container(
+              //               height: 135.sp,
+              //               width: 125.sp,
+              //               decoration: BoxDecoration(
+              //                 borderRadius: BorderRadius.circular(10.sp),
+              //                 boxShadow: [
+              //                   BoxShadow(
+              //                     offset: Offset(4, 1),
+              //                     spreadRadius: 5,
+              //                     blurRadius: 5,
+              //                     color: Color(0xffb0b5f8),
+              //                   ),
+              //                 ],
+              //               ),
+              //               margin: EdgeInsets.all(10),
+              //               child: Column(
+              //                 children: [
+              //                   Container(
+              //                     decoration: BoxDecoration(
+              //                       borderRadius: BorderRadius.only(
+              //                         topRight: Radius.circular(10.sp),
+              //                         topLeft: Radius.circular(10.sp),
+              //                       ),
+              //                       gradient: LinearGradient(
+              //                         transform: GradientRotation(pi / 2),
+              //                         colors: [
+              //                           Color(0xff2ED0FF),
+              //                           Color(0xff50AFFF),
+              //                           Color(0xff6E92FF),
+              //                           Color(0xff7E82FF),
+              //                         ],
+              //                       ),
+              //                     ),
+              //                     height: 15.h,
+              //                     alignment: Alignment.center,
+              //                     child: Image.asset(
+              //                         "${homeControllor.Types[1].image}"),
+              //                   ),
+              //                   Container(
+              //                     decoration: BoxDecoration(
+              //                       borderRadius: BorderRadius.only(
+              //                         bottomLeft: Radius.circular(10.sp),
+              //                         bottomRight: Radius.circular(10.sp),
+              //                       ),
+              //                       color: Color(0xffffffff),
+              //                     ),
+              //                     alignment: Alignment.center,
+              //                     child: Text(
+              //                       "${homeControllor.Types[1].name}",
+              //                       style: TextStyle(
+              //                         fontWeight: FontWeight.bold,
+              //                         fontSize: 15.sp,
+              //                         color: Color(0xff4754ff),
+              //                       ),
+              //                     ),
+              //                     height: 35.sp,
+              //                   ),
+              //                 ],
+              //               ),
+              //             ),
+              //           ),
+              //         ],
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // Padding(
+              //   padding: EdgeInsets.all(8.sp),
+              //   child: Column(
+              //     children: [
+              //       Row(
+              //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //         children: [
+              //           InkWell(
+              //             onTap: () {
+              //               // Get.toNamed('/courses');
+              //               Get.toNamed('/showStudent');
+              //             },
+              //             child: Container(
+              //               height: 135.sp,
+              //               width: 125.sp,
+              //               decoration: BoxDecoration(
+              //                 borderRadius: BorderRadius.circular(10.sp),
+              //                 boxShadow: [
+              //                   BoxShadow(
+              //                     offset: Offset(4, 1),
+              //                     spreadRadius: 5,
+              //                     blurRadius: 5,
+              //                     color: Color(0xffb0b5f8),
+              //                   ),
+              //                 ],
+              //               ),
+              //               margin: EdgeInsets.all(10),
+              //               child: Column(
+              //                 children: [
+              //                   Container(
+              //                     decoration: BoxDecoration(
+              //                       borderRadius: BorderRadius.only(
+              //                         topRight: Radius.circular(10.sp),
+              //                         topLeft: Radius.circular(10.sp),
+              //                       ),
+              //                       gradient: LinearGradient(
+              //                         transform: GradientRotation(pi / 2),
+              //                         colors: [
+              //                           Color(0xff2ED0FF),
+              //                           Color(0xff50AFFF),
+              //                           Color(0xff6E92FF),
+              //                           Color(0xff7E82FF),
+              //                         ],
+              //                       ),
+              //                     ),
+              //                     height: 15.h,
+              //                     alignment: Alignment.center,
+              //                     child: Image.asset(
+              //                         "${homeControllor.Types[0].image}"),
+              //                   ),
+              //                   Container(
+              //                     decoration: BoxDecoration(
+              //                       borderRadius: BorderRadius.only(
+              //                         bottomLeft: Radius.circular(10.sp),
+              //                         bottomRight: Radius.circular(10.sp),
+              //                       ),
+              //                       color: Color(0xffffffff),
+              //                     ),
+              //                     alignment: Alignment.center,
+              //                     child: Text(
+              //                       "${homeControllor.Types[0].name}",
+              //                       style: TextStyle(
+              //                         fontWeight: FontWeight.bold,
+              //                         fontSize: 15.sp,
+              //                         color: Color(0xff4754ff),
+              //                       ),
+              //                     ),
+              //                     height: 35.sp,
+              //                   ),
+              //                 ],
+              //               ),
+              //             ),
+              //           ),
+              //           InkWell(
+              //             onTap: () {
+              //               Get.toNamed('/homeWork');
+              //             },
+              //             child: Container(
+              //               height: 135.sp,
+              //               width: 125.sp,
+              //               decoration: BoxDecoration(
+              //                 borderRadius: BorderRadius.circular(10.sp),
+              //                 boxShadow: [
+              //                   BoxShadow(
+              //                     offset: Offset(4, 1),
+              //                     spreadRadius: 5,
+              //                     blurRadius: 5,
+              //                     color: Color(0xffb0b5f8),
+              //                   ),
+              //                 ],
+              //               ),
+              //               margin: EdgeInsets.all(10),
+              //               child: Column(
+              //                 children: [
+              //                   Container(
+              //                     decoration: BoxDecoration(
+              //                       borderRadius: BorderRadius.only(
+              //                         topRight: Radius.circular(10.sp),
+              //                         topLeft: Radius.circular(10.sp),
+              //                       ),
+              //                       gradient: LinearGradient(
+              //                         transform: GradientRotation(pi / 2),
+              //                         colors: [
+              //                           Color(0xff2ED0FF),
+              //                           Color(0xff50AFFF),
+              //                           Color(0xff6E92FF),
+              //                           Color(0xff7E82FF),
+              //                         ],
+              //                       ),
+              //                     ),
+              //                     height: 15.h,
+              //                     alignment: Alignment.center,
+              //                     child: Image.asset(
+              //                         "${homeControllor.Types[1].image}"),
+              //                   ),
+              //                   Container(
+              //                     decoration: BoxDecoration(
+              //                       borderRadius: BorderRadius.only(
+              //                         bottomLeft: Radius.circular(10.sp),
+              //                         bottomRight: Radius.circular(10.sp),
+              //                       ),
+              //                       color: Color(0xffffffff),
+              //                     ),
+              //                     alignment: Alignment.center,
+              //                     child: Text(
+              //                       "${homeControllor.Types[1].name}",
+              //                       style: TextStyle(
+              //                         fontWeight: FontWeight.bold,
+              //                         fontSize: 15.sp,
+              //                         color: Color(0xff4754ff),
+              //                       ),
+              //                     ),
+              //                     height: 35.sp,
+              //                   ),
+              //                 ],
+              //               ),
+              //             ),
+              //           ),
+              //         ],
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ],
           ),
         ),

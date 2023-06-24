@@ -134,13 +134,14 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                             print(addStudentControllor.imageBytes);
                           },
                           child: CircleAvatar(
-                            backgroundImage: addStudentControllor.ipath.value == null
-                                ? null
-                                : MemoryImage(
-                                    Uint8List.fromList(
-                                      addStudentControllor.ipath.codeUnits,
-                                    ),
-                                  ),
+                            backgroundImage:
+                                addStudentControllor.ipath.value == null
+                                    ? null
+                                    : MemoryImage(
+                                        Uint8List.fromList(
+                                          addStudentControllor.ipath.codeUnits,
+                                        ),
+                                      ),
                             radius: 40.sp,
                             backgroundColor: Color(0xff2ED0FF),
                           ),
@@ -413,20 +414,40 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
 
                           Get.back();
                         },
+                        // child: Container(
+                        //   height: 30.sp,
+                        //   width: 60.sp,
+                        //   decoration: BoxDecoration(
+                        //     borderRadius: BorderRadius.circular(10.sp),
+                        //     gradient: LinearGradient(
+                        //       transform: GradientRotation(100),
+                        //       colors: [
+                        //         Color(0xff2ED0FF),
+                        //         Color(0xff50AFFF),
+                        //         Color(0xff6E92FF),
+                        //         Color(0xff7E82FF),
+                        //       ],
+                        //     ),
+                        //   ),
+                        //   alignment: Alignment.center,
+                        //   child: Text(
+                        //
+                        //     style: TextStyle(
+                        //       fontWeight: FontWeight.bold,
+                        //       fontSize: 12.sp,
+                        //       color: Colors.white,
+                        //     ),
+                        //   ),
+                        // ),
                         child: Container(
                           height: 30.sp,
                           width: 60.sp,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.sp),
-                            gradient: LinearGradient(
-                              transform: GradientRotation(100),
-                              colors: [
-                                Color(0xff2ED0FF),
-                                Color(0xff50AFFF),
-                                Color(0xff6E92FF),
-                                Color(0xff7E82FF),
-                              ],
+                            border: Border.all(
+                              color: Color(0xff007060),
                             ),
+                            borderRadius: BorderRadius.circular(10.sp),
+                            color: Color(0xff01957f),
                           ),
                           alignment: Alignment.center,
                           child: Text(

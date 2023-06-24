@@ -221,15 +221,6 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
                 Center(
                   child: InkWell(
                     onTap: () async {
-                      print("--------------------------------------");
-                      print(addUserDetailControllor.txtName.text);
-                      print(addUserDetailControllor.txtSurname.text);
-                      print(addUserDetailControllor.txtMobileNo.text);
-                      print(addUserDetailControllor.txtEmail.text);
-                      print(addUserDetailControllor.checkAdmin.value);
-                      print("--------------------------------------");
-
-
                       AddUserDetailModel a1 = AddUserDetailModel(
                         name: addUserDetailControllor.txtName.text,
                         image: addUserDetailControllor.iPath.value,
@@ -268,15 +259,18 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
                       height: 30.sp,
                       width: 60.sp,
                       decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Color(0xff007060),
+                        ),
                         borderRadius: BorderRadius.circular(10.sp),
-                        color: Color(0xff950DB7),
+                        color: Color(0xff01957f),
                       ),
                       alignment: Alignment.center,
                       child: Text(
                         "Next",
                         style: TextStyle(
-                          fontSize: 12.sp,
                           fontWeight: FontWeight.bold,
+                          fontSize: 12.sp,
                           color: Colors.white,
                         ),
                       ),

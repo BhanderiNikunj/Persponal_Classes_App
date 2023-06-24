@@ -1,4 +1,5 @@
 import 'package:classes_app/Screen/Main/Home/View/HomeScreen.dart';
+import 'package:classes_app/Screen/Profile/View/ProfileScreen.dart';
 import 'package:classes_app/Screen/Student/AddStudent/View/AddStudentScreen.dart';
 import 'package:get/get.dart';
 
@@ -8,7 +9,6 @@ class BottomControllor extends GetxController {
 
   List Screens = [
     HomeScreen(),
-    AddStudentScreen(),
-    HomeScreen(),
+    ProfileScreen(),
   ];
 }

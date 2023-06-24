@@ -52,6 +52,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   TextField(
                     controller: signUpControllor.txtEmail,
                     decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.person),
                       hintText: "user@gmail.com",
                       disabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
@@ -145,8 +146,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         print(msg);
                       },
                       child: Container(
-                        height: 40.sp,
-                        width: 80.sp,
+                        height: 30.sp,
+                        width: 60.sp,
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: Color(0xff007060),
@@ -158,9 +159,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         child: Text(
                           "SignUp",
                           style: TextStyle(
-                            color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 15.sp,
+                            fontSize: 12.sp,
+                            color: Colors.white,
                           ),
                         ),
                       ),

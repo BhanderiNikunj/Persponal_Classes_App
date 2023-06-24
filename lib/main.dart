@@ -6,6 +6,7 @@ import 'package:classes_app/Screen/Login/SignUp/View/SignUpScreen.dart';
 import 'package:classes_app/Screen/Login/Splesh/View/SpleshScreen.dart';
 import 'package:classes_app/Screen/Main/Bottom/View/BottomScreen.dart';
 import 'package:classes_app/Screen/Main/Home/View/HomeScreen.dart';
+import 'package:classes_app/Screen/Profile/View/ProfileScreen.dart';
 import 'package:classes_app/Screen/Student/AddStudent/View/AddStudentScreen.dart';
 import 'package:classes_app/Screen/Student/ShowDetail/View/ShowDetailScreen.dart';
 import 'package:classes_app/Screen/Student/readStudent/View/readStudentScreen.dart';
@@ -73,6 +74,10 @@ Future<void> main() async {
             GetPage(
               name: '/addUserDetail',
               page: () => AddUserDetailScreen(),
+            ),
+            GetPage(
+              name: '/profile',
+              page: () => ProfileScreen(),
             ),
           ],
         );
