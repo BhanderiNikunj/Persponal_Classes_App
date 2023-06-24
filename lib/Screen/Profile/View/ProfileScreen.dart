@@ -142,7 +142,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ],
                     ),
                   ),
-                  Container(),
+                  Container(
+                    height: 250.sp,
+                    width: double.infinity,
+                    decoration: BoxDecoration(),
+                    child: Padding(
+                      padding: EdgeInsets.all(15.sp),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            alignment: Alignment.centerLeft,
+                            height: 30.sp,
+                            child: Text("123"),
+                          ),
+                          Divider(
+                            color: Colors.black45,
+                            height: 3.sp,
+                          ),
+                          Container(
+                            alignment: Alignment.centerLeft,
+                            height: 30.sp,
+                            child: Text("123"),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               );
             }
