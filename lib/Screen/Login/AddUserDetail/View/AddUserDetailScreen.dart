@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:classes_app/Screen/Login/AddUserDetail/Controllor/AddUserDetailControllor.dart';
 import 'package:classes_app/Screen/Login/AddUserDetail/Model/AddUserDetailModel.dart';
+import 'package:classes_app/Screen/Profile/Model/ProfileModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -18,6 +19,28 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
   AddUserDetailControllor addUserDetailControllor = Get.put(
     AddUserDetailControllor(),
   );
+  ProfileModel p1 = Get.arguments;
+
+  @override
+  void initState() {
+    super.initState();
+
+    if(p1.checkUpdate == 1){
+      addUserDetailControllor.txtName = TextEditingController(
+        text: "${p1.name}",
+      );
+      addUserDetailControllor.txtEmail = TextEditingController(
+        text: "${p1.email}",
+      );
+      addUserDetailControllor.txtMobileNo = TextEditingController(
+        text: "${p1.mobile}",
+      );
+      addUserDetailControllor.txtSurname = TextEditingController(
+        text: "${p1.surname}",
+      );
+      addUserDetailControllor.iPath.value = p1.image!;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
