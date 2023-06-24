@@ -84,33 +84,44 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     "Enter Your Password",
                   ),
                   SizedBox(height: 5.sp),
-                  TextField(
-                    controller: signUpControllor.txtPassword,
-                    decoration: InputDecoration(
-                      hintText: "********",
-                      disabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.black,
+                  Obx(
+                        () => TextField(
+                      obscureText: signUpControllor.isCheckPass == true ? false : true,
+                      controller: signUpControllor.txtPassword,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.lock),
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            signUpControllor.isCheckPass.value =
+                            !signUpControllor.isCheckPass.value;
+                          },
+                          icon: Icon(signUpControllor.isCheckPass == false ? Icons.visibility_off : Icons.visibility),
                         ),
-                        borderRadius: BorderRadius.circular(10.sp),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.black,
+                        hintText: "********",
+                        disabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.black,
+                          ),
+                          borderRadius: BorderRadius.circular(10.sp),
                         ),
-                        borderRadius: BorderRadius.circular(10.sp),
-                      ),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.black,
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.black,
+                          ),
+                          borderRadius: BorderRadius.circular(10.sp),
                         ),
-                        borderRadius: BorderRadius.circular(10.sp),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.black,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.black,
+                          ),
+                          borderRadius: BorderRadius.circular(10.sp),
                         ),
-                        borderRadius: BorderRadius.circular(10.sp),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.black,
+                          ),
+                          borderRadius: BorderRadius.circular(10.sp),
+                        ),
                       ),
                     ),
                   ),

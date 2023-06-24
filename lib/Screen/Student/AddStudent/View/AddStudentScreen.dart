@@ -317,30 +317,6 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                     ),
                     SizedBox(height: 10.sp),
                     Text(
-                      "Enter Email Id",
-                    ),
-                    SizedBox(height: 5.sp),
-                    TextField(
-                      controller: addStudentControllor.txtemail_id,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        hintText: "Ex. user@gmail.com",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.sp),
-                        ),
-                        disabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.sp),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.sp),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.sp),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 10.sp),
-                    Text(
                       "Enter Total Fees",
                     ),
                     SizedBox(height: 5.sp),
@@ -387,30 +363,6 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 10.sp),
-                    Text(
-                      "Enter Address",
-                    ),
-                    SizedBox(height: 5.sp),
-                    TextField(
-                      maxLines: 3,
-                      controller: addStudentControllor.txtAddress,
-                      decoration: InputDecoration(
-                        hintText: "Ex. Surat",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.sp),
-                        ),
-                        disabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.sp),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.sp),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.sp),
-                        ),
-                      ),
-                    ),
                     SizedBox(height: 20.sp),
                     Center(
                       child: InkWell(
@@ -421,11 +373,11 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                               father_name:
                                   addStudentControllor.txtfatherName.text,
                               image: addStudentControllor.ipath.value,
-                              email_id: addStudentControllor.txtemail_id.text,
+                              email_id: "-",
                               f_name: addStudentControllor.txtf_name.text,
                               l_name: addStudentControllor.txtl_name.text,
                               mobile_no: addStudentControllor.txtmobile_no.text,
-                              address: addStudentControllor.txtAddress.text,
+                              address: "-",
                               paid_fees: int.parse(
                                   "${addStudentControllor.txtpaid_fees.text}"),
                               total_fees: int.parse(
@@ -443,7 +395,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                               father_name:
                                   addStudentControllor.txtfatherName.text,
                               image: addStudentControllor.ipath.value,
-                              email_id: addStudentControllor.txtemail_id.text,
+                              email_id: "-",
                               f_name: addStudentControllor.txtf_name.text,
                               l_name: addStudentControllor.txtl_name.text,
                               mobile_no: addStudentControllor.txtmobile_no.text,
@@ -452,7 +404,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                               total_fees: int.parse(
                                   "${addStudentControllor.txttotal_fees.text}"),
                               key: s1.key,
-                              address: addStudentControllor.txtAddress.text,
+                              address: "-",
                             );
                             addStudentControllor.insertData(
                               s1: studentModel,

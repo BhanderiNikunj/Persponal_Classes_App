@@ -12,4 +12,6 @@ class SignUpControllor extends GetxController {
       password: password,
     );
   }
+
+  RxBool isCheckPass = false.obs;
 }

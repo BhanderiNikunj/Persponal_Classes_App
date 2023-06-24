@@ -52,6 +52,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   TextField(
                     controller: signInControllor.txtEmail,
                     decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.person),
                       hintText: "user@gmail.com",
                       disabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
@@ -84,33 +85,44 @@ class _SignInScreenState extends State<SignInScreen> {
                     "Enter Your Password",
                   ),
                   SizedBox(height: 5.sp),
-                  TextField(
-                    controller: signInControllor.txtPassword,
-                    decoration: InputDecoration(
-                      hintText: "********",
-                      disabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.black,
+                  Obx(
+                    () => TextField(
+                      obscureText: signInControllor.isCheckPass == true ? false : true,
+                      controller: signInControllor.txtPassword,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.lock),
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            signInControllor.isCheckPass.value =
+                                !signInControllor.isCheckPass.value;
+                          },
+                          icon: Icon(signInControllor.isCheckPass == false ? Icons.visibility_off : Icons.visibility),
                         ),
-                        borderRadius: BorderRadius.circular(10.sp),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.black,
+                        hintText: "********",
+                        disabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.black,
+                          ),
+                          borderRadius: BorderRadius.circular(10.sp),
                         ),
-                        borderRadius: BorderRadius.circular(10.sp),
-                      ),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.black,
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.black,
+                          ),
+                          borderRadius: BorderRadius.circular(10.sp),
                         ),
-                        borderRadius: BorderRadius.circular(10.sp),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.black,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.black,
+                          ),
+                          borderRadius: BorderRadius.circular(10.sp),
                         ),
-                        borderRadius: BorderRadius.circular(10.sp),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.black,
+                          ),
+                          borderRadius: BorderRadius.circular(10.sp),
+                        ),
                       ),
                     ),
                   ),
