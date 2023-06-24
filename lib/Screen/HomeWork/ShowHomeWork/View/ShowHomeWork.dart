@@ -118,7 +118,6 @@ class _ShowHomeWorkScreenState extends State<ShowHomeWorkScreen> {
                                       child: Text(
                                         overflow: TextOverflow.ellipsis,
                                         "Home Work :- ${addHomeWorkControllor.homeWorkList[index].title}",
-                                        // style: TextStyle(color: Colors.white),
                                       ),
                                     ),
                                     SizedBox(height: 5.sp),
