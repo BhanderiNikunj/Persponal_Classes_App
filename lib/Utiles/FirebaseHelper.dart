@@ -264,4 +264,23 @@ class FirebaseHelper {
         .collection("detail")
         .snapshots();
   }
+
+  // Exam
+
+  void insertExam({
+    required examName,
+    required examDate,
+    // required ,
+  }) {
+    firebaseFirestore
+        .collection("school")
+        .doc(FindUid())
+        .collection("exam")
+        .add(
+      {
+        "examName":examName,
+        "examDate":examDate,
+      },
+    );
+  }
 }
