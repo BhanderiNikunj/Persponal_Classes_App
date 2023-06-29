@@ -234,6 +234,8 @@ class FirebaseHelper {
   Future<String> updateUserDetail({
     required AddUserDetailModel a1,
   }) async {
+
+    print(a1.key);
     return await firebaseFirestore
         .collection("school")
         .doc(FindUid())

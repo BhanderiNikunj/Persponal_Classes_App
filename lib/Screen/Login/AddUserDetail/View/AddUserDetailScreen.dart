@@ -25,7 +25,7 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
   void initState() {
     super.initState();
 
-    if(p1.checkUpdate == 1){
+    if (p1.checkUpdate == 1) {
       addUserDetailControllor.txtName = TextEditingController(
         text: "${p1.name}",
       );
@@ -215,67 +215,90 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
                 ),
                 SizedBox(height: 10.sp),
                 Text(
-                  "Select Admin / User",
+                  p1.checkUpdate == 1 ? "" : "Select Admin / User",
                 ),
                 SizedBox(height: 5.sp),
-                Obx(
-                  () => DropdownButton(
-                    isExpanded: true,
-                    value: addUserDetailControllor.checkAdmin.value,
-                    items: [
-                      DropdownMenuItem(
-                        child: Text(
-                          "Admin",
+                p1.checkUpdate == 1
+                    ? Container()
+                    : Obx(
+                        () => DropdownButton(
+                          isExpanded: true,
+                          value: addUserDetailControllor.checkAdmin.value,
+                          items: [
+                            DropdownMenuItem(
+                              child: Text(
+                                "Admin",
+                              ),
+                              value: 1,
+                            ),
+                            DropdownMenuItem(
+                              child: Text(
+                                "User",
+                              ),
+                              value: 0,
+                            ),
+                          ],
+                          onChanged: (value) {
+                            addUserDetailControllor.checkAdmin.value = value!;
+                          },
                         ),
-                        value: 1,
                       ),
-                      DropdownMenuItem(
-                        child: Text(
-                          "User",
-                        ),
-                        value: 0,
-                      ),
-                    ],
-                    onChanged: (value) {
-                      addUserDetailControllor.checkAdmin.value = value!;
-                    },
-                  ),
-                ),
                 Center(
                   child: InkWell(
                     onTap: () async {
-                      AddUserDetailModel a1 = AddUserDetailModel(
-                        name: addUserDetailControllor.txtName.text,
-                        image: addUserDetailControllor.iPath.value,
-                        emailId: addUserDetailControllor.txtEmail.text,
-                        surname: addUserDetailControllor.txtSurname.text,
-                        checkAdmin: addUserDetailControllor.checkAdmin.value,
-                        mobileNo: addUserDetailControllor.txtMobileNo.text,
-                      );
+                      if (p1.checkUpdate == 1) {
+                        AddUserDetailModel a1 = AddUserDetailModel(
+                          name: addUserDetailControllor.txtName.text,
+                          image: addUserDetailControllor.iPath.value,
+                          emailId: addUserDetailControllor.txtEmail.text,
+                          surname: addUserDetailControllor.txtSurname.text,
+                          checkAdmin: addUserDetailControllor.checkAdmin.value,
+                          mobileNo: addUserDetailControllor.txtMobileNo.text,
+                          key: p1.key,
+                        );
+                        String msg = await addUserDetailControllor.updateUserDetail(
+                          a1: a1,
+                        );
 
-                      String msg =
-                          await addUserDetailControllor.insertUserDetail(
-                        a1: a1,
-                      );
-
-                      if (addUserDetailControllor.checkAdmin.value == 1) {
-                        if (msg == "success") {
-                          Get.offAndToNamed('/home');
-                        }
-                        print(msg);
+                        Get.back();
                         Get.snackbar(
                           "$msg",
                           "",
                         );
                       } else {
-                        if (msg == "success") {
-                          Get.offAndToNamed('/userHome');
-                        }
-                        print(msg);
-                        Get.snackbar(
-                          "$msg",
-                          "",
+                        AddUserDetailModel a1 = AddUserDetailModel(
+                          name: addUserDetailControllor.txtName.text,
+                          image: addUserDetailControllor.iPath.value,
+                          emailId: addUserDetailControllor.txtEmail.text,
+                          surname: addUserDetailControllor.txtSurname.text,
+                          checkAdmin: addUserDetailControllor.checkAdmin.value,
+                          mobileNo: addUserDetailControllor.txtMobileNo.text,
                         );
+
+                        String msg =
+                            await addUserDetailControllor.insertUserDetail(
+                          a1: a1,
+                        );
+
+                        if (addUserDetailControllor.checkAdmin.value == 1) {
+                          if (msg == "success") {
+                            Get.offAndToNamed('/home');
+                          }
+                          print(msg);
+                          Get.snackbar(
+                            "$msg",
+                            "",
+                          );
+                        } else {
+                          if (msg == "success") {
+                            Get.offAndToNamed('/userHome');
+                          }
+                          print(msg);
+                          Get.snackbar(
+                            "$msg",
+                            "",
+                          );
+                        }
                       }
                     },
                     child: Container(
@@ -290,7 +313,7 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
                       ),
                       alignment: Alignment.center,
                       child: Text(
-                        "Next",
+                        p1.checkUpdate == 1 ? "Update" : "Next",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 12.sp,

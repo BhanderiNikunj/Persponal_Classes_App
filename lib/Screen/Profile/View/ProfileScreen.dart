@@ -41,6 +41,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   mobile: x['mobile'],
                   name: x['name'],
                   surname: x['surname'],
+                  key: x.id,
                 );
 
                 profileControllor.detailList.add(p1);
@@ -74,6 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           children: [
                             IconButton(
                               onPressed: () {
+                                print(profileControllor.detailList[0].key);
                                 ProfileModel p1 = ProfileModel(
                                   image: profileControllor.detailList[0].image,
                                   adminUser:
@@ -82,6 +84,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   mobile:
                                       profileControllor.detailList[0].mobile,
                                   name: profileControllor.detailList[0].name,
+                                  key: profileControllor.detailList[0].key,
                                   surname:
                                       profileControllor.detailList[0].surname,
                                   checkUpdate: 1,

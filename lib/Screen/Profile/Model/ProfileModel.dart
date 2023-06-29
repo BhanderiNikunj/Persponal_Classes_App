@@ -1,5 +1,5 @@
 class ProfileModel {
-  String? name, email, image, mobile, surname;
+  String? name, email, image, mobile, surname, key;
   int? adminUser, checkUpdate;
 
   ProfileModel({
@@ -10,5 +10,6 @@ class ProfileModel {
     this.surname,
     this.adminUser,
     this.checkUpdate,
+    this.key,
   });
 }

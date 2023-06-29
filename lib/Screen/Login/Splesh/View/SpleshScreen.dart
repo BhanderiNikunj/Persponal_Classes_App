@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:classes_app/Screen/Login/AddUserDetail/Model/AddUserDetailModel.dart';
+import 'package:classes_app/Screen/Profile/Model/ProfileModel.dart';
 import 'package:classes_app/Utiles/FirebaseHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -64,7 +65,13 @@ class _SpleshScreenState extends State<SpleshScreen> {
             Duration(seconds: 3),
             () {
               if (dataList.isEmpty) {
-                Get.offAndToNamed('/addUserDetail');
+                ProfileModel p1 = ProfileModel(
+                  checkUpdate: 0,
+                );
+                Get.offAndToNamed(
+                  '/addUserDetail',
+                  arguments: p1,
+                );
               } else {
                 Timer(
                   Duration(seconds: 3),
