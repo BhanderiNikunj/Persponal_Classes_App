@@ -1,5 +1,6 @@
 import 'package:classes_app/Screen/HomeWork/ShowHomeWork/Model/HomeWorkModel.dart';
 import 'package:classes_app/Screen/Login/AddUserDetail/Model/AddUserDetailModel.dart';
+import 'package:classes_app/Screen/Notes/Model/NotesModel.dart';
 import 'package:classes_app/Screen/Student/AddStudent/Model/StudentModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -234,7 +235,6 @@ class FirebaseHelper {
   Future<String> updateUserDetail({
     required AddUserDetailModel a1,
   }) async {
-
     print(a1.key);
     return await firebaseFirestore
         .collection("school")
@@ -269,10 +269,8 @@ class FirebaseHelper {
 
   // Exam
 
-  void insertExam({
-    required examName,
-    required examDate,
-    // required ,
+  void insertNotes({
+    required NotesModel n1,
   }) {
     firebaseFirestore
         .collection("school")
@@ -280,9 +278,35 @@ class FirebaseHelper {
         .collection("exam")
         .add(
       {
-        "examName":examName,
-        "examDate":examDate,
+        "notes": n1.notes,
+        "date": n1.date,
       },
+    );
+  }
+
+  void updateNotes({
+    required NotesModel n1,
+  }) {
+    firebaseFirestore
+        .collection("school")
+        .doc(FindUid())
+        .collection("exam")
+        .add(
+      {
+        "notes": n1.notes,
+        "date": n1.date,
+      },
+    );
+  }
+
+  Stream<DocumentSnapshot<Map<String, dynamic>>> readNotes({
+    required NotesModel n1,
+  }) {
+    return firebaseFirestore
+        .collection("school")
+        .doc(FindUid())
+        .collection("exam")
+        .doc(n1.key).snapshots();
     );
   }
 }

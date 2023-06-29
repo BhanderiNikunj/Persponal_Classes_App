@@ -17,21 +17,8 @@ class SpleshScreen extends StatefulWidget {
 class _SpleshScreenState extends State<SpleshScreen> {
   @override
   Widget build(BuildContext context) {
-    // Timer(
-    //   Duration(seconds: 3),
-    //   () {
-    //
-    //   },
-    // );
-
     return SafeArea(
       child: Scaffold(
-        // body: Center(
-        //   child: Image.asset(
-        //     height: 150.sp,
-        //     "Assets/Images/bright.jpg",
-        //   ),
-        // ),
         body: FirebaseHelper.firebaseHelper.checkLogin() == false
             ? notLogin()
             : login(),
