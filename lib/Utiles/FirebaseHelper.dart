@@ -306,7 +306,7 @@ class FirebaseHelper {
         .collection("school")
         .doc(FindUid())
         .collection("exam")
-        .doc(n1.key).snapshots();
-    );
+        .doc(n1.key)
+        .snapshots();
   }
 }
