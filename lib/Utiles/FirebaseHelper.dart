@@ -275,11 +275,11 @@ class FirebaseHelper {
     firebaseFirestore
         .collection("school")
         .doc(FindUid())
-        .collection("exam")
+        .collection("notes")
         .add(
       {
-        "notes": n1.notes,
-        "date": n1.date,
+        "notes": "n1.notes",
+        "date": "n1.date",
       },
     );
   }
@@ -290,7 +290,7 @@ class FirebaseHelper {
     firebaseFirestore
         .collection("school")
         .doc(FindUid())
-        .collection("exam")
+        .collection("notes")
         .add(
       {
         "notes": n1.notes,
@@ -299,14 +299,22 @@ class FirebaseHelper {
     );
   }
 
-  Stream<DocumentSnapshot<Map<String, dynamic>>> readNotes({
-    required NotesModel n1,
-  }) {
+  Stream<QuerySnapshot<Map<String, dynamic>>> readNotes() {
     return firebaseFirestore
         .collection("school")
         .doc(FindUid())
-        .collection("exam")
-        .doc(n1.key)
+        .collection("notes")
         .snapshots();
+  }
+
+  Future<void> deleteNotes({
+    required NotesModel n1,
+  }) async {
+    return await firebaseFirestore
+        .collection("school")
+        .doc(FindUid())
+        .collection("notes")
+        .doc(n1.key)
+        .delete();
   }
 }
