@@ -391,6 +391,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                               s1: studentModel,
                             );
                           } else {
+                            print("${addStudentControllor.ipath}",);
                             StudentModel studentModel = StudentModel(
                               std: addStudentControllor.std.value,
                               father_name:

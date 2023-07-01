@@ -267,7 +267,7 @@ class FirebaseHelper {
         .snapshots();
   }
 
-  // Exam
+  // Notes
 
   void insertNotes({
     required NotesModel n1,
@@ -308,6 +308,55 @@ class FirebaseHelper {
   }
 
   Future<void> deleteNotes({
+    required NotesModel n1,
+  }) async {
+    return await firebaseFirestore
+        .collection("school")
+        .doc(FindUid())
+        .collection("notes")
+        .doc(n1.key)
+        .delete();
+  }
+
+  void insertUserNotes({
+    required NotesModel n1,
+  }) {
+    firebaseFirestore
+        .collection("school")
+        .doc(FindUid())
+        .collection("notes")
+        .add(
+      {
+        "notes": "n1.notes",
+        "date": "n1.date",
+      },
+    );
+  }
+
+  void updateUserNotes({
+    required NotesModel n1,
+  }) {
+    firebaseFirestore
+        .collection("school")
+        .doc(FindUid())
+        .collection("notes")
+        .add(
+      {
+        "notes": n1.notes,
+        "date": n1.date,
+      },
+    );
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> readUserNotes() {
+    return firebaseFirestore
+        .collection("school")
+        .doc(FindUid())
+        .collection("notes")
+        .snapshots();
+  }
+
+  Future<void> deleteUserNotes({
     required NotesModel n1,
   }) async {
     return await firebaseFirestore

@@ -66,7 +66,11 @@ class _SpleshScreenState extends State<SpleshScreen> {
                     if (dataList[0].checkAdmin == 1) {
                       Get.offAndToNamed('/bottom');
                     } else {
-                      Get.offAndToNamed('/userHome');
+                      if (dataList.isEmpty) {
+                        print("===========================");
+                      } else {
+                        Get.offAndToNamed('/userHome');
+                      }
                     }
                   },
                 );

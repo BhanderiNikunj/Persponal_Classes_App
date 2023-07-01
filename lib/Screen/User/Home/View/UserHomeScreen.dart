@@ -13,9 +13,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
     return SafeArea(
       child: Scaffold(
         body: Column(
-          children: [
-
-          ],
+          children: [],
         ),
       ),
     );
