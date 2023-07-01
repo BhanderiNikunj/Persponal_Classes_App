@@ -16,6 +16,10 @@ class HomeControllor extends GetxController {
       image: "Assets/Images/courses.png",
       name: "HomeWork",
     ),
+    HomeModel(
+      image: "Assets/Images/notes.png",
+      name: "Notices",
+    ),
   ];
 
   List imageList = [

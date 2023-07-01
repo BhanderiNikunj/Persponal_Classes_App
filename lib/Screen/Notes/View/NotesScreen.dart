@@ -21,10 +21,6 @@ class _NotesScreenState extends State<NotesScreen> {
   @override
   void initState() {
     super.initState();
-
-    FirebaseHelper.firebaseHelper.insertNotes(
-      n1: NotesModel(),
-    );
   }
 
   @override
@@ -50,32 +46,74 @@ class _NotesScreenState extends State<NotesScreen> {
 
                 notesControllor.notesList.add(n1);
               }
-              return GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2),
-                itemCount: notesControllor.notesList.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    margin: EdgeInsets.all(10.sp),
+              return Column(
+                children: [
+                  Container(
+                    height: 50.sp,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.sp),
-                      color: Colors.green.shade300,
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0.sp),
-                      child: Column(
-                        children: [
-                          Text(
-                            "${notesControllor.notesList[index].notes}",
-                          ),
-                          Text(
-                            "${notesControllor.notesList[index].date}",
-                          ),
-                        ],
+                      color: Color(0xffE85720),
+                      borderRadius: BorderRadius.only(
+                        bottomRight: Radius.circular(25.sp),
+                        bottomLeft: Radius.circular(25.sp),
                       ),
                     ),
-                  );
-                },
+                    alignment: Alignment.center,
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Get.back();
+                          },
+                          icon: Icon(
+                            Icons.arrow_back,
+                            size: 20.sp,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(width: 40.sp,),
+                        Text(
+                          "Student Homework",
+                          style: TextStyle(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Expanded(
+                    child: GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                      ),
+                      itemCount: notesControllor.notesList.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          margin: EdgeInsets.all(10.sp),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.sp),
+                            color: Colors.green.shade300,
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0.sp),
+                            child: Column(
+                              children: [
+                                Text(
+                                  "${notesControllor.notesList[index].notes}",
+                                ),
+                                Text(
+                                  "${notesControllor.notesList[index].date}",
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
               );
               // return Text("data");
             }
