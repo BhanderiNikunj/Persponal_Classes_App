@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:classes_app/Screen/Student/AddStudent/Controllor/AddStudentControllor.dart';
 import 'package:classes_app/Screen/Student/AddStudent/Model/StudentModel.dart';
+import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -391,7 +392,9 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                               s1: studentModel,
                             );
                           } else {
-                            print("${addStudentControllor.ipath}",);
+                            print(
+                              "${addStudentControllor.ipath}",
+                            );
                             StudentModel studentModel = StudentModel(
                               std: addStudentControllor.std.value,
                               father_name:
@@ -415,51 +418,9 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
 
                           Get.back();
                         },
-                        // child: Container(
-                        //   height: 30.sp,
-                        //   width: 60.sp,
-                        //   decoration: BoxDecoration(
-                        //     borderRadius: BorderRadius.circular(10.sp),
-                        //     gradient: LinearGradient(
-                        //       transform: GradientRotation(100),
-                        //       colors: [
-                        //         Color(0xff2ED0FF),
-                        //         Color(0xff50AFFF),
-                        //         Color(0xff6E92FF),
-                        //         Color(0xff7E82FF),
-                        //       ],
-                        //     ),
-                        //   ),
-                        //   alignment: Alignment.center,
-                        //   child: Text(
-                        //
-                        //     style: TextStyle(
-                        //       fontWeight: FontWeight.bold,
-                        //       fontSize: 12.sp,
-                        //       color: Colors.white,
-                        //     ),
-                        //   ),
-                        // ),
-                        child: Container(
-                          height: 30.sp,
-                          width: 60.sp,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Color(0xff007060),
-                            ),
-                            borderRadius: BorderRadius.circular(10.sp),
-                            color: Color(0xff01957f),
-                          ),
-                          alignment: Alignment.center,
-                          child: Text(
-                            s1.isCheck == 1 ? "Update" : "Submit",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12.sp,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
+                        child: s1.isCheck != 1?allButton(
+                          string: "Submit",
+                        ):allButton(string: "Update"),
                       ),
                     ),
                   ],

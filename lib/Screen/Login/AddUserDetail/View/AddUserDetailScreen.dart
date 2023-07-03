@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:classes_app/Screen/Login/AddUserDetail/Controllor/AddUserDetailControllor.dart';
 import 'package:classes_app/Screen/Login/AddUserDetail/Model/AddUserDetailModel.dart';
 import 'package:classes_app/Screen/Profile/Model/ProfileModel.dart';
+import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -256,7 +257,8 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
                           mobileNo: addUserDetailControllor.txtMobileNo.text,
                           key: p1.key,
                         );
-                        String msg = await addUserDetailControllor.updateUserDetail(
+                        String msg =
+                            await addUserDetailControllor.updateUserDetail(
                           a1: a1,
                         );
 
@@ -301,26 +303,9 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
                         }
                       }
                     },
-                    child: Container(
-                      height: 30.sp,
-                      width: 60.sp,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Color(0xff007060),
-                        ),
-                        borderRadius: BorderRadius.circular(10.sp),
-                        color: Color(0xff01957f),
-                      ),
-                      alignment: Alignment.center,
-                      child: Text(
-                        p1.checkUpdate == 1 ? "Update" : "Next",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12.sp,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                    child: p1.checkUpdate == 1
+                        ? allButton(string: "Update")
+                        : allButton(string: "Submit"),
                   ),
                 ),
               ],

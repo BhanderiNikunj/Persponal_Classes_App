@@ -13,12 +13,12 @@ class HomeControllor extends GetxController {
       name: "Student",
     ),
     HomeModel(
-      image: "Assets/Images/courses.png",
+      image: "Assets/Images/Homework.png",
       name: "HomeWork",
     ),
     HomeModel(
-      image: "Assets/Images/notes.png",
-      name: "Notices",
+      image: "Assets/Images/announcement.png",
+      name: "Announcement",
     ),
   ];
 

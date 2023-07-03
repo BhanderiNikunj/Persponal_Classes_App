@@ -1,5 +1,6 @@
 import 'package:classes_app/Screen/HomeWork/AddHomeWork/Controllor/AddHomeWorkControllor.dart';
 import 'package:classes_app/Screen/HomeWork/ShowHomeWork/Model/HomeWorkModel.dart';
+import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -322,29 +323,7 @@ class _AddHomeWorkScreenState extends State<AddHomeWorkScreen> {
                           }
                         }
                       },
-                      child: Container(
-                        height: 30.sp,
-                        width: 60.sp,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            transform: GradientRotation(100),
-                            colors: [
-                              Color(0xff2ED0FF),
-                              Color(0xff50AFFF),
-                              Color(0xff6E92FF),
-                              Color(0xff7E82FF),
-                            ],
-                          ),
-                          borderRadius: BorderRadius.circular(10.sp),
-                        ),
-                        alignment: Alignment.center,
-                        child: Text(
-                          h1.check == 1 ? "Update" : "Submit",
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
+                      child: h1.check == 1?allButton(string: "Update"):allButton(string: "Submit",),
                     ),
                   ),
                 ],

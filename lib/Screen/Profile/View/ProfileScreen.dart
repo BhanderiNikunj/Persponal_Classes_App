@@ -154,19 +154,47 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            height: 30.sp,
-                            child: Text("123"),
-                          ),
+                          // Container(
+                          //   alignment: Alignment.centerLeft,
+                          //   height: 30.sp,
+                          //   child: Text("123"),
+                          // ),
+                          // Divider(
+                          //   color: Colors.black45,
+                          //   height: 3.sp,
+                          // ),
+                          // Container(
+                          //   alignment: Alignment.centerLeft,
+                          //   height: 30.sp,
+                          //   child: Text("123"),
+                          // ),
                           Divider(
                             color: Colors.black45,
                             height: 3.sp,
                           ),
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            height: 30.sp,
-                            child: Text("123"),
+                          InkWell(
+                            onTap: () {
+                              profileControllor.signOut();
+                            },
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.logout,
+                                ),
+                                SizedBox(width: 10.sp),
+                                Container(
+                                  alignment: Alignment.centerLeft,
+                                  height: 30.sp,
+                                  child: Text(
+                                    "Log Out",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15.sp,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),

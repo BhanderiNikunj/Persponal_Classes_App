@@ -209,6 +209,7 @@ class _ShowHomeWorkScreenState extends State<ShowHomeWorkScreen> {
           },
         ),
         floatingActionButton: FloatingActionButton(
+          backgroundColor: Color(0xff01957f),
           onPressed: () {
             HomeWorkModel h1 = HomeWorkModel(
               check: 0,

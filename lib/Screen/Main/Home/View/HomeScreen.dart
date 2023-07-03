@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:classes_app/Screen/Main/Home/Controllor/HomeControllor.dart';
+import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -53,93 +54,43 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                     ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: IconButton(
-                        onPressed: () {
-                          Get.defaultDialog(
-                            title: "Are You Sure To sign Out",
-                            content: Column(
-                              children: [
-                                SizedBox(width: 50.sp),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    InkWell(
-                                      onTap: () {
-                                        Get.back();
-                                      },
-                                      child: Container(
-                                        height: 30.sp,
-                                        width: 60.sp,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10.sp),
-                                          gradient: LinearGradient(
-                                            transform: GradientRotation(100),
-                                            colors: [
-                                              Color(0xff2ED0FF),
-                                              Color(0xff50AFFF),
-                                              Color(0xff6E92FF),
-                                              Color(0xff7E82FF),
-                                            ],
-                                          ),
-                                        ),
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          "Cancel",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 12.sp,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        homeControllor.signOut();
-                                      },
-                                      child: Container(
-                                        height: 30.sp,
-                                        width: 60.sp,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10.sp),
-                                          gradient: LinearGradient(
-                                            transform: GradientRotation(100),
-                                            colors: [
-                                              Color(0xff2ED0FF),
-                                              Color(0xff50AFFF),
-                                              Color(0xff6E92FF),
-                                              Color(0xff7E82FF),
-                                            ],
-                                          ),
-                                        ),
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          "signOut",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 12.sp,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                        icon: Icon(
-                          Icons.logout_rounded,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                    // Align(
+                    //   alignment: Alignment.centerRight,
+                    //   child: IconButton(
+                    //     onPressed: () {
+                    //       Get.defaultDialog(
+                    //         title: "Are You Sure To sign Out",
+                    //         content: Column(
+                    //           children: [
+                    //             SizedBox(width: 50.sp),
+                    //             Row(
+                    //               mainAxisAlignment:
+                    //                   MainAxisAlignment.spaceEvenly,
+                    //               children: [
+                    //                 InkWell(
+                    //                   onTap: () {
+                    //                     Get.back();
+                    //                   },
+                    //                   child: allButton(string: "Cancel"),
+                    //                 ),
+                    //                 InkWell(
+                    //                   onTap: () {
+                    //                     homeControllor.signOut();
+                    //                   },
+                    //                   child: allButton(string: "sign Out"),
+                    //                 ),
+                    //               ],
+                    //             ),
+                    //           ],
+                    //         ),
+                    //       );
+                    //     },
+                    //     icon: Icon(
+                    //       Icons.logout_rounded,
+                    //       color: Colors.white,
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -212,7 +163,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: 15.h,
                                   alignment: Alignment.center,
                                   child: Image.asset(
-                                      "${homeControllor.Types[0].image}"),
+                                    "${homeControllor.Types[0].image}",
+                                    height: 60.sp,
+                                  ),
                                 ),
                                 Container(
                                   decoration: BoxDecoration(
@@ -277,7 +230,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: 15.h,
                                   alignment: Alignment.center,
                                   child: Image.asset(
-                                      "${homeControllor.Types[1].image}"),
+                                    "${homeControllor.Types[1].image}",
+                                    height: 60.sp,
+                                  ),
                                 ),
                                 Container(
                                   decoration: BoxDecoration(
@@ -355,9 +310,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: 15.h,
                                   alignment: Alignment.center,
                                   child: Container(
-                                    color: Colors.black,
                                     child: Image.asset(
-                                        "${homeControllor.Types[2].image}"),
+                                      "${homeControllor.Types[2].image}",
+                                      height: 60.sp,
+                                    ),
                                   ),
                                 ),
                                 Container(

@@ -1,6 +1,6 @@
 import 'package:classes_app/Screen/HomeWork/ShowHomeWork/Model/HomeWorkModel.dart';
 import 'package:classes_app/Screen/Login/AddUserDetail/Model/AddUserDetailModel.dart';
-import 'package:classes_app/Screen/Notes/Model/NotesModel.dart';
+import 'package:classes_app/Screen/Notes/Notes/Model/NotesModel.dart';
 import 'package:classes_app/Screen/Student/AddStudent/Model/StudentModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -269,34 +269,39 @@ class FirebaseHelper {
 
   // Notes
 
-  void insertNotes({
+  Future<String> insertNotes({
     required NotesModel n1,
-  }) {
-    firebaseFirestore
+  }) async {
+    return await firebaseFirestore
         .collection("school")
         .doc(FindUid())
         .collection("notes")
         .add(
-      {
-        "notes": "n1.notes",
-        "date": "n1.date",
-      },
-    );
+          {
+            "notes": n1.notes,
+            "date": n1.date,
+          },
+        )
+        .then((value) => "success")
+        .catchError((e) => "$e");
   }
 
-  void updateNotes({
+  Future<String> updateNotes({
     required NotesModel n1,
-  }) {
-    firebaseFirestore
+  }) async {
+    return await firebaseFirestore
         .collection("school")
         .doc(FindUid())
         .collection("notes")
-        .add(
-      {
-        "notes": n1.notes,
-        "date": n1.date,
-      },
-    );
+        .doc(n1.key)
+        .set(
+          {
+            "notes": n1.notes,
+            "date": n1.date,
+          },
+        )
+        .then((value) => "success")
+        .catchError((e) => "$e");
   }
 
   Stream<QuerySnapshot<Map<String, dynamic>>> readNotes() {
@@ -308,55 +313,6 @@ class FirebaseHelper {
   }
 
   Future<void> deleteNotes({
-    required NotesModel n1,
-  }) async {
-    return await firebaseFirestore
-        .collection("school")
-        .doc(FindUid())
-        .collection("notes")
-        .doc(n1.key)
-        .delete();
-  }
-
-  void insertUserNotes({
-    required NotesModel n1,
-  }) {
-    firebaseFirestore
-        .collection("school")
-        .doc(FindUid())
-        .collection("notes")
-        .add(
-      {
-        "notes": "n1.notes",
-        "date": "n1.date",
-      },
-    );
-  }
-
-  void updateUserNotes({
-    required NotesModel n1,
-  }) {
-    firebaseFirestore
-        .collection("school")
-        .doc(FindUid())
-        .collection("notes")
-        .add(
-      {
-        "notes": n1.notes,
-        "date": n1.date,
-      },
-    );
-  }
-
-  Stream<QuerySnapshot<Map<String, dynamic>>> readUserNotes() {
-    return firebaseFirestore
-        .collection("school")
-        .doc(FindUid())
-        .collection("notes")
-        .snapshots();
-  }
-
-  Future<void> deleteUserNotes({
     required NotesModel n1,
   }) async {
     return await firebaseFirestore

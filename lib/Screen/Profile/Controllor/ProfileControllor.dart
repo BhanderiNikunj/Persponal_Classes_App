@@ -9,4 +9,8 @@ class ProfileControllor extends GetxController {
   Stream<QuerySnapshot<Map<String, dynamic>>> readUserDetail() {
     return FirebaseHelper.firebaseHelper.readUSerDetail();
   }
+
+  void signOut(){
+    return FirebaseHelper.firebaseHelper.signOut();
+  }
 }

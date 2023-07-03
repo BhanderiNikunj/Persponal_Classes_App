@@ -1,5 +1,4 @@
-import 'package:classes_app/Screen/Main/Home/Model/HomeModel.dart';
-import 'package:classes_app/Screen/Notes/Model/NotesModel.dart';
+import 'package:classes_app/Screen/Notes/Notes/Model/NotesModel.dart';
 import 'package:classes_app/Utiles/FirebaseHelper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';

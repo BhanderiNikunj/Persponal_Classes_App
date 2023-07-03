@@ -24,7 +24,6 @@ class _BottomScreenState extends State<BottomScreen> {
           () => SlidingClippedNavBar(
             barItems: [
               BarItem(title: 'Home', icon: Icons.home),
-              BarItem(title: 'notes', icon: Icons.notes),
               BarItem(title: 'Profile', icon: Icons.person),
             ],
             selectedIndex: bottomControllor.isBottom.value,
