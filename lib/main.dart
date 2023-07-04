@@ -1,5 +1,6 @@
 import 'package:classes_app/Screen/HomeWork/AddHomeWork/View/AddHomeWorkScreen.dart';
 import 'package:classes_app/Screen/HomeWork/ShowHomeWork/View/ShowHomeWork.dart';
+import 'package:classes_app/Screen/ImageSet/View/ImageSetScreen.dart';
 import 'package:classes_app/Screen/Login/AddUserDetail/View/AddUserDetailScreen.dart';
 import 'package:classes_app/Screen/Login/SignIn/View/SignInScreen.dart';
 import 'package:classes_app/Screen/Login/SignUp/View/SignUpScreen.dart';
@@ -93,6 +94,10 @@ Future<void> main() async {
             GetPage(
               name: '/announcement',
               page: () => AnnouncementScreen(),
+            ),
+            GetPage(
+              name: '/image',
+              page: () => ImageSetScreen(),
             ),
           ],
         );

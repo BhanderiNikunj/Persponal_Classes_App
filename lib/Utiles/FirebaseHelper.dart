@@ -273,8 +273,6 @@ class FirebaseHelper {
     required NotesModel n1,
   }) async {
     return await firebaseFirestore
-        .collection("school")
-        .doc(FindUid())
         .collection("notes")
         .add(
           {
@@ -290,8 +288,6 @@ class FirebaseHelper {
     required NotesModel n1,
   }) async {
     return await firebaseFirestore
-        .collection("school")
-        .doc(FindUid())
         .collection("notes")
         .doc(n1.key)
         .set(
@@ -305,21 +301,51 @@ class FirebaseHelper {
   }
 
   Stream<QuerySnapshot<Map<String, dynamic>>> readNotes() {
-    return firebaseFirestore
-        .collection("school")
-        .doc(FindUid())
-        .collection("notes")
-        .snapshots();
+    return firebaseFirestore.collection("notes").snapshots();
   }
 
   Future<void> deleteNotes({
     required NotesModel n1,
   }) async {
+    return await firebaseFirestore.collection("notes").doc(n1.key).delete();
+  }
+
+  // image slider
+
+  Future<String> insertImage({
+    required String image,
+  }) async {
     return await firebaseFirestore
-        .collection("school")
-        .doc(FindUid())
-        .collection("notes")
-        .doc(n1.key)
-        .delete();
+        .collection("image")
+        .add(
+          {
+            "image": "$image",
+          },
+        )
+        .then(
+          (value) => "success",
+        )
+        .catchError(
+          (e) => "$e",
+        );
+  }
+
+  Future<String> deleteImage({
+    required id,
+  }) async {
+    return await firebaseFirestore
+        .collection("image")
+        .doc(id)
+        .delete()
+        .then(
+          (value) => "success",
+        )
+        .catchError(
+          (e) => "$e",
+        );
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> readImage() {
+    return firebaseFirestore.collection("image").snapshots();
   }
 }

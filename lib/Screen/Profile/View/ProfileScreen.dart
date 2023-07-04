@@ -154,24 +154,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Container(
-                          //   alignment: Alignment.centerLeft,
-                          //   height: 30.sp,
-                          //   child: Text("123"),
-                          // ),
-                          // Divider(
-                          //   color: Colors.black45,
-                          //   height: 3.sp,
-                          // ),
-                          // Container(
-                          //   alignment: Alignment.centerLeft,
-                          //   height: 30.sp,
-                          //   child: Text("123"),
-                          // ),
                           Divider(
                             color: Colors.black45,
                             height: 3.sp,
                           ),
+                          SizedBox(height: 10.sp),
                           InkWell(
                             onTap: () {
                               profileControllor.signOut();
@@ -187,6 +174,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   height: 30.sp,
                                   child: Text(
                                     "Log Out",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15.sp,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 10.sp),
+                          Divider(
+                            color: Colors.black45,
+                            height: 3.sp,
+                          ),
+                          SizedBox(height: 10.sp),
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed('/image');
+                            },
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.image,
+                                ),
+                                SizedBox(width: 10.sp),
+                                Container(
+                                  alignment: Alignment.centerLeft,
+                                  height: 30.sp,
+                                  child: Text(
+                                    "Add Image",
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 15.sp,

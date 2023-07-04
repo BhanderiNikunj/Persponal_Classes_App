@@ -27,7 +27,6 @@ class _SpleshScreenState extends State<SpleshScreen> {
   }
 
   Widget login() {
-    print("=====================================");
     List<AddUserDetailModel> dataList = [];
     return StreamBuilder(
       stream: FirebaseHelper.firebaseHelper.readUSerDetail(),
@@ -67,7 +66,13 @@ class _SpleshScreenState extends State<SpleshScreen> {
                       Get.offAndToNamed('/bottom');
                     } else {
                       if (dataList.isEmpty) {
-                        print("===========================");
+                        ProfileModel p1 = ProfileModel(
+                          checkUpdate: 0,
+                        );
+                        Get.offAndToNamed(
+                          '/addUserDetail',
+                          arguments: p1,
+                        );
                       } else {
                         Get.offAndToNamed('/userHome');
                       }
