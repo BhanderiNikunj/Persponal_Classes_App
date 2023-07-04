@@ -96,10 +96,6 @@ class _readStudentScreenState extends State<readStudentScreen> {
                           padding: EdgeInsets.all(10.sp),
                           child: InkWell(
                             onTap: () {
-                              print(readStudentControllor
-                                  .StudentDataList[index].father_name);
-                              print(readStudentControllor
-                                  .StudentDataList[index].address);
                               StudentModel s1 = StudentModel(
                                 image: readStudentControllor
                                     .StudentDataList[index].image,

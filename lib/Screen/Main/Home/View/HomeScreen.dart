@@ -1,8 +1,9 @@
 import 'dart:math';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:classes_app/Screen/ImageSet/Model/ImageSetModel.dart';
 import 'package:classes_app/Screen/Main/Home/Controllor/HomeControllor.dart';
-import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
@@ -94,25 +95,55 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              CarouselSlider.builder(
-                itemCount: homeControllor.imageList.length,
-                disableGesture: true,
-                carouselController: homeControllor.buttonCarouselController,
-                itemBuilder: (context, index, realIndex) {
-                  return Container(
-                    width: double.infinity,
-                    height: 150.sp,
-                    margin: EdgeInsets.all(10),
-                    // color: Colors.black12,
-                    alignment: Alignment.center,
-                    child: Image.asset("${homeControllor.imageList[index]}"),
-                  );
-                },
-                options: CarouselOptions(
-                  scrollDirection: Axis.horizontal,
-                  autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 3),
-                  height: 200.sp,
+              Container(
+                height: 200.sp,
+                child: StreamBuilder(
+                  stream: homeControllor.readImage(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return Text(
+                        "${snapshot.error}",
+                      );
+                    } else if (snapshot.hasData) {
+                      homeControllor.imageList.clear();
+                      for (var x in snapshot.data!.docs) {
+                        ImageSetModel i1 = ImageSetModel(
+                          key: x.id,
+                          image: x['image'],
+                        );
+
+                        homeControllor.imageList.add(i1);
+                      }
+                      return CarouselSlider.builder(
+                        itemCount: homeControllor.imageList.length,
+                        disableGesture: true,
+                        carouselController:
+                            homeControllor.buttonCarouselController,
+                        itemBuilder: (context, index, realIndex) {
+                          return Container(
+                            width: double.infinity,
+                            height: 150.sp,
+                            margin: EdgeInsets.all(10),
+                            // color: Colors.black12,
+                            alignment: Alignment.center,
+                            child: Image.memory(
+                              Uint8List.fromList(
+                                homeControllor
+                                    .imageList[index].image!.codeUnits,
+                              ),
+                            ),
+                          );
+                        },
+                        options: CarouselOptions(
+                          scrollDirection: Axis.horizontal,
+                          autoPlay: true,
+                          autoPlayInterval: Duration(seconds: 3),
+                          height: 200.sp,
+                        ),
+                      );
+                    }
+                    return CircularProgressIndicator();
+                  },
                 ),
               ),
               Padding(

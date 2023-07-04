@@ -93,7 +93,7 @@ class _NotesScreenState extends State<NotesScreen> {
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
-                            height: 90.sp,
+                            height: 80.sp,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.sp),
                               gradient: LinearGradient(
@@ -111,17 +111,21 @@ class _NotesScreenState extends State<NotesScreen> {
                               child: Row(
                                 children: [
                                   Container(
-                                    width: 200.sp,
+                                    width: 190.sp,
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          "Events :- ${notesControllor.notesList[index].notes}",
-                                          style: TextStyle(
-                                            fontSize: 15.sp,
-                                            color: Colors.black,
+                                        Container(
+                                          width: 190,
+                                          child: Text(
+                                            overflow: TextOverflow.ellipsis,
+                                            "Events :- ${notesControllor.notesList[index].notes}",
+                                            style: TextStyle(
+                                              fontSize: 15.sp,
+                                              color: Colors.black,
+                                            ),
                                           ),
                                         ),
                                         SizedBox(height: 8.sp),
@@ -136,9 +140,10 @@ class _NotesScreenState extends State<NotesScreen> {
                                     ),
                                   ),
                                   Container(
-                                    width: 60.sp,
+                                    width: 70.sp,
                                     alignment: Alignment.center,
-                                    child: Column(
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -192,7 +197,9 @@ class _NotesScreenState extends State<NotesScreen> {
               );
               // return Text("data");
             }
-            return CircularProgressIndicator();
+            return CircularProgressIndicator(
+              backgroundColor: Colors.black,
+            );
           },
         ),
         floatingActionButton: FloatingActionButton(

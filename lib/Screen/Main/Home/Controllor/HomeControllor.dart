@@ -1,7 +1,8 @@
 import 'package:carousel_slider/carousel_controller.dart';
+import 'package:classes_app/Screen/ImageSet/Model/ImageSetModel.dart';
 import 'package:classes_app/Screen/Main/Home/Model/HomeModel.dart';
 import 'package:classes_app/Utiles/FirebaseHelper.dart';
-import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 class HomeControllor extends GetxController {
@@ -22,19 +23,13 @@ class HomeControllor extends GetxController {
     ),
   ];
 
-  List imageList = [
-    "Assets/Images/ImageSlider/1.jpeg",
-    "Assets/Images/ImageSlider/2.jpeg",
-    // "Assets/Images/ImageSlider/3.jpeg",
-    "Assets/Images/ImageSlider/4.jpeg",
-    // "Assets/Images/ImageSlider/5.jpeg",
-    "Assets/Images/ImageSlider/6.jpeg",
-    "Assets/Images/ImageSlider/7.jpeg",
-    "Assets/Images/ImageSlider/8.jpeg",
-    "Assets/Images/ImageSlider/9.jpeg",
-  ];
+  List<ImageSetModel> imageList = [];
 
   void signOut() {
     FirebaseHelper.firebaseHelper.signOut();
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> readImage() {
+    return FirebaseHelper.firebaseHelper.readImage();
   }
 }

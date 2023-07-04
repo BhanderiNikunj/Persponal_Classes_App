@@ -45,6 +45,13 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
       addStudentControllor.txtfatherName =
           TextEditingController(text: "${s1.father_name}");
       addStudentControllor.key = s1.key!;
+
+      print(addStudentControllor.ipath.value);
+      print(s1.image);
+    }
+    else{
+      print(addStudentControllor.ipath.value);
+      print(s1.image);
     }
   }
 
@@ -115,12 +122,12 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                       child: Obx(
                         () => InkWell(
                           onTap: () async {
+                            print(addStudentControllor.ipath.value);
                             ImagePicker imagePicker = ImagePicker();
                             XFile? xfile = await imagePicker.pickImage(
                               source: ImageSource.gallery,
                             );
-                            print(xfile!.path);
-                            File file = File(xfile.path);
+                            File file = File(xfile!.path);
 
                             await file.readAsBytes().then((value) {
                               addStudentControllor.imageBytes = value;
@@ -130,13 +137,11 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                                 String.fromCharCodes(
                               addStudentControllor.imageBytes!,
                             );
-
-                            print(addStudentControllor.imageBytes);
-                            print(addStudentControllor.imageBytes);
+                            print(addStudentControllor.ipath.value);
                           },
                           child: CircleAvatar(
                             backgroundImage:
-                                addStudentControllor.ipath.value == null
+                                addStudentControllor.ipath.value.isEmpty
                                     ? null
                                     : MemoryImage(
                                         Uint8List.fromList(
@@ -368,7 +373,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                     SizedBox(height: 20.sp),
                     Center(
                       child: InkWell(
-                        onTap: () {
+                        onTap: () async {
                           if (s1.isCheck == 1) {
                             StudentModel studentModel = StudentModel(
                               std: addStudentControllor.std.value,
@@ -391,7 +396,8 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                             addStudentControllor.updateData(
                               s1: studentModel,
                             );
-                          } else {
+                          }
+                          else {
                             print(
                               "${addStudentControllor.ipath}",
                             );
@@ -415,7 +421,6 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                               s1: studentModel,
                             );
                           }
-
                           Get.back();
                         },
                         child: s1.isCheck != 1?allButton(
