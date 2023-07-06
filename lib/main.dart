@@ -7,6 +7,7 @@ import 'package:classes_app/Screen/Login/SignUp/View/SignUpScreen.dart';
 import 'package:classes_app/Screen/Login/Splesh/View/SpleshScreen.dart';
 import 'package:classes_app/Screen/Main/Bottom/View/BottomScreen.dart';
 import 'package:classes_app/Screen/Main/Home/View/HomeScreen.dart';
+import 'package:classes_app/Screen/Massage/View/MassageScreen.dart';
 import 'package:classes_app/Screen/Notes/AddNotes/View/AddNotesScreen.dart';
 import 'package:classes_app/Screen/Notes/Notes/View/NotesScreen.dart';
 import 'package:classes_app/Screen/Profile/View/ProfileScreen.dart';
@@ -70,6 +71,10 @@ Future<void> main() async {
             GetPage(
               name: '/addHomeWork',
               page: () => AddHomeWorkScreen(),
+            ),
+            GetPage(
+              name: '/message',
+              page: () => MassageScreen(),
             ),
             GetPage(
               name: '/userHome',

@@ -79,21 +79,44 @@ class _ImageSetScreenState extends State<ImageSetScreen> {
 
                       imageSetControllor.imageList.add(i1);
                     }
-                    // return Center(
-                    //   child: Text("${imageSetControllor.imageList[0].image}"),
-                    // );
-
                     return ListView.builder(
                       itemCount: imageSetControllor.imageList.length,
                       itemBuilder: (context, index) {
+                        // ignore: unnecessary_null_comparison
                         return imageSetControllor.ipath.value == null
                             ? null
                             : Container(
+                                width: double.infinity,
                                 height: 150.sp,
-                                child: Image.memory(
-                                  Uint8List.fromList(
-                                    imageSetControllor.imageList[index].image!.codeUnits,
-                                  ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      height: 150.sp,
+                                      width: 100.sp,
+                                      child: IconButton(
+                                        onPressed: () {
+                                          imageSetControllor.deleteImage(
+                                            id: imageSetControllor
+                                                .imageList[index].key,
+                                          );
+                                        },
+                                        icon: Icon(
+                                          Icons.delete,
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 150.sp,
+                                      width: 100.sp,
+                                      child: Image.memory(
+                                        Uint8List.fromList(
+                                          imageSetControllor.imageList[index]
+                                              .image!.codeUnits,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               );
                       },

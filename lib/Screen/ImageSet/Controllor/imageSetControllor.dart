@@ -15,9 +15,19 @@ class ImageSetControllor extends GetxController {
     return FirebaseHelper.firebaseHelper.readImage();
   }
 
-    Future<String> insertImage({
+  Future<String> insertImage({
     required String image,
   }) async {
-    return await FirebaseHelper.firebaseHelper.insertImage(image: image,);
+    return await FirebaseHelper.firebaseHelper.insertImage(
+      image: image,
+    );
+  }
+
+  void deleteImage({
+    required id,
+  }) {
+    FirebaseHelper.firebaseHelper.deleteImage(
+      id: id,
+    );
   }
 }

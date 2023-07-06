@@ -3,6 +3,7 @@ import 'package:classes_app/Screen/Student/AddStudent/Model/StudentModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ShowDetailScreen extends StatefulWidget {
   const ShowDetailScreen({super.key});
@@ -128,11 +129,28 @@ class _ShowDetailScreenState extends State<ShowDetailScreen> {
                       ),
                       SizedBox(height: 5.sp),
                       // SizedBox(height: 10.sp),
-                      Text(
-                        "Mobile No          :-    ${s1.mobile_no}",
-                        style: TextStyle(
-                          fontSize: 10.sp,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Mobile No          :-    ${s1.mobile_no}",
+                            style: TextStyle(
+                              fontSize: 10.sp,
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () async {
+                              Uri launchUri = Uri(
+                                scheme: "tel",
+                                path: s1.mobile_no,
+                              );
+                              await launchUrl(launchUri);
+                            },
+                            child: Icon(
+                              Icons.call,
+                            ),
+                          ),
+                        ],
                       ),
                       SizedBox(height: 5.sp),
                       Divider(
@@ -190,6 +208,32 @@ class _ShowDetailScreenState extends State<ShowDetailScreen> {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget call(String call) {
+    return InkWell(
+      onTap: () async {
+        Uri lanchUri = Uri(
+          scheme: "tel",
+          path: call,
+        );
+        await launchUrl(lanchUri);
+      },
+      child: Container(
+        height: 50,
+        width: 60,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: Colors.purple,
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(color: Colors.black, width: 2),
+        ),
+        child: Text(
+          "Call",
+          style: TextStyle(color: Colors.white),
         ),
       ),
     );

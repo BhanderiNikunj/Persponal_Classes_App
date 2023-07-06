@@ -1,5 +1,6 @@
 import 'package:classes_app/Screen/HomeWork/ShowHomeWork/Model/HomeWorkModel.dart';
 import 'package:classes_app/Screen/Login/AddUserDetail/Model/AddUserDetailModel.dart';
+import 'package:classes_app/Screen/Massage/Model/MassageModel.dart';
 import 'package:classes_app/Screen/Notes/Notes/Model/NotesModel.dart';
 import 'package:classes_app/Screen/Student/AddStudent/Model/StudentModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -347,5 +348,49 @@ class FirebaseHelper {
 
   Stream<QuerySnapshot<Map<String, dynamic>>> readImage() {
     return firebaseFirestore.collection("image").snapshots();
+  }
+
+  // Massage
+
+  Future<String> insertMassage({
+    required MassageModel m1,
+  }) async {
+    return await firebaseFirestore
+        .collection("massage")
+        .add(
+          {
+            "msg": m1.msg,
+            "date": m1.date,
+            "time": m1.time,
+          },
+        )
+        .then(
+          (value) => "success",
+        )
+        .catchError(
+          (e) => "$e",
+        );
+  }
+
+  void updateMassage({
+    required MassageModel m1,
+  }) {
+    firebaseFirestore.collection("massage").doc(m1.key).set(
+      {
+        "msg": m1.msg,
+        "date": m1.date,
+        "time": m1.time,
+      },
+    );
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> readMassage() {
+    return firebaseFirestore.collection("massage").snapshots();
+  }
+
+  Future<void> deleteMassage({
+    required MassageModel m1,
+  }) {
+    return firebaseFirestore.collection("massage").doc(m1.key).delete();
   }
 }
