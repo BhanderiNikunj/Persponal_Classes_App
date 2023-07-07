@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:classes_app/Screen/Massage/Controllor/MassageControllor.dart';
 import 'package:classes_app/Screen/Massage/Model/MassageModel.dart';
 import 'package:classes_app/main.dart';
@@ -51,168 +53,198 @@ class _MassageScreenState extends State<MassageScreen> {
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                Container(
-                                  height: 120.sp,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: Colors.black26,
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(10.sp),
-                                      topRight: Radius.circular(10.sp),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.sp),
+                                gradient: LinearGradient(
+                                  transform: GradientRotation(pi / 2),
+                                  colors: [
+                                    Color(0xff2ED0FF),
+                                    Color(0xff50AFFF),
+                                    Color(0xff6E92FF),
+                                    Color(0xff7E82FF),
+                                  ],
+                                ),
+                              ),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height: 120.sp,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color: Colors.black26,
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10.sp),
+                                        topRight: Radius.circular(10.sp),
+                                      ),
                                     ),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: SingleChildScrollView(
-                                      child: Text(
-                                        "${massageControllor.massageList[index].msg}",
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: SingleChildScrollView(
+                                        child: Text(
+                                          "${massageControllor.massageList[index].msg}",
+                                          style: TextStyle(
+                                            fontSize: 15.sp,
+                                            color: Colors.white,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Container(
-                                  height: 30.sp,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(10.sp),
-                                      bottomRight: Radius.circular(10.sp),
+                                  Container(
+                                    height: 30.sp,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(10.sp),
+                                        bottomRight: Radius.circular(10.sp),
+                                      ),
+                                      color: Colors.black12,
                                     ),
-                                    color: Colors.black12,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          IconButton(
-                                            onPressed: () {
-                                              TextEditingController txtMsg =
-                                                  TextEditingController(
-                                                text:
-                                                    "${massageControllor.massageList[index].msg}",
-                                              );
-                                              Get.defaultDialog(
-                                                title: "Update Massage",
-                                                content: Column(
-                                                  children: [
-                                                    TextField(
-                                                      controller: txtMsg,
-                                                      decoration:
-                                                          InputDecoration(
-                                                        prefixIcon:
-                                                            Icon(Icons.message),
-                                                        hintText:
-                                                            "Enter A Message For Students",
-                                                        disabledBorder:
-                                                            OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                            10.sp,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            IconButton(
+                                              onPressed: () {
+                                                TextEditingController txtMsg =
+                                                    TextEditingController(
+                                                  text:
+                                                      "${massageControllor.massageList[index].msg}",
+                                                );
+                                                Get.defaultDialog(
+                                                  title: "Update Massage",
+                                                  content: Column(
+                                                    children: [
+                                                      TextField(
+                                                        controller: txtMsg,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          prefixIcon: Icon(
+                                                              Icons.message),
+                                                          hintText:
+                                                              "Enter A Message For Students",
+                                                          disabledBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              10.sp,
+                                                            ),
                                                           ),
-                                                        ),
-                                                        enabledBorder:
-                                                            OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                            10.sp,
+                                                          enabledBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              10.sp,
+                                                            ),
                                                           ),
-                                                        ),
-                                                        errorBorder:
-                                                            OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                            10.sp,
+                                                          errorBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              10.sp,
+                                                            ),
                                                           ),
-                                                        ),
-                                                        focusedBorder:
-                                                            OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                            10.sp,
+                                                          focusedBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              10.sp,
+                                                            ),
                                                           ),
-                                                        ),
-                                                        border:
-                                                            OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                            10.sp,
+                                                          border:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              10.sp,
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
-                                                    SizedBox(height: 10.sp),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        MassageModel m1 =
-                                                            MassageModel(
-                                                          key: massageControllor
-                                                              .massageList[
-                                                                  index]
-                                                              .key,
-                                                          date: "${DateTime.now().day} / ${DateTime.now().month} / ${DateTime.now().year}",
-                                                          time: "${TimeOfDay.now().hour} : ${TimeOfDay.now().minute}",
-                                                          msg: txtMsg.text,
-                                                        );
-                                                        massageControllor
-                                                            .updateMassage(
-                                                          m1: m1,
-                                                        );
-                                                        Get.back();
-                                                      },
-                                                      child: allButton(
-                                                        string: "Submit",
+                                                      SizedBox(height: 10.sp),
+                                                      InkWell(
+                                                        onTap: () {
+                                                          MassageModel m1 =
+                                                              MassageModel(
+                                                            key: massageControllor
+                                                                .massageList[
+                                                                    index]
+                                                                .key,
+                                                            date:
+                                                                "${DateTime.now().day} / ${DateTime.now().month} / ${DateTime.now().year}",
+                                                            time:
+                                                                "${TimeOfDay.now().hour} : ${TimeOfDay.now().minute}",
+                                                            msg: txtMsg.text,
+                                                          );
+                                                          massageControllor
+                                                              .updateMassage(
+                                                            m1: m1,
+                                                          );
+                                                          Get.back();
+                                                        },
+                                                        child: allButton(
+                                                          string: "Submit",
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            },
-                                            icon: Icon(
-                                              Icons.edit,
+                                                    ],
+                                                  ),
+                                                );
+                                              },
+                                              icon: Icon(
+                                                Icons.edit,
+                                                color: Colors.white,
+                                              ),
                                             ),
-                                          ),
-                                          IconButton(
-                                            onPressed: () {
-                                              MassageModel m1 = MassageModel(
-                                                key: massageControllor
-                                                    .massageList[index].key,
-                                              );
-                                              massageControllor.deleteMassage(
-                                                m1: m1,
-                                              );
-                                            },
-                                            icon: Icon(
-                                              Icons.delete,
+                                            IconButton(
+                                              onPressed: () {
+                                                MassageModel m1 = MassageModel(
+                                                  key: massageControllor
+                                                      .massageList[index].key,
+                                                );
+                                                massageControllor.deleteMassage(
+                                                  m1: m1,
+                                                );
+                                              },
+                                              icon: Icon(
+                                                Icons.delete,
+                                                color: Colors.white,
+                                              ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            "${massageControllor.massageList[index].date}",
-                                          ),
-                                          Text(
-                                            "  ",
-                                          ),
-                                          Text(
-                                            "${massageControllor.massageList[index].time}   ",
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              "${massageControllor.massageList[index].date}",
+                                              style: TextStyle(
+                                                fontSize: 15.sp,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                            Text(
+                                              "  ",
+                                            ),
+                                            Text(
+                                              "${massageControllor.massageList[index].time}   ",
+                                              style: TextStyle(
+                                                fontSize: 15.sp,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           );
                         },
