@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:classes_app/Screen/Massage/Controllor/MassageControllor.dart';
 import 'package:classes_app/Screen/Massage/Model/MassageModel.dart';
 import 'package:classes_app/main.dart';
@@ -59,18 +57,10 @@ class _MassageScreenState extends State<MassageScreen> {
                                   height: 120.sp,
                                   width: double.infinity,
                                   decoration: BoxDecoration(
+                                    color: Colors.black26,
                                     borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(10.sp),
                                       topLeft: Radius.circular(10.sp),
-                                    ),
-                                    gradient: LinearGradient(
-                                      transform: GradientRotation(pi / 2),
-                                      colors: [
-                                        Color(0xff2ED0FF),
-                                        Color(0xff50AFFF),
-                                        Color(0xff6E92FF),
-                                        Color(0xff7E82FF),
-                                      ],
+                                      topRight: Radius.circular(10.sp),
                                     ),
                                   ),
                                   child: Padding(
@@ -90,15 +80,7 @@ class _MassageScreenState extends State<MassageScreen> {
                                       bottomLeft: Radius.circular(10.sp),
                                       bottomRight: Radius.circular(10.sp),
                                     ),
-                                    gradient: LinearGradient(
-                                      transform: GradientRotation(pi / 8),
-                                      colors: [
-                                        Color(0xff2ED0FF),
-                                        Color(0xff50AFFF),
-                                        Color(0xff6E92FF),
-                                        Color(0xff7E82FF),
-                                      ],
-                                    ),
+                                    color: Colors.black12,
                                   ),
                                   child: Row(
                                     mainAxisAlignment:
