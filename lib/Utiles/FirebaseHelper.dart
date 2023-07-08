@@ -1,7 +1,6 @@
 import 'package:classes_app/Screen/HomeWork/ShowHomeWork/Model/HomeWorkModel.dart';
 import 'package:classes_app/Screen/Login/AddUserDetail/Model/AddUserDetailModel.dart';
 import 'package:classes_app/Screen/Massage/Model/MassageModel.dart';
-import 'package:classes_app/Screen/Notes/Notes/Model/NotesModel.dart';
 import 'package:classes_app/Screen/Student/AddStudent/Model/StudentModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -268,49 +267,6 @@ class FirebaseHelper {
         .snapshots();
   }
 
-  // Notes
-
-  Future<String> insertNotes({
-    required NotesModel n1,
-  }) async {
-    return await firebaseFirestore
-        .collection("notes")
-        .add(
-          {
-            "notes": n1.notes,
-            "date": n1.date,
-          },
-        )
-        .then((value) => "success")
-        .catchError((e) => "$e");
-  }
-
-  Future<String> updateNotes({
-    required NotesModel n1,
-  }) async {
-    return await firebaseFirestore
-        .collection("notes")
-        .doc(n1.key)
-        .set(
-          {
-            "notes": n1.notes,
-            "date": n1.date,
-          },
-        )
-        .then((value) => "success")
-        .catchError((e) => "$e");
-  }
-
-  Stream<QuerySnapshot<Map<String, dynamic>>> readNotes() {
-    return firebaseFirestore.collection("notes").snapshots();
-  }
-
-  Future<void> deleteNotes({
-    required NotesModel n1,
-  }) async {
-    return await firebaseFirestore.collection("notes").doc(n1.key).delete();
-  }
-
   // image slider
 
   Future<String> insertImage({
@@ -393,4 +349,46 @@ class FirebaseHelper {
   }) {
     return firebaseFirestore.collection("massage").doc(m1.key).delete();
   }
+
+
+  // Future<String> insertImage({
+  //   required String image,
+  // }) async {
+  //   return await firebaseFirestore
+  //       .collection("school")
+  //       .doc(FindUid())
+  //       .collection("image")
+  //       .add(
+  //     {
+  //       "image": "$image",
+  //     },
+  //   )
+  //       .then(
+  //         (value) => "success",
+  //   )
+  //       .catchError(
+  //         (e) => "$e",
+  //   );
+  // }
+  //
+  // Future<String> deleteImage({
+  //   required id,
+  // }) async {
+  //   return await firebaseFirestore
+  //       .collection("school")
+  //       .doc(FindUid())
+  //       .collection("image")
+  //       .doc(id)
+  //       .delete()
+  //       .then(
+  //         (value) => "success",
+  //   )
+  //       .catchError(
+  //         (e) => "$e",
+  //   );
+  // }
+  //
+  // Stream<QuerySnapshot<Map<String, dynamic>>> readImage() {
+  //   return firebaseFirestore.collection("school").doc(FindUid()).collection("image").snapshots();
+  // }
 }

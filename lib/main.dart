@@ -8,14 +8,11 @@ import 'package:classes_app/Screen/Login/Splesh/View/SpleshScreen.dart';
 import 'package:classes_app/Screen/Main/Bottom/View/BottomScreen.dart';
 import 'package:classes_app/Screen/Main/Home/View/HomeScreen.dart';
 import 'package:classes_app/Screen/Massage/View/MassageScreen.dart';
-import 'package:classes_app/Screen/Notes/AddNotes/View/AddNotesScreen.dart';
-import 'package:classes_app/Screen/Notes/Notes/View/NotesScreen.dart';
 import 'package:classes_app/Screen/Profile/View/ProfileScreen.dart';
 import 'package:classes_app/Screen/Student/AddStudent/View/AddStudentScreen.dart';
 import 'package:classes_app/Screen/Student/ShowDetail/View/ShowDetailScreen.dart';
 import 'package:classes_app/Screen/Student/readStudent/View/readStudentScreen.dart';
 import 'package:classes_app/Screen/User/Home/View/UserHomeScreen.dart';
-import 'package:classes_app/Screen/User/announcement/View/AnnouncementScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -87,18 +84,6 @@ Future<void> main() async {
             GetPage(
               name: '/profile',
               page: () => ProfileScreen(),
-            ),
-            GetPage(
-              name: '/notes',
-              page: () => NotesScreen(),
-            ),
-            GetPage(
-              name: '/addNotes',
-              page: () => AddNotesScreen(),
-            ),
-            GetPage(
-              name: '/announcement',
-              page: () => AnnouncementScreen(),
             ),
             GetPage(
               name: '/image',
