@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:classes_app/Screen/User/Home/Controllor/UserHomeControllor.dart';
 import 'package:classes_app/Utiles/FirebaseHelper.dart';
@@ -22,8 +20,8 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
     UserHomeControllor(),
   );
 
-  final _advancedDrawerController =
-      AdvancedDrawerController(AdvancedDrawerValue(visible: true));
+  final _advancedDrawerController = AdvancedDrawerController(
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -66,63 +64,77 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                     ),
                     clipBehavior: Clip.antiAlias,
                     decoration: BoxDecoration(
-                      color: Colors.black26,
+                      // color: Colors.black26,
                       shape: BoxShape.circle,
                     ),
                     child: Image.asset(
-                      'Assets/Images/bright.jpg',
+                      'Assets/Images/bright.png',
                     ),
                   ),
                   ListTile(
                     onTap: () {
-                      _handleMenuButtonPressed();
+                      // _handleMenuButtonPressed();
                     },
                     leading: Image.asset(
                       "Assets/Images/home.png",
-                      height: 30.sp,
+                      height: 20.sp,
                     ),
                     title: Text("Home"),
                   ),
                   ListTile(
                     onTap: () {
-                      Get.toNamed('/userMassage');
+                      Get.toNamed(
+                        '/userMassage',
+                      );
                     },
                     leading: Image.asset(
                       "Assets/Images/announcement.png",
-                      height: 30.sp,
+                      height: 20.sp,
                     ),
                     title: Text("Announcement"),
                   ),
                   ListTile(
-                    onTap: () {},
-                    leading: Icon(Icons.account_circle_rounded),
-                    title: Text('Profile'),
-                  ),
-                  ListTile(
                     onTap: () {
-                      // Get.snackbar("title", "message");
+                      Get.toNamed(
+                        '/userMassage',
+                      );
                     },
-                    leading: Icon(Icons.favorite),
-                    title: Text('Favourites'),
+                    leading: Image.asset(
+                      "Assets/Images/profile.png",
+                      height: 20.sp,
+                    ),
+                    title: Text("Announcement"),
                   ),
-                  ListTile(
-                    onTap: () {},
-                    leading: Icon(Icons.settings),
-                    title: Text('Settings'),
-                  ),
+                  // ListTile(
+                  //   onTap: () {},
+                  //   leading: Icon(Icons.account_circle_rounded),
+                  //   title: Text('Profile'),
+                  // ),
+                  // ListTile(
+                  //   onTap: () {
+                  //     // Get.snackbar("title", "message");
+                  //   },
+                  //   leading: Icon(Icons.favorite),
+                  //   title: Text('Favourites'),
+                  // ),
+                  // ListTile(
+                  //   onTap: () {},
+                  //   leading: Icon(Icons.settings),
+                  //   title: Text('Settings'),
+                  // ),
                   Spacer(),
-                  DefaultTextStyle(
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.white54,
-                    ),
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(
-                        vertical: 16.0,
-                      ),
-                      child: Text('Terms of Service | Privacy Policy'),
-                    ),
-                  ),
+                  // DefaultTextStyle(
+                  //   style: TextStyle(
+                  //     fontSize: 12,
+                  //     color: Colors.white54,
+                  //   ),
+                  //   child: Container(
+                  //     margin: const EdgeInsets.symmetric(
+                  //       vertical: 16.0,
+                  //     ),
+                  //     child: Text('Terms of Service | Privacy Policy'),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -142,14 +154,20 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                 ),
                 child: Stack(
                   children: [
-                    IconButton(
-                      onPressed: () {
-                        _handleMenuButtonPressed();
-                      },
-                      icon: Icon(
-                        Icons.menu,
-                        color: Colors.white,
-                      ),
+                    Row(
+                      children: [
+                        Center(
+                          child: IconButton(
+                            onPressed: () {
+                              _handleMenuButtonPressed();
+                            },
+                            icon: Icon(
+                              Icons.menu,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     Center(
                       child: Column(

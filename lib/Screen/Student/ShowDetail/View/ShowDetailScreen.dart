@@ -12,7 +12,7 @@ class ShowDetailScreen extends StatefulWidget {
   State<ShowDetailScreen> createState() => _ShowDetailScreenState();
 }
 
-class _ShowDetailScreenState extends State<ShowDetailScreen> {
+class _ShowDetailScreenState extends State<ShowDetailScreen> with SingleTickerProviderStateMixin {
   StudentModel s1 = Get.arguments;
 
   @override
@@ -89,122 +89,136 @@ class _ShowDetailScreenState extends State<ShowDetailScreen> {
                   ],
                 ),
               ),
-              Container(
-                height: 400.sp,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(25.sp),
-                    bottomLeft: Radius.circular(25.sp),
+              Stack(
+                children: [
+                  Center(
+                    child: Image.asset(
+                      "Assets/Images/bright.png",
+                      height: 200.sp,
+                      opacity: AnimationController(
+                        vsync: this,
+                        value: 0.2,
+                      ),
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(20.sp),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Father Name     :-    ${s1.father_name}",
-                        style: TextStyle(
-                          fontSize: 10.sp,
-                        ),
+                  Container(
+                    height: 400.sp,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        bottomRight: Radius.circular(25.sp),
+                        bottomLeft: Radius.circular(25.sp),
                       ),
-                      SizedBox(height: 5.sp),
-                      Divider(
-                        color: Colors.black45,
-                      ),
-                      SizedBox(height: 5.sp),
-                      Container(
-                        width: 275.sp,
-                        child: Text(
-                          overflow: TextOverflow.ellipsis,
-                          "Email Id              :-    ${s1.email_id}",
-                          style: TextStyle(
-                            fontSize: 10.sp,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 5.sp),
-                      Divider(
-                        color: Colors.black45,
-                      ),
-                      SizedBox(height: 5.sp),
-                      // SizedBox(height: 10.sp),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(20.sp),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Mobile No          :-    ${s1.mobile_no}",
+                            "Father Name     :-    ${s1.father_name}",
                             style: TextStyle(
                               fontSize: 10.sp,
                             ),
                           ),
-                          InkWell(
-                            onTap: () async {
-                              Uri launchUri = Uri(
-                                scheme: "tel",
-                                path: s1.mobile_no,
-                              );
-                              await launchUrl(launchUri);
-                            },
-                            child: Icon(
-                              Icons.call,
+                          SizedBox(height: 5.sp),
+                          Divider(
+                            color: Colors.black45,
+                          ),
+                          SizedBox(height: 5.sp),
+                          Container(
+                            width: 275.sp,
+                            child: Text(
+                              overflow: TextOverflow.ellipsis,
+                              "Email Id              :-    ${s1.email_id}",
+                              style: TextStyle(
+                                fontSize: 10.sp,
+                              ),
                             ),
                           ),
+                          SizedBox(height: 5.sp),
+                          Divider(
+                            color: Colors.black45,
+                          ),
+                          SizedBox(height: 5.sp),
+                          // SizedBox(height: 10.sp),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Mobile No          :-    ${s1.mobile_no}",
+                                style: TextStyle(
+                                  fontSize: 10.sp,
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () async {
+                                  Uri launchUri = Uri(
+                                    scheme: "tel",
+                                    path: s1.mobile_no,
+                                  );
+                                  await launchUrl(launchUri);
+                                },
+                                child: Icon(
+                                  Icons.call,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 5.sp),
+                          Divider(
+                            color: Colors.black45,
+                          ),
+                          SizedBox(height: 5.sp),
+                          Text(
+                            "Address              :-    ${s1.address}",
+                            style: TextStyle(
+                              fontSize: 10.sp,
+                            ),
+                          ),
+                          SizedBox(height: 5.sp),
+
+                          Divider(
+                            color: Colors.black45,
+                          ),
+                          SizedBox(height: 5.sp),
+                          Text(
+                            "Total Fees          :-    ${s1.total_fees}",
+                            style: TextStyle(
+                              fontSize: 10.sp,
+                            ),
+                          ),
+                          SizedBox(height: 5.sp),
+                          Divider(
+                            color: Colors.black45,
+                          ),
+                          SizedBox(height: 5.sp),
+                          Text(
+                            "Paid Fees           :-    ${s1.paid_fees}",
+                            style: TextStyle(
+                              fontSize: 10.sp,
+                            ),
+                          ),
+                          SizedBox(height: 5.sp),
+                          Divider(
+                            color: Colors.black45,
+                          ),
+                          SizedBox(height: 5.sp),
+                          Text(
+                            "Less Fees           :-    ${s1.total_fees! - s1.paid_fees!}",
+                            style: TextStyle(
+                              fontSize: 10.sp,
+                            ),
+                          ),
+                          SizedBox(height: 5.sp),
+                          Divider(
+                            color: Colors.black45,
+                          ),
+                          SizedBox(height: 5.sp),
                         ],
                       ),
-                      SizedBox(height: 5.sp),
-                      Divider(
-                        color: Colors.black45,
-                      ),
-                      SizedBox(height: 5.sp),
-                      Text(
-                        "Address              :-    ${s1.address}",
-                        style: TextStyle(
-                          fontSize: 10.sp,
-                        ),
-                      ),
-                      SizedBox(height: 5.sp),
-
-                      Divider(
-                        color: Colors.black45,
-                      ),
-                      SizedBox(height: 5.sp),
-                      Text(
-                        "Total Fees          :-    ${s1.total_fees}",
-                        style: TextStyle(
-                          fontSize: 10.sp,
-                        ),
-                      ),
-                      SizedBox(height: 5.sp),
-                      Divider(
-                        color: Colors.black45,
-                      ),
-                      SizedBox(height: 5.sp),
-                      Text(
-                        "Paid Fees           :-    ${s1.paid_fees}",
-                        style: TextStyle(
-                          fontSize: 10.sp,
-                        ),
-                      ),
-                      SizedBox(height: 5.sp),
-                      Divider(
-                        color: Colors.black45,
-                      ),
-                      SizedBox(height: 5.sp),
-                      Text(
-                        "Less Fees           :-    ${s1.total_fees! - s1.paid_fees!}",
-                        style: TextStyle(
-                          fontSize: 10.sp,
-                        ),
-                      ),
-                      SizedBox(height: 5.sp),
-                      Divider(
-                        color: Colors.black45,
-                      ),
-                      SizedBox(height: 5.sp),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
             ],
           ),

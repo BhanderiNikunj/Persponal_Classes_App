@@ -104,7 +104,7 @@ class _UserMassageScreenState extends State<UserMassageScreen> {
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.all(
-                                 Radius.circular(10.sp),
+                                Radius.circular(10.sp),
                               ),
                               gradient: LinearGradient(
                                 transform: GradientRotation(pi / 2),
@@ -132,6 +132,10 @@ class _UserMassageScreenState extends State<UserMassageScreen> {
                                     child: SingleChildScrollView(
                                       child: Text(
                                         "${massageControllor.massageList[index].msg}",
+                                        style: TextStyle(
+                                          fontSize: 15.sp,
+                                          color: Colors.white,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -147,7 +151,8 @@ class _UserMassageScreenState extends State<UserMassageScreen> {
                                     color: Colors.black12,
                                   ),
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Row(),
                                       Row(

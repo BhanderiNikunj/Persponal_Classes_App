@@ -6,7 +6,6 @@ import 'package:classes_app/Screen/Login/SignIn/View/SignInScreen.dart';
 import 'package:classes_app/Screen/Login/SignUp/View/SignUpScreen.dart';
 import 'package:classes_app/Screen/Login/Splesh/View/SpleshScreen.dart';
 import 'package:classes_app/Screen/User/Massage/View/UserMassageScreen.dart';
-import 'package:whatsapp/whatsapp.dart';
 import 'package:classes_app/Screen/Main/Bottom/View/BottomScreen.dart';
 import 'package:classes_app/Screen/Main/Home/View/HomeScreen.dart';
 import 'package:classes_app/Screen/Massage/View/MassageScreen.dart';
@@ -31,10 +30,6 @@ Future<void> main() async {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           getPages: [
-            // GetPage(
-            //   name: '/',
-            //   page: () => Massage(),
-            // ),
             GetPage(
               name: '/',
               page: () => SpleshScreen(),

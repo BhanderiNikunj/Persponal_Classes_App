@@ -86,7 +86,7 @@ class _SpleshScreenState extends State<SpleshScreen> {
             child: Container(
               height: 150.sp,
               child: Image.asset(
-                "Assets/Images/bright.jpg",
+                "Assets/Images/bright.png",
               ),
             ),
           );
@@ -95,7 +95,7 @@ class _SpleshScreenState extends State<SpleshScreen> {
           child: Container(
             height: 150.sp,
             child: Image.asset(
-              "Assets/Images/bright.jpg",
+              "Assets/Images/bright.png",
             ),
           ),
         );
@@ -115,7 +115,7 @@ class _SpleshScreenState extends State<SpleshScreen> {
       child: Container(
         height: 150.sp,
         child: Image.asset(
-          "Assets/Images/bright.jpg",
+          "Assets/Images/bright.png",
         ),
       ),
     );

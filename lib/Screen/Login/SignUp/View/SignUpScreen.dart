@@ -31,7 +31,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Center(
                     child: Image.asset(
                       height: 150.sp,
-                      "Assets/Images/bright.jpg",
+                      "Assets/Images/bright.png",
                     ),
                   ),
                   SizedBox(height: 30.sp),
