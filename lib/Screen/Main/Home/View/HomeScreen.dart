@@ -105,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       );
                     }
-                    return CircularProgressIndicator();
+                    return Center(child: CircularProgressIndicator());
                   },
                 ),
               ),
