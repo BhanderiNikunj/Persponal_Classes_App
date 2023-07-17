@@ -68,6 +68,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                         children: [
                           IconButton(
                             onPressed: () {
+
+                              print("-----------------------------------${userProfileControllor.UserData[0].adminUser}");
                               ProfileModel p1 = ProfileModel(
                                 surname:
                                     userProfileControllor.UserData[0].surname,
@@ -81,6 +83,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                 key: userProfileControllor.UserData[0].key,
                                 checkUpdate: 1,
                               );
+                              print("---=====================================${p1.adminUser}");
                               Get.toNamed(
                                 '/addUserDetail',
                                 arguments: p1,

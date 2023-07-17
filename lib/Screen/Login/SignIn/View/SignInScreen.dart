@@ -1,4 +1,6 @@
 import 'package:classes_app/Screen/Login/SignIn/Controllor/SignInControllor.dart';
+import 'package:classes_app/Screen/Profile/Model/ProfileModel.dart';
+import 'package:classes_app/Utiles/FirebaseHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -87,7 +89,8 @@ class _SignInScreenState extends State<SignInScreen> {
                   SizedBox(height: 5.sp),
                   Obx(
                     () => TextField(
-                      obscureText: signInControllor.isCheckPass == true ? false : true,
+                      obscureText:
+                          signInControllor.isCheckPass == true ? false : true,
                       controller: signInControllor.txtPassword,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.lock),
@@ -96,7 +99,9 @@ class _SignInScreenState extends State<SignInScreen> {
                             signInControllor.isCheckPass.value =
                                 !signInControllor.isCheckPass.value;
                           },
-                          icon: Icon(signInControllor.isCheckPass == false ? Icons.visibility_off : Icons.visibility),
+                          icon: Icon(signInControllor.isCheckPass == false
+                              ? Icons.visibility_off
+                              : Icons.visibility),
                         ),
                         hintText: "********",
                         disabledBorder: OutlineInputBorder(

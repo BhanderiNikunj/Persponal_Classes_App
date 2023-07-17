@@ -262,8 +262,7 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
                               image: addUserDetailControllor.iPath.value,
                               emailId: addUserDetailControllor.txtEmail.text,
                               surname: addUserDetailControllor.txtSurname.text,
-                              checkAdmin:
-                                  addUserDetailControllor.checkAdmin.value,
+                              checkAdmin: p1.adminUser,
                               mobileNo:
                                   addUserDetailControllor.txtMobileNo.text,
                               key: p1.key,
@@ -285,7 +284,7 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
                               emailId: addUserDetailControllor.txtEmail.text,
                               surname: addUserDetailControllor.txtSurname.text,
                               checkAdmin:
-                                  addUserDetailControllor.checkAdmin.value,
+                              p1.adminUser,
                               mobileNo:
                                   addUserDetailControllor.txtMobileNo.text,
                             );

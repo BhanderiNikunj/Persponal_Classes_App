@@ -159,12 +159,18 @@ class _UserMassageScreenState extends State<UserMassageScreen> {
                                         children: [
                                           Text(
                                             "${massageControllor.massageList[index].date}",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
                                           ),
                                           Text(
                                             "  ",
                                           ),
                                           Text(
                                             "${massageControllor.massageList[index].time}   ",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
                                           ),
                                         ],
                                       ),
