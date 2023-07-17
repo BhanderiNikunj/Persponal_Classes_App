@@ -350,6 +350,9 @@ class FirebaseHelper {
     return firebaseFirestore.collection("massage").doc(m1.key).delete();
   }
 
+  // userDetail
+
+
 
   // Future<String> insertImage({
   //   required String image,

@@ -33,7 +33,8 @@ class _SpleshScreenState extends State<SpleshScreen> {
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Text("${snapshot.error}");
-        } else if (snapshot.hasData) {
+        }
+        else if (snapshot.hasData) {
           for (var data in snapshot.data!.docs) {
             AddUserDetailModel a1 = AddUserDetailModel(
               key: data.id,
@@ -47,10 +48,10 @@ class _SpleshScreenState extends State<SpleshScreen> {
             dataList.add(a1);
           }
 
-          Timer(
-            Duration(seconds: 3),
-            () {
-              if (dataList.isEmpty) {
+          if (dataList.isEmpty) {
+            Timer(
+              Duration(seconds: 3),
+              () {
                 ProfileModel p1 = ProfileModel(
                   checkUpdate: 0,
                 );
@@ -58,30 +59,31 @@ class _SpleshScreenState extends State<SpleshScreen> {
                   '/addUserDetail',
                   arguments: p1,
                 );
-              } else {
-                Timer(
-                  Duration(seconds: 3),
-                  () {
-                    if (dataList[0].checkAdmin == 1) {
-                      Get.offAndToNamed('/bottom');
-                    } else {
-                      if (dataList.isEmpty) {
-                        ProfileModel p1 = ProfileModel(
-                          checkUpdate: 0,
-                        );
-                        Get.offAndToNamed(
-                          '/addUserDetail',
-                          arguments: p1,
-                        );
-                      } else {
-                        Get.offAndToNamed('/userHome');
-                      }
-                    }
-                  },
-                );
-              }
-            },
-          );
+              },
+            );
+          } else {
+            Timer(
+              Duration(seconds: 3),
+              () {
+                if (dataList[0].checkAdmin == 1) {
+                  Get.offAndToNamed('/bottom');
+                } else {
+                  if (dataList.isEmpty) {
+                    ProfileModel p1 = ProfileModel(
+                      checkUpdate: 0,
+                    );
+                    Get.offAndToNamed(
+                      '/addUserDetail',
+                      arguments: p1,
+                    );
+                  } else {
+                    Get.offAndToNamed('/userHome');
+                  }
+                }
+              },
+            );
+          }
+
           return Center(
             child: Container(
               height: 150.sp,
@@ -104,7 +106,6 @@ class _SpleshScreenState extends State<SpleshScreen> {
   }
 
   Widget notLogin() {
-    print("----------------------------------");
     Timer(
       Duration(seconds: 3),
       () {

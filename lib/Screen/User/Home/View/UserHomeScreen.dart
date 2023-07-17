@@ -1,8 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:classes_app/Screen/ImageSet/Model/ImageSetModel.dart';
 import 'package:classes_app/Screen/User/Home/Controllor/UserHomeControllor.dart';
 import 'package:classes_app/Utiles/FirebaseHelper.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,8 +22,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
     UserHomeControllor(),
   );
 
-  final _advancedDrawerController = AdvancedDrawerController(
-  );
+  final _advancedDrawerController = AdvancedDrawerController();
 
   @override
   Widget build(BuildContext context) {
@@ -96,45 +97,16 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                   ListTile(
                     onTap: () {
                       Get.toNamed(
-                        '/userMassage',
+                        '/userProfile',
                       );
                     },
                     leading: Image.asset(
                       "Assets/Images/profile.png",
                       height: 20.sp,
                     ),
-                    title: Text("Announcement"),
+                    title: Text("Profile"),
                   ),
-                  // ListTile(
-                  //   onTap: () {},
-                  //   leading: Icon(Icons.account_circle_rounded),
-                  //   title: Text('Profile'),
-                  // ),
-                  // ListTile(
-                  //   onTap: () {
-                  //     // Get.snackbar("title", "message");
-                  //   },
-                  //   leading: Icon(Icons.favorite),
-                  //   title: Text('Favourites'),
-                  // ),
-                  // ListTile(
-                  //   onTap: () {},
-                  //   leading: Icon(Icons.settings),
-                  //   title: Text('Settings'),
-                  // ),
                   Spacer(),
-                  // DefaultTextStyle(
-                  //   style: TextStyle(
-                  //     fontSize: 12,
-                  //     color: Colors.white54,
-                  //   ),
-                  //   child: Container(
-                  //     margin: const EdgeInsets.symmetric(
-                  //       vertical: 16.0,
-                  //     ),
-                  //     child: Text('Terms of Service | Privacy Policy'),
-                  //   ),
-                  // ),
                 ],
               ),
             ),
@@ -230,173 +202,54 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Wel-come Back",
-                      style: GoogleFonts.satisfy(
-                        fontSize: 25.sp,
-                        color: Colors.black,
-                      ),
-                    ),
-                    SizedBox(height: 20.sp),
-                    CarouselSlider.builder(
-                      itemCount: userHomeControllor.imageList.length,
-                      itemBuilder: (context, index, realIndex) {
-                        return Image.asset(
-                            "${userHomeControllor.imageList[index]}");
-                      },
-                      options: CarouselOptions(
-                        scrollDirection: Axis.horizontal,
-                        autoPlay: true,
-                        autoPlayInterval: Duration(seconds: 3),
-                        height: 175.sp,
-                      ),
-                    ),
-                    // Padding(
-                    //   padding: EdgeInsets.all(8.sp),
-                    //   child: Column(
-                    //     children: [
-                    //       Row(
-                    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //         children: [
-                    //           InkWell(
-                    //             onTap: () {
-                    //               Get.toNamed('/userMassage');
-                    //             },
-                    //             child: Container(
-                    //               height: 135.sp,
-                    //               width: 125.sp,
-                    //               decoration: BoxDecoration(
-                    //                 borderRadius: BorderRadius.circular(10.sp),
-                    //                 boxShadow: [
-                    //                   BoxShadow(
-                    //                     offset: Offset(4, 1),
-                    //                     spreadRadius: 5,
-                    //                     blurRadius: 5,
-                    //                     color: Color(0xffb0b5f8),
-                    //                   ),
-                    //                 ],
-                    //               ),
-                    //               margin: EdgeInsets.all(10),
-                    //               child: Column(
-                    //                 children: [
-                    //                   Container(
-                    //                     decoration: BoxDecoration(
-                    //                       borderRadius: BorderRadius.only(
-                    //                         topRight: Radius.circular(10.sp),
-                    //                         topLeft: Radius.circular(10.sp),
-                    //                       ),
-                    //                       gradient: LinearGradient(
-                    //                         transform: GradientRotation(pi / 2),
-                    //                         colors: [
-                    //                           Color(0xff2ED0FF),
-                    //                           Color(0xff50AFFF),
-                    //                           Color(0xff6E92FF),
-                    //                           Color(0xff7E82FF),
-                    //                         ],
-                    //                       ),
-                    //                     ),
-                    //                     height: 15.h,
-                    //                     alignment: Alignment.center,
-                    //                     child: Image.asset(
-                    //                       // "${homeControllor.Types[0].image}",
-                    //                       "Assets/Images/announcement.png",
-                    //                       height: 60.sp,
-                    //                     ),
-                    //                   ),
-                    //                   Container(
-                    //                     decoration: BoxDecoration(
-                    //                       borderRadius: BorderRadius.only(
-                    //                         bottomLeft: Radius.circular(10.sp),
-                    //                         bottomRight: Radius.circular(10.sp),
-                    //                       ),
-                    //                       color: Color(0xffffffff),
-                    //                     ),
-                    //                     alignment: Alignment.center,
-                    //                     child: Text(
-                    //                       "Announcement",
-                    //                       // "${homeControllor.Types[0].name}",
-                    //                       style: TextStyle(
-                    //                         fontWeight: FontWeight.bold,
-                    //                         fontSize: 15.sp,
-                    //                         color: Color(0xff4754ff),
-                    //                       ),
-                    //                     ),
-                    //                     height: 35.sp,
-                    //                   ),
-                    //                 ],
-                    //               ),
-                    //             ),
-                    //           ),
-                    //           // InkWell(
-                    //           //   onTap: () {
-                    //           //     Get.toNamed('/homeWork');
-                    //           //   },
-                    //           //   child: Container(
-                    //           //     height: 135.sp,
-                    //           //     width: 125.sp,
-                    //           //     decoration: BoxDecoration(
-                    //           //       borderRadius: BorderRadius.circular(10.sp),
-                    //           //       boxShadow: [
-                    //           //         BoxShadow(
-                    //           //           offset: Offset(4, 1),
-                    //           //           spreadRadius: 5,
-                    //           //           blurRadius: 5,
-                    //           //           color: Color(0xffb0b5f8),
-                    //           //         ),
-                    //           //       ],
-                    //           //     ),
-                    //           //     margin: EdgeInsets.all(10),
-                    //           //     child: Column(
-                    //           //       children: [
-                    //           //         Container(
-                    //           //           decoration: BoxDecoration(
-                    //           //             borderRadius: BorderRadius.only(
-                    //           //               topRight: Radius.circular(10.sp),
-                    //           //               topLeft: Radius.circular(10.sp),
-                    //           //             ),
-                    //           //             gradient: LinearGradient(
-                    //           //               transform: GradientRotation(pi / 2),
-                    //           //               colors: [
-                    //           //                 Color(0xff2ED0FF),
-                    //           //                 Color(0xff50AFFF),
-                    //           //                 Color(0xff6E92FF),
-                    //           //                 Color(0xff7E82FF),
-                    //           //               ],
-                    //           //             ),
-                    //           //           ),
-                    //           //           height: 15.h,
-                    //           //           alignment: Alignment.center,
-                    //           //           child: Image.asset(
-                    //           //               "${homeControllor.Types[1].image}"),
-                    //           //         ),
-                    //           //         Container(
-                    //           //           decoration: BoxDecoration(
-                    //           //             borderRadius: BorderRadius.only(
-                    //           //               bottomLeft: Radius.circular(10.sp),
-                    //           //               bottomRight: Radius.circular(10.sp),
-                    //           //             ),
-                    //           //             color: Color(0xffffffff),
-                    //           //           ),
-                    //           //           alignment: Alignment.center,
-                    //           //           child: Text(
-                    //           //             "${homeControllor.Types[1].name}",
-                    //           //             style: TextStyle(
-                    //           //               fontWeight: FontWeight.bold,
-                    //           //               fontSize: 15.sp,
-                    //           //               color: Color(0xff4754ff),
-                    //           //             ),
-                    //           //           ),
-                    //           //           height: 35.sp,
-                    //           //         ),
-                    //           //       ],
-                    //           //     ),
-                    //           //   ),
-                    //           // ),
-                    //         ],
-                    //       ),
-                    //     ],
+                    // Align(
+                    //   alignment: Alignment.centerLeft,
+                    //   child: Text(
+                    //     "Wel-come Back",
+                    //     style: GoogleFonts.satisfy(
+                    //       fontSize: 15.sp,
+                    //       color: Colors.black,
+                    //     ),
                     //   ),
                     // ),
+                    SizedBox(height: 20.sp),
+                    StreamBuilder(
+                      stream: userHomeControllor.readImages(),
+                      builder: (context, snapShot) {
+                        if (snapShot.hasError) {
+                          return Text("${snapShot.error}");
+                        } else if (snapShot.hasData) {
+                          userHomeControllor.imageList.clear();
+                          for (var x in snapShot.data!.docs) {
+                            ImageSetModel i1 = ImageSetModel(
+                              image: x['image'],
+                              key: x.id,
+                            );
+                            userHomeControllor.imageList.add(i1);
+                          }
+                          return CarouselSlider.builder(
+                            itemCount: userHomeControllor.imageList.length,
+                            itemBuilder: (context, index, realIndex) {
+                              return Image.memory(
+                                Uint8List.fromList(
+                                  userHomeControllor
+                                      .imageList[index].image!.codeUnits,
+                                ),
+                              );
+                            },
+                            options: CarouselOptions(
+                              scrollDirection: Axis.horizontal,
+                              autoPlay: true,
+                              autoPlayInterval: Duration(seconds: 3),
+                              height: 175.sp,
+                            ),
+                          );
+                        }
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),
