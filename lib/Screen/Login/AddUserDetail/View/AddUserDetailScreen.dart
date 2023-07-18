@@ -284,7 +284,7 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
                               emailId: addUserDetailControllor.txtEmail.text,
                               surname: addUserDetailControllor.txtSurname.text,
                               checkAdmin:
-                              p1.adminUser,
+                                  addUserDetailControllor.checkAdmin.value,
                               mobileNo:
                                   addUserDetailControllor.txtMobileNo.text,
                             );
