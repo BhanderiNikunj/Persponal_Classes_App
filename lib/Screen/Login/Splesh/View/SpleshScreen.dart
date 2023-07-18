@@ -16,6 +16,13 @@ class SpleshScreen extends StatefulWidget {
 
 class _SpleshScreenState extends State<SpleshScreen> {
   @override
+  void initState() {
+    super.initState();
+
+    // FirebaseHelper.firebaseHelper.initNotification();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -33,8 +40,7 @@ class _SpleshScreenState extends State<SpleshScreen> {
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Text("${snapshot.error}");
-        }
-        else if (snapshot.hasData) {
+        } else if (snapshot.hasData) {
           for (var data in snapshot.data!.docs) {
             AddUserDetailModel a1 = AddUserDetailModel(
               key: data.id,
@@ -64,7 +70,13 @@ class _SpleshScreenState extends State<SpleshScreen> {
           } else {
             Timer(
               Duration(seconds: 3),
-              () {
+              () async {
+                String? fcm =
+                    await FirebaseHelper.firebaseHelper.findFCMToken();
+
+                FirebaseHelper.firebaseHelper.insertFCM(
+                  fcm: fcm,
+                );
                 if (dataList[0].checkAdmin == 1) {
                   Get.offAndToNamed('/bottom');
                 } else {

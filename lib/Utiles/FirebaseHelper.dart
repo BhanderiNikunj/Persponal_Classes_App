@@ -4,6 +4,7 @@ import 'package:classes_app/Screen/Massage/Model/MassageModel.dart';
 import 'package:classes_app/Screen/Student/AddStudent/Model/StudentModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 
 class FirebaseHelper {
@@ -13,6 +14,49 @@ class FirebaseHelper {
 
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+  FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+
+  Future<void> hand(RemoteMessage massage) async {}
+
+  // Notification
+
+  Future<String?> findFCMToken() async {
+    var fcmToken = await firebaseMessaging.getToken();
+    print(fcmToken);
+    return fcmToken;
+  }
+  //
+  // Future<void> initNotification() async {
+  //   await firebaseMessaging.requestPermission();
+  //
+  //   findFCMToken();
+  //
+  //   NotificationSettings notificationSettings = NotificationSettings(
+  //     alert: AppleNotificationSetting.enabled,
+  //     announcement: AppleNotificationSetting.disabled,
+  //     badge: AppleNotificationSetting.enabled,
+  //     carPlay: AppleNotificationSetting.disabled,
+  //     criticalAlert: AppleNotificationSetting.disabled,
+  //     sound: AppleNotificationSetting.disabled,
+  //     authorizationStatus: AuthorizationStatus.denied,
+  //     lockScreen: AppleNotificationSetting.enabled,
+  //     notificationCenter: AppleNotificationSetting.enabled,
+  //     showPreviews: AppleShowPreviewSetting.always,
+  //     timeSensitive: AppleNotificationSetting.enabled,
+  //   );
+  //
+  //   if (notificationSettings.authorizationStatus ==
+  //       AuthorizationStatus.authorized) {
+  //     print("--------------");
+  //   } else if (notificationSettings.authorizationStatus ==
+  //       AuthorizationStatus.provisional) {
+  //     print("-----------------------");
+  //   } else {
+  //     print("failed");
+  //   }
+  // }
+  //
+  // void sendMassage({required Massage, required Title}) {}
 
   // login start
 
@@ -350,48 +394,60 @@ class FirebaseHelper {
     return firebaseFirestore.collection("massage").doc(m1.key).delete();
   }
 
-  // userDetail
+  // FCM
 
+  void insertFCM({
+    required fcm,
+  }) {
+    firebaseFirestore.collection("fcm").add(
+      {
+        "fcm": fcm,
+      },
+    );
+  }
 
+  void readFCM() {
+    firebaseFirestore.collection("fcm").snapshots();
+  }
 
-  // Future<String> insertImage({
-  //   required String image,
-  // }) async {
-  //   return await firebaseFirestore
-  //       .collection("school")
-  //       .doc(FindUid())
-  //       .collection("image")
-  //       .add(
-  //     {
-  //       "image": "$image",
-  //     },
-  //   )
-  //       .then(
-  //         (value) => "success",
-  //   )
-  //       .catchError(
-  //         (e) => "$e",
-  //   );
-  // }
-  //
-  // Future<String> deleteImage({
-  //   required id,
-  // }) async {
-  //   return await firebaseFirestore
-  //       .collection("school")
-  //       .doc(FindUid())
-  //       .collection("image")
-  //       .doc(id)
-  //       .delete()
-  //       .then(
-  //         (value) => "success",
-  //   )
-  //       .catchError(
-  //         (e) => "$e",
-  //   );
-  // }
-  //
-  // Stream<QuerySnapshot<Map<String, dynamic>>> readImage() {
-  //   return firebaseFirestore.collection("school").doc(FindUid()).collection("image").snapshots();
-  // }
+// Future<String> insertImage({
+//   required String image,
+// }) async {
+//   return await firebaseFirestore
+//       .collection("school")
+//       .doc(FindUid())
+//       .collection("image")
+//       .add(
+//     {
+//       "image": "$image",
+//     },
+//   )
+//       .then(
+//         (value) => "success",
+//   )
+//       .catchError(
+//         (e) => "$e",
+//   );
+// }
+//
+// Future<String> deleteImage({
+//   required id,
+// }) async {
+//   return await firebaseFirestore
+//       .collection("school")
+//       .doc(FindUid())
+//       .collection("image")
+//       .doc(id)
+//       .delete()
+//       .then(
+//         (value) => "success",
+//   )
+//       .catchError(
+//         (e) => "$e",
+//   );
+// }
+//
+// Stream<QuerySnapshot<Map<String, dynamic>>> readImage() {
+//   return firebaseFirestore.collection("school").doc(FindUid()).collection("image").snapshots();
+// }
 }
