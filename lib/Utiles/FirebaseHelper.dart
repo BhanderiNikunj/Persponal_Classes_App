@@ -183,12 +183,12 @@ class FirebaseHelper {
 
   // Homework
 
+  
+
   Future<String> insertHomeWork({
     required HomeWorkModel h1,
   }) async {
     return await firebaseFirestore
-        .collection("school")
-        .doc(FindUid())
         .collection("homeWork")
         .add(
           {
@@ -210,8 +210,6 @@ class FirebaseHelper {
     required HomeWorkModel h1,
   }) async {
     return await firebaseFirestore
-        .collection("school")
-        .doc(FindUid())
         .collection("homeWork")
         .doc(h1.key)
         .set(
@@ -233,20 +231,11 @@ class FirebaseHelper {
   void deleteHomeWork({
     required HomeWorkModel h1,
   }) {
-    firebaseFirestore
-        .collection("school")
-        .doc(FindUid())
-        .collection("homeWork")
-        .doc(h1.key)
-        .delete();
+    firebaseFirestore.collection("homeWork").doc(h1.key).delete();
   }
 
   Stream<QuerySnapshot<Map<String, dynamic>>> readHomeWork() {
-    return firebaseFirestore
-        .collection("school")
-        .doc(FindUid())
-        .collection("homeWork")
-        .snapshots();
+    return firebaseFirestore.collection("homeWork").snapshots();
   }
 
   // user

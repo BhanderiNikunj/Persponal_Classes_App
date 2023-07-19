@@ -248,8 +248,92 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
                                 ),
                               ],
                               onChanged: (value) {
-                                addUserDetailControllor.checkAdmin.value =
-                                    value!;
+                               setState(() {
+                                 addUserDetailControllor.checkAdmin.value =
+                                 value!;
+                               });
+                              },
+                            ),
+                          ),
+                    addUserDetailControllor.checkAdmin == 1
+                        ? Container()
+                        : Obx(
+                            () => DropdownButton(
+                              isExpanded: true,
+                              value: addUserDetailControllor.checkStd.value,
+                              items: [
+                                DropdownMenuItem(
+                                  value: 0,
+                                  child: Text(
+                                    "All",
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  value: 1,
+                                  child: Text(
+                                    "Std 1",
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  value: 2,
+                                  child: Text(
+                                    "Std 2",
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  value: 3,
+                                  child: Text(
+                                    "Std 3",
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  value: 4,
+                                  child: Text(
+                                    "Std 4",
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  value: 5,
+                                  child: Text(
+                                    "Std 5",
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  value: 6,
+                                  child: Text(
+                                    "Std 6",
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  value: 7,
+                                  child: Text(
+                                    "Std 7",
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  value: 8,
+                                  child: Text(
+                                    "Std 8",
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  value: 9,
+                                  child: Text(
+                                    "Std 9",
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  value: 10,
+                                  child: Text(
+                                    "Std 10",
+                                  ),
+                                ),
+                              ],
+                              onChanged: (value) {
+                                setState(() {
+                                  addUserDetailControllor.checkStd.value =
+                                      value!;
+                                });
                               },
                             ),
                           ),
@@ -296,7 +380,7 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
 
                             if (addUserDetailControllor.checkAdmin.value == 1) {
                               if (msg == "success") {
-                                Get.offAndToNamed('/home');
+                                Get.offAndToNamed('/bottom');
                               }
                               print(msg);
                               Get.snackbar(

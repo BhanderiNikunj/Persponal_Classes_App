@@ -12,6 +12,7 @@ class AddHomeWorkControllor extends GetxController {
   RxString subject = "math".obs;
   List<HomeWorkModel> homeWorkList = [];
   RxInt std = 1.obs;
+  RxInt checkStd = 0.obs;
 
   Future<String> insertHomeWork({
     required HomeWorkModel h1,

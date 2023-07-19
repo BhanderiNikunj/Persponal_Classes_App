@@ -5,6 +5,8 @@ import 'package:classes_app/Screen/Login/AddUserDetail/View/AddUserDetailScreen.
 import 'package:classes_app/Screen/Login/SignIn/View/SignInScreen.dart';
 import 'package:classes_app/Screen/Login/SignUp/View/SignUpScreen.dart';
 import 'package:classes_app/Screen/Login/Splesh/View/SpleshScreen.dart';
+import 'package:classes_app/Screen/Login/checkUser/View/checkUserScreen.dart';
+import 'package:classes_app/Screen/User/HomeWork/View/HomeWorkScreen.dart';
 import 'package:classes_app/Screen/User/Massage/View/UserMassageScreen.dart';
 import 'package:classes_app/Screen/Main/Bottom/View/BottomScreen.dart';
 import 'package:classes_app/Screen/Main/Home/View/HomeScreen.dart';
@@ -15,7 +17,6 @@ import 'package:classes_app/Screen/Student/ShowDetail/View/ShowDetailScreen.dart
 import 'package:classes_app/Screen/Student/readStudent/View/readStudentScreen.dart';
 import 'package:classes_app/Screen/User/Home/View/UserHomeScreen.dart';
 import 'package:classes_app/Screen/User/UserProfile/View/UserProfileScreen.dart';
-import 'package:classes_app/Screen/checkUser/View/checkUserScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,6 +32,7 @@ Future<void> main() async {
       builder: (context, orientation, deviceType) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
+          // initialRoute: '/addUserDetails',
           getPages: [
             GetPage(
               name: '/',
@@ -48,6 +50,13 @@ Future<void> main() async {
               name: '/userAdmin',
               page: () => checkUserScreen(),
             ),
+            GetPage(
+              name: '/addUserDetail',
+              page: () => AddUserDetailScreen(),
+            ),
+
+
+
             GetPage(
               name: '/home',
               page: () => HomeScreen(),
@@ -81,20 +90,21 @@ Future<void> main() async {
               page: () => MassageScreen(),
             ),
             GetPage(
-              name: '/userHome',
-              page: () => UserHomeScreen(),
-            ),
-            GetPage(
-              name: '/addUserDetail',
-              page: () => AddUserDetailScreen(),
-            ),
-            GetPage(
               name: '/profile',
               page: () => ProfileScreen(),
             ),
             GetPage(
               name: '/image',
               page: () => ImageSetScreen(),
+            ),
+
+
+
+
+
+            GetPage(
+              name: '/userHome',
+              page: () => UserHomeScreen(),
             ),
             GetPage(
               name: '/userMassage',
@@ -103,6 +113,10 @@ Future<void> main() async {
             GetPage(
               name: '/userProfile',
               page: () => UserProfileScreen(),
+            ),
+            GetPage(
+              name: '/userHomeWork',
+              page: () => UserHomeWorkScreen(),
             ),
           ],
         );

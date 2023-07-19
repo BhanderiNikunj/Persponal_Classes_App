@@ -11,6 +11,7 @@ class AddUserDetailControllor extends GetxController {
   TextEditingController txtEmail = TextEditingController();
   RxInt checkAdmin = 1.obs;
   RxString iPath = "".obs;
+  RxInt checkStd = 1.obs;
   Uint8List? imageBytes;
 
   Future<String> insertUserDetail({
@@ -33,7 +34,7 @@ class AddUserDetailControllor extends GetxController {
     required AddUserDetailModel a1,
   }) {
     FirebaseHelper.firebaseHelper.readUSerDetail(
-      // a1: a1,
-    );
+        // a1: a1,
+        );
   }
 }

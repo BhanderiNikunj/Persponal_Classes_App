@@ -71,12 +71,12 @@ class _SpleshScreenState extends State<SpleshScreen> {
             Timer(
               Duration(seconds: 3),
               () async {
-                String? fcm =
-                    await FirebaseHelper.firebaseHelper.findFCMToken();
-
-                FirebaseHelper.firebaseHelper.insertFCM(
-                  fcm: fcm,
-                );
+                // String? fcm =
+                //     await FirebaseHelper.firebaseHelper.findFCMToken();
+                //
+                // FirebaseHelper.firebaseHelper.insertFCM(
+                //   fcm: fcm,
+                // );
                 if (dataList[0].checkAdmin == 1) {
                   Get.offAndToNamed('/bottom');
                 } else {
@@ -88,7 +88,9 @@ class _SpleshScreenState extends State<SpleshScreen> {
                       '/addUserDetail',
                       arguments: p1,
                     );
-                  } else {
+                  }
+
+                  else {
                     Get.offAndToNamed('/userHome');
                   }
                 }
