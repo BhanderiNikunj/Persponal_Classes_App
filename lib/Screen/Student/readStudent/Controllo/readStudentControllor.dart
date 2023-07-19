@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 class ReadStudentControllor extends GetxController {
   List<StudentModel> StudentDataList = [];
+  RxInt checkStd = 0.obs;
 
   Future<String> updateStudentDetail({
     required StudentModel s1,
