@@ -31,7 +31,6 @@ Future<void> main() async {
       builder: (context, orientation, deviceType) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          // initialRoute: '/userAdmin',
           getPages: [
             GetPage(
               name: '/',
