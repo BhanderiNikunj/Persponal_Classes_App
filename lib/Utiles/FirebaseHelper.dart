@@ -183,8 +183,6 @@ class FirebaseHelper {
 
   // Homework
 
-  
-
   Future<String> insertHomeWork({
     required HomeWorkModel h1,
   }) async {
@@ -397,6 +395,10 @@ class FirebaseHelper {
 
   void readFCM() {
     firebaseFirestore.collection("fcm").snapshots();
+  }
+
+  void insertResult() {
+    
   }
 
 // Future<String> insertImage({
