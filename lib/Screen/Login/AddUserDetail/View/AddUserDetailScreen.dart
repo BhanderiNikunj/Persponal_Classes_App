@@ -1,8 +1,10 @@
 import 'dart:io';
 import 'dart:typed_data';
+
 import 'package:classes_app/Screen/Login/AddUserDetail/Controllor/AddUserDetailControllor.dart';
 import 'package:classes_app/Screen/Login/AddUserDetail/Model/AddUserDetailModel.dart';
 import 'package:classes_app/Screen/Profile/Model/ProfileModel.dart';
+import 'package:classes_app/Utiles/FirebaseHelper.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -248,10 +250,10 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
                                 ),
                               ],
                               onChanged: (value) {
-                               setState(() {
-                                 addUserDetailControllor.checkAdmin.value =
-                                 value!;
-                               });
+                                setState(() {
+                                  addUserDetailControllor.checkAdmin.value =
+                                      value!;
+                                });
                               },
                             ),
                           ),
@@ -340,57 +342,103 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
                     Center(
                       child: InkWell(
                         onTap: () async {
-                          if (p1.checkUpdate == 1) {
-                            AddUserDetailModel a1 = AddUserDetailModel(
-                              name: addUserDetailControllor.txtName.text,
-                              image: addUserDetailControllor.iPath.value,
-                              emailId: addUserDetailControllor.txtEmail.text,
-                              surname: addUserDetailControllor.txtSurname.text,
-                              checkAdmin: p1.adminUser,
-                              mobileNo:
-                                  addUserDetailControllor.txtMobileNo.text,
-                              key: p1.key,
-                            );
-                            String msg =
-                                await addUserDetailControllor.updateUserDetail(
-                              a1: a1,
-                            );
+                          if (addUserDetailControllor.checkAdmin.value == 1) {
+                            if (p1.checkUpdate == 1) {
+                              AddUserDetailModel a1 = AddUserDetailModel(
+                                name: addUserDetailControllor.txtName.text,
+                                image: addUserDetailControllor.iPath.value,
+                                emailId: addUserDetailControllor.txtEmail.text,
+                                surname:
+                                    addUserDetailControllor.txtSurname.text,
+                                checkAdmin: p1.adminUser,
+                                mobileNo:
+                                    addUserDetailControllor.txtMobileNo.text,
+                                key: p1.key,
+                              );
+                              String msg = await addUserDetailControllor
+                                  .updateAdminDetail(
+                                a1: a1,
+                              );
 
-                            Get.back();
-                            Get.snackbar(
-                              "$msg",
-                              "",
-                            );
-                          } else {
-                            AddUserDetailModel a1 = AddUserDetailModel(
-                              name: addUserDetailControllor.txtName.text,
-                              image: addUserDetailControllor.iPath.value,
-                              emailId: addUserDetailControllor.txtEmail.text,
-                              surname: addUserDetailControllor.txtSurname.text,
-                              checkAdmin:
-                                  addUserDetailControllor.checkAdmin.value,
-                              mobileNo:
-                                  addUserDetailControllor.txtMobileNo.text,
-                            );
-
-                            String msg =
-                                await addUserDetailControllor.insertUserDetail(
-                              a1: a1,
-                            );
-
-                            if (addUserDetailControllor.checkAdmin.value == 1) {
-                              if (msg == "success") {
-                                Get.offAndToNamed('/bottom');
-                              }
-                              print(msg);
+                              Get.back();
                               Get.snackbar(
                                 "$msg",
                                 "",
                               );
                             } else {
-                              if (msg == "success") {
-                                Get.offAndToNamed('/userHome');
-                              }
+                              AddUserDetailModel a1 = AddUserDetailModel(
+                                name: addUserDetailControllor.txtName.text,
+                                image: addUserDetailControllor.iPath.value,
+                                emailId: addUserDetailControllor.txtEmail.text,
+                                surname:
+                                    addUserDetailControllor.txtSurname.text,
+                                checkAdmin: 1,
+                                mobileNo:
+                                    addUserDetailControllor.txtMobileNo.text,
+                              );
+
+                              String msg = await addUserDetailControllor
+                                  .insertAdminDetail(
+                                a1: a1,
+                              );
+
+                              Get.offAndToNamed('/bottom');
+
+                              print(msg);
+                              Get.snackbar(
+                                "$msg",
+                                "",
+                              );
+                            }
+                          }
+
+
+                          else {
+                            if (p1.checkUpdate == 1) {
+                              AddUserDetailModel a1 = AddUserDetailModel(
+                                std: addUserDetailControllor.checkStd.value,
+                                name: addUserDetailControllor.txtName.text,
+                                image: addUserDetailControllor.iPath.value,
+                                emailId: addUserDetailControllor.txtEmail.text,
+                                surname:
+                                    addUserDetailControllor.txtSurname.text,
+                                checkAdmin: p1.adminUser,
+                                mobileNo:
+                                    addUserDetailControllor.txtMobileNo.text,
+                                key: p1.key,
+                              );
+                              String msg = await addUserDetailControllor
+                                  .updateUserDetail(
+                                a1: a1,
+                              );
+
+                              Get.back();
+                              Get.snackbar(
+                                "$msg",
+                                "",
+                              );
+                            } else {
+                              AddUserDetailModel a1 = AddUserDetailModel(
+                                std: addUserDetailControllor.checkStd.value,
+                                name: addUserDetailControllor.txtName.text,
+                                image: addUserDetailControllor.iPath.value,
+                                emailId: addUserDetailControllor.txtEmail.text,
+                                surname:
+                                    addUserDetailControllor.txtSurname.text,
+                                checkAdmin:
+                                    addUserDetailControllor.checkAdmin.value,
+                                mobileNo:
+                                    addUserDetailControllor.txtMobileNo.text,
+                                uid: FirebaseHelper.firebaseHelper.FindUid(),
+                              );
+
+                              String msg = await addUserDetailControllor
+                                  .insertUserDetail(
+                                a1: a1,
+                              );
+
+                              Get.offAndToNamed('/userHome');
+
                               print(msg);
                               Get.snackbar(
                                 "$msg",

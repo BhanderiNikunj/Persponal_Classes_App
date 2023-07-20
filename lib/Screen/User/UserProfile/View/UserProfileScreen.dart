@@ -1,6 +1,7 @@
+import 'package:classes_app/Screen/Login/AddUserDetail/Model/AddUserDetailModel.dart';
 import 'package:classes_app/Screen/Profile/Model/ProfileModel.dart';
 import 'package:classes_app/Screen/User/UserProfile/Controllor/UserProfileControllor.dart';
-import 'package:classes_app/Screen/User/UserProfile/Model/UserProfileModel.dart';
+import 'package:classes_app/Utiles/FirebaseHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -72,10 +73,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                     userProfileControllor.UserData[0].surname,
                                 name: userProfileControllor.UserData[0].name,
                                 mobile:
-                                    userProfileControllor.UserData[0].mobile,
-                                email: userProfileControllor.UserData[0].email,
-                                adminUser:
-                                    userProfileControllor.UserData[0].adminUser,
+                                    userProfileControllor.UserData[0].mobileNo,
+                                email:
+                                    userProfileControllor.UserData[0].emailId,
+                                adminUser: userProfileControllor
+                                    .UserData[0].checkAdmin,
                                 image: userProfileControllor.UserData[0].image,
                                 key: userProfileControllor.UserData[0].key,
                                 checkUpdate: 1,
@@ -108,129 +110,254 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                     } else if (snapshot.hasData) {
                       userProfileControllor.UserData.clear();
                       for (var x in snapshot.data!.docs) {
-                        UserProfileModel userProfileModel = UserProfileModel(
+                        AddUserDetailModel userProfileModel =
+                            AddUserDetailModel(
                           key: x.id,
                           image: x['image'],
-                          adminUser: x['adminUser'],
-                          email: x['email'],
-                          mobile: x['mobile'],
+                          checkAdmin: x['adminUser'],
+                          emailId: x['email'],
+                          mobileNo: x['mobile'],
                           name: x['name'],
                           surname: x['surname'],
+                          uid: x['uid'],
+                          std: x['std'],
                         );
 
                         userProfileControllor.UserData.add(userProfileModel);
                       }
-                      return Padding(
-                        padding: EdgeInsets.all(10.sp),
-                        child: Column(
-                          children: [
-                            Container(
-                              height: 150.sp,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.sp),
-                                color: Colors.black12,
-                              ),
-                              alignment: Alignment.center,
-                              child: Column(
-                                children: [
-                                  SizedBox(height: 10.sp),
-                                  CircleAvatar(
-                                    radius: 40.sp,
-                                    backgroundImage: MemoryImage(
-                                      Uint8List.fromList(
+                      for (int i = 0;
+                          i < userProfileControllor.UserData.length;
+                          i++) {
+                        if (userProfileControllor.UserData[i].uid ==
+                            FirebaseHelper.firebaseHelper.FindUid()) {
+                          return Padding(
+                            padding: EdgeInsets.all(10.sp),
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 150.sp,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.sp),
+                                    color: Colors.black12,
+                                  ),
+                                  alignment: Alignment.center,
+                                  child: Column(
+                                    children: [
+                                      SizedBox(height: 10.sp),
+                                      CircleAvatar(
+                                        radius: 40.sp,
+                                        backgroundImage: MemoryImage(
+                                          Uint8List.fromList(
+                                            userProfileControllor
+                                                .UserData[i].image!.codeUnits,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: 10.sp),
+                                      Text(
                                         userProfileControllor
-                                            .UserData[0].image!.codeUnits,
+                                                .UserData.isNotEmpty
+                                            ? "${userProfileControllor.UserData[i].name} ${userProfileControllor.UserData[i].surname}"
+                                            : "",
+                                        style: TextStyle(
+                                          fontSize: 18.sp,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                  SizedBox(height: 10.sp),
-                                  Text(
-                                    userProfileControllor.UserData.isNotEmpty
-                                        ? "${userProfileControllor.UserData[0].name} ${userProfileControllor.UserData[0].surname}"
-                                        : "",
-                                    style: TextStyle(
-                                      fontSize: 18.sp,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  SizedBox(height: 10.sp),
-                                  Text(
-                                    userProfileControllor.UserData.isNotEmpty
-                                        ? "Std :- 10"
-                                        : "",
-                                    style: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(height: 20.sp),
-                            Container(
-                              height: 50.sp,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.sp),
-                                color: Colors.black12,
-                              ),
-                              alignment: Alignment.center,
-                              child: Padding(
-                                padding: EdgeInsets.all(10.sp),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.call,
-                                    ),
-                                    SizedBox(width: 15.sp),
-                                    Text(
-                                      "${userProfileControllor.UserData[0].mobile}",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20,
-                                        color: Colors.black,
+                                      SizedBox(height: 10.sp),
+                                      Text(
+                                        userProfileControllor
+                                                .UserData.isNotEmpty
+                                            ? "Std :- 10"
+                                            : "",
+                                        style: TextStyle(
+                                          fontSize: 15.sp,
+                                          color: Colors.black,
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15.sp,
-                            ),
-                            Container(
-                              height: 50.sp,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.sp),
-                                color: Colors.black12,
-                              ),
-                              alignment: Alignment.center,
-                              child: Padding(
-                                padding: EdgeInsets.all(10.sp),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.email,
+                                SizedBox(height: 20.sp),
+                                Container(
+                                  height: 50.sp,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.sp),
+                                    color: Colors.black12,
+                                  ),
+                                  alignment: Alignment.center,
+                                  child: Padding(
+                                    padding: EdgeInsets.all(10.sp),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.call,
+                                        ),
+                                        SizedBox(width: 15.sp),
+                                        Text(
+                                          "${userProfileControllor.UserData[i].mobileNo}",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    SizedBox(width: 15.sp),
-                                    Text(
-                                      "${userProfileControllor.UserData[0].email}",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              ),
+                                SizedBox(
+                                  height: 15.sp,
+                                ),
+                                Container(
+                                  height: 50.sp,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.sp),
+                                    color: Colors.black12,
+                                  ),
+                                  alignment: Alignment.center,
+                                  child: Padding(
+                                    padding: EdgeInsets.all(10.sp),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.email,
+                                        ),
+                                        SizedBox(width: 15.sp),
+                                        Text(
+                                          "${userProfileControllor.UserData[i].emailId}",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      );
+                          );
+                        }
+                      }
+                      // else{
+                      //   return Padding(
+                      //     padding: EdgeInsets.all(10.sp),
+                      //     child: Column(
+                      //       children: [
+                      //         Container(
+                      //           height: 150.sp,
+                      //           width: double.infinity,
+                      //           decoration: BoxDecoration(
+                      //             borderRadius: BorderRadius.circular(10.sp),
+                      //             color: Colors.black12,
+                      //           ),
+                      //           alignment: Alignment.center,
+                      //           child: Column(
+                      //             children: [
+                      //               SizedBox(height: 10.sp),
+                      //               CircleAvatar(
+                      //                 radius: 40.sp,
+                      //                 backgroundImage: MemoryImage(
+                      //                   Uint8List.fromList(
+                      //                     userProfileControllor
+                      //                         .UserData[0].image!.codeUnits,
+                      //                   ),
+                      //                 ),
+                      //               ),
+                      //               SizedBox(height: 10.sp),
+                      //               Text(
+                      //                 userProfileControllor.UserData.isNotEmpty
+                      //                     ? "${userProfileControllor.UserData[0].name} ${userProfileControllor.UserData[0].surname}"
+                      //                     : "",
+                      //                 style: TextStyle(
+                      //                   fontSize: 18.sp,
+                      //                   fontWeight: FontWeight.bold,
+                      //                   color: Colors.black,
+                      //                 ),
+                      //               ),
+                      //               SizedBox(height: 10.sp),
+                      //               Text(
+                      //                 userProfileControllor.UserData.isNotEmpty
+                      //                     ? "Std :- 10"
+                      //                     : "",
+                      //                 style: TextStyle(
+                      //                   fontSize: 15.sp,
+                      //                   color: Colors.black,
+                      //                 ),
+                      //               ),
+                      //             ],
+                      //           ),
+                      //         ),
+                      //         SizedBox(height: 20.sp),
+                      //         Container(
+                      //           height: 50.sp,
+                      //           width: double.infinity,
+                      //           decoration: BoxDecoration(
+                      //             borderRadius: BorderRadius.circular(10.sp),
+                      //             color: Colors.black12,
+                      //           ),
+                      //           alignment: Alignment.center,
+                      //           child: Padding(
+                      //             padding: EdgeInsets.all(10.sp),
+                      //             child: Row(
+                      //               children: [
+                      //                 Icon(
+                      //                   Icons.call,
+                      //                 ),
+                      //                 SizedBox(width: 15.sp),
+                      //                 Text(
+                      //                   "${userProfileControllor.UserData[0].mobile}",
+                      //                   style: TextStyle(
+                      //                     fontWeight: FontWeight.bold,
+                      //                     fontSize: 20,
+                      //                     color: Colors.black,
+                      //                   ),
+                      //                 ),
+                      //               ],
+                      //             ),
+                      //           ),
+                      //         ),
+                      //         SizedBox(
+                      //           height: 15.sp,
+                      //         ),
+                      //         Container(
+                      //           height: 50.sp,
+                      //           width: double.infinity,
+                      //           decoration: BoxDecoration(
+                      //             borderRadius: BorderRadius.circular(10.sp),
+                      //             color: Colors.black12,
+                      //           ),
+                      //           alignment: Alignment.center,
+                      //           child: Padding(
+                      //             padding: EdgeInsets.all(10.sp),
+                      //             child: Row(
+                      //               children: [
+                      //                 Icon(
+                      //                   Icons.email,
+                      //                 ),
+                      //                 SizedBox(width: 15.sp),
+                      //                 Text(
+                      //                   "${userProfileControllor.UserData[0].email}",
+                      //                   style: TextStyle(
+                      //                     fontWeight: FontWeight.bold,
+                      //                     fontSize: 20,
+                      //                     color: Colors.black,
+                      //                   ),
+                      //                 ),
+                      //               ],
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   );
+                      // }
                     }
                     return Center(
                       child: CircularProgressIndicator(),

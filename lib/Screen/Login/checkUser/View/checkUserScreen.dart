@@ -42,21 +42,42 @@ class _checkUserScreenState extends State<checkUserScreen> {
               Timer(
                 Duration(microseconds: 1),
                 () {
-                  if (dataList.isEmpty) {
-                    ProfileModel profileModel = ProfileModel(
-                      checkUpdate: 0,
-                    );
-                    Get.offAndToNamed(
-                      '/addUserDetail',
-                      arguments: profileModel,
-                    );
-                  } else {
-                    if (dataList[0].checkAdmin == 0) {
-                      Get.offAndToNamed('/userHome');
+                  for (int i = 0; i < dataList.length; i++) {
+                    if (dataList[i].checkAdmin == 0) {
+                      // Get.offAndToNamed('/userHome');
+                      if (dataList[i].uid ==
+                          FirebaseHelper.firebaseHelper.FindUid()) {
+                        Get.offAndToNamed('/userHome');
+                      } else {
+                        ProfileModel p1 = ProfileModel(
+                          checkUpdate: 0,
+                        );
+                        Get.offAndToNamed(
+                          '/addUserDetail',
+                          arguments: p1,
+                        );
+                      }
                     } else {
+                      // ProfileModel profileModel = ProfileModel(
+                      //   checkUpdate: 0,
+                      // );
+                      // Get.offAndToNamed(
+                      //   '/addUserDetail',
+                      //   arguments: profileModel,
+                      // );
                       Get.offAndToNamed('/bottom');
                     }
                   }
+                  // if (dataList[0].checkAdmin == 0) {}
+                  // if (dataList.isEmpty) {
+                  //
+                  // } else {
+                  //   if (dataList[0].checkAdmin == 0) {
+                  //     Get.offAndToNamed('/userHome');
+                  //   } else {
+                  //     Get.offAndToNamed('/bottom');
+                  //   }
+                  // }
                 },
               );
 

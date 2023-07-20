@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:classes_app/Screen/Login/AddUserDetail/Model/AddUserDetailModel.dart';
 import 'package:classes_app/Screen/User/HomeWork/Controllor/HomeWorkControllor.dart';
 import 'package:classes_app/Screen/User/HomeWork/Model/userHomeWorkModel.dart';
 import 'package:flutter/material.dart';
@@ -43,6 +44,7 @@ class _UserHomeWorkScreenState extends State<UserHomeWorkScreen> {
                 );
               } else {
                 return StreamBuilder(
+                  stream: userHomeWorkControllor.readUserDetail(),
                   builder: (context, snapshot) {
                     if (snapshot.hasError) {
                       return Center(
@@ -51,13 +53,25 @@ class _UserHomeWorkScreenState extends State<UserHomeWorkScreen> {
                         ),
                       );
                     } else if (snapshot.hasData) {
-                      // for(var x in snapshot.data!.docs){
-                      //
-                      // }
+                      userHomeWorkControllor.detailList.clear();
+                      for (var x in snapshot.data!.docs) {
+                        AddUserDetailModel a1 = AddUserDetailModel(
+                          std: x['std'],
+                          uid: x['uid'],
+                          key: x.id,
+                          name: x['name'],
+                          mobileNo: x['mobile'],
+                          emailId: x['email'],
+                          surname: x['surname'],
+                          image: x['image'],
+                        );
+
+                        userHomeWorkControllor.detailList.add(a1);
+                      }
                       return Column(
                         children: [
                           homeWork(
-                            std: 0,
+                            std: userHomeWorkControllor.detailList[0].std,
                           ),
                         ],
                       );
@@ -68,7 +82,6 @@ class _UserHomeWorkScreenState extends State<UserHomeWorkScreen> {
                       ),
                     );
                   },
-                  stream: userHomeWorkControllor.readUserDetail(),
                 );
               }
             } else if (snapshot.hasError) {
@@ -92,333 +105,354 @@ class _UserHomeWorkScreenState extends State<UserHomeWorkScreen> {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return userHomeWorkControllor.homeWorkList[index].std != 1 ? Container() : Padding(
-              padding: EdgeInsets.only(
-                left: 10.sp,
-                right: 10.sp,
-                top: 10.sp,
-              ),
-              child: Container(
-                height: 80.sp,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10.sp),
-                  ),
-                  gradient: LinearGradient(
-                    transform: GradientRotation(pi / 4),
-                    colors: [
-                      Color(0xff2ED0FF),
-                      Color(0xff50AFFF),
-                      Color(0xff6E92FF),
-                      Color(0xff7E82FF),
-                    ],
-                  ),
-                ),
-              ),
-            );
+            return userHomeWorkControllor.homeWorkList[index].std != 1
+                ? Container()
+                : Padding(
+                    padding: EdgeInsets.only(
+                      left: 10.sp,
+                      right: 10.sp,
+                      top: 10.sp,
+                    ),
+                    child: Container(
+                      height: 80.sp,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.sp),
+                        ),
+                        gradient: LinearGradient(
+                          transform: GradientRotation(pi / 4),
+                          colors: [
+                            Color(0xff2ED0FF),
+                            Color(0xff50AFFF),
+                            Color(0xff6E92FF),
+                            Color(0xff7E82FF),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
           },
           itemCount: userHomeWorkControllor.homeWorkList.length,
         ),
       );
-    }
-    else if (std == 2) {
+    } else if (std == 2) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return userHomeWorkControllor.homeWorkList[index].std != 2 ? Container() : Padding(
-              padding: EdgeInsets.only(
-                left: 10.sp,
-                right: 10.sp,
-                top: 10.sp,
-              ),
-              child: Container(
-                height: 80.sp,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10.sp),
-                  ),
-                  gradient: LinearGradient(
-                    transform: GradientRotation(pi / 4),
-                    colors: [
-                      Color(0xff2ED0FF),
-                      Color(0xff50AFFF),
-                      Color(0xff6E92FF),
-                      Color(0xff7E82FF),
-                    ],
-                  ),
-                ),
-              ),
-            );
+            return userHomeWorkControllor.homeWorkList[index].std != 2
+                ? Container()
+                : Padding(
+                    padding: EdgeInsets.only(
+                      left: 10.sp,
+                      right: 10.sp,
+                      top: 10.sp,
+                    ),
+                    child: Container(
+                      height: 80.sp,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.sp),
+                        ),
+                        gradient: LinearGradient(
+                          transform: GradientRotation(pi / 4),
+                          colors: [
+                            Color(0xff2ED0FF),
+                            Color(0xff50AFFF),
+                            Color(0xff6E92FF),
+                            Color(0xff7E82FF),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
           },
           itemCount: userHomeWorkControllor.homeWorkList.length,
         ),
       );
-    }
-    else if (std == 3) {
+    } else if (std == 3) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return userHomeWorkControllor.homeWorkList[index].std != 3 ? Container() : Padding(
-              padding: EdgeInsets.only(
-                left: 10.sp,
-                right: 10.sp,
-                top: 10.sp,
-              ),
-              child: Container(
-                height: 80.sp,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10.sp),
-                  ),
-                  gradient: LinearGradient(
-                    transform: GradientRotation(pi / 4),
-                    colors: [
-                      Color(0xff2ED0FF),
-                      Color(0xff50AFFF),
-                      Color(0xff6E92FF),
-                      Color(0xff7E82FF),
-                    ],
-                  ),
-                ),
-              ),
-            );
+            return userHomeWorkControllor.homeWorkList[index].std != 3
+                ? Container()
+                : Padding(
+                    padding: EdgeInsets.only(
+                      left: 10.sp,
+                      right: 10.sp,
+                      top: 10.sp,
+                    ),
+                    child: Container(
+                      height: 80.sp,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.sp),
+                        ),
+                        gradient: LinearGradient(
+                          transform: GradientRotation(pi / 4),
+                          colors: [
+                            Color(0xff2ED0FF),
+                            Color(0xff50AFFF),
+                            Color(0xff6E92FF),
+                            Color(0xff7E82FF),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
           },
           itemCount: userHomeWorkControllor.homeWorkList.length,
         ),
       );
-    }
-    else if (std == 4) {
+    } else if (std == 4) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return userHomeWorkControllor.homeWorkList[index].std != 4 ? Container() : Padding(
-              padding: EdgeInsets.only(
-                left: 10.sp,
-                right: 10.sp,
-                top: 10.sp,
-              ),
-              child: Container(
-                height: 80.sp,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10.sp),
-                  ),
-                  gradient: LinearGradient(
-                    transform: GradientRotation(pi / 4),
-                    colors: [
-                      Color(0xff2ED0FF),
-                      Color(0xff50AFFF),
-                      Color(0xff6E92FF),
-                      Color(0xff7E82FF),
-                    ],
-                  ),
-                ),
-              ),
-            );
+            return userHomeWorkControllor.homeWorkList[index].std != 4
+                ? Container()
+                : Padding(
+                    padding: EdgeInsets.only(
+                      left: 10.sp,
+                      right: 10.sp,
+                      top: 10.sp,
+                    ),
+                    child: Container(
+                      height: 80.sp,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.sp),
+                        ),
+                        gradient: LinearGradient(
+                          transform: GradientRotation(pi / 4),
+                          colors: [
+                            Color(0xff2ED0FF),
+                            Color(0xff50AFFF),
+                            Color(0xff6E92FF),
+                            Color(0xff7E82FF),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
           },
           itemCount: userHomeWorkControllor.homeWorkList.length,
         ),
       );
-    }
-    else if (std == 5) {
+    } else if (std == 5) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return userHomeWorkControllor.homeWorkList[index].std != 5 ? Container() : Padding(
-              padding: EdgeInsets.only(
-                left: 10.sp,
-                right: 10.sp,
-                top: 10.sp,
-              ),
-              child: Container(
-                height: 80.sp,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10.sp),
-                  ),
-                  gradient: LinearGradient(
-                    transform: GradientRotation(pi / 4),
-                    colors: [
-                      Color(0xff2ED0FF),
-                      Color(0xff50AFFF),
-                      Color(0xff6E92FF),
-                      Color(0xff7E82FF),
-                    ],
-                  ),
-                ),
-              ),
-            );
+            return userHomeWorkControllor.homeWorkList[index].std != 5
+                ? Container()
+                : Padding(
+                    padding: EdgeInsets.only(
+                      left: 10.sp,
+                      right: 10.sp,
+                      top: 10.sp,
+                    ),
+                    child: Container(
+                      height: 80.sp,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.sp),
+                        ),
+                        gradient: LinearGradient(
+                          transform: GradientRotation(pi / 4),
+                          colors: [
+                            Color(0xff2ED0FF),
+                            Color(0xff50AFFF),
+                            Color(0xff6E92FF),
+                            Color(0xff7E82FF),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
           },
           itemCount: userHomeWorkControllor.homeWorkList.length,
         ),
       );
-    }
-    else if (std == 6) {
+    } else if (std == 6) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return userHomeWorkControllor.homeWorkList[index].std != 6 ? Container() : Padding(
-              padding: EdgeInsets.only(
-                left: 10.sp,
-                right: 10.sp,
-                top: 10.sp,
-              ),
-              child: Container(
-                height: 80.sp,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10.sp),
-                  ),
-                  gradient: LinearGradient(
-                    transform: GradientRotation(pi / 4),
-                    colors: [
-                      Color(0xff2ED0FF),
-                      Color(0xff50AFFF),
-                      Color(0xff6E92FF),
-                      Color(0xff7E82FF),
-                    ],
-                  ),
-                ),
-              ),
-            );
+            return userHomeWorkControllor.homeWorkList[index].std != 6
+                ? Container()
+                : Padding(
+                    padding: EdgeInsets.only(
+                      left: 10.sp,
+                      right: 10.sp,
+                      top: 10.sp,
+                    ),
+                    child: Container(
+                      height: 80.sp,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.sp),
+                        ),
+                        gradient: LinearGradient(
+                          transform: GradientRotation(pi / 4),
+                          colors: [
+                            Color(0xff2ED0FF),
+                            Color(0xff50AFFF),
+                            Color(0xff6E92FF),
+                            Color(0xff7E82FF),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
           },
           itemCount: userHomeWorkControllor.homeWorkList.length,
         ),
       );
-    }
-    else if (std == 7) {
+    } else if (std == 7) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return userHomeWorkControllor.homeWorkList[index].std != 7 ? Container() : Padding(
-              padding: EdgeInsets.only(
-                left: 10.sp,
-                right: 10.sp,
-                top: 10.sp,
-              ),
-              child: Container(
-                height: 80.sp,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10.sp),
-                  ),
-                  gradient: LinearGradient(
-                    transform: GradientRotation(pi / 4),
-                    colors: [
-                      Color(0xff2ED0FF),
-                      Color(0xff50AFFF),
-                      Color(0xff6E92FF),
-                      Color(0xff7E82FF),
-                    ],
-                  ),
-                ),
-              ),
-            );
+            return userHomeWorkControllor.homeWorkList[index].std != 7
+                ? Container()
+                : Padding(
+                    padding: EdgeInsets.only(
+                      left: 10.sp,
+                      right: 10.sp,
+                      top: 10.sp,
+                    ),
+                    child: Container(
+                      height: 80.sp,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.sp),
+                        ),
+                        gradient: LinearGradient(
+                          transform: GradientRotation(pi / 4),
+                          colors: [
+                            Color(0xff2ED0FF),
+                            Color(0xff50AFFF),
+                            Color(0xff6E92FF),
+                            Color(0xff7E82FF),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
           },
           itemCount: userHomeWorkControllor.homeWorkList.length,
         ),
       );
-    }
-    else if (std == 8) {
+    } else if (std == 8) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return userHomeWorkControllor.homeWorkList[index].std != 8 ? Container() : Padding(
-              padding: EdgeInsets.only(
-                left: 10.sp,
-                right: 10.sp,
-                top: 10.sp,
-              ),
-              child: Container(
-                height: 80.sp,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10.sp),
-                  ),
-                  gradient: LinearGradient(
-                    transform: GradientRotation(pi / 4),
-                    colors: [
-                      Color(0xff2ED0FF),
-                      Color(0xff50AFFF),
-                      Color(0xff6E92FF),
-                      Color(0xff7E82FF),
-                    ],
-                  ),
-                ),
-              ),
-            );
+            return userHomeWorkControllor.homeWorkList[index].std != 8
+                ? Container()
+                : Padding(
+                    padding: EdgeInsets.only(
+                      left: 10.sp,
+                      right: 10.sp,
+                      top: 10.sp,
+                    ),
+                    child: Container(
+                      height: 80.sp,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.sp),
+                        ),
+                        gradient: LinearGradient(
+                          transform: GradientRotation(pi / 4),
+                          colors: [
+                            Color(0xff2ED0FF),
+                            Color(0xff50AFFF),
+                            Color(0xff6E92FF),
+                            Color(0xff7E82FF),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
           },
           itemCount: userHomeWorkControllor.homeWorkList.length,
         ),
       );
-    }
-    else if (std == 9) {
+    } else if (std == 9) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return userHomeWorkControllor.homeWorkList[index].std != 9 ? Container() : Padding(
-              padding: EdgeInsets.only(
-                left: 10.sp,
-                right: 10.sp,
-                top: 10.sp,
-              ),
-              child: Container(
-                height: 80.sp,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10.sp),
-                  ),
-                  gradient: LinearGradient(
-                    transform: GradientRotation(pi / 4),
-                    colors: [
-                      Color(0xff2ED0FF),
-                      Color(0xff50AFFF),
-                      Color(0xff6E92FF),
-                      Color(0xff7E82FF),
-                    ],
-                  ),
-                ),
-              ),
-            );
+            return userHomeWorkControllor.homeWorkList[index].std != 9
+                ? Container()
+                : Padding(
+                    padding: EdgeInsets.only(
+                      left: 10.sp,
+                      right: 10.sp,
+                      top: 10.sp,
+                    ),
+                    child: Container(
+                      height: 80.sp,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.sp),
+                        ),
+                        gradient: LinearGradient(
+                          transform: GradientRotation(pi / 4),
+                          colors: [
+                            Color(0xff2ED0FF),
+                            Color(0xff50AFFF),
+                            Color(0xff6E92FF),
+                            Color(0xff7E82FF),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
           },
           itemCount: userHomeWorkControllor.homeWorkList.length,
         ),
       );
-    }
-    else if (std == 10) {
+    } else if (std == 10) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return userHomeWorkControllor.homeWorkList[index].std != 10 ? Container() : Padding(
-              padding: EdgeInsets.only(
-                left: 10.sp,
-                right: 10.sp,
-                top: 10.sp,
-              ),
-              child: Container(
-                height: 80.sp,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10.sp),
-                  ),
-                  gradient: LinearGradient(
-                    transform: GradientRotation(pi / 4),
-                    colors: [
-                      Color(0xff2ED0FF),
-                      Color(0xff50AFFF),
-                      Color(0xff6E92FF),
-                      Color(0xff7E82FF),
-                    ],
-                  ),
-                ),
-              ),
-            );
+            return userHomeWorkControllor.homeWorkList[index].std != 10
+                ? Container()
+                : Padding(
+                    padding: EdgeInsets.only(
+                      left: 10.sp,
+                      right: 10.sp,
+                      top: 10.sp,
+                    ),
+                    child: Container(
+                      height: 80.sp,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.sp),
+                        ),
+                        gradient: LinearGradient(
+                          transform: GradientRotation(pi / 4),
+                          colors: [
+                            Color(0xff2ED0FF),
+                            Color(0xff50AFFF),
+                            Color(0xff6E92FF),
+                            Color(0xff7E82FF),
+                          ],
+                        ),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(10.sp),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "${userHomeWorkControllor.homeWorkList[index].title}",
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
           },
           itemCount: userHomeWorkControllor.homeWorkList.length,
         ),
       );
-    }
-    else {
+    } else {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {

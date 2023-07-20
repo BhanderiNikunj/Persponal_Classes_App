@@ -242,6 +242,64 @@ class FirebaseHelper {
     required AddUserDetailModel a1,
   }) async {
     return await firebaseFirestore
+        .collection("user")
+        .add(
+          {
+            "name": a1.name,
+            "surname": a1.surname,
+            "mobile": a1.mobileNo,
+            "email": a1.emailId,
+            "adminUser": a1.checkAdmin,
+            "image": a1.image,
+            "std": a1.std,
+            "uid": a1.uid,
+          },
+        )
+        .then(
+          (value) => "success",
+        )
+        .catchError(
+          (e) => "$e",
+        );
+  }
+
+  Future<String> updateUserDetail({
+    required AddUserDetailModel a1,
+  }) async {
+    print(a1.key);
+    return await firebaseFirestore
+        .collection("user")
+        .doc(a1.key)
+        .set(
+          {
+            "name": a1.name,
+            "surname": a1.surname,
+            "mobile": a1.mobileNo,
+            "email": a1.emailId,
+            "adminUser": a1.checkAdmin,
+            "image": a1.image,
+            "std": a1.std,
+            "uid": a1.uid,
+          },
+        )
+        .then(
+          (value) => "success",
+        )
+        .catchError(
+          (e) => "$e",
+        );
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> readUSerDetail() {
+    return firebaseFirestore.collection("user").snapshots();
+  }
+
+  // Admin
+
+  Future<String> insertAdminDetail({
+    required AddUserDetailModel a1,
+  }) async {
+    return await firebaseFirestore
         .collection("school")
         .doc(FindUid())
         .collection("detail")
@@ -263,7 +321,7 @@ class FirebaseHelper {
         );
   }
 
-  Future<String> updateUserDetail({
+  Future<String> updateAdminDetail({
     required AddUserDetailModel a1,
   }) async {
     print(a1.key);
@@ -290,7 +348,7 @@ class FirebaseHelper {
         );
   }
 
-  Stream<QuerySnapshot<Map<String, dynamic>>> readUSerDetail() {
+  Stream<QuerySnapshot<Map<String, dynamic>>> readAdminDetail() {
     return firebaseFirestore
         .collection("school")
         .doc(FindUid())
@@ -397,9 +455,7 @@ class FirebaseHelper {
     firebaseFirestore.collection("fcm").snapshots();
   }
 
-  void insertResult() {
-    
-  }
+  void insertResult() {}
 
 // Future<String> insertImage({
 //   required String image,
