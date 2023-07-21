@@ -1,7 +1,8 @@
-import 'package:classes_app/Screen/HomeWork/ShowHomeWork/Model/HomeWorkModel.dart';
-import 'package:classes_app/Screen/Login/AddUserDetail/Model/AddUserDetailModel.dart';
-import 'package:classes_app/Screen/Massage/Model/MassageModel.dart';
-import 'package:classes_app/Screen/Student/AddStudent/Model/StudentModel.dart';
+import 'package:classes_app/Admin/AdminHomeWork/ShowHomeWork/Model/HomeWorkModel.dart';
+import 'package:classes_app/Admin/AdminMassage/Model/AdminMassageModel.dart';
+import 'package:classes_app/Admin/AdminResult/Model/AdminResultModel.dart';
+import 'package:classes_app/Admin/AdminStudent/AdminAddStudent/Model/AdminStudentModel.dart';
+import 'package:classes_app/Login/AddUserDetail/Model/AddUserDetailModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -25,40 +26,6 @@ class FirebaseHelper {
     print(fcmToken);
     return fcmToken;
   }
-
-  // Future<void> initNotification() async {
-  //   await firebaseMessaging.requestPermission();
-  //
-  //   findFCMToken();
-  //
-  //   NotificationSettings notificationSettings = NotificationSettings(
-  //     alert: AppleNotificationSetting.enabled,
-  //     announcement: AppleNotificationSetting.disabled,
-  //     badge: AppleNotificationSetting.enabled,
-  //     carPlay: AppleNotificationSetting.disabled,
-  //     criticalAlert: AppleNotificationSetting.disabled,
-  //     sound: AppleNotificationSetting.disabled,
-  //     authorizationStatus: AuthorizationStatus.denied,
-  //     lockScreen: AppleNotificationSetting.enabled,
-  //     notificationCenter: AppleNotificationSetting.enabled,
-  //     showPreviews: AppleShowPreviewSetting.always,
-  //     timeSensitive: AppleNotificationSetting.enabled,
-  //   );
-  //
-  //   if (notificationSettings.authorizationStatus ==
-  //       AuthorizationStatus.authorized) {
-  //     print("--------------");
-  //   } else if (notificationSettings.authorizationStatus ==
-  //       AuthorizationStatus.provisional) {
-  //     print("-----------------------");
-  //   } else {
-  //     print("failed");
-  //   }
-  // }
-  //
-  // void sendMassage({required Massage, required Title}) {}
-
-  // login start
 
   Future<String> signUp({required email, required password}) async {
     return await firebaseAuth
@@ -105,29 +72,31 @@ class FirebaseHelper {
   // Database Start
 
   void InsertStudentDetail({
-    required StudentModel s1,
+    required AdminStudentModel s1,
   }) {
     print(FindUid());
     firebaseFirestore
         .collection("school")
         .doc("${FindUid()}")
         .collection("data")
-        .add({
-      "f_name": s1.f_name,
-      "l_name": s1.l_name,
-      "father": s1.father_name,
-      "std": s1.std,
-      "mobile_no": s1.mobile_no,
-      "email_id": s1.email_id,
-      "total_fees": s1.total_fees,
-      "paid_fees": s1.paid_fees,
-      "image": s1.image,
-      "address": s1.address,
-    });
+        .add(
+      {
+        "f_name": s1.f_name,
+        "l_name": s1.l_name,
+        "father": s1.father_name,
+        "std": s1.std,
+        "mobile_no": s1.mobile_no,
+        "email_id": s1.email_id,
+        "total_fees": s1.total_fees,
+        "paid_fees": s1.paid_fees,
+        "image": s1.image,
+        "address": s1.address,
+      },
+    );
   }
 
   Future<String> updateStudentDetail({
-    required StudentModel s1,
+    required AdminStudentModel s1,
   }) async {
     print(FindUid());
     return await firebaseFirestore
@@ -156,7 +125,7 @@ class FirebaseHelper {
   }
 
   void deleteDetail({
-    required StudentModel s1,
+    required AdminStudentModel s1,
   }) {
     firebaseFirestore
       ..collection("school")
@@ -238,61 +207,61 @@ class FirebaseHelper {
 
   // user
 
-  Future<String> insertUserDetail({
-    required AddUserDetailModel a1,
-  }) async {
-    return await firebaseFirestore
-        .collection("user")
-        .add(
-          {
-            "name": a1.name,
-            "surname": a1.surname,
-            "mobile": a1.mobileNo,
-            "email": a1.emailId,
-            "adminUser": a1.checkAdmin,
-            "image": a1.image,
-            "std": a1.std,
-            "uid": a1.uid,
-          },
-        )
-        .then(
-          (value) => "success",
-        )
-        .catchError(
-          (e) => "$e",
-        );
-  }
-
-  Future<String> updateUserDetail({
-    required AddUserDetailModel a1,
-  }) async {
-    print(a1.key);
-    return await firebaseFirestore
-        .collection("user")
-        .doc(a1.key)
-        .set(
-          {
-            "name": a1.name,
-            "surname": a1.surname,
-            "mobile": a1.mobileNo,
-            "email": a1.emailId,
-            "adminUser": a1.checkAdmin,
-            "image": a1.image,
-            "std": a1.std,
-            "uid": a1.uid,
-          },
-        )
-        .then(
-          (value) => "success",
-        )
-        .catchError(
-          (e) => "$e",
-        );
-  }
-
-  Stream<QuerySnapshot<Map<String, dynamic>>> readUSerDetail() {
-    return firebaseFirestore.collection("user").snapshots();
-  }
+  // Future<String> insertUserDetail({
+  //   required AddUserDetailModel a1,
+  // }) async {
+  //   return await firebaseFirestore
+  //       .collection("user")
+  //       .add(
+  //         {
+  //           "name": a1.name,
+  //           "surname": a1.surname,
+  //           "mobile": a1.mobileNo,
+  //           "email": a1.emailId,
+  //           "adminUser": a1.checkAdmin,
+  //           "image": a1.image,
+  //           "std": a1.std,
+  //           "uid": a1.uid,
+  //         },
+  //       )
+  //       .then(
+  //         (value) => "success",
+  //       )
+  //       .catchError(
+  //         (e) => "$e",
+  //       );
+  // }
+  //
+  // Future<String> updateUserDetail({
+  //   required AddUserDetailModel a1,
+  // }) async {
+  //   print(a1.key);
+  //   return await firebaseFirestore
+  //       .collection("user")
+  //       .doc(a1.key)
+  //       .set(
+  //         {
+  //           "name": a1.name,
+  //           "surname": a1.surname,
+  //           "mobile": a1.mobileNo,
+  //           "email": a1.emailId,
+  //           "adminUser": a1.checkAdmin,
+  //           "image": a1.image,
+  //           "std": a1.std,
+  //           "uid": a1.uid,
+  //         },
+  //       )
+  //       .then(
+  //         (value) => "success",
+  //       )
+  //       .catchError(
+  //         (e) => "$e",
+  //       );
+  // }
+  //
+  // Stream<QuerySnapshot<Map<String, dynamic>>> readUSerDetail() {
+  //   return firebaseFirestore.collection("user").snapshots();
+  // }
 
   // Admin
 
@@ -311,6 +280,8 @@ class FirebaseHelper {
             "email": a1.emailId,
             "adminUser": a1.checkAdmin,
             "image": a1.image,
+            "uid": a1.uid,
+            "std": a1.std,
           },
         )
         .then(
@@ -333,11 +304,13 @@ class FirebaseHelper {
         .set(
           {
             "name": a1.name,
+            "uid": a1.uid,
             "surname": a1.surname,
             "mobile": a1.mobileNo,
             "email": a1.emailId,
             "adminUser": a1.checkAdmin,
             "image": a1.image,
+            "std": a1.std,
           },
         )
         .then(
@@ -398,7 +371,7 @@ class FirebaseHelper {
   // Massage
 
   Future<String> insertMassage({
-    required MassageModel m1,
+    required AdminMassageModel m1,
   }) async {
     return await firebaseFirestore
         .collection("massage")
@@ -418,7 +391,7 @@ class FirebaseHelper {
   }
 
   void updateMassage({
-    required MassageModel m1,
+    required AdminMassageModel m1,
   }) {
     firebaseFirestore.collection("massage").doc(m1.key).set(
       {
@@ -434,7 +407,7 @@ class FirebaseHelper {
   }
 
   Future<void> deleteMassage({
-    required MassageModel m1,
+    required AdminMassageModel m1,
   }) {
     return firebaseFirestore.collection("massage").doc(m1.key).delete();
   }
@@ -454,8 +427,6 @@ class FirebaseHelper {
   void readFCM() {
     firebaseFirestore.collection("fcm").snapshots();
   }
-
-  void insertResult() {}
 
 // Future<String> insertImage({
 //   required String image,
@@ -497,4 +468,42 @@ class FirebaseHelper {
 // Stream<QuerySnapshot<Map<String, dynamic>>> readImage() {
 //   return firebaseFirestore.collection("school").doc(FindUid()).collection("image").snapshots();
 // }
+
+  // Result
+
+  void insertResult({
+    required AdminResultModel r1,
+  }) {
+    firebaseFirestore.collection("school").add(
+      {
+        "math": r1.math,
+        "ss": r1.socialScience,
+        "sci": r1.science,
+        "eng": r1.english,
+        "total": r1.total,
+        "uid": r1.uid,
+      },
+    );
+  }
+
+  void updateResult({
+    required AdminResultModel r1,
+  }) {
+    firebaseFirestore.collection("school").add(
+      {
+        "math": r1.math,
+        "ss": r1.socialScience,
+        "sci": r1.science,
+        "eng": r1.english,
+        "total": r1.total,
+        "uid": r1.uid,
+      },
+    );
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> readResult({
+    required AdminResultModel r1,
+  }) {
+    return firebaseFirestore.collection("school").snapshots();
+  }
 }
