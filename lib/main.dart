@@ -4,6 +4,8 @@ import 'package:classes_app/Admin/AdminHomeWork/ShowHomeWork/View/ShowAdminHomeW
 import 'package:classes_app/Admin/AdminImageSet/View/ImageSetScreen.dart';
 import 'package:classes_app/Admin/AdminMassage/View/AdminMassageScreen.dart';
 import 'package:classes_app/Admin/AdminProfile/View/AdminProfileScreen.dart';
+import 'package:classes_app/Admin/AdminResult/View/AdminAddStudentResultScreen.dart';
+import 'package:classes_app/Admin/AdminResult/View/AdminReadStudentResultScreen.dart';
 import 'package:classes_app/Admin/AdminResult/View/AdminResultScreen.dart';
 import 'package:classes_app/Admin/AdminStudent/AdminAddStudent/View/AddStudentScreen.dart';
 import 'package:classes_app/Admin/AdminStudent/ShowDetail/View/ShowDetailScreen.dart';
@@ -99,6 +101,14 @@ Future<void> main() async {
             GetPage(
               name: '/result',
               page: () => AdminResultScreen(),
+            ),
+            GetPage(
+              name: '/readResult',
+              page: () => AdminReadStudentResultScreen(),
+            ),
+            GetPage(
+              name: '/addResult',
+              page: () => AdminAddStudentResultScreen(),
             ),
 
 

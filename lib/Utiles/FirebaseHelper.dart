@@ -357,7 +357,7 @@ class FirebaseHelper {
   void insertResult({
     required AdminResultModel r1,
   }) {
-    firebaseFirestore.collection("school").add(
+    firebaseFirestore.collection("result").add(
       {
         "math": r1.math,
         "ss": r1.socialScience,
@@ -372,7 +372,7 @@ class FirebaseHelper {
   void updateResult({
     required AdminResultModel r1,
   }) {
-    firebaseFirestore.collection("school").add(
+    firebaseFirestore.collection("result").add(
       {
         "math": r1.math,
         "ss": r1.socialScience,
@@ -387,6 +387,6 @@ class FirebaseHelper {
   Stream<QuerySnapshot<Map<String, dynamic>>> readResult({
     required AdminResultModel r1,
   }) {
-    return firebaseFirestore.collection("school").snapshots();
+    return firebaseFirestore.collection("result").snapshots();
   }
 }

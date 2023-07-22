@@ -343,10 +343,10 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                     ),
                                     height: 15.h,
                                     alignment: Alignment.center,
-                                    child: Image.asset(
-                                      "${homeControllor.Types[1].image}",
-                                      height: 60.sp,
-                                    ),
+                                    // child: Image.asset(
+                                    //   "${homeControllor.Types[1].image}",
+                                    //   height: 60.sp,
+                                    // ),
                                   ),
                                   Container(
                                     decoration: BoxDecoration(
