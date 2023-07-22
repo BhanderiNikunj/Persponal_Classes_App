@@ -40,6 +40,7 @@ class _SpleshScreenState extends State<SpleshScreen> {
               std: x['std'],
               key: x.id,
               adminUser: x['adminUser'],
+              checkUpdate: 0,
               mobile: x['mobile'],
               email: x['email'],
               uid: FirebaseHelper.firebaseHelper.FindUid(),
@@ -49,16 +50,22 @@ class _SpleshScreenState extends State<SpleshScreen> {
 
           print(dataList[0].adminUser);
 
-          if (dataList.isNotEmpty) {
-            if (dataList[0].adminUser == 1) {
-              Get.offAndToNamed('/home');
-            } else {
-              Get.offAndToNamed('/userHome');
-            }
-          }
-          else{
-            Get.offAndToNamed('/addUserDetail');
-          }
+          Timer(
+            Duration(
+              seconds: 3,
+            ),
+            () {
+              if (dataList.isNotEmpty) {
+                if (dataList[0].adminUser == 1) {
+                  Get.offAndToNamed('/home');
+                } else {
+                  Get.offAndToNamed('/userHome');
+                }
+              } else {
+                Get.offAndToNamed('/addUserDetail');
+              }
+            },
+          );
 
           return Center(
             child: Image.asset(

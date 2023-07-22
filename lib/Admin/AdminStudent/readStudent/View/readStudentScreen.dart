@@ -179,18 +179,18 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                     ),
                                   ],
                                   onChanged: (value) {
-                                    // setState(() {
-                                      readStudentControllor.checkStd.value =
-                                          value!;
-                                    // });
+                                    readStudentControllor.checkStd.value =
+                                        value!;
                                   },
                                 ),
                               ),
                             ),
                           ],
                         ),
-                        std(
-                          readStudentControllor.checkStd.value,
+                        Obx(
+                          () => std(
+                            readStudentControllor.checkStd.value,
+                          ),
                         ),
                       ],
                     ),
@@ -1834,8 +1834,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
           itemCount: readStudentControllor.StudentDataList.length,
         ),
       );
-    }
-    else {
+    } else {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
@@ -1847,19 +1846,20 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                     image: readStudentControllor.StudentDataList[index].image,
                     key: readStudentControllor.StudentDataList[index].key,
                     email_id:
-                    readStudentControllor.StudentDataList[index].email_id,
+                        readStudentControllor.StudentDataList[index].email_id,
                     f_name: readStudentControllor.StudentDataList[index].f_name,
                     l_name: readStudentControllor.StudentDataList[index].l_name,
                     mobile_no:
-                    readStudentControllor.StudentDataList[index].mobile_no,
+                        readStudentControllor.StudentDataList[index].mobile_no,
                     paid_fees:
-                    readStudentControllor.StudentDataList[index].paid_fees,
+                        readStudentControllor.StudentDataList[index].paid_fees,
                     total_fees:
-                    readStudentControllor.StudentDataList[index].total_fees,
-                    address: readStudentControllor.StudentDataList[index].address,
+                        readStudentControllor.StudentDataList[index].total_fees,
+                    address:
+                        readStudentControllor.StudentDataList[index].address,
                     std: readStudentControllor.StudentDataList[index].std,
-                    father_name:
-                    readStudentControllor.StudentDataList[index].father_name,
+                    father_name: readStudentControllor
+                        .StudentDataList[index].father_name,
                   );
                   Get.toNamed(
                     '/showDetail',

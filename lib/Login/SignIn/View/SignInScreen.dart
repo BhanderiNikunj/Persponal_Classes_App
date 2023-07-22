@@ -138,10 +138,8 @@ class _SignInScreenState extends State<SignInScreen> {
                           password: signInControllor.txtPassword.text,
                         );
 
-                        print(msg);
-
                         if (msg == "success") {
-                          Get.offAndToNamed('/userAdmin');
+                          Get.offAndToNamed('/home');
                         }
 
                         // Get.snackbar(

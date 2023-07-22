@@ -1,4 +1,6 @@
 import 'dart:math';
+
+import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:classes_app/Admin/AdminHome/Controllor/AdminHomeControllor.dart';
 import 'package:classes_app/Admin/AdminImageSet/Model/AdminImageSetModel.dart';
@@ -9,7 +11,7 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 class AdminHomeScreen extends StatefulWidget {
-  const AdminHomeScreen({Key? key}) : super(key: key);
+  const AdminHomeScreen({super.key});
 
   @override
   State<AdminHomeScreen> createState() => _AdminHomeScreenState();
@@ -20,14 +22,12 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
     AdminHomeControllor(),
   );
 
-  final _advancedDrawerController = AdvancedDrawerController();
+  final drawerController =
+      AdvancedDrawerController(AdvancedDrawerValue.hidden());
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      // child: Scaffold(
-
-      // ),
       child: AdvancedDrawer(
         backdrop: Container(
           width: double.infinity,
@@ -40,7 +40,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
             ),
           ),
         ),
-        controller: _advancedDrawerController,
+        controller: drawerController,
         animationCurve: Curves.ease,
         animationDuration: Duration(milliseconds: 1000),
         animateChildDecoration: true,
@@ -74,9 +74,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                     ),
                   ),
                   ListTile(
-                    onTap: () {
-                      _handleMenuButtonPressed();
-                    },
+                    onTap: () {},
                     leading: Image.asset(
                       "Assets/Images/home.png",
                       height: 20.sp,
@@ -85,9 +83,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                   ),
                   ListTile(
                     onTap: () {
-                      // Get.toNamed(
-                      //   '/userMassage',
-                      // );
+                      Get.toNamed('/message');
                     },
                     leading: Image.asset(
                       "Assets/Images/announcement.png",
@@ -97,9 +93,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                   ),
                   ListTile(
                     onTap: () {
-                      // Get.toNamed(
-                      //   '/userHomeWork',
-                      // );
+                      Get.toNamed('/homeWork');
                     },
                     leading: Image.asset(
                       "Assets/Images/homeWork.png",
@@ -109,9 +103,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                   ),
                   ListTile(
                     onTap: () {
-                      // Get.toNamed(
-                      //   '/userProfile',
-                      // );
+                      Get.toNamed('/profile');
                     },
                     leading: Image.asset(
                       "Assets/Images/profile.png",
@@ -146,7 +138,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                         children: [
                           IconButton(
                             onPressed: () {
-                              _handleMenuButtonPressed();
+                              showDrawer();
                             },
                             icon: Icon(
                               Icons.menu,
@@ -234,9 +226,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                         children: [
                           InkWell(
                             onTap: () {
-                              print("------------------------------------------------student click");
-                              Get.toNamed('/');
-                              print("------------------------------------------------student click");
+                              Get.toNamed('/showStudent');
                             },
                             child: Container(
                               height: 135.sp,
@@ -303,7 +293,6 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                           ),
                           InkWell(
                             onTap: () {
-                              print("------------------------------------------------homework click");
                               Get.toNamed('/homeWork');
                             },
                             child: Container(
@@ -456,7 +445,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
     );
   }
 
-  void _handleMenuButtonPressed() {
-    _advancedDrawerController.showDrawer();
+  void showDrawer() {
+    drawerController.showDrawer();
   }
 }

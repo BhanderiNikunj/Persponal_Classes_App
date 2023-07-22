@@ -10,7 +10,8 @@ class AdminShowHomeWorkScreen extends StatefulWidget {
   const AdminShowHomeWorkScreen({super.key});
 
   @override
-  State<AdminShowHomeWorkScreen> createState() => _AdminShowHomeWorkScreenState();
+  State<AdminShowHomeWorkScreen> createState() =>
+      _AdminShowHomeWorkScreenState();
 }
 
 class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
@@ -298,9 +299,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                   ),
                                 ],
                                 onChanged: (value) {
-                                  // setState(() {
-                                    addHomeWorkControllor.checkStd.value = value!;
-                                  // });
+                                  addHomeWorkControllor.checkStd.value = value!;
                                 },
                               ),
                             ),
@@ -308,8 +307,10 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                         ],
                       ),
 
-                      homeWork(
-                        std: addHomeWorkControllor.checkStd.value,
+                      Obx(
+                        () => homeWork(
+                          std: addHomeWorkControllor.checkStd.value,
+                        ),
                       ),
                     ],
                   ),

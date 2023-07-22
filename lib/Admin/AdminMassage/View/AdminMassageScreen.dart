@@ -1,5 +1,6 @@
 import 'package:classes_app/Admin/AdminMassage/Controllor/AdminMassageControllor.dart';
 import 'package:classes_app/Admin/AdminMassage/Model/AdminMassageModel.dart';
+import 'package:classes_app/Utiles/notification.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,11 +13,11 @@ class AdminMassageScreen extends StatefulWidget {
   State<AdminMassageScreen> createState() => _AdminMassageScreenState();
 }
 
-class _AdminMassageScreenState extends State<AdminMassageScreen> with SingleTickerProviderStateMixin {
+class _AdminMassageScreenState extends State<AdminMassageScreen>
+    with SingleTickerProviderStateMixin {
   AdminMassageControllor massageControllor = Get.put(
     AdminMassageControllor(),
   );
-
 
   @override
   Widget build(BuildContext context) {
@@ -112,8 +113,8 @@ class _AdminMassageScreenState extends State<AdminMassageScreen> with SingleTick
                                                           controller: txtMsg,
                                                           decoration:
                                                               InputDecoration(
-                                                            prefixIcon:
-                                                                Icon(Icons.message),
+                                                            prefixIcon: Icon(
+                                                                Icons.message),
                                                             hintText:
                                                                 "Enter A Message For Students",
                                                             disabledBorder:
@@ -161,14 +162,17 @@ class _AdminMassageScreenState extends State<AdminMassageScreen> with SingleTick
                                                         SizedBox(height: 10.sp),
                                                         InkWell(
                                                           onTap: () {
-                                                            AdminMassageModel m1 =
+                                                            AdminMassageModel
+                                                                m1 =
                                                                 AdminMassageModel(
                                                               key: massageControllor
                                                                   .massageList[
                                                                       index]
                                                                   .key,
-                                                              date: "${DateTime.now().day} / ${DateTime.now().month} / ${DateTime.now().year}",
-                                                              time: "${TimeOfDay.now().hour} : ${TimeOfDay.now().minute}",
+                                                              date:
+                                                                  "${DateTime.now().day} / ${DateTime.now().month} / ${DateTime.now().year}",
+                                                              time:
+                                                                  "${TimeOfDay.now().hour} : ${TimeOfDay.now().minute}",
                                                               msg: txtMsg.text,
                                                             );
                                                             massageControllor
@@ -191,11 +195,13 @@ class _AdminMassageScreenState extends State<AdminMassageScreen> with SingleTick
                                               ),
                                               IconButton(
                                                 onPressed: () {
-                                                  AdminMassageModel m1 = AdminMassageModel(
+                                                  AdminMassageModel m1 =
+                                                      AdminMassageModel(
                                                     key: massageControllor
                                                         .massageList[index].key,
                                                   );
-                                                  massageControllor.deleteMassage(
+                                                  massageControllor
+                                                      .deleteMassage(
                                                     m1: m1,
                                                   );
                                                 },
@@ -253,18 +259,24 @@ class _AdminMassageScreenState extends State<AdminMassageScreen> with SingleTick
                                 time:
                                     "${TimeOfDay.now().hour} : ${TimeOfDay.now().minute}",
                               );
-                              String msg = await massageControllor.insertMassage(
+                              await massageControllor.insertMassage(
                                 m1: m1,
                               );
 
-                              Get.snackbar(
-                                "$msg",
-                                "",
-                              );
+                              // Get.snackbar(
+                              //   "$msg",
+                              //   "",
+                              // );
 
                               setState(() {
-                                massageControllor.txtMsg = TextEditingController();
+                                massageControllor.txtMsg =
+                                    TextEditingController();
                               });
+
+                              NotificationHelper.helper
+                                  .showSimpleNotification();
+                              // NotificationHelper.helper.timeNotification();
+                              // NotificationHelper.helper.showSoundNotification();
                             },
                             icon: Icon(Icons.send_outlined),
                           ),

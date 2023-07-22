@@ -1,4 +1,3 @@
-import 'package:classes_app/Admin/AdminBottom/View/AdminBottomScreen.dart';
 import 'package:classes_app/Admin/AdminHome/View/AdminHomeScreen.dart';
 import 'package:classes_app/Admin/AdminHomeWork/AddAdminHomeWork/View/AddHomeWorkScreen.dart';
 import 'package:classes_app/Admin/AdminHomeWork/ShowHomeWork/View/ShowAdminHomeWork.dart';
@@ -13,11 +12,11 @@ import 'package:classes_app/Login/AddUserDetail/View/AddUserDetailScreen.dart';
 import 'package:classes_app/Login/SignIn/View/SignInScreen.dart';
 import 'package:classes_app/Login/SignUp/View/SignUpScreen.dart';
 import 'package:classes_app/Login/Splesh/View/SpleshScreen.dart';
-import 'package:classes_app/Login/checkUser/View/checkUserScreen.dart';
 import 'package:classes_app/User/UserHome/View/UserHomeScreen.dart';
 import 'package:classes_app/User/UserHomeWork/View/UserHomeWorkScreen.dart';
 import 'package:classes_app/User/UserMassage/View/UserMassageScreen.dart';
 import 'package:classes_app/User/UserProfile/View/UserProfileScreen.dart';
+import 'package:classes_app/Utiles/notification.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,13 +26,14 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
+  NotificationHelper.helper.initNotification();
 
   runApp(
     Sizer(
       builder: (context, orientation, deviceType) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          // initialRoute: '/addUserDetails',
+          // initialRoute: '/message',
           getPages: [
             GetPage(
               name: '/',
@@ -48,10 +48,6 @@ Future<void> main() async {
               page: () => SignUpScreen(),
             ),
             GetPage(
-              name: '/userAdmin',
-              page: () => checkUserScreen(),
-            ),
-            GetPage(
               name: '/addUserDetail',
               page: () => AddUserDetailScreen(),
             ),
@@ -63,10 +59,10 @@ Future<void> main() async {
               name: '/home',
               page: () => AdminHomeScreen(),
             ),
-            GetPage(
-              name: '/bottom',
-              page: () => AdminBottomScreen(),
-            ),
+            // GetPage(
+            //   name: '/bottom',
+            //   page: () => AdminBottomScreen(),
+            // ),
             GetPage(
               name: '/addStudent',
               page: () => AdminAddStudentScreen(),
@@ -152,3 +148,10 @@ Widget allButton({
     ),
   );
 }
+
+
+
+
+
+
+
