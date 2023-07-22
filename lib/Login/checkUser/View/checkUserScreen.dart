@@ -43,7 +43,13 @@ class _checkUserScreenState extends State<checkUserScreen> {
                 Duration(microseconds: 1),
                 () {
                   if (dataList.isEmpty) {
-                    Get.offAndToNamed('/addUserDetail');
+                    AdminProfileModel a1 = AdminProfileModel(
+                      checkUpdate: 0,
+                    );
+                    Get.offAndToNamed(
+                      '/addUserDetail',
+                      arguments: a1,
+                    );
                   } else {
                     if (dataList[0].adminUser == 1) {
                       Get.offAndToNamed('/bottom');
@@ -53,28 +59,6 @@ class _checkUserScreenState extends State<checkUserScreen> {
                   }
                 },
               );
-
-              // for (int i = 0; i < dataList.length; i++) {
-              //   if (dataList[i].checkAdmin == 0) {
-              //     // Get.offAndToNamed('/userHome');
-              //     if (dataList[i].uid ==
-              //         FirebaseHelper.firebaseHelper.FindUid()) {
-              //       Get.offAndToNamed('/userHome');
-              //     } else {
-              //       ProfileModel p1 = ProfileModel(
-              //         checkUpdate: 0,
-              //       );
-              //       Get.offAndToNamed(
-              //         '/addUserDetail',
-              //         arguments: p1,
-              //       );
-              //     }
-              //   }
-              //
-              //   else {
-              //     Get.offAndToNamed('/bottom');
-              //   }
-              // }
 
               return Container();
             } else {

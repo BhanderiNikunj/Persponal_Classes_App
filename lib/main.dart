@@ -12,6 +12,7 @@ import 'package:classes_app/Login/AddUserDetail/View/AddUserDetailScreen.dart';
 import 'package:classes_app/Login/SignIn/View/SignInScreen.dart';
 import 'package:classes_app/Login/SignUp/View/SignUpScreen.dart';
 import 'package:classes_app/Login/Splesh/View/SpleshScreen.dart';
+import 'package:classes_app/Login/checkUser/View/checkUserScreen.dart';
 import 'package:classes_app/User/UserHome/View/UserHomeScreen.dart';
 import 'package:classes_app/User/UserHomeWork/View/UserHomeWorkScreen.dart';
 import 'package:classes_app/User/UserMassage/View/UserMassageScreen.dart';
@@ -48,6 +49,10 @@ Future<void> main() async {
               page: () => SignUpScreen(),
             ),
             GetPage(
+              name: '/checkAdminUser',
+              page: () => checkUserScreen(),
+            ),
+            GetPage(
               name: '/addUserDetail',
               page: () => AddUserDetailScreen(),
             ),
@@ -59,10 +64,6 @@ Future<void> main() async {
               name: '/home',
               page: () => AdminHomeScreen(),
             ),
-            // GetPage(
-            //   name: '/bottom',
-            //   page: () => AdminBottomScreen(),
-            // ),
             GetPage(
               name: '/addStudent',
               page: () => AdminAddStudentScreen(),

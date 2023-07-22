@@ -48,13 +48,12 @@ class _SpleshScreenState extends State<SpleshScreen> {
             dataList.add(a1);
           }
 
-          print(dataList[0].adminUser);
-
           Timer(
             Duration(
               seconds: 3,
             ),
             () {
+
               if (dataList.isNotEmpty) {
                 if (dataList[0].adminUser == 1) {
                   Get.offAndToNamed('/home');
@@ -62,11 +61,13 @@ class _SpleshScreenState extends State<SpleshScreen> {
                   Get.offAndToNamed('/userHome');
                 }
               } else {
-                Get.offAndToNamed('/addUserDetail');
+                Get.offAndToNamed(
+                  '/checkAdminUser',
+                );
               }
             },
           );
-
+          print(dataList.length);
           return Center(
             child: Image.asset(
               "Assets/Images/bright.png",

@@ -205,62 +205,6 @@ class FirebaseHelper {
 
   // user
 
-  // Future<String> insertUserDetail({
-  //   required AddUserDetailModel a1,
-  // }) async {
-  //   return await firebaseFirestore
-  //       .collection("user")
-  //       .add(
-  //         {
-  //           "name": a1.name,
-  //           "surname": a1.surname,
-  //           "mobile": a1.mobileNo,
-  //           "email": a1.emailId,
-  //           "adminUser": a1.checkAdmin,
-  //           "image": a1.image,
-  //           "std": a1.std,
-  //           "uid": a1.uid,
-  //         },
-  //       )
-  //       .then(
-  //         (value) => "success",
-  //       )
-  //       .catchError(
-  //         (e) => "$e",
-  //       );
-  // }
-  //
-  // Future<String> updateUserDetail({
-  //   required AddUserDetailModel a1,
-  // }) async {
-  //   print(a1.key);
-  //   return await firebaseFirestore
-  //       .collection("user")
-  //       .doc(a1.key)
-  //       .set(
-  //         {
-  //           "name": a1.name,
-  //           "surname": a1.surname,
-  //           "mobile": a1.mobileNo,
-  //           "email": a1.emailId,
-  //           "adminUser": a1.checkAdmin,
-  //           "image": a1.image,
-  //           "std": a1.std,
-  //           "uid": a1.uid,
-  //         },
-  //       )
-  //       .then(
-  //         (value) => "success",
-  //       )
-  //       .catchError(
-  //         (e) => "$e",
-  //       );
-  // }
-  //
-  // Stream<QuerySnapshot<Map<String, dynamic>>> readUSerDetail() {
-  //   return firebaseFirestore.collection("user").snapshots();
-  // }
-
   // Admin
 
   Future<String> insertAdminDetail({
@@ -273,12 +217,12 @@ class FirebaseHelper {
         .add(
           {
             "name": a1.name,
+            "uid": a1.uid,
             "surname": a1.surname,
             "mobile": a1.mobile,
             "email": a1.email,
             "adminUser": a1.adminUser,
             "image": a1.image,
-            "uid": a1.uid,
             "std": a1.std,
           },
         )
@@ -409,65 +353,6 @@ class FirebaseHelper {
   }) {
     return firebaseFirestore.collection("massage").doc(m1.key).delete();
   }
-
-  // FCM
-
-  void insertFCM({
-    required fcm,
-  }) {
-    firebaseFirestore.collection("fcm").add(
-      {
-        "fcm": fcm,
-      },
-    );
-  }
-
-  void readFCM() {
-    firebaseFirestore.collection("fcm").snapshots();
-  }
-
-// Future<String> insertImage({
-//   required String image,
-// }) async {
-//   return await firebaseFirestore
-//       .collection("school")
-//       .doc(FindUid())
-//       .collection("image")
-//       .add(
-//     {
-//       "image": "$image",
-//     },
-//   )
-//       .then(
-//         (value) => "success",
-//   )
-//       .catchError(
-//         (e) => "$e",
-//   );
-// }
-//
-// Future<String> deleteImage({
-//   required id,
-// }) async {
-//   return await firebaseFirestore
-//       .collection("school")
-//       .doc(FindUid())
-//       .collection("image")
-//       .doc(id)
-//       .delete()
-//       .then(
-//         (value) => "success",
-//   )
-//       .catchError(
-//         (e) => "$e",
-//   );
-// }
-//
-// Stream<QuerySnapshot<Map<String, dynamic>>> readImage() {
-//   return firebaseFirestore.collection("school").doc(FindUid()).collection("image").snapshots();
-// }
-
-  // Result
 
   void insertResult({
     required AdminResultModel r1,

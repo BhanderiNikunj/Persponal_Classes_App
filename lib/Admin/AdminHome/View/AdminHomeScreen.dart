@@ -81,15 +81,16 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                     ),
                     title: Text("Home"),
                   ),
+
                   ListTile(
                     onTap: () {
-                      Get.toNamed('/message');
+                      Get.toNamed('/showStudent');
                     },
                     leading: Image.asset(
-                      "Assets/Images/announcement.png",
-                      height: 20.sp,
+                      "Assets/Images/student.png",
+                      height: 15.sp,
                     ),
-                    title: Text("Announcement"),
+                    title: Text("Student"),
                   ),
                   ListTile(
                     onTap: () {
@@ -100,6 +101,16 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                       height: 20.sp,
                     ),
                     title: Text("Home Work"),
+                  ),
+                  ListTile(
+                    onTap: () {
+                      Get.toNamed('/message');
+                    },
+                    leading: Image.asset(
+                      "Assets/Images/announcement.png",
+                      height: 20.sp,
+                    ),
+                    title: Text("Announcement"),
                   ),
                   ListTile(
                     onTap: () {
@@ -132,20 +143,22 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                   ),
                   child: Stack(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              showDrawer();
-                            },
-                            icon: Icon(
-                              Icons.menu,
-                              color: Colors.white,
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                showDrawer();
+                              },
+                              icon: Icon(
+                                Icons.menu,
+                                color: Colors.white,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                       Center(
                         child: Column(
@@ -365,9 +378,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                         children: [
                           InkWell(
                             onTap: () {
-                              // Get.toNamed('/courses');
-                              print(homeControllor.Types.length);
-                              // Get.toNamed('/showStudent');
+                              Get.toNamed('/result');
                             },
                             child: Container(
                               height: 135.sp,

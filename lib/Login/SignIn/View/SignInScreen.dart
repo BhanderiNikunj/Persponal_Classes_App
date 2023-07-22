@@ -1,3 +1,4 @@
+import 'package:classes_app/Admin/AdminProfile/Model/AdminProfileModel.dart';
 import 'package:classes_app/Login/SignIn/Controllor/SignInControllor.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -139,13 +140,14 @@ class _SignInScreenState extends State<SignInScreen> {
                         );
 
                         if (msg == "success") {
-                          Get.offAndToNamed('/home');
+                          AdminProfileModel a1 = AdminProfileModel(
+                            checkUpdate: 0,
+                          );
+                          Get.offAndToNamed(
+                            '/checkAdminUser',
+                            arguments: a1,
+                          );
                         }
-
-                        // Get.snackbar(
-                        //   "$msg",
-                        //   "",
-                        // );
                       },
                       child: Container(
                         height: 30.sp,

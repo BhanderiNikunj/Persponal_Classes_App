@@ -405,16 +405,12 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
                                     addUserDetailControllor.txtMobileNo.text,
                                 key: p1.key,
                               );
-                              String msg = await addUserDetailControllor
+                              await addUserDetailControllor
                                   .updateAdminDetail(
                                 a1: a1,
                               );
 
                               Get.back();
-                              Get.snackbar(
-                                "$msg",
-                                "",
-                              );
                             }
 
                             else {
