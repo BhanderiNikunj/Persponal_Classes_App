@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:classes_app/Login/AddUserDetail/Model/AddUserDetailModel.dart';
+import 'package:classes_app/Admin/AdminProfile/Model/AdminProfileModel.dart';
 import 'package:classes_app/User/UserHomeWork/Controllor/HomeWorkControllor.dart';
 import 'package:classes_app/User/UserHomeWork/Model/UserHomeWorkModel.dart';
 import 'package:flutter/material.dart';
@@ -55,13 +55,14 @@ class _UserHomeWorkScreenState extends State<UserHomeWorkScreen> {
                     } else if (snapshot.hasData) {
                       userHomeWorkControllor.detailList.clear();
                       for (var x in snapshot.data!.docs) {
-                        AddUserDetailModel a1 = AddUserDetailModel(
+                        AdminProfileModel a1 = AdminProfileModel(
                           std: x['std'],
                           uid: x['uid'],
+                          adminUser: x['adminUser'],
                           key: x.id,
                           name: x['name'],
-                          mobileNo: x['mobile'],
-                          emailId: x['email'],
+                          mobile: x['mobile'],
+                          email: x['email'],
                           surname: x['surname'],
                           image: x['image'],
                         );

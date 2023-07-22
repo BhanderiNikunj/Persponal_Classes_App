@@ -66,7 +66,7 @@ class _UserMassageScreenState extends State<UserMassageScreen> {
                       "Read Massage",
                       style: TextStyle(
                         fontSize: 15.sp,
-                        fontWeight: FontWeight.bold,
+                        // fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
                     ),

@@ -94,7 +94,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                 "Student Detail",
                                 style: TextStyle(
                                   fontSize: 18.sp,
-                                  fontWeight: FontWeight.bold,
+                                  // fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
                               ),
@@ -179,10 +179,10 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                     ),
                                   ],
                                   onChanged: (value) {
-                                    setState(() {
+                                    // setState(() {
                                       readStudentControllor.checkStd.value =
                                           value!;
-                                    });
+                                    // });
                                   },
                                 ),
                               ),

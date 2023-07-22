@@ -161,7 +161,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                             "Bright Education Classes",
                             style: TextStyle(
                               fontSize: 15.sp,
-                              fontWeight: FontWeight.bold,
+                              // fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
                           ),

@@ -112,7 +112,7 @@ class _AdminAddStudentScreenState extends State<AdminAddStudentScreen> {
                             s1.isCheck == 1 ? "Update Detail" : "Add Detail",
                             style: TextStyle(
                               fontSize: 15.sp,
-                              fontWeight: FontWeight.bold,
+                              // fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
                           ),

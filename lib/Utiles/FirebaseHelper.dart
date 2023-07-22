@@ -1,8 +1,8 @@
 import 'package:classes_app/Admin/AdminHomeWork/ShowHomeWork/Model/HomeWorkModel.dart';
 import 'package:classes_app/Admin/AdminMassage/Model/AdminMassageModel.dart';
+import 'package:classes_app/Admin/AdminProfile/Model/AdminProfileModel.dart';
 import 'package:classes_app/Admin/AdminResult/Model/AdminResultModel.dart';
 import 'package:classes_app/Admin/AdminStudent/AdminAddStudent/Model/AdminStudentModel.dart';
-import 'package:classes_app/Login/AddUserDetail/Model/AddUserDetailModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -16,8 +16,6 @@ class FirebaseHelper {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
-
-  Future<void> hand(RemoteMessage massage) async {}
 
   // Notification
 
@@ -266,7 +264,7 @@ class FirebaseHelper {
   // Admin
 
   Future<String> insertAdminDetail({
-    required AddUserDetailModel a1,
+    required AdminProfileModel a1,
   }) async {
     return await firebaseFirestore
         .collection("school")
@@ -276,9 +274,9 @@ class FirebaseHelper {
           {
             "name": a1.name,
             "surname": a1.surname,
-            "mobile": a1.mobileNo,
-            "email": a1.emailId,
-            "adminUser": a1.checkAdmin,
+            "mobile": a1.mobile,
+            "email": a1.email,
+            "adminUser": a1.adminUser,
             "image": a1.image,
             "uid": a1.uid,
             "std": a1.std,
@@ -293,7 +291,7 @@ class FirebaseHelper {
   }
 
   Future<String> updateAdminDetail({
-    required AddUserDetailModel a1,
+    required AdminProfileModel a1,
   }) async {
     print(a1.key);
     return await firebaseFirestore
@@ -306,9 +304,9 @@ class FirebaseHelper {
             "name": a1.name,
             "uid": a1.uid,
             "surname": a1.surname,
-            "mobile": a1.mobileNo,
-            "email": a1.emailId,
-            "adminUser": a1.checkAdmin,
+            "mobile": a1.mobile,
+            "email": a1.email,
+            "adminUser": a1.adminUser,
             "image": a1.image,
             "std": a1.std,
           },

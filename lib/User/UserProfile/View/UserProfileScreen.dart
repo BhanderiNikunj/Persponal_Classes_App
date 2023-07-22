@@ -1,6 +1,5 @@
 import 'package:classes_app/Admin/AdminProfile/Model/AdminProfileModel.dart';
 import 'package:classes_app/User/UserProfile/Controllor/UserProfileControllor.dart';
-import 'package:classes_app/User/UserProfile/Model/UserProfileModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -59,7 +58,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                         "Profile Page",
                         style: TextStyle(
                           fontSize: 18.sp,
-                          fontWeight: FontWeight.bold,
+                          // fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                       ),
@@ -367,7 +366,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       for (var x in snapshot.data!.docs) {
-                        UserProfileModel u1 = UserProfileModel(
+                        AdminProfileModel u1 = AdminProfileModel(
                           mobile: x['mobile'],
                           image: x['image'],
                           adminUser: x['adminUser'],
@@ -411,7 +410,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                         : "",
                                     style: TextStyle(
                                       fontSize: 18.sp,
-                                      fontWeight: FontWeight.bold,
+                                      // fontWeight: FontWeight.bold,
                                       color: Colors.black,
                                     ),
                                   ),
@@ -448,7 +447,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                     Text(
                                       "${userProfileControllor.UserData[0].mobile}",
                                       style: TextStyle(
-                                        fontWeight: FontWeight.bold,
+                                        // fontWeight: FontWeight.bold,
                                         fontSize: 20,
                                         color: Colors.black,
                                       ),
@@ -479,7 +478,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                     Text(
                                       "${userProfileControllor.UserData[0].email}",
                                       style: TextStyle(
-                                        fontWeight: FontWeight.bold,
+                                        // fontWeight: FontWeight.bold,
                                         fontSize: 20,
                                         color: Colors.black,
                                       ),

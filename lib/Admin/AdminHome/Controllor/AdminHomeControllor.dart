@@ -17,6 +17,10 @@ class AdminHomeControllor extends GetxController {
       image: "Assets/Images/Homework.png",
       name: "HomeWork",
     ),
+    AdminHomeModel(
+      image: "Assets/Images/result.png",
+      name: "Result",
+    ),
   ];
 
   List<AdminImageSetModel> imageList = [];

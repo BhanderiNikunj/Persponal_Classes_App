@@ -29,9 +29,7 @@ class _AdminBottomScreenState extends State<AdminBottomScreen> {
             ],
             selectedIndex: bottomControllor.isBottom.value,
             onButtonPressed: (index) {
-              setState(() {
-                bottomControllor.isBottom.value = index;
-              });
+              bottomControllor.isBottom.value = index;
             },
             inactiveColor: Color(0xff6E92FF),
             activeColor: Color(0xff7E82FF),

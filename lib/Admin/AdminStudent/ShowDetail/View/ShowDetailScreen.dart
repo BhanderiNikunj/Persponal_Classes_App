@@ -74,7 +74,7 @@ class _AdminShowDetailScreenState extends State<AdminShowDetailScreen> with Sing
                       "${s1.f_name} ${s1.l_name}",
                       style: TextStyle(
                         color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                        // fontWeight: FontWeight.bold,
                         fontSize: 18.sp,
                       ),
                     ),

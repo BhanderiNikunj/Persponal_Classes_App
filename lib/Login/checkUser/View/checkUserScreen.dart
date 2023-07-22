@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:classes_app/Login/AddUserDetail/Model/AddUserDetailModel.dart';
+import 'package:classes_app/Admin/AdminProfile/Model/AdminProfileModel.dart';
 import 'package:classes_app/Utiles/FirebaseHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,38 +22,32 @@ class _checkUserScreenState extends State<checkUserScreen> {
             if (snapshot.hasError) {
               return Text("${snapshot.error}");
             } else if (snapshot.hasData) {
-              List<AddUserDetailModel> dataList = [];
+              List<AdminProfileModel> dataList = [];
               for (var x in snapshot.data!.docs) {
-                AddUserDetailModel addUserDetailModel = AddUserDetailModel(
+                AdminProfileModel adminProfileModel = AdminProfileModel(
                   name: x['name'],
                   surname: x['surname'],
                   image: x['image'],
                   key: x.id,
-                  checkAdmin: x['adminUser'],
-                  emailId: x['email'],
-                  mobileNo: x['mobile'],
+                  adminUser: x['adminUser'],
+                  email: x['email'],
+                  std: x['std'],
+                  uid: x['uid'],
+                  mobile: x['mobile'],
                 );
 
-                dataList.add(addUserDetailModel);
+                dataList.add(adminProfileModel);
               }
 
               Timer(
                 Duration(microseconds: 1),
                 () {
-                  // if (FirebaseHelper.firebaseHelper.FindUid() ==
-                  //     dataList[0].uid) {
-                  //
-                  // }
                   if (dataList.isEmpty) {
-                    print("--------------------------------not");
                     Get.offAndToNamed('/addUserDetail');
                   } else {
-                    print("--------------------------------not emat");
-                    if (dataList[0].checkAdmin == 1) {
-                      print("--------------------------------admin");
+                    if (dataList[0].adminUser == 1) {
                       Get.offAndToNamed('/bottom');
                     } else {
-                      print("--------------------------------user");
                       Get.offAndToNamed('/userHome');
                     }
                   }
@@ -61,25 +55,25 @@ class _checkUserScreenState extends State<checkUserScreen> {
               );
 
               // for (int i = 0; i < dataList.length; i++) {
-                //   if (dataList[i].checkAdmin == 0) {
-                //     // Get.offAndToNamed('/userHome');
-                //     if (dataList[i].uid ==
-                //         FirebaseHelper.firebaseHelper.FindUid()) {
-                //       Get.offAndToNamed('/userHome');
-                //     } else {
-                //       ProfileModel p1 = ProfileModel(
-                //         checkUpdate: 0,
-                //       );
-                //       Get.offAndToNamed(
-                //         '/addUserDetail',
-                //         arguments: p1,
-                //       );
-                //     }
-                //   }
-                //
-                //   else {
-                //     Get.offAndToNamed('/bottom');
-                //   }
+              //   if (dataList[i].checkAdmin == 0) {
+              //     // Get.offAndToNamed('/userHome');
+              //     if (dataList[i].uid ==
+              //         FirebaseHelper.firebaseHelper.FindUid()) {
+              //       Get.offAndToNamed('/userHome');
+              //     } else {
+              //       ProfileModel p1 = ProfileModel(
+              //         checkUpdate: 0,
+              //       );
+              //       Get.offAndToNamed(
+              //         '/addUserDetail',
+              //         arguments: p1,
+              //       );
+              //     }
+              //   }
+              //
+              //   else {
+              //     Get.offAndToNamed('/bottom');
+              //   }
               // }
 
               return Container();

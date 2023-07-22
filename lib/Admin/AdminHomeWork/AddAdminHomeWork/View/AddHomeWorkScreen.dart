@@ -91,7 +91,7 @@ class _AdminAddHomeWorkScreenState extends State<AdminAddHomeWorkScreen> {
                             "Add Home Work",
                             style: TextStyle(
                               fontSize: 15.sp,
-                              fontWeight: FontWeight.bold,
+                              // fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
                           ),

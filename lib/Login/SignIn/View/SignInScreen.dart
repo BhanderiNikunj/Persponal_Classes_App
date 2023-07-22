@@ -144,10 +144,10 @@ class _SignInScreenState extends State<SignInScreen> {
                           Get.offAndToNamed('/userAdmin');
                         }
 
-                        Get.snackbar(
-                          "$msg",
-                          "",
-                        );
+                        // Get.snackbar(
+                        //   "$msg",
+                        //   "",
+                        // );
                       },
                       child: Container(
                         height: 30.sp,
@@ -163,7 +163,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         child: Text(
                           "LogIn",
                           style: TextStyle(
-                            fontWeight: FontWeight.bold,
+                            // fontWeight: FontWeight.bold,
                             fontSize: 12.sp,
                             color: Colors.white,
                           ),

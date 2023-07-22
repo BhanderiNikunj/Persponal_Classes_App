@@ -1,5 +1,5 @@
 import 'dart:typed_data';
-import 'package:classes_app/Login/AddUserDetail/Model/AddUserDetailModel.dart';
+import 'package:classes_app/Admin/AdminProfile/Model/AdminProfileModel.dart';
 import 'package:classes_app/Utiles/FirebaseHelper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,7 +21,7 @@ class AddUserDetailControllor extends GetxController {
   // admin
 
   Future<String> insertAdminDetail({
-    required AddUserDetailModel a1,
+    required AdminProfileModel a1,
   }) async {
     return await FirebaseHelper.firebaseHelper.insertAdminDetail(
       a1: a1,
@@ -29,7 +29,7 @@ class AddUserDetailControllor extends GetxController {
   }
 
   Future<String> updateAdminDetail({
-    required AddUserDetailModel a1,
+    required AdminProfileModel a1,
   }) async {
     return await FirebaseHelper.firebaseHelper.updateAdminDetail(
       a1: a1,

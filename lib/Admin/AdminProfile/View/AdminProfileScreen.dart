@@ -83,7 +83,7 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                               "Profile Page",
                               style: TextStyle(
                                 fontSize: 18.sp,
-                                fontWeight: FontWeight.bold,
+                                // fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
                             ),
@@ -155,7 +155,7 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                                         : "",
                                     style: TextStyle(
                                       fontSize: 18.sp,
-                                      fontWeight: FontWeight.bold,
+                                      // fontWeight: FontWeight.bold,
                                       color: Colors.black,
                                     ),
                                   ),
@@ -183,7 +183,7 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                                     Text(
                                       "${profileControllor.detailList[0].mobile}",
                                       style: TextStyle(
-                                        fontWeight: FontWeight.bold,
+                                        // fontWeight: FontWeight.bold,
                                         fontSize: 20,
                                         color: Colors.black,
                                       ),
@@ -212,7 +212,7 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                                     Text(
                                       "${profileControllor.detailList[0].email}",
                                       style: TextStyle(
-                                        fontWeight: FontWeight.bold,
+                                        // fontWeight: FontWeight.bold,
                                         fontSize: 20,
                                         color: Colors.black,
                                       ),
@@ -241,7 +241,7 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                                     Text(
                                       "${profileControllor.detailList[0].email}",
                                       style: TextStyle(
-                                        fontWeight: FontWeight.bold,
+                                        // fontWeight: FontWeight.bold,
                                         fontSize: 20,
                                         color: Colors.black,
                                       ),
@@ -274,7 +274,7 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                                       Text(
                                         "Log Out",
                                         style: TextStyle(
-                                          fontWeight: FontWeight.bold,
+                                          // fontWeight: FontWeight.bold,
                                           fontSize: 20,
                                           color: Colors.black,
                                         ),

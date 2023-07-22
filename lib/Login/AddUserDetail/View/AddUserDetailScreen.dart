@@ -2,7 +2,6 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:classes_app/Admin/AdminProfile/Model/AdminProfileModel.dart';
 import 'package:classes_app/Login/AddUserDetail/Controllor/AddUserDetailControllor.dart';
-import 'package:classes_app/Login/AddUserDetail/Model/AddUserDetailModel.dart';
 import 'package:classes_app/Utiles/FirebaseHelper.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
@@ -249,10 +248,10 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
                                 ),
                               ],
                               onChanged: (value) {
-                                setState(() {
+                                // setState(() {
                                   addUserDetailControllor.checkAdmin.value =
                                       value!;
-                                });
+                                // });
                               },
                             ),
                           ),
@@ -331,10 +330,10 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
                                 ),
                               ],
                               onChanged: (value) {
-                                setState(() {
+                                // setState(() {
                                   addUserDetailControllor.checkStd.value =
                                       value!;
-                                });
+                                // });
                               },
                             ),
                           ),
@@ -343,14 +342,14 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
                         onTap: () async {
                           if (addUserDetailControllor.checkAdmin.value == 1) {
                             if (p1.checkUpdate == 1) {
-                              AddUserDetailModel a1 = AddUserDetailModel(
+                              AdminProfileModel a1 = AdminProfileModel(
                                 name: addUserDetailControllor.txtName.text,
                                 image: addUserDetailControllor.iPath.value,
-                                emailId: addUserDetailControllor.txtEmail.text,
+                                email: addUserDetailControllor.txtEmail.text,
                                 surname:
                                     addUserDetailControllor.txtSurname.text,
-                                checkAdmin: 1,
-                                mobileNo:
+                                adminUser: 1,
+                                mobile:
                                     addUserDetailControllor.txtMobileNo.text,
                                 key: p1.key,
                               );
@@ -367,14 +366,14 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
                             }
 
                             else {
-                              AddUserDetailModel a1 = AddUserDetailModel(
+                              AdminProfileModel a1 = AdminProfileModel(
                                 name: addUserDetailControllor.txtName.text,
                                 image: addUserDetailControllor.iPath.value,
-                                emailId: addUserDetailControllor.txtEmail.text,
+                                email: addUserDetailControllor.txtEmail.text,
                                 surname:
                                     addUserDetailControllor.txtSurname.text,
-                                checkAdmin: 1,
-                                mobileNo:
+                                adminUser: 1,
+                                mobile:
                                     addUserDetailControllor.txtMobileNo.text,
                               );
 
@@ -394,15 +393,15 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
 
                           else {
                             if (p1.checkUpdate == 1) {
-                              AddUserDetailModel a1 = AddUserDetailModel(
+                              AdminProfileModel a1 = AdminProfileModel(
                                 std: addUserDetailControllor.checkStd.value,
                                 name: addUserDetailControllor.txtName.text,
                                 image: addUserDetailControllor.iPath.value,
-                                emailId: addUserDetailControllor.txtEmail.text,
+                                email: addUserDetailControllor.txtEmail.text,
                                 surname:
                                     addUserDetailControllor.txtSurname.text,
-                                checkAdmin: 0,
-                                mobileNo:
+                                adminUser: 0,
+                                mobile:
                                     addUserDetailControllor.txtMobileNo.text,
                                 key: p1.key,
                               );
@@ -419,23 +418,23 @@ class _AddUserDetailScreenState extends State<AddUserDetailScreen> {
                             }
 
                             else {
-                              AddUserDetailModel a1 = AddUserDetailModel(
+                              AdminProfileModel adminProfileModel = AdminProfileModel(
                                 std: addUserDetailControllor.checkStd.value,
                                 name: addUserDetailControllor.txtName.text,
                                 image: addUserDetailControllor.iPath.value,
-                                emailId: addUserDetailControllor.txtEmail.text,
+                                email: addUserDetailControllor.txtEmail.text,
                                 surname:
                                     addUserDetailControllor.txtSurname.text,
-                                checkAdmin:
+                                adminUser:
                                     0,
-                                mobileNo:
+                                mobile:
                                     addUserDetailControllor.txtMobileNo.text,
                                 uid: FirebaseHelper.firebaseHelper.FindUid(),
                               );
 
                               String msg = await addUserDetailControllor
                                   .insertAdminDetail(
-                                a1: a1,
+                                a1: adminProfileModel,
                               );
 
                               Get.offAndToNamed('/userHome');

@@ -40,7 +40,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       "SignUp",
                       style: TextStyle(
                         fontSize: 20.sp,
-                        fontWeight: FontWeight.bold,
+                        // fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
@@ -159,7 +159,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         child: Text(
                           "SignUp",
                           style: TextStyle(
-                            fontWeight: FontWeight.bold,
+                            // fontWeight: FontWeight.bold,
                             fontSize: 12.sp,
                             color: Colors.white,
                           ),

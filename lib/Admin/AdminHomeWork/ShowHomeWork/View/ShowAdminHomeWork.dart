@@ -85,7 +85,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                               "Student Homework",
                               style: TextStyle(
                                 fontSize: 18.sp,
-                                fontWeight: FontWeight.bold,
+                                // fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
                             ),
@@ -298,9 +298,9 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                   ),
                                 ],
                                 onChanged: (value) {
-                                  setState(() {
+                                  // setState(() {
                                     addHomeWorkControllor.checkStd.value = value!;
-                                  });
+                                  // });
                                 },
                               ),
                             ),

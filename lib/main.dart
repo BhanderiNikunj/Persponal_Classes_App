@@ -146,7 +146,6 @@ Widget allButton({
     child: Text(
       "$string",
       style: TextStyle(
-        fontWeight: FontWeight.bold,
         fontSize: 12.sp,
         color: Colors.white,
       ),
