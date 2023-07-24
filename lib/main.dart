@@ -19,6 +19,7 @@ import 'package:classes_app/User/UserHome/View/UserHomeScreen.dart';
 import 'package:classes_app/User/UserHomeWork/View/UserHomeWorkScreen.dart';
 import 'package:classes_app/User/UserMassage/View/UserMassageScreen.dart';
 import 'package:classes_app/User/UserProfile/View/UserProfileScreen.dart';
+import 'package:classes_app/User/UserResult/View/UserResultScreen.dart';
 import 'package:classes_app/Utiles/notification.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -128,6 +129,10 @@ Future<void> main() async {
             GetPage(
               name: '/userHomeWork',
               page: () => UserHomeWorkScreen(),
+            ),
+            GetPage(
+              name: '/userResult',
+              page: () => UserResultScreen(),
             ),
           ],
         );
