@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:classes_app/Admin/AdminHome/Controllor/AdminHomeControllor.dart';
 import 'package:classes_app/Admin/AdminImageSet/Model/AdminImageSetModel.dart';
+import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
@@ -81,7 +82,6 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                     ),
                     title: Text("Home"),
                   ),
-
                   ListTile(
                     onTap: () {
                       Get.toNamed('/showStudent');

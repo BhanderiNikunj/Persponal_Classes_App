@@ -1,4 +1,7 @@
+import 'package:classes_app/Admin/AdminResult/Controllor/AdminResultControllor.dart';
+import 'package:classes_app/Admin/AdminResult/Model/AdminResultModel.dart';
 import 'package:classes_app/Admin/AdminResult/Model/AdminStudentUidModel.dart';
+import 'package:classes_app/Admin/AdminStudent/readStudent/Controllor/readStudentControllor.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,6 +18,10 @@ class AdminReadStudentResultScreen extends StatefulWidget {
 class _AdminReadStudentResultScreenState
     extends State<AdminReadStudentResultScreen> {
   AdminStudentUidModel r1 = Get.arguments;
+
+  AdminResultControllor adminResultControllor = Get.put(
+    AdminResultControllor(),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -65,16 +72,253 @@ class _AdminReadStudentResultScreenState
               SizedBox(height: 20),
               Expanded(
                 child: StreamBuilder(
+                  stream: adminResultControllor.readResult(),
                   builder: (context, snapshot) {
                     if (snapshot.hasError) {
                       return Text(
                         "${snapshot.error}",
                       );
                     } else if (snapshot.hasData) {
-                      return ListView.builder(
-                        itemBuilder: (context, index) {
-                          return CircularProgressIndicator();
-                        },
+                      adminResultControllor.resultList.clear();
+                      for (var x in snapshot.data!.docs) {
+                        AdminResultModel a1 = AdminResultModel(
+                          total: x['total'],
+                          uid: x['uid'],
+                          english: x['eng'],
+                          key: x.id,
+                          science: x['sci'],
+                          socialScience: x['ss'],
+                          totalOutOf: x['totalOutOf'],
+                          math: x['math'],
+                        );
+
+                        adminResultControllor.resultList.add(a1);
+                      }
+                      return Row(
+                        children: [
+                          Column(
+                            children: [
+                              Container(
+                                height: 30.sp,
+                                width: 50.sp,
+                                decoration: BoxDecoration(),
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "Subject",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                height: 30.sp,
+                                width: 50.sp,
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "Math",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                height: 30.sp,
+                                width: 50.sp,
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "SS",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                height: 30.sp,
+                                width: 50.sp,
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "Sci",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                height: 30.sp,
+                                width: 50.sp,
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "Eng",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                height: 30.sp,
+                                width: 50.sp,
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "Total",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(width: 10.sp),
+                          Column(
+                            children: [
+                              Container(
+                                height: 30.sp,
+                                width: 50.sp,
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "Total",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                height: 30.sp,
+                                width: 50.sp,
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "30",
+                                ),
+                              ),
+                              Container(
+                                height: 30.sp,
+                                width: 50.sp,
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "30",
+                                ),
+                              ),
+                              Container(
+                                height: 30.sp,
+                                width: 50.sp,
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "30",
+                                ),
+                              ),
+                              Container(
+                                height: 30.sp,
+                                width: 50.sp,
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "30",
+                                ),
+                              ),
+                              Container(
+                                height: 30.sp,
+                                width: 50.sp,
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "120",
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(width: 10.sp),
+                          Expanded(
+                            child: ListView.builder(
+                              itemCount:
+                                  adminResultControllor.resultList.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                return adminResultControllor
+                                            .resultList[index].uid !=
+                                        r1.uid
+                                    ? Container()
+                                    : Row(
+                                        children: [
+                                          SizedBox(width: 10.sp),
+                                          Column(
+                                            children: [
+                                              Container(
+                                                height: 30.sp,
+                                                width: 50.sp,
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  "Mark",
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                              Container(
+                                                height: 30.sp,
+                                                width: 50.sp,
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  "${adminResultControllor.resultList[index].math}",
+                                                ),
+                                              ),
+                                              Container(
+                                                height: 30.sp,
+                                                width: 50.sp,
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  "${adminResultControllor.resultList[index].socialScience}",
+                                                ),
+                                              ),
+                                              Container(
+                                                height: 30.sp,
+                                                width: 50.sp,
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  "${adminResultControllor.resultList[index].science}",
+                                                ),
+                                              ),
+                                              Container(
+                                                height: 30.sp,
+                                                width: 50.sp,
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  "${adminResultControllor.resultList[index].english}",
+                                                ),
+                                              ),
+                                              Container(
+                                                height: 30.sp,
+                                                width: 50.sp,
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  "${adminResultControllor.resultList[index].totalOutOf}",
+                                                ),
+                                              ),
+                                              Container(
+                                                height: 30.sp,
+                                                width: 50.sp,
+                                                alignment: Alignment.center,
+                                                child: IconButton(
+                                                  onPressed: () {
+                                                    AdminResultModel a1 =
+                                                        AdminResultModel(
+                                                      key: adminResultControllor
+                                                          .resultList[index]
+                                                          .key,
+                                                    );
+                                                    adminResultControllor
+                                                        .deleteStudent(
+                                                      a1: a1,
+                                                    );
+                                                  },
+                                                  icon: Icon(
+                                                      Icons.delete_outline),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      );
+                              },
+                            ),
+                          ),
+                        ],
                       );
                     }
                     return Center(

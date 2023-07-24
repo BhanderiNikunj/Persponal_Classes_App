@@ -28,32 +28,6 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
                 height: 200.sp,
               ),
             ),
-            // ListView.builder(
-            //   itemCount: 10,
-            //   itemBuilder: (context, index) {
-            //     return Padding(
-            //       padding: EdgeInsets.all(10.sp),
-            //       child: Container(
-            //         height: 50.sp,
-            //         width: double.infinity,
-            //         decoration: BoxDecoration(
-            //           borderRadius: BorderRadius.circular(10.sp),
-            //           color: Colors.black26,
-            //           border: Border.all(
-            //             color: Colors.black,
-            //           ),
-            //         ),
-            //         alignment: Alignment.center,
-            //         child: Text(
-            //           "Std ${index + 1}",
-            //           style: TextStyle(
-            //             fontWeight: FontWeight.bold,
-            //           ),
-            //         ),
-            //       ),
-            //     );
-            //   },
-            // ),
             Column(
               children: [
                 Obx(
@@ -145,162 +119,617 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
   Widget studentList({
     required std,
   }) {
-    if (std == 1) {
-      return ListView.builder(
-        itemCount: adminResultControllor.std1List.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(
-              "${adminResultControllor.std1List[index].name}",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          );
-        },
-      );
-    } else if (std == 2) {
-      return ListView.builder(
-        itemCount: adminResultControllor.std2List.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(
-              "${adminResultControllor.std2List[index].name}",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          );
-        },
-      );
-    } else if (std == 3) {
-      return ListView.builder(
-        itemCount: adminResultControllor.std3List.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(
-              "${adminResultControllor.std3List[index].name}",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          );
-        },
-      );
-    } else if (std == 4) {
-      return ListView.builder(
-        itemCount: adminResultControllor.std4List.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(
-              "${adminResultControllor.std4List[index].name}",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          );
-        },
-      );
-    } else if (std == 5) {
-      return ListView.builder(
-        itemCount: adminResultControllor.std5List.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(
-              "${adminResultControllor.std5List[index].name}",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          );
-        },
-      );
-    } else if (std == 6) {
-      return ListView.builder(
-        itemCount: adminResultControllor.std6List.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(
-              "${adminResultControllor.std6List[index].name}",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          );
-        },
-      );
-    } else if (std == 7) {
-      return ListView.builder(
-        itemCount: adminResultControllor.std7List.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(
-              "${adminResultControllor.std7List[index].name}",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          );
-        },
-      );
-    } else if (std == 8) {
-      return ListView.builder(
-        itemCount: adminResultControllor.std8List.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(
-              "${adminResultControllor.std8List[index].name}",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          );
-        },
-      );
-    } else if (std == 9) {
-      return ListView.builder(
-        itemCount: adminResultControllor.std9List.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(
-              "${adminResultControllor.std9List[index].name}",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          );
-        },
-      );
-    } else if (std == 10) {
-      return ListView.builder(
-        itemCount: adminResultControllor.std10List.length,
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: () {
-              AdminStudentUidModel r1 = AdminStudentUidModel(
-                uid: adminResultControllor.std10List[index].uid,
-                name: adminResultControllor.std10List[index].name,
-                std: adminResultControllor.std10List[index].std,
-                mobile: adminResultControllor.std10List[index].mobile,
+    if (std == 10) {
+      return StreamBuilder(
+        stream: adminResultControllor.readStudent(),
+        builder: (context, snapShot) {
+          if (snapShot.hasError) {
+            return Text(
+              "${snapShot.error}",
+            );
+          } else if (snapShot.hasData) {
+            adminResultControllor.allStdList.clear();
+            for (var x in snapShot.data!.docs) {
+              AdminStudentUidModel a1 = AdminStudentUidModel(
+                uid: x['uid'],
+                mobile: x['mobile'],
+                name: x['name'],
+                std: x['std'],
               );
-              Get.toNamed(
-                '/readResult',
-                arguments: r1,
-              );
-            },
-            child: ListTile(
-              title: Text(
-                "${adminResultControllor.std10List[index].name}",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              leading: Text("${adminResultControllor.std10List[index].std}"),
-            ),
+
+              adminResultControllor.allStdList.add(a1);
+            }
+
+            return ListView.builder(
+              itemCount: adminResultControllor.allStdList.length,
+              itemBuilder: (context, index) {
+                return adminResultControllor.allStdList[index].std != 10
+                    ? Container()
+                    : InkWell(
+                        onTap: () {
+                          AdminStudentUidModel r1 = AdminStudentUidModel(
+                            uid: adminResultControllor.allStdList[index].uid,
+                            name: adminResultControllor.allStdList[index].name,
+                            std: adminResultControllor.allStdList[index].std,
+                            mobile:
+                                adminResultControllor.allStdList[index].mobile,
+                          );
+                          Get.toNamed(
+                            '/readResult',
+                            arguments: r1,
+                          );
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "${adminResultControllor.allStdList[index].name}",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          leading: Text(
+                            "${adminResultControllor.allStdList[index].std}",
+                          ),
+                        ),
+                      );
+              },
+            );
+          }
+          return Center(
+            child: CircularProgressIndicator(),
           );
         },
       );
-    } else {
+    }
+    else if (std == 9) {
+      return StreamBuilder(
+        stream: adminResultControllor.readStudent(),
+        builder: (context, snapShot) {
+          if (snapShot.hasError) {
+            return Text(
+              "${snapShot.error}",
+            );
+          } else if (snapShot.hasData) {
+            adminResultControllor.allStdList.clear();
+            for (var x in snapShot.data!.docs) {
+              AdminStudentUidModel a1 = AdminStudentUidModel(
+                uid: x['uid'],
+                mobile: x['mobile'],
+                name: x['name'],
+                std: x['std'],
+              );
+
+              adminResultControllor.allStdList.add(a1);
+            }
+
+            return ListView.builder(
+              itemCount: adminResultControllor.allStdList.length,
+              itemBuilder: (context, index) {
+                return adminResultControllor.allStdList[index].std != 9
+                    ? Container()
+                    : InkWell(
+                        onTap: () {
+                          AdminStudentUidModel r1 = AdminStudentUidModel(
+                            uid: adminResultControllor.allStdList[index].uid,
+                            name: adminResultControllor.allStdList[index].name,
+                            std: adminResultControllor.allStdList[index].std,
+                            mobile:
+                                adminResultControllor.allStdList[index].mobile,
+                          );
+                          Get.toNamed(
+                            '/readResult',
+                            arguments: r1,
+                          );
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "${adminResultControllor.allStdList[index].name}",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          leading: Text(
+                            "${adminResultControllor.allStdList[index].std}",
+                          ),
+                        ),
+                      );
+              },
+            );
+          }
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      );
+    }
+    else if (std == 8) {
+      return StreamBuilder(
+        stream: adminResultControllor.readStudent(),
+        builder: (context, snapShot) {
+          if (snapShot.hasError) {
+            return Text(
+              "${snapShot.error}",
+            );
+          } else if (snapShot.hasData) {
+            adminResultControllor.allStdList.clear();
+            for (var x in snapShot.data!.docs) {
+              AdminStudentUidModel a1 = AdminStudentUidModel(
+                uid: x['uid'],
+                mobile: x['mobile'],
+                name: x['name'],
+                std: x['std'],
+              );
+
+              adminResultControllor.allStdList.add(a1);
+            }
+
+            return ListView.builder(
+              itemCount: adminResultControllor.allStdList.length,
+              itemBuilder: (context, index) {
+                return adminResultControllor.allStdList[index].std != 8
+                    ? Container()
+                    : InkWell(
+                        onTap: () {
+                          AdminStudentUidModel r1 = AdminStudentUidModel(
+                            uid: adminResultControllor.allStdList[index].uid,
+                            name: adminResultControllor.allStdList[index].name,
+                            std: adminResultControllor.allStdList[index].std,
+                            mobile:
+                                adminResultControllor.allStdList[index].mobile,
+                          );
+                          Get.toNamed(
+                            '/readResult',
+                            arguments: r1,
+                          );
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "${adminResultControllor.allStdList[index].name}",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          leading: Text(
+                            "${adminResultControllor.allStdList[index].std}",
+                          ),
+                        ),
+                      );
+              },
+            );
+          }
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      );
+    }
+    else if (std == 7) {
+      return StreamBuilder(
+        stream: adminResultControllor.readStudent(),
+        builder: (context, snapShot) {
+          if (snapShot.hasError) {
+            return Text(
+              "${snapShot.error}",
+            );
+          } else if (snapShot.hasData) {
+            adminResultControllor.allStdList.clear();
+            for (var x in snapShot.data!.docs) {
+              AdminStudentUidModel a1 = AdminStudentUidModel(
+                uid: x['uid'],
+                mobile: x['mobile'],
+                name: x['name'],
+                std: x['std'],
+              );
+
+              adminResultControllor.allStdList.add(a1);
+            }
+
+            return ListView.builder(
+              itemCount: adminResultControllor.allStdList.length,
+              itemBuilder: (context, index) {
+                return adminResultControllor.allStdList[index].std != 7
+                    ? Container()
+                    : InkWell(
+                        onTap: () {
+                          AdminStudentUidModel r1 = AdminStudentUidModel(
+                            uid: adminResultControllor.allStdList[index].uid,
+                            name: adminResultControllor.allStdList[index].name,
+                            std: adminResultControllor.allStdList[index].std,
+                            mobile:
+                                adminResultControllor.allStdList[index].mobile,
+                          );
+                          Get.toNamed(
+                            '/readResult',
+                            arguments: r1,
+                          );
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "${adminResultControllor.allStdList[index].name}",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          leading: Text(
+                            "${adminResultControllor.allStdList[index].std}",
+                          ),
+                        ),
+                      );
+              },
+            );
+          }
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      );
+    }
+    else if (std == 6) {
+      return StreamBuilder(
+        stream: adminResultControllor.readStudent(),
+        builder: (context, snapShot) {
+          if (snapShot.hasError) {
+            return Text(
+              "${snapShot.error}",
+            );
+          } else if (snapShot.hasData) {
+            adminResultControllor.allStdList.clear();
+            for (var x in snapShot.data!.docs) {
+              AdminStudentUidModel a1 = AdminStudentUidModel(
+                uid: x['uid'],
+                mobile: x['mobile'],
+                name: x['name'],
+                std: x['std'],
+              );
+
+              adminResultControllor.allStdList.add(a1);
+            }
+
+            return ListView.builder(
+              itemCount: adminResultControllor.allStdList.length,
+              itemBuilder: (context, index) {
+                return adminResultControllor.allStdList[index].std != 6
+                    ? Container()
+                    : InkWell(
+                        onTap: () {
+                          AdminStudentUidModel r1 = AdminStudentUidModel(
+                            uid: adminResultControllor.allStdList[index].uid,
+                            name: adminResultControllor.allStdList[index].name,
+                            std: adminResultControllor.allStdList[index].std,
+                            mobile:
+                                adminResultControllor.allStdList[index].mobile,
+                          );
+                          Get.toNamed(
+                            '/readResult',
+                            arguments: r1,
+                          );
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "${adminResultControllor.allStdList[index].name}",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          leading: Text(
+                            "${adminResultControllor.allStdList[index].std}",
+                          ),
+                        ),
+                      );
+              },
+            );
+          }
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      );
+    }
+    else if (std == 5) {
+      return StreamBuilder(
+        stream: adminResultControllor.readStudent(),
+        builder: (context, snapShot) {
+          if (snapShot.hasError) {
+            return Text(
+              "${snapShot.error}",
+            );
+          } else if (snapShot.hasData) {
+            adminResultControllor.allStdList.clear();
+            for (var x in snapShot.data!.docs) {
+              AdminStudentUidModel a1 = AdminStudentUidModel(
+                uid: x['uid'],
+                mobile: x['mobile'],
+                name: x['name'],
+                std: x['std'],
+              );
+
+              adminResultControllor.allStdList.add(a1);
+            }
+
+            return ListView.builder(
+              itemCount: adminResultControllor.allStdList.length,
+              itemBuilder: (context, index) {
+                return adminResultControllor.allStdList[index].std != 5
+                    ? Container()
+                    : InkWell(
+                        onTap: () {
+                          AdminStudentUidModel r1 = AdminStudentUidModel(
+                            uid: adminResultControllor.allStdList[index].uid,
+                            name: adminResultControllor.allStdList[index].name,
+                            std: adminResultControllor.allStdList[index].std,
+                            mobile:
+                                adminResultControllor.allStdList[index].mobile,
+                          );
+                          Get.toNamed(
+                            '/readResult',
+                            arguments: r1,
+                          );
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "${adminResultControllor.allStdList[index].name}",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          leading: Text(
+                            "${adminResultControllor.allStdList[index].std}",
+                          ),
+                        ),
+                      );
+              },
+            );
+          }
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      );
+    }
+    else if (std == 4) {
+      return StreamBuilder(
+        stream: adminResultControllor.readStudent(),
+        builder: (context, snapShot) {
+          if (snapShot.hasError) {
+            return Text(
+              "${snapShot.error}",
+            );
+          } else if (snapShot.hasData) {
+            adminResultControllor.allStdList.clear();
+            for (var x in snapShot.data!.docs) {
+              AdminStudentUidModel a1 = AdminStudentUidModel(
+                uid: x['uid'],
+                mobile: x['mobile'],
+                name: x['name'],
+                std: x['std'],
+              );
+
+              adminResultControllor.allStdList.add(a1);
+            }
+
+            return ListView.builder(
+              itemCount: adminResultControllor.allStdList.length,
+              itemBuilder: (context, index) {
+                return adminResultControllor.allStdList[index].std != 4
+                    ? Container()
+                    : InkWell(
+                        onTap: () {
+                          AdminStudentUidModel r1 = AdminStudentUidModel(
+                            uid: adminResultControllor.allStdList[index].uid,
+                            name: adminResultControllor.allStdList[index].name,
+                            std: adminResultControllor.allStdList[index].std,
+                            mobile:
+                                adminResultControllor.allStdList[index].mobile,
+                          );
+                          Get.toNamed(
+                            '/readResult',
+                            arguments: r1,
+                          );
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "${adminResultControllor.allStdList[index].name}",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          leading: Text(
+                            "${adminResultControllor.allStdList[index].std}",
+                          ),
+                        ),
+                      );
+              },
+            );
+          }
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      );
+    }
+    else if (std == 3) {
+      return StreamBuilder(
+        stream: adminResultControllor.readStudent(),
+        builder: (context, snapShot) {
+          if (snapShot.hasError) {
+            return Text(
+              "${snapShot.error}",
+            );
+          } else if (snapShot.hasData) {
+            adminResultControllor.allStdList.clear();
+            for (var x in snapShot.data!.docs) {
+              AdminStudentUidModel a1 = AdminStudentUidModel(
+                uid: x['uid'],
+                mobile: x['mobile'],
+                name: x['name'],
+                std: x['std'],
+              );
+
+              adminResultControllor.allStdList.add(a1);
+            }
+
+            return ListView.builder(
+              itemCount: adminResultControllor.allStdList.length,
+              itemBuilder: (context, index) {
+                return adminResultControllor.allStdList[index].std != 3
+                    ? Container()
+                    : InkWell(
+                        onTap: () {
+                          AdminStudentUidModel r1 = AdminStudentUidModel(
+                            uid: adminResultControllor.allStdList[index].uid,
+                            name: adminResultControllor.allStdList[index].name,
+                            std: adminResultControllor.allStdList[index].std,
+                            mobile:
+                                adminResultControllor.allStdList[index].mobile,
+                          );
+                          Get.toNamed(
+                            '/readResult',
+                            arguments: r1,
+                          );
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "${adminResultControllor.allStdList[index].name}",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          leading: Text(
+                            "${adminResultControllor.allStdList[index].std}",
+                          ),
+                        ),
+                      );
+              },
+            );
+          }
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      );
+    }
+    else if (std == 2) {
+      return StreamBuilder(
+        stream: adminResultControllor.readStudent(),
+        builder: (context, snapShot) {
+          if (snapShot.hasError) {
+            return Text(
+              "${snapShot.error}",
+            );
+          } else if (snapShot.hasData) {
+            adminResultControllor.allStdList.clear();
+            for (var x in snapShot.data!.docs) {
+              AdminStudentUidModel a1 = AdminStudentUidModel(
+                uid: x['uid'],
+                mobile: x['mobile'],
+                name: x['name'],
+                std: x['std'],
+              );
+
+              adminResultControllor.allStdList.add(a1);
+            }
+
+            return ListView.builder(
+              itemCount: adminResultControllor.allStdList.length,
+              itemBuilder: (context, index) {
+                return adminResultControllor.allStdList[index].std != 2
+                    ? Container()
+                    : InkWell(
+                        onTap: () {
+                          AdminStudentUidModel r1 = AdminStudentUidModel(
+                            uid: adminResultControllor.allStdList[index].uid,
+                            name: adminResultControllor.allStdList[index].name,
+                            std: adminResultControllor.allStdList[index].std,
+                            mobile:
+                                adminResultControllor.allStdList[index].mobile,
+                          );
+                          Get.toNamed(
+                            '/readResult',
+                            arguments: r1,
+                          );
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "${adminResultControllor.allStdList[index].name}",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          leading: Text(
+                            "${adminResultControllor.allStdList[index].std}",
+                          ),
+                        ),
+                      );
+              },
+            );
+          }
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      );
+    }
+    else if (std == 1) {
+      return StreamBuilder(
+        stream: adminResultControllor.readStudent(),
+        builder: (context, snapShot) {
+          if (snapShot.hasError) {
+            return Text(
+              "${snapShot.error}",
+            );
+          } else if (snapShot.hasData) {
+            adminResultControllor.allStdList.clear();
+            for (var x in snapShot.data!.docs) {
+              AdminStudentUidModel a1 = AdminStudentUidModel(
+                uid: x['uid'],
+                mobile: x['mobile'],
+                name: x['name'],
+                std: x['std'],
+              );
+
+              adminResultControllor.allStdList.add(a1);
+            }
+
+            return ListView.builder(
+              itemCount: adminResultControllor.allStdList.length,
+              itemBuilder: (context, index) {
+                return adminResultControllor.allStdList[index].std != 1
+                    ? Container()
+                    : InkWell(
+                        onTap: () {
+                          AdminStudentUidModel r1 = AdminStudentUidModel(
+                            uid: adminResultControllor.allStdList[index].uid,
+                            name: adminResultControllor.allStdList[index].name,
+                            std: adminResultControllor.allStdList[index].std,
+                            mobile:
+                                adminResultControllor.allStdList[index].mobile,
+                          );
+                          Get.toNamed(
+                            '/readResult',
+                            arguments: r1,
+                          );
+                        },
+                        child: ListTile(
+                          title: Text(
+                            "${adminResultControllor.allStdList[index].name}",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          leading: Text(
+                            "${adminResultControllor.allStdList[index].std}",
+                          ),
+                        ),
+                      );
+              },
+            );
+          }
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      );
+    }
+    else {
       return Text(
         "Bad Choice",
       );

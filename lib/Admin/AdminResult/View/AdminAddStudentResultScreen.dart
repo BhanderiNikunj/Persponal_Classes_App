@@ -22,9 +22,15 @@ class _AdminAddStudentResultScreenState
 
   AdminStudentUidModel a1 = Get.arguments;
 
+  // @override
+  // void initState() {
+  //   super.initState();
+  //
+  //   adminResultControllor.insert();
+  // }
+
   @override
   Widget build(BuildContext context) {
-
     print(a1.std);
     return SafeArea(
       child: Scaffold(
@@ -154,16 +160,23 @@ class _AdminAddStudentResultScreenState
               SizedBox(height: 20.sp),
               InkWell(
                 onTap: () {
+                  int totalOut = int.parse(adminResultControllor.txtEng.text) +
+                      int.parse(adminResultControllor.txtMath.text) +
+                      int.parse(adminResultControllor.txtSci.text) +
+                      int.parse(adminResultControllor.txtSS.text);
+
+                  print(totalOut);
                   AdminResultModel r1 = AdminResultModel(
                     uid: a1.uid,
                     english: int.parse(adminResultControllor.txtEng.text),
                     math: int.parse(adminResultControllor.txtMath.text),
                     science: int.parse(adminResultControllor.txtSci.text),
                     socialScience: int.parse(adminResultControllor.txtSS.text),
-                    total: int.parse(adminResultControllor.txtEng.text) + int.parse(adminResultControllor.txtMath.text) + int.parse(adminResultControllor.txtSci.text) + int.parse(adminResultControllor.txtSS.text)
+                    totalOutOf: totalOut,
+                    total: 120,
                   );
                   // print(r1.total);
-                  adminResultControllor.insertHomework(
+                  adminResultControllor.insertResult(
                     r1: r1,
                   );
                 },

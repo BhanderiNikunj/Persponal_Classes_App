@@ -263,20 +263,15 @@ class _AdminMassageScreenState extends State<AdminMassageScreen>
                                 m1: m1,
                               );
 
-                              // Get.snackbar(
-                              //   "$msg",
-                              //   "",
-                              // );
-
                               setState(() {
                                 massageControllor.txtMsg =
                                     TextEditingController();
                               });
 
-                              NotificationHelper.helper
-                                  .showSimpleNotification();
+                              // NotificationHelper.helper
+                              //     .showSimpleNotification();
                               // NotificationHelper.helper.timeNotification();
-                              // NotificationHelper.helper.showSoundNotification();
+                              NotificationHelper.helper.showSoundNotification();
                             },
                             icon: Icon(Icons.send_outlined),
                           ),

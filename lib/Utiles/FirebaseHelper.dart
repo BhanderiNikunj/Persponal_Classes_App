@@ -2,6 +2,7 @@ import 'package:classes_app/Admin/AdminHomeWork/ShowHomeWork/Model/HomeWorkModel
 import 'package:classes_app/Admin/AdminMassage/Model/AdminMassageModel.dart';
 import 'package:classes_app/Admin/AdminProfile/Model/AdminProfileModel.dart';
 import 'package:classes_app/Admin/AdminResult/Model/AdminResultModel.dart';
+import 'package:classes_app/Admin/AdminResult/Model/AdminStudentUidModel.dart';
 import 'package:classes_app/Admin/AdminStudent/AdminAddStudent/Model/AdminStudentModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -365,6 +366,7 @@ class FirebaseHelper {
         "eng": r1.english,
         "total": r1.total,
         "uid": r1.uid,
+        "totalOutOf": r1.totalOutOf,
       },
     );
   }
@@ -384,9 +386,31 @@ class FirebaseHelper {
     );
   }
 
-  Stream<QuerySnapshot<Map<String, dynamic>>> readResult({
-    required AdminResultModel r1,
-  }) {
+  Stream<QuerySnapshot<Map<String, dynamic>>> readResult() {
     return firebaseFirestore.collection("result").snapshots();
+  }
+
+  // AddStudentResult
+
+  insertStudentResult({required AdminStudentUidModel a1}) {
+    firebaseFirestore.collection("student").add(
+      {
+        "name": a1.name,
+        "uid": a1.uid,
+        "mobile": a1.mobile,
+        "std": a1.std,
+      },
+    );
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> readStudentResult() {
+    return firebaseFirestore.collection("student").snapshots();
+  }
+
+  Future<void> deleteStudentResult({
+    required AdminResultModel a1,
+  }) {
+    print(a1.key);
+    return firebaseFirestore.collection("student").doc(a1.key).delete();
   }
 }
