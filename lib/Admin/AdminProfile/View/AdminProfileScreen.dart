@@ -222,31 +222,36 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                               ),
                             ),
                             SizedBox(height: 15.sp),
-                            Container(
-                              height: 50.sp,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.sp),
-                                color: Colors.black12,
-                              ),
-                              alignment: Alignment.center,
-                              child: Padding(
-                                padding: EdgeInsets.all(10.sp),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.email,
-                                    ),
-                                    SizedBox(width: 15.sp),
-                                    Text(
-                                      "${profileControllor.detailList[0].email}",
-                                      style: TextStyle(
-                                        // fontWeight: FontWeight.bold,
-                                        fontSize: 20,
-                                        color: Colors.black,
+                            InkWell(
+                              onTap: () {
+                                Get.toNamed('/image');
+                              },
+                              child: Container(
+                                height: 50.sp,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.sp),
+                                  color: Colors.black12,
+                                ),
+                                alignment: Alignment.center,
+                                child: Padding(
+                                  padding: EdgeInsets.all(10.sp),
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.image,
                                       ),
-                                    ),
-                                  ],
+                                      SizedBox(width: 15.sp),
+                                      Text(
+                                        "Add Image",
+                                        style: TextStyle(
+                                          // fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

@@ -390,6 +390,12 @@ class FirebaseHelper {
     return firebaseFirestore.collection("result").snapshots();
   }
 
+  Future<void> deleteStudentResult({
+    required AdminResultModel a1,
+  }) {
+    return firebaseFirestore.collection("result").doc(a1.key).delete();
+  }
+
   // AddStudentResult
 
   insertStudentResult({required AdminStudentUidModel a1}) {
@@ -405,12 +411,5 @@ class FirebaseHelper {
 
   Stream<QuerySnapshot<Map<String, dynamic>>> readStudentResult() {
     return firebaseFirestore.collection("student").snapshots();
-  }
-
-  Future<void> deleteStudentResult({
-    required AdminResultModel a1,
-  }) {
-    print(a1.key);
-    return firebaseFirestore.collection("student").doc(a1.key).delete();
   }
 }
