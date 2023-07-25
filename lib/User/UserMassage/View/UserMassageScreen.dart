@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:classes_app/Admin/AdminMassage/Model/AdminMassageModel.dart';
 import 'package:classes_app/User/UserMassage/Controllor/UserMassageControllor.dart';
+import 'package:classes_app/Utiles/notification.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -98,6 +99,13 @@ class _UserMassageScreenState extends State<UserMassageScreen> {
 
                     return ListView.builder(
                       itemBuilder: (context, index) {
+
+
+
+                        if(massageControllor.massageList.length >= massageControllor.massageList.length+1){
+                          NotificationHelper.helper.showSoundNotification();
+                        }
+
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Container(

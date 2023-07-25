@@ -268,9 +268,6 @@ class _AdminMassageScreenState extends State<AdminMassageScreen>
                                     TextEditingController();
                               });
 
-                              // NotificationHelper.helper
-                              //     .showSimpleNotification();
-                              // NotificationHelper.helper.timeNotification();
                               NotificationHelper.helper.showSoundNotification();
                             },
                             icon: Icon(Icons.send_outlined),
