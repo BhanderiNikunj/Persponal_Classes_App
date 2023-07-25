@@ -32,7 +32,8 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
               return Text(
                 "${snapshot.error}",
               );
-            } else if (snapshot.hasData) {
+            }
+            else if (snapshot.hasData) {
               var snapData = snapshot.data as QuerySnapshot;
 
               readStudentControllor.StudentDataList.clear();
@@ -385,7 +386,8 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
           itemCount: readStudentControllor.StudentDataList.length,
         ),
       );
-    } else if (std == 2) {
+    }
+    else if (std == 2) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
@@ -546,7 +548,8 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
           itemCount: readStudentControllor.StudentDataList.length,
         ),
       );
-    } else if (std == 3) {
+    }
+    else if (std == 3) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
@@ -707,7 +710,8 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
           itemCount: readStudentControllor.StudentDataList.length,
         ),
       );
-    } else if (std == 4) {
+    }
+    else if (std == 4) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
@@ -868,7 +872,8 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
           itemCount: readStudentControllor.StudentDataList.length,
         ),
       );
-    } else if (std == 5) {
+    }
+    else if (std == 5) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
@@ -1029,7 +1034,8 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
           itemCount: readStudentControllor.StudentDataList.length,
         ),
       );
-    } else if (std == 6) {
+    }
+    else if (std == 6) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
@@ -1190,7 +1196,8 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
           itemCount: readStudentControllor.StudentDataList.length,
         ),
       );
-    } else if (std == 7) {
+    }
+    else if (std == 7) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
@@ -1351,7 +1358,8 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
           itemCount: readStudentControllor.StudentDataList.length,
         ),
       );
-    } else if (std == 8) {
+    }
+    else if (std == 8) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
@@ -1512,7 +1520,8 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
           itemCount: readStudentControllor.StudentDataList.length,
         ),
       );
-    } else if (std == 9) {
+    }
+    else if (std == 9) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
@@ -1673,7 +1682,8 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
           itemCount: readStudentControllor.StudentDataList.length,
         ),
       );
-    } else if (std == 10) {
+    }
+    else if (std == 10) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
@@ -1834,7 +1844,8 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
           itemCount: readStudentControllor.StudentDataList.length,
         ),
       );
-    } else {
+    }
+    else {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
