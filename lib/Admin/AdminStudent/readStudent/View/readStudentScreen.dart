@@ -1,23 +1,21 @@
 import 'dart:math';
+
 import 'package:classes_app/Admin/AdminStudent/AdminAddStudent/Model/AdminStudentModel.dart';
 import 'package:classes_app/Admin/AdminStudent/readStudent/Controllor/readStudentControllor.dart';
-import 'package:classes_app/Utiles/FirebaseHelper.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 class AdminReadStudentScreen extends StatefulWidget {
-  const AdminReadStudentScreen({Key? key}) : super(key: key);
+  const AdminReadStudentScreen({super.key});
 
   @override
   State<AdminReadStudentScreen> createState() => _AdminReadStudentScreenState();
 }
 
-class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
-    with SingleTickerProviderStateMixin {
-  AdminReadStudentControllor readStudentControllor = Get.put(
+class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
+  AdminReadStudentControllor adminReadStudentControllor = Get.put(
     AdminReadStudentControllor(),
   );
 
@@ -26,175 +24,156 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
     return SafeArea(
       child: Scaffold(
         body: StreamBuilder(
-          stream: FirebaseHelper.firebaseHelper.readStudentDetail(),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
-              return Text(
-                "${snapshot.error}",
+              return Center(
+                child: Text(
+                  "${snapshot.error}",
+                ),
               );
-            }
-            else if (snapshot.hasData) {
-              var snapData = snapshot.data as QuerySnapshot;
-
-              readStudentControllor.StudentDataList.clear();
-
-              for (var Data in snapData.docs) {
+            } else if (snapshot.hasData) {
+              adminReadStudentControllor.StudentDataList.clear();
+              for (var x in snapshot.data!.docs) {
                 AdminStudentModel s1 = AdminStudentModel(
-                  total_fees: int.parse("${Data['total_fees']}"),
-                  paid_fees: int.parse("${Data['paid_fees']}"),
-                  email_id: Data['email_id'],
-                  mobile_no: Data['mobile_no'],
-                  l_name: Data['l_name'],
-                  f_name: Data['f_name'],
-                  image: Data['image'],
-                  father_name: Data['father'],
-                  key: Data.id,
-                  address: Data['address'],
-                  std: Data['std'],
+                  total_fees: int.parse("${x['total_fees']}"),
+                  paid_fees: int.parse("${x['paid_fees']}"),
+                  email_id: x['email_id'],
+                  mobile_no: x['mobile_no'],
+                  l_name: x['l_name'],
+                  f_name: x['f_name'],
+                  image: x['image'],
+                  father_name: x['father'],
+                  key: x.id,
+                  address: x['address'],
+                  std: x['std'],
                 );
 
-                readStudentControllor.StudentDataList.add(s1);
+                adminReadStudentControllor.StudentDataList.add(
+                  s1,
+                );
               }
-              return Stack(
+
+              return Column(
                 children: [
-                  Center(
-                    child: Image.asset(
-                      "Assets/Images/bright_op.png",
-                      height: 200.sp,
+                  Container(
+                    height: 50.sp,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(20.sp),
+                          bottomRight: Radius.circular(20.sp)),
+                      color: Color(0xffE85720),
                     ),
-                  ),
-                  Expanded(
-                    child: Column(
+                    child: Stack(
                       children: [
-                        Container(
-                          height: 50.sp,
-                          decoration: BoxDecoration(
-                            color: Color(0xffE85720),
-                            borderRadius: BorderRadius.only(
-                              bottomRight: Radius.circular(25.sp),
-                              bottomLeft: Radius.circular(25.sp),
-                            ),
-                          ),
-                          alignment: Alignment.center,
-                          child: Row(
+                        Center(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              IconButton(
-                                onPressed: () {
-                                  Get.back();
-                                },
-                                icon: Icon(
-                                  Icons.arrow_back,
-                                  size: 20.sp,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 60.sp,
-                              ),
                               Text(
-                                "Student Detail",
+                                "Student List",
                                 style: TextStyle(
-                                  fontSize: 18.sp,
-                                  // fontWeight: FontWeight.bold,
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
                               ),
                             ],
                           ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                              width: 150,
-                              child: Obx(
-                                () => DropdownButton(
-                                  isExpanded: true,
-                                  value: readStudentControllor.checkStd.value,
-                                  items: [
-                                    DropdownMenuItem(
-                                      value: 0,
-                                      child: Text(
-                                        "All",
-                                      ),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: 1,
-                                      child: Text(
-                                        "Std 1",
-                                      ),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: 2,
-                                      child: Text(
-                                        "Std 2",
-                                      ),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: 3,
-                                      child: Text(
-                                        "Std 3",
-                                      ),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: 4,
-                                      child: Text(
-                                        "Std 4",
-                                      ),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: 5,
-                                      child: Text(
-                                        "Std 5",
-                                      ),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: 6,
-                                      child: Text(
-                                        "Std 6",
-                                      ),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: 7,
-                                      child: Text(
-                                        "Std 7",
-                                      ),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: 8,
-                                      child: Text(
-                                        "Std 8",
-                                      ),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: 9,
-                                      child: Text(
-                                        "Std 9",
-                                      ),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: 10,
-                                      child: Text(
-                                        "Std 10",
-                                      ),
-                                    ),
-                                  ],
-                                  onChanged: (value) {
-                                    readStudentControllor.checkStd.value =
-                                        value!;
-                                  },
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Obx(
-                          () => std(
-                            readStudentControllor.checkStd.value,
-                          ),
-                        ),
                       ],
                     ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        width: 150,
+                        child: Obx(
+                          () => DropdownButton(
+                            isExpanded: true,
+                            value: adminReadStudentControllor.checkStd.value,
+                            items: [
+                              DropdownMenuItem(
+                                value: 0,
+                                child: Text(
+                                  "All",
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 1,
+                                child: Text(
+                                  "Std 1",
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 2,
+                                child: Text(
+                                  "Std 2",
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 3,
+                                child: Text(
+                                  "Std 3",
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 4,
+                                child: Text(
+                                  "Std 4",
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 5,
+                                child: Text(
+                                  "Std 5",
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 6,
+                                child: Text(
+                                  "Std 6",
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 7,
+                                child: Text(
+                                  "Std 7",
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 8,
+                                child: Text(
+                                  "Std 8",
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 9,
+                                child: Text(
+                                  "Std 9",
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 10,
+                                child: Text(
+                                  "Std 10",
+                                ),
+                              ),
+                            ],
+                            onChanged: (value) {
+                              adminReadStudentControllor.checkStd.value =
+                                  value!;
+                              setState(() {});
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  stdList(
+                    std: adminReadStudentControllor.checkStd.value,
                   ),
                 ],
               );
@@ -203,58 +182,47 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
               child: CircularProgressIndicator(),
             );
           },
-        ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Color(0xff01957f),
-          onPressed: () {
-            AdminStudentModel s1 = AdminStudentModel(
-              isCheck: 0,
-            );
-
-            Get.toNamed(
-              '/addStudent',
-              arguments: s1,
-            );
-          },
-          child: Icon(Icons.add),
+          stream: adminReadStudentControllor.readStudentDetail(),
         ),
       ),
     );
   }
 
-  Widget std(
-    int std,
-  ) {
+  Widget stdList({
+    required int std,
+  }) {
     if (std == 1) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return readStudentControllor.StudentDataList[index].std != 1
+            return adminReadStudentControllor.StudentDataList[index].std != 1
                 ? Container()
                 : Padding(
                     padding: EdgeInsets.all(10.sp),
                     child: InkWell(
                       onTap: () {
                         AdminStudentModel s1 = AdminStudentModel(
-                          image: readStudentControllor
+                          image: adminReadStudentControllor
                               .StudentDataList[index].image,
-                          key: readStudentControllor.StudentDataList[index].key,
-                          email_id: readStudentControllor
+                          key: adminReadStudentControllor
+                              .StudentDataList[index].key,
+                          email_id: adminReadStudentControllor
                               .StudentDataList[index].email_id,
-                          f_name: readStudentControllor
+                          f_name: adminReadStudentControllor
                               .StudentDataList[index].f_name,
-                          l_name: readStudentControllor
+                          l_name: adminReadStudentControllor
                               .StudentDataList[index].l_name,
-                          mobile_no: readStudentControllor
+                          mobile_no: adminReadStudentControllor
                               .StudentDataList[index].mobile_no,
-                          paid_fees: readStudentControllor
+                          paid_fees: adminReadStudentControllor
                               .StudentDataList[index].paid_fees,
-                          total_fees: readStudentControllor
+                          total_fees: adminReadStudentControllor
                               .StudentDataList[index].total_fees,
-                          address: readStudentControllor
+                          address: adminReadStudentControllor
                               .StudentDataList[index].address,
-                          std: readStudentControllor.StudentDataList[index].std,
-                          father_name: readStudentControllor
+                          std: adminReadStudentControllor
+                              .StudentDataList[index].std,
+                          father_name: adminReadStudentControllor
                               .StudentDataList[index].father_name,
                         );
                         Get.toNamed(
@@ -284,7 +252,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                             CircleAvatar(
                               backgroundImage: MemoryImage(
                                 Uint8List.fromList(
-                                  readStudentControllor
+                                  adminReadStudentControllor
                                       .StudentDataList[index].image!.codeUnits,
                                 ),
                               ),
@@ -301,18 +269,18 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                   width: 150.sp,
                                   child: Text(
                                     overflow: TextOverflow.ellipsis,
-                                    "Name :- ${readStudentControllor.StudentDataList[index].f_name} ${readStudentControllor.StudentDataList[index].l_name}",
+                                    "Name :- ${adminReadStudentControllor.StudentDataList[index].f_name} ${adminReadStudentControllor.StudentDataList[index].l_name}",
                                   ),
                                 ),
                                 SizedBox(height: 5.sp),
                                 Text(
-                                  "Mobile No :- +91 ${readStudentControllor.StudentDataList[index].mobile_no}",
+                                  "Mobile No :- +91 ${adminReadStudentControllor.StudentDataList[index].mobile_no}",
                                 ),
                                 SizedBox(height: 5.sp),
                                 Container(
                                   width: 150.sp,
                                   child: Text(
-                                    "Email Id :- ${readStudentControllor.StudentDataList[index].email_id}",
+                                    "Email Id :- ${adminReadStudentControllor.StudentDataList[index].email_id}",
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
@@ -327,27 +295,27 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                 IconButton(
                                   onPressed: () {
                                     AdminStudentModel s1 = AdminStudentModel(
-                                      key: readStudentControllor
+                                      key: adminReadStudentControllor
                                           .StudentDataList[index].key,
-                                      image: readStudentControllor
+                                      image: adminReadStudentControllor
                                           .StudentDataList[index].image,
-                                      address: readStudentControllor
+                                      address: adminReadStudentControllor
                                           .StudentDataList[index].address,
-                                      father_name: readStudentControllor
+                                      father_name: adminReadStudentControllor
                                           .StudentDataList[index].father_name,
-                                      std: readStudentControllor
+                                      std: adminReadStudentControllor
                                           .StudentDataList[index].std,
-                                      l_name: readStudentControllor
+                                      l_name: adminReadStudentControllor
                                           .StudentDataList[index].l_name,
-                                      mobile_no: readStudentControllor
+                                      mobile_no: adminReadStudentControllor
                                           .StudentDataList[index].mobile_no,
-                                      f_name: readStudentControllor
+                                      f_name: adminReadStudentControllor
                                           .StudentDataList[index].f_name,
-                                      email_id: readStudentControllor
+                                      email_id: adminReadStudentControllor
                                           .StudentDataList[index].email_id,
-                                      paid_fees: readStudentControllor
+                                      paid_fees: adminReadStudentControllor
                                           .StudentDataList[index].paid_fees,
-                                      total_fees: readStudentControllor
+                                      total_fees: adminReadStudentControllor
                                           .StudentDataList[index].total_fees,
                                       isCheck: 1,
                                     );
@@ -364,10 +332,10 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                 IconButton(
                                   onPressed: () {
                                     AdminStudentModel s1 = AdminStudentModel(
-                                      key: readStudentControllor
+                                      key: adminReadStudentControllor
                                           .StudentDataList[index].key,
                                     );
-                                    readStudentControllor.deleteDetail(
+                                    adminReadStudentControllor.deleteDetail(
                                       s1: s1,
                                     );
                                   },
@@ -383,7 +351,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                     ),
                   );
           },
-          itemCount: readStudentControllor.StudentDataList.length,
+          itemCount: adminReadStudentControllor.StudentDataList.length,
         ),
       );
     }
@@ -391,32 +359,34 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return readStudentControllor.StudentDataList[index].std != 2
+            return adminReadStudentControllor.StudentDataList[index].std != 2
                 ? Container()
                 : Padding(
                     padding: EdgeInsets.all(10.sp),
                     child: InkWell(
                       onTap: () {
                         AdminStudentModel s1 = AdminStudentModel(
-                          image: readStudentControllor
+                          image: adminReadStudentControllor
                               .StudentDataList[index].image,
-                          key: readStudentControllor.StudentDataList[index].key,
-                          email_id: readStudentControllor
+                          key: adminReadStudentControllor
+                              .StudentDataList[index].key,
+                          email_id: adminReadStudentControllor
                               .StudentDataList[index].email_id,
-                          f_name: readStudentControllor
+                          f_name: adminReadStudentControllor
                               .StudentDataList[index].f_name,
-                          l_name: readStudentControllor
+                          l_name: adminReadStudentControllor
                               .StudentDataList[index].l_name,
-                          mobile_no: readStudentControllor
+                          mobile_no: adminReadStudentControllor
                               .StudentDataList[index].mobile_no,
-                          paid_fees: readStudentControllor
+                          paid_fees: adminReadStudentControllor
                               .StudentDataList[index].paid_fees,
-                          total_fees: readStudentControllor
+                          total_fees: adminReadStudentControllor
                               .StudentDataList[index].total_fees,
-                          address: readStudentControllor
+                          address: adminReadStudentControllor
                               .StudentDataList[index].address,
-                          std: readStudentControllor.StudentDataList[index].std,
-                          father_name: readStudentControllor
+                          std: adminReadStudentControllor
+                              .StudentDataList[index].std,
+                          father_name: adminReadStudentControllor
                               .StudentDataList[index].father_name,
                         );
                         Get.toNamed(
@@ -446,7 +416,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                             CircleAvatar(
                               backgroundImage: MemoryImage(
                                 Uint8List.fromList(
-                                  readStudentControllor
+                                  adminReadStudentControllor
                                       .StudentDataList[index].image!.codeUnits,
                                 ),
                               ),
@@ -463,18 +433,18 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                   width: 150.sp,
                                   child: Text(
                                     overflow: TextOverflow.ellipsis,
-                                    "Name :- ${readStudentControllor.StudentDataList[index].f_name} ${readStudentControllor.StudentDataList[index].l_name}",
+                                    "Name :- ${adminReadStudentControllor.StudentDataList[index].f_name} ${adminReadStudentControllor.StudentDataList[index].l_name}",
                                   ),
                                 ),
                                 SizedBox(height: 5.sp),
                                 Text(
-                                  "Mobile No :- +91 ${readStudentControllor.StudentDataList[index].mobile_no}",
+                                  "Mobile No :- +91 ${adminReadStudentControllor.StudentDataList[index].mobile_no}",
                                 ),
                                 SizedBox(height: 5.sp),
                                 Container(
                                   width: 150.sp,
                                   child: Text(
-                                    "Email Id :- ${readStudentControllor.StudentDataList[index].email_id}",
+                                    "Email Id :- ${adminReadStudentControllor.StudentDataList[index].email_id}",
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
@@ -489,27 +459,27 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                 IconButton(
                                   onPressed: () {
                                     AdminStudentModel s1 = AdminStudentModel(
-                                      key: readStudentControllor
+                                      key: adminReadStudentControllor
                                           .StudentDataList[index].key,
-                                      image: readStudentControllor
+                                      image: adminReadStudentControllor
                                           .StudentDataList[index].image,
-                                      address: readStudentControllor
+                                      address: adminReadStudentControllor
                                           .StudentDataList[index].address,
-                                      father_name: readStudentControllor
+                                      father_name: adminReadStudentControllor
                                           .StudentDataList[index].father_name,
-                                      std: readStudentControllor
+                                      std: adminReadStudentControllor
                                           .StudentDataList[index].std,
-                                      l_name: readStudentControllor
+                                      l_name: adminReadStudentControllor
                                           .StudentDataList[index].l_name,
-                                      mobile_no: readStudentControllor
+                                      mobile_no: adminReadStudentControllor
                                           .StudentDataList[index].mobile_no,
-                                      f_name: readStudentControllor
+                                      f_name: adminReadStudentControllor
                                           .StudentDataList[index].f_name,
-                                      email_id: readStudentControllor
+                                      email_id: adminReadStudentControllor
                                           .StudentDataList[index].email_id,
-                                      paid_fees: readStudentControllor
+                                      paid_fees: adminReadStudentControllor
                                           .StudentDataList[index].paid_fees,
-                                      total_fees: readStudentControllor
+                                      total_fees: adminReadStudentControllor
                                           .StudentDataList[index].total_fees,
                                       isCheck: 1,
                                     );
@@ -526,10 +496,10 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                 IconButton(
                                   onPressed: () {
                                     AdminStudentModel s1 = AdminStudentModel(
-                                      key: readStudentControllor
+                                      key: adminReadStudentControllor
                                           .StudentDataList[index].key,
                                     );
-                                    readStudentControllor.deleteDetail(
+                                    adminReadStudentControllor.deleteDetail(
                                       s1: s1,
                                     );
                                   },
@@ -545,7 +515,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                     ),
                   );
           },
-          itemCount: readStudentControllor.StudentDataList.length,
+          itemCount: adminReadStudentControllor.StudentDataList.length,
         ),
       );
     }
@@ -553,32 +523,34 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return readStudentControllor.StudentDataList[index].std != 3
+            return adminReadStudentControllor.StudentDataList[index].std != 3
                 ? Container()
                 : Padding(
                     padding: EdgeInsets.all(10.sp),
                     child: InkWell(
                       onTap: () {
                         AdminStudentModel s1 = AdminStudentModel(
-                          image: readStudentControllor
+                          image: adminReadStudentControllor
                               .StudentDataList[index].image,
-                          key: readStudentControllor.StudentDataList[index].key,
-                          email_id: readStudentControllor
+                          key: adminReadStudentControllor
+                              .StudentDataList[index].key,
+                          email_id: adminReadStudentControllor
                               .StudentDataList[index].email_id,
-                          f_name: readStudentControllor
+                          f_name: adminReadStudentControllor
                               .StudentDataList[index].f_name,
-                          l_name: readStudentControllor
+                          l_name: adminReadStudentControllor
                               .StudentDataList[index].l_name,
-                          mobile_no: readStudentControllor
+                          mobile_no: adminReadStudentControllor
                               .StudentDataList[index].mobile_no,
-                          paid_fees: readStudentControllor
+                          paid_fees: adminReadStudentControllor
                               .StudentDataList[index].paid_fees,
-                          total_fees: readStudentControllor
+                          total_fees: adminReadStudentControllor
                               .StudentDataList[index].total_fees,
-                          address: readStudentControllor
+                          address: adminReadStudentControllor
                               .StudentDataList[index].address,
-                          std: readStudentControllor.StudentDataList[index].std,
-                          father_name: readStudentControllor
+                          std: adminReadStudentControllor
+                              .StudentDataList[index].std,
+                          father_name: adminReadStudentControllor
                               .StudentDataList[index].father_name,
                         );
                         Get.toNamed(
@@ -608,7 +580,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                             CircleAvatar(
                               backgroundImage: MemoryImage(
                                 Uint8List.fromList(
-                                  readStudentControllor
+                                  adminReadStudentControllor
                                       .StudentDataList[index].image!.codeUnits,
                                 ),
                               ),
@@ -625,18 +597,18 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                   width: 150.sp,
                                   child: Text(
                                     overflow: TextOverflow.ellipsis,
-                                    "Name :- ${readStudentControllor.StudentDataList[index].f_name} ${readStudentControllor.StudentDataList[index].l_name}",
+                                    "Name :- ${adminReadStudentControllor.StudentDataList[index].f_name} ${adminReadStudentControllor.StudentDataList[index].l_name}",
                                   ),
                                 ),
                                 SizedBox(height: 5.sp),
                                 Text(
-                                  "Mobile No :- +91 ${readStudentControllor.StudentDataList[index].mobile_no}",
+                                  "Mobile No :- +91 ${adminReadStudentControllor.StudentDataList[index].mobile_no}",
                                 ),
                                 SizedBox(height: 5.sp),
                                 Container(
                                   width: 150.sp,
                                   child: Text(
-                                    "Email Id :- ${readStudentControllor.StudentDataList[index].email_id}",
+                                    "Email Id :- ${adminReadStudentControllor.StudentDataList[index].email_id}",
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
@@ -651,27 +623,27 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                 IconButton(
                                   onPressed: () {
                                     AdminStudentModel s1 = AdminStudentModel(
-                                      key: readStudentControllor
+                                      key: adminReadStudentControllor
                                           .StudentDataList[index].key,
-                                      image: readStudentControllor
+                                      image: adminReadStudentControllor
                                           .StudentDataList[index].image,
-                                      address: readStudentControllor
+                                      address: adminReadStudentControllor
                                           .StudentDataList[index].address,
-                                      father_name: readStudentControllor
+                                      father_name: adminReadStudentControllor
                                           .StudentDataList[index].father_name,
-                                      std: readStudentControllor
+                                      std: adminReadStudentControllor
                                           .StudentDataList[index].std,
-                                      l_name: readStudentControllor
+                                      l_name: adminReadStudentControllor
                                           .StudentDataList[index].l_name,
-                                      mobile_no: readStudentControllor
+                                      mobile_no: adminReadStudentControllor
                                           .StudentDataList[index].mobile_no,
-                                      f_name: readStudentControllor
+                                      f_name: adminReadStudentControllor
                                           .StudentDataList[index].f_name,
-                                      email_id: readStudentControllor
+                                      email_id: adminReadStudentControllor
                                           .StudentDataList[index].email_id,
-                                      paid_fees: readStudentControllor
+                                      paid_fees: adminReadStudentControllor
                                           .StudentDataList[index].paid_fees,
-                                      total_fees: readStudentControllor
+                                      total_fees: adminReadStudentControllor
                                           .StudentDataList[index].total_fees,
                                       isCheck: 1,
                                     );
@@ -688,10 +660,10 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                 IconButton(
                                   onPressed: () {
                                     AdminStudentModel s1 = AdminStudentModel(
-                                      key: readStudentControllor
+                                      key: adminReadStudentControllor
                                           .StudentDataList[index].key,
                                     );
-                                    readStudentControllor.deleteDetail(
+                                    adminReadStudentControllor.deleteDetail(
                                       s1: s1,
                                     );
                                   },
@@ -707,7 +679,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                     ),
                   );
           },
-          itemCount: readStudentControllor.StudentDataList.length,
+          itemCount: adminReadStudentControllor.StudentDataList.length,
         ),
       );
     }
@@ -715,32 +687,34 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return readStudentControllor.StudentDataList[index].std != 4
+            return adminReadStudentControllor.StudentDataList[index].std != 4
                 ? Container()
                 : Padding(
                     padding: EdgeInsets.all(10.sp),
                     child: InkWell(
                       onTap: () {
                         AdminStudentModel s1 = AdminStudentModel(
-                          image: readStudentControllor
+                          image: adminReadStudentControllor
                               .StudentDataList[index].image,
-                          key: readStudentControllor.StudentDataList[index].key,
-                          email_id: readStudentControllor
+                          key: adminReadStudentControllor
+                              .StudentDataList[index].key,
+                          email_id: adminReadStudentControllor
                               .StudentDataList[index].email_id,
-                          f_name: readStudentControllor
+                          f_name: adminReadStudentControllor
                               .StudentDataList[index].f_name,
-                          l_name: readStudentControllor
+                          l_name: adminReadStudentControllor
                               .StudentDataList[index].l_name,
-                          mobile_no: readStudentControllor
+                          mobile_no: adminReadStudentControllor
                               .StudentDataList[index].mobile_no,
-                          paid_fees: readStudentControllor
+                          paid_fees: adminReadStudentControllor
                               .StudentDataList[index].paid_fees,
-                          total_fees: readStudentControllor
+                          total_fees: adminReadStudentControllor
                               .StudentDataList[index].total_fees,
-                          address: readStudentControllor
+                          address: adminReadStudentControllor
                               .StudentDataList[index].address,
-                          std: readStudentControllor.StudentDataList[index].std,
-                          father_name: readStudentControllor
+                          std: adminReadStudentControllor
+                              .StudentDataList[index].std,
+                          father_name: adminReadStudentControllor
                               .StudentDataList[index].father_name,
                         );
                         Get.toNamed(
@@ -770,7 +744,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                             CircleAvatar(
                               backgroundImage: MemoryImage(
                                 Uint8List.fromList(
-                                  readStudentControllor
+                                  adminReadStudentControllor
                                       .StudentDataList[index].image!.codeUnits,
                                 ),
                               ),
@@ -787,18 +761,18 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                   width: 150.sp,
                                   child: Text(
                                     overflow: TextOverflow.ellipsis,
-                                    "Name :- ${readStudentControllor.StudentDataList[index].f_name} ${readStudentControllor.StudentDataList[index].l_name}",
+                                    "Name :- ${adminReadStudentControllor.StudentDataList[index].f_name} ${adminReadStudentControllor.StudentDataList[index].l_name}",
                                   ),
                                 ),
                                 SizedBox(height: 5.sp),
                                 Text(
-                                  "Mobile No :- +91 ${readStudentControllor.StudentDataList[index].mobile_no}",
+                                  "Mobile No :- +91 ${adminReadStudentControllor.StudentDataList[index].mobile_no}",
                                 ),
                                 SizedBox(height: 5.sp),
                                 Container(
                                   width: 150.sp,
                                   child: Text(
-                                    "Email Id :- ${readStudentControllor.StudentDataList[index].email_id}",
+                                    "Email Id :- ${adminReadStudentControllor.StudentDataList[index].email_id}",
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
@@ -813,27 +787,27 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                 IconButton(
                                   onPressed: () {
                                     AdminStudentModel s1 = AdminStudentModel(
-                                      key: readStudentControllor
+                                      key: adminReadStudentControllor
                                           .StudentDataList[index].key,
-                                      image: readStudentControllor
+                                      image: adminReadStudentControllor
                                           .StudentDataList[index].image,
-                                      address: readStudentControllor
+                                      address: adminReadStudentControllor
                                           .StudentDataList[index].address,
-                                      father_name: readStudentControllor
+                                      father_name: adminReadStudentControllor
                                           .StudentDataList[index].father_name,
-                                      std: readStudentControllor
+                                      std: adminReadStudentControllor
                                           .StudentDataList[index].std,
-                                      l_name: readStudentControllor
+                                      l_name: adminReadStudentControllor
                                           .StudentDataList[index].l_name,
-                                      mobile_no: readStudentControllor
+                                      mobile_no: adminReadStudentControllor
                                           .StudentDataList[index].mobile_no,
-                                      f_name: readStudentControllor
+                                      f_name: adminReadStudentControllor
                                           .StudentDataList[index].f_name,
-                                      email_id: readStudentControllor
+                                      email_id: adminReadStudentControllor
                                           .StudentDataList[index].email_id,
-                                      paid_fees: readStudentControllor
+                                      paid_fees: adminReadStudentControllor
                                           .StudentDataList[index].paid_fees,
-                                      total_fees: readStudentControllor
+                                      total_fees: adminReadStudentControllor
                                           .StudentDataList[index].total_fees,
                                       isCheck: 1,
                                     );
@@ -850,10 +824,10 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                 IconButton(
                                   onPressed: () {
                                     AdminStudentModel s1 = AdminStudentModel(
-                                      key: readStudentControllor
+                                      key: adminReadStudentControllor
                                           .StudentDataList[index].key,
                                     );
-                                    readStudentControllor.deleteDetail(
+                                    adminReadStudentControllor.deleteDetail(
                                       s1: s1,
                                     );
                                   },
@@ -869,7 +843,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                     ),
                   );
           },
-          itemCount: readStudentControllor.StudentDataList.length,
+          itemCount: adminReadStudentControllor.StudentDataList.length,
         ),
       );
     }
@@ -877,32 +851,34 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return readStudentControllor.StudentDataList[index].std != 5
+            return adminReadStudentControllor.StudentDataList[index].std != 5
                 ? Container()
                 : Padding(
                     padding: EdgeInsets.all(10.sp),
                     child: InkWell(
                       onTap: () {
                         AdminStudentModel s1 = AdminStudentModel(
-                          image: readStudentControllor
+                          image: adminReadStudentControllor
                               .StudentDataList[index].image,
-                          key: readStudentControllor.StudentDataList[index].key,
-                          email_id: readStudentControllor
+                          key: adminReadStudentControllor
+                              .StudentDataList[index].key,
+                          email_id: adminReadStudentControllor
                               .StudentDataList[index].email_id,
-                          f_name: readStudentControllor
+                          f_name: adminReadStudentControllor
                               .StudentDataList[index].f_name,
-                          l_name: readStudentControllor
+                          l_name: adminReadStudentControllor
                               .StudentDataList[index].l_name,
-                          mobile_no: readStudentControllor
+                          mobile_no: adminReadStudentControllor
                               .StudentDataList[index].mobile_no,
-                          paid_fees: readStudentControllor
+                          paid_fees: adminReadStudentControllor
                               .StudentDataList[index].paid_fees,
-                          total_fees: readStudentControllor
+                          total_fees: adminReadStudentControllor
                               .StudentDataList[index].total_fees,
-                          address: readStudentControllor
+                          address: adminReadStudentControllor
                               .StudentDataList[index].address,
-                          std: readStudentControllor.StudentDataList[index].std,
-                          father_name: readStudentControllor
+                          std: adminReadStudentControllor
+                              .StudentDataList[index].std,
+                          father_name: adminReadStudentControllor
                               .StudentDataList[index].father_name,
                         );
                         Get.toNamed(
@@ -932,7 +908,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                             CircleAvatar(
                               backgroundImage: MemoryImage(
                                 Uint8List.fromList(
-                                  readStudentControllor
+                                  adminReadStudentControllor
                                       .StudentDataList[index].image!.codeUnits,
                                 ),
                               ),
@@ -949,18 +925,18 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                   width: 150.sp,
                                   child: Text(
                                     overflow: TextOverflow.ellipsis,
-                                    "Name :- ${readStudentControllor.StudentDataList[index].f_name} ${readStudentControllor.StudentDataList[index].l_name}",
+                                    "Name :- ${adminReadStudentControllor.StudentDataList[index].f_name} ${adminReadStudentControllor.StudentDataList[index].l_name}",
                                   ),
                                 ),
                                 SizedBox(height: 5.sp),
                                 Text(
-                                  "Mobile No :- +91 ${readStudentControllor.StudentDataList[index].mobile_no}",
+                                  "Mobile No :- +91 ${adminReadStudentControllor.StudentDataList[index].mobile_no}",
                                 ),
                                 SizedBox(height: 5.sp),
                                 Container(
                                   width: 150.sp,
                                   child: Text(
-                                    "Email Id :- ${readStudentControllor.StudentDataList[index].email_id}",
+                                    "Email Id :- ${adminReadStudentControllor.StudentDataList[index].email_id}",
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
@@ -975,27 +951,27 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                 IconButton(
                                   onPressed: () {
                                     AdminStudentModel s1 = AdminStudentModel(
-                                      key: readStudentControllor
+                                      key: adminReadStudentControllor
                                           .StudentDataList[index].key,
-                                      image: readStudentControllor
+                                      image: adminReadStudentControllor
                                           .StudentDataList[index].image,
-                                      address: readStudentControllor
+                                      address: adminReadStudentControllor
                                           .StudentDataList[index].address,
-                                      father_name: readStudentControllor
+                                      father_name: adminReadStudentControllor
                                           .StudentDataList[index].father_name,
-                                      std: readStudentControllor
+                                      std: adminReadStudentControllor
                                           .StudentDataList[index].std,
-                                      l_name: readStudentControllor
+                                      l_name: adminReadStudentControllor
                                           .StudentDataList[index].l_name,
-                                      mobile_no: readStudentControllor
+                                      mobile_no: adminReadStudentControllor
                                           .StudentDataList[index].mobile_no,
-                                      f_name: readStudentControllor
+                                      f_name: adminReadStudentControllor
                                           .StudentDataList[index].f_name,
-                                      email_id: readStudentControllor
+                                      email_id: adminReadStudentControllor
                                           .StudentDataList[index].email_id,
-                                      paid_fees: readStudentControllor
+                                      paid_fees: adminReadStudentControllor
                                           .StudentDataList[index].paid_fees,
-                                      total_fees: readStudentControllor
+                                      total_fees: adminReadStudentControllor
                                           .StudentDataList[index].total_fees,
                                       isCheck: 1,
                                     );
@@ -1012,10 +988,10 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                 IconButton(
                                   onPressed: () {
                                     AdminStudentModel s1 = AdminStudentModel(
-                                      key: readStudentControllor
+                                      key: adminReadStudentControllor
                                           .StudentDataList[index].key,
                                     );
-                                    readStudentControllor.deleteDetail(
+                                    adminReadStudentControllor.deleteDetail(
                                       s1: s1,
                                     );
                                   },
@@ -1031,7 +1007,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                     ),
                   );
           },
-          itemCount: readStudentControllor.StudentDataList.length,
+          itemCount: adminReadStudentControllor.StudentDataList.length,
         ),
       );
     }
@@ -1039,32 +1015,34 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return readStudentControllor.StudentDataList[index].std != 6
+            return adminReadStudentControllor.StudentDataList[index].std != 6
                 ? Container()
                 : Padding(
                     padding: EdgeInsets.all(10.sp),
                     child: InkWell(
                       onTap: () {
                         AdminStudentModel s1 = AdminStudentModel(
-                          image: readStudentControllor
+                          image: adminReadStudentControllor
                               .StudentDataList[index].image,
-                          key: readStudentControllor.StudentDataList[index].key,
-                          email_id: readStudentControllor
+                          key: adminReadStudentControllor
+                              .StudentDataList[index].key,
+                          email_id: adminReadStudentControllor
                               .StudentDataList[index].email_id,
-                          f_name: readStudentControllor
+                          f_name: adminReadStudentControllor
                               .StudentDataList[index].f_name,
-                          l_name: readStudentControllor
+                          l_name: adminReadStudentControllor
                               .StudentDataList[index].l_name,
-                          mobile_no: readStudentControllor
+                          mobile_no: adminReadStudentControllor
                               .StudentDataList[index].mobile_no,
-                          paid_fees: readStudentControllor
+                          paid_fees: adminReadStudentControllor
                               .StudentDataList[index].paid_fees,
-                          total_fees: readStudentControllor
+                          total_fees: adminReadStudentControllor
                               .StudentDataList[index].total_fees,
-                          address: readStudentControllor
+                          address: adminReadStudentControllor
                               .StudentDataList[index].address,
-                          std: readStudentControllor.StudentDataList[index].std,
-                          father_name: readStudentControllor
+                          std: adminReadStudentControllor
+                              .StudentDataList[index].std,
+                          father_name: adminReadStudentControllor
                               .StudentDataList[index].father_name,
                         );
                         Get.toNamed(
@@ -1094,7 +1072,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                             CircleAvatar(
                               backgroundImage: MemoryImage(
                                 Uint8List.fromList(
-                                  readStudentControllor
+                                  adminReadStudentControllor
                                       .StudentDataList[index].image!.codeUnits,
                                 ),
                               ),
@@ -1111,18 +1089,18 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                   width: 150.sp,
                                   child: Text(
                                     overflow: TextOverflow.ellipsis,
-                                    "Name :- ${readStudentControllor.StudentDataList[index].f_name} ${readStudentControllor.StudentDataList[index].l_name}",
+                                    "Name :- ${adminReadStudentControllor.StudentDataList[index].f_name} ${adminReadStudentControllor.StudentDataList[index].l_name}",
                                   ),
                                 ),
                                 SizedBox(height: 5.sp),
                                 Text(
-                                  "Mobile No :- +91 ${readStudentControllor.StudentDataList[index].mobile_no}",
+                                  "Mobile No :- +91 ${adminReadStudentControllor.StudentDataList[index].mobile_no}",
                                 ),
                                 SizedBox(height: 5.sp),
                                 Container(
                                   width: 150.sp,
                                   child: Text(
-                                    "Email Id :- ${readStudentControllor.StudentDataList[index].email_id}",
+                                    "Email Id :- ${adminReadStudentControllor.StudentDataList[index].email_id}",
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
@@ -1137,27 +1115,27 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                 IconButton(
                                   onPressed: () {
                                     AdminStudentModel s1 = AdminStudentModel(
-                                      key: readStudentControllor
+                                      key: adminReadStudentControllor
                                           .StudentDataList[index].key,
-                                      image: readStudentControllor
+                                      image: adminReadStudentControllor
                                           .StudentDataList[index].image,
-                                      address: readStudentControllor
+                                      address: adminReadStudentControllor
                                           .StudentDataList[index].address,
-                                      father_name: readStudentControllor
+                                      father_name: adminReadStudentControllor
                                           .StudentDataList[index].father_name,
-                                      std: readStudentControllor
+                                      std: adminReadStudentControllor
                                           .StudentDataList[index].std,
-                                      l_name: readStudentControllor
+                                      l_name: adminReadStudentControllor
                                           .StudentDataList[index].l_name,
-                                      mobile_no: readStudentControllor
+                                      mobile_no: adminReadStudentControllor
                                           .StudentDataList[index].mobile_no,
-                                      f_name: readStudentControllor
+                                      f_name: adminReadStudentControllor
                                           .StudentDataList[index].f_name,
-                                      email_id: readStudentControllor
+                                      email_id: adminReadStudentControllor
                                           .StudentDataList[index].email_id,
-                                      paid_fees: readStudentControllor
+                                      paid_fees: adminReadStudentControllor
                                           .StudentDataList[index].paid_fees,
-                                      total_fees: readStudentControllor
+                                      total_fees: adminReadStudentControllor
                                           .StudentDataList[index].total_fees,
                                       isCheck: 1,
                                     );
@@ -1174,10 +1152,10 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                 IconButton(
                                   onPressed: () {
                                     AdminStudentModel s1 = AdminStudentModel(
-                                      key: readStudentControllor
+                                      key: adminReadStudentControllor
                                           .StudentDataList[index].key,
                                     );
-                                    readStudentControllor.deleteDetail(
+                                    adminReadStudentControllor.deleteDetail(
                                       s1: s1,
                                     );
                                   },
@@ -1193,7 +1171,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                     ),
                   );
           },
-          itemCount: readStudentControllor.StudentDataList.length,
+          itemCount: adminReadStudentControllor.StudentDataList.length,
         ),
       );
     }
@@ -1201,32 +1179,34 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return readStudentControllor.StudentDataList[index].std != 7
+            return adminReadStudentControllor.StudentDataList[index].std != 7
                 ? Container()
                 : Padding(
                     padding: EdgeInsets.all(10.sp),
                     child: InkWell(
                       onTap: () {
                         AdminStudentModel s1 = AdminStudentModel(
-                          image: readStudentControllor
+                          image: adminReadStudentControllor
                               .StudentDataList[index].image,
-                          key: readStudentControllor.StudentDataList[index].key,
-                          email_id: readStudentControllor
+                          key: adminReadStudentControllor
+                              .StudentDataList[index].key,
+                          email_id: adminReadStudentControllor
                               .StudentDataList[index].email_id,
-                          f_name: readStudentControllor
+                          f_name: adminReadStudentControllor
                               .StudentDataList[index].f_name,
-                          l_name: readStudentControllor
+                          l_name: adminReadStudentControllor
                               .StudentDataList[index].l_name,
-                          mobile_no: readStudentControllor
+                          mobile_no: adminReadStudentControllor
                               .StudentDataList[index].mobile_no,
-                          paid_fees: readStudentControllor
+                          paid_fees: adminReadStudentControllor
                               .StudentDataList[index].paid_fees,
-                          total_fees: readStudentControllor
+                          total_fees: adminReadStudentControllor
                               .StudentDataList[index].total_fees,
-                          address: readStudentControllor
+                          address: adminReadStudentControllor
                               .StudentDataList[index].address,
-                          std: readStudentControllor.StudentDataList[index].std,
-                          father_name: readStudentControllor
+                          std: adminReadStudentControllor
+                              .StudentDataList[index].std,
+                          father_name: adminReadStudentControllor
                               .StudentDataList[index].father_name,
                         );
                         Get.toNamed(
@@ -1256,7 +1236,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                             CircleAvatar(
                               backgroundImage: MemoryImage(
                                 Uint8List.fromList(
-                                  readStudentControllor
+                                  adminReadStudentControllor
                                       .StudentDataList[index].image!.codeUnits,
                                 ),
                               ),
@@ -1273,18 +1253,18 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                   width: 150.sp,
                                   child: Text(
                                     overflow: TextOverflow.ellipsis,
-                                    "Name :- ${readStudentControllor.StudentDataList[index].f_name} ${readStudentControllor.StudentDataList[index].l_name}",
+                                    "Name :- ${adminReadStudentControllor.StudentDataList[index].f_name} ${adminReadStudentControllor.StudentDataList[index].l_name}",
                                   ),
                                 ),
                                 SizedBox(height: 5.sp),
                                 Text(
-                                  "Mobile No :- +91 ${readStudentControllor.StudentDataList[index].mobile_no}",
+                                  "Mobile No :- +91 ${adminReadStudentControllor.StudentDataList[index].mobile_no}",
                                 ),
                                 SizedBox(height: 5.sp),
                                 Container(
                                   width: 150.sp,
                                   child: Text(
-                                    "Email Id :- ${readStudentControllor.StudentDataList[index].email_id}",
+                                    "Email Id :- ${adminReadStudentControllor.StudentDataList[index].email_id}",
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
@@ -1299,27 +1279,27 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                 IconButton(
                                   onPressed: () {
                                     AdminStudentModel s1 = AdminStudentModel(
-                                      key: readStudentControllor
+                                      key: adminReadStudentControllor
                                           .StudentDataList[index].key,
-                                      image: readStudentControllor
+                                      image: adminReadStudentControllor
                                           .StudentDataList[index].image,
-                                      address: readStudentControllor
+                                      address: adminReadStudentControllor
                                           .StudentDataList[index].address,
-                                      father_name: readStudentControllor
+                                      father_name: adminReadStudentControllor
                                           .StudentDataList[index].father_name,
-                                      std: readStudentControllor
+                                      std: adminReadStudentControllor
                                           .StudentDataList[index].std,
-                                      l_name: readStudentControllor
+                                      l_name: adminReadStudentControllor
                                           .StudentDataList[index].l_name,
-                                      mobile_no: readStudentControllor
+                                      mobile_no: adminReadStudentControllor
                                           .StudentDataList[index].mobile_no,
-                                      f_name: readStudentControllor
+                                      f_name: adminReadStudentControllor
                                           .StudentDataList[index].f_name,
-                                      email_id: readStudentControllor
+                                      email_id: adminReadStudentControllor
                                           .StudentDataList[index].email_id,
-                                      paid_fees: readStudentControllor
+                                      paid_fees: adminReadStudentControllor
                                           .StudentDataList[index].paid_fees,
-                                      total_fees: readStudentControllor
+                                      total_fees: adminReadStudentControllor
                                           .StudentDataList[index].total_fees,
                                       isCheck: 1,
                                     );
@@ -1336,10 +1316,10 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                 IconButton(
                                   onPressed: () {
                                     AdminStudentModel s1 = AdminStudentModel(
-                                      key: readStudentControllor
+                                      key: adminReadStudentControllor
                                           .StudentDataList[index].key,
                                     );
-                                    readStudentControllor.deleteDetail(
+                                    adminReadStudentControllor.deleteDetail(
                                       s1: s1,
                                     );
                                   },
@@ -1355,7 +1335,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                     ),
                   );
           },
-          itemCount: readStudentControllor.StudentDataList.length,
+          itemCount: adminReadStudentControllor.StudentDataList.length,
         ),
       );
     }
@@ -1363,32 +1343,34 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return readStudentControllor.StudentDataList[index].std != 8
+            return adminReadStudentControllor.StudentDataList[index].std != 8
                 ? Container()
                 : Padding(
                     padding: EdgeInsets.all(10.sp),
                     child: InkWell(
                       onTap: () {
                         AdminStudentModel s1 = AdminStudentModel(
-                          image: readStudentControllor
+                          image: adminReadStudentControllor
                               .StudentDataList[index].image,
-                          key: readStudentControllor.StudentDataList[index].key,
-                          email_id: readStudentControllor
+                          key: adminReadStudentControllor
+                              .StudentDataList[index].key,
+                          email_id: adminReadStudentControllor
                               .StudentDataList[index].email_id,
-                          f_name: readStudentControllor
+                          f_name: adminReadStudentControllor
                               .StudentDataList[index].f_name,
-                          l_name: readStudentControllor
+                          l_name: adminReadStudentControllor
                               .StudentDataList[index].l_name,
-                          mobile_no: readStudentControllor
+                          mobile_no: adminReadStudentControllor
                               .StudentDataList[index].mobile_no,
-                          paid_fees: readStudentControllor
+                          paid_fees: adminReadStudentControllor
                               .StudentDataList[index].paid_fees,
-                          total_fees: readStudentControllor
+                          total_fees: adminReadStudentControllor
                               .StudentDataList[index].total_fees,
-                          address: readStudentControllor
+                          address: adminReadStudentControllor
                               .StudentDataList[index].address,
-                          std: readStudentControllor.StudentDataList[index].std,
-                          father_name: readStudentControllor
+                          std: adminReadStudentControllor
+                              .StudentDataList[index].std,
+                          father_name: adminReadStudentControllor
                               .StudentDataList[index].father_name,
                         );
                         Get.toNamed(
@@ -1418,7 +1400,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                             CircleAvatar(
                               backgroundImage: MemoryImage(
                                 Uint8List.fromList(
-                                  readStudentControllor
+                                  adminReadStudentControllor
                                       .StudentDataList[index].image!.codeUnits,
                                 ),
                               ),
@@ -1435,18 +1417,18 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                   width: 150.sp,
                                   child: Text(
                                     overflow: TextOverflow.ellipsis,
-                                    "Name :- ${readStudentControllor.StudentDataList[index].f_name} ${readStudentControllor.StudentDataList[index].l_name}",
+                                    "Name :- ${adminReadStudentControllor.StudentDataList[index].f_name} ${adminReadStudentControllor.StudentDataList[index].l_name}",
                                   ),
                                 ),
                                 SizedBox(height: 5.sp),
                                 Text(
-                                  "Mobile No :- +91 ${readStudentControllor.StudentDataList[index].mobile_no}",
+                                  "Mobile No :- +91 ${adminReadStudentControllor.StudentDataList[index].mobile_no}",
                                 ),
                                 SizedBox(height: 5.sp),
                                 Container(
                                   width: 150.sp,
                                   child: Text(
-                                    "Email Id :- ${readStudentControllor.StudentDataList[index].email_id}",
+                                    "Email Id :- ${adminReadStudentControllor.StudentDataList[index].email_id}",
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
@@ -1461,27 +1443,27 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                 IconButton(
                                   onPressed: () {
                                     AdminStudentModel s1 = AdminStudentModel(
-                                      key: readStudentControllor
+                                      key: adminReadStudentControllor
                                           .StudentDataList[index].key,
-                                      image: readStudentControllor
+                                      image: adminReadStudentControllor
                                           .StudentDataList[index].image,
-                                      address: readStudentControllor
+                                      address: adminReadStudentControllor
                                           .StudentDataList[index].address,
-                                      father_name: readStudentControllor
+                                      father_name: adminReadStudentControllor
                                           .StudentDataList[index].father_name,
-                                      std: readStudentControllor
+                                      std: adminReadStudentControllor
                                           .StudentDataList[index].std,
-                                      l_name: readStudentControllor
+                                      l_name: adminReadStudentControllor
                                           .StudentDataList[index].l_name,
-                                      mobile_no: readStudentControllor
+                                      mobile_no: adminReadStudentControllor
                                           .StudentDataList[index].mobile_no,
-                                      f_name: readStudentControllor
+                                      f_name: adminReadStudentControllor
                                           .StudentDataList[index].f_name,
-                                      email_id: readStudentControllor
+                                      email_id: adminReadStudentControllor
                                           .StudentDataList[index].email_id,
-                                      paid_fees: readStudentControllor
+                                      paid_fees: adminReadStudentControllor
                                           .StudentDataList[index].paid_fees,
-                                      total_fees: readStudentControllor
+                                      total_fees: adminReadStudentControllor
                                           .StudentDataList[index].total_fees,
                                       isCheck: 1,
                                     );
@@ -1498,10 +1480,10 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                 IconButton(
                                   onPressed: () {
                                     AdminStudentModel s1 = AdminStudentModel(
-                                      key: readStudentControllor
+                                      key: adminReadStudentControllor
                                           .StudentDataList[index].key,
                                     );
-                                    readStudentControllor.deleteDetail(
+                                    adminReadStudentControllor.deleteDetail(
                                       s1: s1,
                                     );
                                   },
@@ -1517,7 +1499,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                     ),
                   );
           },
-          itemCount: readStudentControllor.StudentDataList.length,
+          itemCount: adminReadStudentControllor.StudentDataList.length,
         ),
       );
     }
@@ -1525,32 +1507,34 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return readStudentControllor.StudentDataList[index].std != 9
+            return adminReadStudentControllor.StudentDataList[index].std != 9
                 ? Container()
                 : Padding(
                     padding: EdgeInsets.all(10.sp),
                     child: InkWell(
                       onTap: () {
                         AdminStudentModel s1 = AdminStudentModel(
-                          image: readStudentControllor
+                          image: adminReadStudentControllor
                               .StudentDataList[index].image,
-                          key: readStudentControllor.StudentDataList[index].key,
-                          email_id: readStudentControllor
+                          key: adminReadStudentControllor
+                              .StudentDataList[index].key,
+                          email_id: adminReadStudentControllor
                               .StudentDataList[index].email_id,
-                          f_name: readStudentControllor
+                          f_name: adminReadStudentControllor
                               .StudentDataList[index].f_name,
-                          l_name: readStudentControllor
+                          l_name: adminReadStudentControllor
                               .StudentDataList[index].l_name,
-                          mobile_no: readStudentControllor
+                          mobile_no: adminReadStudentControllor
                               .StudentDataList[index].mobile_no,
-                          paid_fees: readStudentControllor
+                          paid_fees: adminReadStudentControllor
                               .StudentDataList[index].paid_fees,
-                          total_fees: readStudentControllor
+                          total_fees: adminReadStudentControllor
                               .StudentDataList[index].total_fees,
-                          address: readStudentControllor
+                          address: adminReadStudentControllor
                               .StudentDataList[index].address,
-                          std: readStudentControllor.StudentDataList[index].std,
-                          father_name: readStudentControllor
+                          std: adminReadStudentControllor
+                              .StudentDataList[index].std,
+                          father_name: adminReadStudentControllor
                               .StudentDataList[index].father_name,
                         );
                         Get.toNamed(
@@ -1580,7 +1564,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                             CircleAvatar(
                               backgroundImage: MemoryImage(
                                 Uint8List.fromList(
-                                  readStudentControllor
+                                  adminReadStudentControllor
                                       .StudentDataList[index].image!.codeUnits,
                                 ),
                               ),
@@ -1597,18 +1581,18 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                   width: 150.sp,
                                   child: Text(
                                     overflow: TextOverflow.ellipsis,
-                                    "Name :- ${readStudentControllor.StudentDataList[index].f_name} ${readStudentControllor.StudentDataList[index].l_name}",
+                                    "Name :- ${adminReadStudentControllor.StudentDataList[index].f_name} ${adminReadStudentControllor.StudentDataList[index].l_name}",
                                   ),
                                 ),
                                 SizedBox(height: 5.sp),
                                 Text(
-                                  "Mobile No :- +91 ${readStudentControllor.StudentDataList[index].mobile_no}",
+                                  "Mobile No :- +91 ${adminReadStudentControllor.StudentDataList[index].mobile_no}",
                                 ),
                                 SizedBox(height: 5.sp),
                                 Container(
                                   width: 150.sp,
                                   child: Text(
-                                    "Email Id :- ${readStudentControllor.StudentDataList[index].email_id}",
+                                    "Email Id :- ${adminReadStudentControllor.StudentDataList[index].email_id}",
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
@@ -1623,27 +1607,27 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                 IconButton(
                                   onPressed: () {
                                     AdminStudentModel s1 = AdminStudentModel(
-                                      key: readStudentControllor
+                                      key: adminReadStudentControllor
                                           .StudentDataList[index].key,
-                                      image: readStudentControllor
+                                      image: adminReadStudentControllor
                                           .StudentDataList[index].image,
-                                      address: readStudentControllor
+                                      address: adminReadStudentControllor
                                           .StudentDataList[index].address,
-                                      father_name: readStudentControllor
+                                      father_name: adminReadStudentControllor
                                           .StudentDataList[index].father_name,
-                                      std: readStudentControllor
+                                      std: adminReadStudentControllor
                                           .StudentDataList[index].std,
-                                      l_name: readStudentControllor
+                                      l_name: adminReadStudentControllor
                                           .StudentDataList[index].l_name,
-                                      mobile_no: readStudentControllor
+                                      mobile_no: adminReadStudentControllor
                                           .StudentDataList[index].mobile_no,
-                                      f_name: readStudentControllor
+                                      f_name: adminReadStudentControllor
                                           .StudentDataList[index].f_name,
-                                      email_id: readStudentControllor
+                                      email_id: adminReadStudentControllor
                                           .StudentDataList[index].email_id,
-                                      paid_fees: readStudentControllor
+                                      paid_fees: adminReadStudentControllor
                                           .StudentDataList[index].paid_fees,
-                                      total_fees: readStudentControllor
+                                      total_fees: adminReadStudentControllor
                                           .StudentDataList[index].total_fees,
                                       isCheck: 1,
                                     );
@@ -1660,10 +1644,10 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                 IconButton(
                                   onPressed: () {
                                     AdminStudentModel s1 = AdminStudentModel(
-                                      key: readStudentControllor
+                                      key: adminReadStudentControllor
                                           .StudentDataList[index].key,
                                     );
-                                    readStudentControllor.deleteDetail(
+                                    adminReadStudentControllor.deleteDetail(
                                       s1: s1,
                                     );
                                   },
@@ -1679,7 +1663,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                     ),
                   );
           },
-          itemCount: readStudentControllor.StudentDataList.length,
+          itemCount: adminReadStudentControllor.StudentDataList.length,
         ),
       );
     }
@@ -1687,32 +1671,34 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return readStudentControllor.StudentDataList[index].std != 10
+            return adminReadStudentControllor.StudentDataList[index].std != 10
                 ? Container()
                 : Padding(
                     padding: EdgeInsets.all(10.sp),
                     child: InkWell(
                       onTap: () {
                         AdminStudentModel s1 = AdminStudentModel(
-                          image: readStudentControllor
+                          image: adminReadStudentControllor
                               .StudentDataList[index].image,
-                          key: readStudentControllor.StudentDataList[index].key,
-                          email_id: readStudentControllor
+                          key: adminReadStudentControllor
+                              .StudentDataList[index].key,
+                          email_id: adminReadStudentControllor
                               .StudentDataList[index].email_id,
-                          f_name: readStudentControllor
+                          f_name: adminReadStudentControllor
                               .StudentDataList[index].f_name,
-                          l_name: readStudentControllor
+                          l_name: adminReadStudentControllor
                               .StudentDataList[index].l_name,
-                          mobile_no: readStudentControllor
+                          mobile_no: adminReadStudentControllor
                               .StudentDataList[index].mobile_no,
-                          paid_fees: readStudentControllor
+                          paid_fees: adminReadStudentControllor
                               .StudentDataList[index].paid_fees,
-                          total_fees: readStudentControllor
+                          total_fees: adminReadStudentControllor
                               .StudentDataList[index].total_fees,
-                          address: readStudentControllor
+                          address: adminReadStudentControllor
                               .StudentDataList[index].address,
-                          std: readStudentControllor.StudentDataList[index].std,
-                          father_name: readStudentControllor
+                          std: adminReadStudentControllor
+                              .StudentDataList[index].std,
+                          father_name: adminReadStudentControllor
                               .StudentDataList[index].father_name,
                         );
                         Get.toNamed(
@@ -1742,7 +1728,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                             CircleAvatar(
                               backgroundImage: MemoryImage(
                                 Uint8List.fromList(
-                                  readStudentControllor
+                                  adminReadStudentControllor
                                       .StudentDataList[index].image!.codeUnits,
                                 ),
                               ),
@@ -1759,18 +1745,18 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                   width: 150.sp,
                                   child: Text(
                                     overflow: TextOverflow.ellipsis,
-                                    "Name :- ${readStudentControllor.StudentDataList[index].f_name} ${readStudentControllor.StudentDataList[index].l_name}",
+                                    "Name :- ${adminReadStudentControllor.StudentDataList[index].f_name} ${adminReadStudentControllor.StudentDataList[index].l_name}",
                                   ),
                                 ),
                                 SizedBox(height: 5.sp),
                                 Text(
-                                  "Mobile No :- +91 ${readStudentControllor.StudentDataList[index].mobile_no}",
+                                  "Mobile No :- +91 ${adminReadStudentControllor.StudentDataList[index].mobile_no}",
                                 ),
                                 SizedBox(height: 5.sp),
                                 Container(
                                   width: 150.sp,
                                   child: Text(
-                                    "Email Id :- ${readStudentControllor.StudentDataList[index].email_id}",
+                                    "Email Id :- ${adminReadStudentControllor.StudentDataList[index].email_id}",
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
@@ -1785,27 +1771,27 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                 IconButton(
                                   onPressed: () {
                                     AdminStudentModel s1 = AdminStudentModel(
-                                      key: readStudentControllor
+                                      key: adminReadStudentControllor
                                           .StudentDataList[index].key,
-                                      image: readStudentControllor
+                                      image: adminReadStudentControllor
                                           .StudentDataList[index].image,
-                                      address: readStudentControllor
+                                      address: adminReadStudentControllor
                                           .StudentDataList[index].address,
-                                      father_name: readStudentControllor
+                                      father_name: adminReadStudentControllor
                                           .StudentDataList[index].father_name,
-                                      std: readStudentControllor
+                                      std: adminReadStudentControllor
                                           .StudentDataList[index].std,
-                                      l_name: readStudentControllor
+                                      l_name: adminReadStudentControllor
                                           .StudentDataList[index].l_name,
-                                      mobile_no: readStudentControllor
+                                      mobile_no: adminReadStudentControllor
                                           .StudentDataList[index].mobile_no,
-                                      f_name: readStudentControllor
+                                      f_name: adminReadStudentControllor
                                           .StudentDataList[index].f_name,
-                                      email_id: readStudentControllor
+                                      email_id: adminReadStudentControllor
                                           .StudentDataList[index].email_id,
-                                      paid_fees: readStudentControllor
+                                      paid_fees: adminReadStudentControllor
                                           .StudentDataList[index].paid_fees,
-                                      total_fees: readStudentControllor
+                                      total_fees: adminReadStudentControllor
                                           .StudentDataList[index].total_fees,
                                       isCheck: 1,
                                     );
@@ -1822,10 +1808,10 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                                 IconButton(
                                   onPressed: () {
                                     AdminStudentModel s1 = AdminStudentModel(
-                                      key: readStudentControllor
+                                      key: adminReadStudentControllor
                                           .StudentDataList[index].key,
                                     );
-                                    readStudentControllor.deleteDetail(
+                                    adminReadStudentControllor.deleteDetail(
                                       s1: s1,
                                     );
                                   },
@@ -1841,7 +1827,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                     ),
                   );
           },
-          itemCount: readStudentControllor.StudentDataList.length,
+          itemCount: adminReadStudentControllor.StudentDataList.length,
         ),
       );
     }
@@ -1854,22 +1840,27 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
               child: InkWell(
                 onTap: () {
                   AdminStudentModel s1 = AdminStudentModel(
-                    image: readStudentControllor.StudentDataList[index].image,
-                    key: readStudentControllor.StudentDataList[index].key,
-                    email_id:
-                        readStudentControllor.StudentDataList[index].email_id,
-                    f_name: readStudentControllor.StudentDataList[index].f_name,
-                    l_name: readStudentControllor.StudentDataList[index].l_name,
-                    mobile_no:
-                        readStudentControllor.StudentDataList[index].mobile_no,
-                    paid_fees:
-                        readStudentControllor.StudentDataList[index].paid_fees,
-                    total_fees:
-                        readStudentControllor.StudentDataList[index].total_fees,
-                    address:
-                        readStudentControllor.StudentDataList[index].address,
-                    std: readStudentControllor.StudentDataList[index].std,
-                    father_name: readStudentControllor
+                    image: adminReadStudentControllor
+                        .StudentDataList[index].image,
+                    key: adminReadStudentControllor
+                        .StudentDataList[index].key,
+                    email_id: adminReadStudentControllor
+                        .StudentDataList[index].email_id,
+                    f_name: adminReadStudentControllor
+                        .StudentDataList[index].f_name,
+                    l_name: adminReadStudentControllor
+                        .StudentDataList[index].l_name,
+                    mobile_no: adminReadStudentControllor
+                        .StudentDataList[index].mobile_no,
+                    paid_fees: adminReadStudentControllor
+                        .StudentDataList[index].paid_fees,
+                    total_fees: adminReadStudentControllor
+                        .StudentDataList[index].total_fees,
+                    address: adminReadStudentControllor
+                        .StudentDataList[index].address,
+                    std: adminReadStudentControllor
+                        .StudentDataList[index].std,
+                    father_name: adminReadStudentControllor
                         .StudentDataList[index].father_name,
                   );
                   Get.toNamed(
@@ -1899,7 +1890,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                       CircleAvatar(
                         backgroundImage: MemoryImage(
                           Uint8List.fromList(
-                            readStudentControllor
+                            adminReadStudentControllor
                                 .StudentDataList[index].image!.codeUnits,
                           ),
                         ),
@@ -1916,18 +1907,18 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                             width: 150.sp,
                             child: Text(
                               overflow: TextOverflow.ellipsis,
-                              "Name :- ${readStudentControllor.StudentDataList[index].f_name} ${readStudentControllor.StudentDataList[index].l_name}",
+                              "Name :- ${adminReadStudentControllor.StudentDataList[index].f_name} ${adminReadStudentControllor.StudentDataList[index].l_name}",
                             ),
                           ),
                           SizedBox(height: 5.sp),
                           Text(
-                            "Mobile No :- +91 ${readStudentControllor.StudentDataList[index].mobile_no}",
+                            "Mobile No :- +91 ${adminReadStudentControllor.StudentDataList[index].mobile_no}",
                           ),
                           SizedBox(height: 5.sp),
                           Container(
                             width: 150.sp,
                             child: Text(
-                              "Email Id :- ${readStudentControllor.StudentDataList[index].email_id}",
+                              "Email Id :- ${adminReadStudentControllor.StudentDataList[index].email_id}",
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
@@ -1942,27 +1933,27 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                           IconButton(
                             onPressed: () {
                               AdminStudentModel s1 = AdminStudentModel(
-                                key: readStudentControllor
+                                key: adminReadStudentControllor
                                     .StudentDataList[index].key,
-                                image: readStudentControllor
+                                image: adminReadStudentControllor
                                     .StudentDataList[index].image,
-                                address: readStudentControllor
+                                address: adminReadStudentControllor
                                     .StudentDataList[index].address,
-                                father_name: readStudentControllor
+                                father_name: adminReadStudentControllor
                                     .StudentDataList[index].father_name,
-                                std: readStudentControllor
+                                std: adminReadStudentControllor
                                     .StudentDataList[index].std,
-                                l_name: readStudentControllor
+                                l_name: adminReadStudentControllor
                                     .StudentDataList[index].l_name,
-                                mobile_no: readStudentControllor
+                                mobile_no: adminReadStudentControllor
                                     .StudentDataList[index].mobile_no,
-                                f_name: readStudentControllor
+                                f_name: adminReadStudentControllor
                                     .StudentDataList[index].f_name,
-                                email_id: readStudentControllor
+                                email_id: adminReadStudentControllor
                                     .StudentDataList[index].email_id,
-                                paid_fees: readStudentControllor
+                                paid_fees: adminReadStudentControllor
                                     .StudentDataList[index].paid_fees,
-                                total_fees: readStudentControllor
+                                total_fees: adminReadStudentControllor
                                     .StudentDataList[index].total_fees,
                                 isCheck: 1,
                               );
@@ -1979,10 +1970,10 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
                           IconButton(
                             onPressed: () {
                               AdminStudentModel s1 = AdminStudentModel(
-                                key: readStudentControllor
+                                key: adminReadStudentControllor
                                     .StudentDataList[index].key,
                               );
-                              readStudentControllor.deleteDetail(
+                              adminReadStudentControllor.deleteDetail(
                                 s1: s1,
                               );
                             },
@@ -1998,7 +1989,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen>
               ),
             );
           },
-          itemCount: readStudentControllor.StudentDataList.length,
+          itemCount: adminReadStudentControllor.StudentDataList.length,
         ),
       );
     }

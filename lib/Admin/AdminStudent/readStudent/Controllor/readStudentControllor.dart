@@ -1,5 +1,6 @@
 import 'package:classes_app/Admin/AdminStudent/AdminAddStudent/Model/AdminStudentModel.dart';
 import 'package:classes_app/Utiles/FirebaseHelper.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 class AdminReadStudentControllor extends GetxController {
@@ -12,6 +13,10 @@ class AdminReadStudentControllor extends GetxController {
     return await FirebaseHelper.firebaseHelper.updateStudentDetail(
       s1: s1,
     );
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> readStudentDetail() {
+    return FirebaseHelper.firebaseHelper.readStudentDetail();
   }
 
   void deleteDetail({

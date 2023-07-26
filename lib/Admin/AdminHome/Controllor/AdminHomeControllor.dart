@@ -14,7 +14,7 @@ class AdminHomeControllor extends GetxController {
       name: "Student",
     ),
     AdminHomeModel(
-      image: "Assets/Images/Homework.png",
+      image: "Assets/Images/homeWork.png",
       name: "HomeWork",
     ),
     AdminHomeModel(
