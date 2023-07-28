@@ -103,6 +103,16 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                   ),
                   ListTile(
                     onTap: () {
+                      Get.toNamed('/homeWork');
+                    },
+                    leading: Image.asset(
+                      "Assets/Images/result.png",
+                      height: 20.sp,
+                    ),
+                    title: Text("Result"),
+                  ),
+                  ListTile(
+                    onTap: () {
                       Get.toNamed('/message');
                     },
                     leading: Image.asset(

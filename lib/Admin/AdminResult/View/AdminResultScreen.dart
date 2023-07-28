@@ -1,5 +1,5 @@
 import 'package:classes_app/Admin/AdminResult/Controllor/AdminResultControllor.dart';
-import 'package:classes_app/Admin/AdminResult/Model/AdminStudentUidModel.dart';
+import 'package:classes_app/Admin/AdminResult/Model/AdminResultModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -30,77 +30,127 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
             ),
             Column(
               children: [
-                Obx(
-                  () => DropdownButton(
-                    isExpanded: true,
-                    value: adminResultControllor.checkStd.value,
-                    items: [
-                      DropdownMenuItem(
-                        value: 1,
-                        child: Text(
-                          "Std 1",
+                Container(
+                  height: 50.sp,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(20.sp),
+                        bottomRight: Radius.circular(20.sp)),
+                    color: Color(0xffE85720),
+                  ),
+                  child: Stack(
+                    children: [
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                Get.offAndToNamed('/home');
+                              },
+                              icon: Icon(
+                                Icons.arrow_back,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      DropdownMenuItem(
-                        value: 2,
-                        child: Text(
-                          "Std 2",
-                        ),
-                      ),
-                      DropdownMenuItem(
-                        value: 3,
-                        child: Text(
-                          "Std 3",
-                        ),
-                      ),
-                      DropdownMenuItem(
-                        value: 4,
-                        child: Text(
-                          "Std 4",
-                        ),
-                      ),
-                      DropdownMenuItem(
-                        value: 5,
-                        child: Text(
-                          "Std 5",
-                        ),
-                      ),
-                      DropdownMenuItem(
-                        value: 6,
-                        child: Text(
-                          "Std 6",
-                        ),
-                      ),
-                      DropdownMenuItem(
-                        value: 7,
-                        child: Text(
-                          "Std 7",
-                        ),
-                      ),
-                      DropdownMenuItem(
-                        value: 8,
-                        child: Text(
-                          "Std 8",
-                        ),
-                      ),
-                      DropdownMenuItem(
-                        value: 9,
-                        child: Text(
-                          "Std 9",
-                        ),
-                      ),
-                      DropdownMenuItem(
-                        value: 10,
-                        child: Text(
-                          "Std 10",
+                      Center(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Bright Education Classes",
+                              style: TextStyle(
+                                fontSize: 15.sp,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
-                    onChanged: (int? value) {
-                      setState(() {
-                        adminResultControllor.checkStd.value = value!;
-                      });
-                    },
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(10.sp),
+                  child: Obx(
+                    () => DropdownButton(
+                      isExpanded: true,
+                      value: adminResultControllor.checkStd.value,
+                      items: [
+                        DropdownMenuItem(
+                          value: 1,
+                          child: Text(
+                            "Std 1",
+                          ),
+                        ),
+                        DropdownMenuItem(
+                          value: 2,
+                          child: Text(
+                            "Std 2",
+                          ),
+                        ),
+                        DropdownMenuItem(
+                          value: 3,
+                          child: Text(
+                            "Std 3",
+                          ),
+                        ),
+                        DropdownMenuItem(
+                          value: 4,
+                          child: Text(
+                            "Std 4",
+                          ),
+                        ),
+                        DropdownMenuItem(
+                          value: 5,
+                          child: Text(
+                            "Std 5",
+                          ),
+                        ),
+                        DropdownMenuItem(
+                          value: 6,
+                          child: Text(
+                            "Std 6",
+                          ),
+                        ),
+                        DropdownMenuItem(
+                          value: 7,
+                          child: Text(
+                            "Std 7",
+                          ),
+                        ),
+                        DropdownMenuItem(
+                          value: 8,
+                          child: Text(
+                            "Std 8",
+                          ),
+                        ),
+                        DropdownMenuItem(
+                          value: 9,
+                          child: Text(
+                            "Std 9",
+                          ),
+                        ),
+                        DropdownMenuItem(
+                          value: 10,
+                          child: Text(
+                            "Std 10",
+                          ),
+                        ),
+                      ],
+                      onChanged: (int? value) {
+                        setState(() {
+                          adminResultControllor.checkStd.value = value!;
+                        });
+                      },
+                    ),
                   ),
                 ),
                 Expanded(
@@ -121,7 +171,7 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
   }) {
     if (std == 10) {
       return StreamBuilder(
-        stream: adminResultControllor.readStudent(),
+        stream: adminResultControllor.readStudentOnResult(),
         builder: (context, snapShot) {
           if (snapShot.hasError) {
             return Text(
@@ -130,7 +180,7 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
           } else if (snapShot.hasData) {
             adminResultControllor.allStdList.clear();
             for (var x in snapShot.data!.docs) {
-              AdminStudentUidModel a1 = AdminStudentUidModel(
+              AdminResultModel a1 = AdminResultModel(
                 uid: x['uid'],
                 mobile: x['mobile'],
                 name: x['name'],
@@ -147,16 +197,9 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
                     ? Container()
                     : InkWell(
                         onTap: () {
-                          AdminStudentUidModel r1 = AdminStudentUidModel(
-                            uid: adminResultControllor.allStdList[index].uid,
-                            name: adminResultControllor.allStdList[index].name,
-                            std: adminResultControllor.allStdList[index].std,
-                            mobile:
-                                adminResultControllor.allStdList[index].mobile,
-                          );
                           Get.toNamed(
                             '/readResult',
-                            arguments: r1,
+                            arguments: adminResultControllor.allStdList[index],
                           );
                         },
                         child: ListTile(
@@ -179,10 +222,9 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
           );
         },
       );
-    }
-    else if (std == 9) {
+    } else if (std == 9) {
       return StreamBuilder(
-        stream: adminResultControllor.readStudent(),
+        stream: adminResultControllor.readStudentOnResult(),
         builder: (context, snapShot) {
           if (snapShot.hasError) {
             return Text(
@@ -191,7 +233,7 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
           } else if (snapShot.hasData) {
             adminResultControllor.allStdList.clear();
             for (var x in snapShot.data!.docs) {
-              AdminStudentUidModel a1 = AdminStudentUidModel(
+              AdminResultModel a1 = AdminResultModel(
                 uid: x['uid'],
                 mobile: x['mobile'],
                 name: x['name'],
@@ -208,7 +250,7 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
                     ? Container()
                     : InkWell(
                         onTap: () {
-                          AdminStudentUidModel r1 = AdminStudentUidModel(
+                          AdminResultModel r1 = AdminResultModel(
                             uid: adminResultControllor.allStdList[index].uid,
                             name: adminResultControllor.allStdList[index].name,
                             std: adminResultControllor.allStdList[index].std,
@@ -240,10 +282,9 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
           );
         },
       );
-    }
-    else if (std == 8) {
+    } else if (std == 8) {
       return StreamBuilder(
-        stream: adminResultControllor.readStudent(),
+        stream: adminResultControllor.readStudentOnResult(),
         builder: (context, snapShot) {
           if (snapShot.hasError) {
             return Text(
@@ -252,7 +293,7 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
           } else if (snapShot.hasData) {
             adminResultControllor.allStdList.clear();
             for (var x in snapShot.data!.docs) {
-              AdminStudentUidModel a1 = AdminStudentUidModel(
+              AdminResultModel a1 = AdminResultModel(
                 uid: x['uid'],
                 mobile: x['mobile'],
                 name: x['name'],
@@ -269,7 +310,7 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
                     ? Container()
                     : InkWell(
                         onTap: () {
-                          AdminStudentUidModel r1 = AdminStudentUidModel(
+                          AdminResultModel r1 = AdminResultModel(
                             uid: adminResultControllor.allStdList[index].uid,
                             name: adminResultControllor.allStdList[index].name,
                             std: adminResultControllor.allStdList[index].std,
@@ -301,10 +342,9 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
           );
         },
       );
-    }
-    else if (std == 7) {
+    } else if (std == 7) {
       return StreamBuilder(
-        stream: adminResultControllor.readStudent(),
+        stream: adminResultControllor.readStudentOnResult(),
         builder: (context, snapShot) {
           if (snapShot.hasError) {
             return Text(
@@ -313,7 +353,7 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
           } else if (snapShot.hasData) {
             adminResultControllor.allStdList.clear();
             for (var x in snapShot.data!.docs) {
-              AdminStudentUidModel a1 = AdminStudentUidModel(
+              AdminResultModel a1 = AdminResultModel(
                 uid: x['uid'],
                 mobile: x['mobile'],
                 name: x['name'],
@@ -330,7 +370,7 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
                     ? Container()
                     : InkWell(
                         onTap: () {
-                          AdminStudentUidModel r1 = AdminStudentUidModel(
+                          AdminResultModel r1 = AdminResultModel(
                             uid: adminResultControllor.allStdList[index].uid,
                             name: adminResultControllor.allStdList[index].name,
                             std: adminResultControllor.allStdList[index].std,
@@ -362,10 +402,9 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
           );
         },
       );
-    }
-    else if (std == 6) {
+    } else if (std == 6) {
       return StreamBuilder(
-        stream: adminResultControllor.readStudent(),
+        stream: adminResultControllor.readStudentOnResult(),
         builder: (context, snapShot) {
           if (snapShot.hasError) {
             return Text(
@@ -374,7 +413,7 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
           } else if (snapShot.hasData) {
             adminResultControllor.allStdList.clear();
             for (var x in snapShot.data!.docs) {
-              AdminStudentUidModel a1 = AdminStudentUidModel(
+              AdminResultModel a1 = AdminResultModel(
                 uid: x['uid'],
                 mobile: x['mobile'],
                 name: x['name'],
@@ -391,7 +430,7 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
                     ? Container()
                     : InkWell(
                         onTap: () {
-                          AdminStudentUidModel r1 = AdminStudentUidModel(
+                          AdminResultModel r1 = AdminResultModel(
                             uid: adminResultControllor.allStdList[index].uid,
                             name: adminResultControllor.allStdList[index].name,
                             std: adminResultControllor.allStdList[index].std,
@@ -423,10 +462,9 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
           );
         },
       );
-    }
-    else if (std == 5) {
+    } else if (std == 5) {
       return StreamBuilder(
-        stream: adminResultControllor.readStudent(),
+        stream: adminResultControllor.readStudentOnResult(),
         builder: (context, snapShot) {
           if (snapShot.hasError) {
             return Text(
@@ -435,7 +473,7 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
           } else if (snapShot.hasData) {
             adminResultControllor.allStdList.clear();
             for (var x in snapShot.data!.docs) {
-              AdminStudentUidModel a1 = AdminStudentUidModel(
+              AdminResultModel a1 = AdminResultModel(
                 uid: x['uid'],
                 mobile: x['mobile'],
                 name: x['name'],
@@ -452,7 +490,7 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
                     ? Container()
                     : InkWell(
                         onTap: () {
-                          AdminStudentUidModel r1 = AdminStudentUidModel(
+                          AdminResultModel r1 = AdminResultModel(
                             uid: adminResultControllor.allStdList[index].uid,
                             name: adminResultControllor.allStdList[index].name,
                             std: adminResultControllor.allStdList[index].std,
@@ -484,10 +522,9 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
           );
         },
       );
-    }
-    else if (std == 4) {
+    } else if (std == 4) {
       return StreamBuilder(
-        stream: adminResultControllor.readStudent(),
+        stream: adminResultControllor.readStudentOnResult(),
         builder: (context, snapShot) {
           if (snapShot.hasError) {
             return Text(
@@ -496,7 +533,7 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
           } else if (snapShot.hasData) {
             adminResultControllor.allStdList.clear();
             for (var x in snapShot.data!.docs) {
-              AdminStudentUidModel a1 = AdminStudentUidModel(
+              AdminResultModel a1 = AdminResultModel(
                 uid: x['uid'],
                 mobile: x['mobile'],
                 name: x['name'],
@@ -513,7 +550,7 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
                     ? Container()
                     : InkWell(
                         onTap: () {
-                          AdminStudentUidModel r1 = AdminStudentUidModel(
+                          AdminResultModel r1 = AdminResultModel(
                             uid: adminResultControllor.allStdList[index].uid,
                             name: adminResultControllor.allStdList[index].name,
                             std: adminResultControllor.allStdList[index].std,
@@ -545,10 +582,9 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
           );
         },
       );
-    }
-    else if (std == 3) {
+    } else if (std == 3) {
       return StreamBuilder(
-        stream: adminResultControllor.readStudent(),
+        stream: adminResultControllor.readStudentOnResult(),
         builder: (context, snapShot) {
           if (snapShot.hasError) {
             return Text(
@@ -557,7 +593,7 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
           } else if (snapShot.hasData) {
             adminResultControllor.allStdList.clear();
             for (var x in snapShot.data!.docs) {
-              AdminStudentUidModel a1 = AdminStudentUidModel(
+              AdminResultModel a1 = AdminResultModel(
                 uid: x['uid'],
                 mobile: x['mobile'],
                 name: x['name'],
@@ -574,7 +610,7 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
                     ? Container()
                     : InkWell(
                         onTap: () {
-                          AdminStudentUidModel r1 = AdminStudentUidModel(
+                          AdminResultModel r1 = AdminResultModel(
                             uid: adminResultControllor.allStdList[index].uid,
                             name: adminResultControllor.allStdList[index].name,
                             std: adminResultControllor.allStdList[index].std,
@@ -606,10 +642,9 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
           );
         },
       );
-    }
-    else if (std == 2) {
+    } else if (std == 2) {
       return StreamBuilder(
-        stream: adminResultControllor.readStudent(),
+        stream: adminResultControllor.readStudentOnResult(),
         builder: (context, snapShot) {
           if (snapShot.hasError) {
             return Text(
@@ -618,7 +653,7 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
           } else if (snapShot.hasData) {
             adminResultControllor.allStdList.clear();
             for (var x in snapShot.data!.docs) {
-              AdminStudentUidModel a1 = AdminStudentUidModel(
+              AdminResultModel a1 = AdminResultModel(
                 uid: x['uid'],
                 mobile: x['mobile'],
                 name: x['name'],
@@ -635,7 +670,7 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
                     ? Container()
                     : InkWell(
                         onTap: () {
-                          AdminStudentUidModel r1 = AdminStudentUidModel(
+                          AdminResultModel r1 = AdminResultModel(
                             uid: adminResultControllor.allStdList[index].uid,
                             name: adminResultControllor.allStdList[index].name,
                             std: adminResultControllor.allStdList[index].std,
@@ -667,10 +702,9 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
           );
         },
       );
-    }
-    else if (std == 1) {
+    } else if (std == 1) {
       return StreamBuilder(
-        stream: adminResultControllor.readStudent(),
+        stream: adminResultControllor.readStudentOnResult(),
         builder: (context, snapShot) {
           if (snapShot.hasError) {
             return Text(
@@ -679,7 +713,7 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
           } else if (snapShot.hasData) {
             adminResultControllor.allStdList.clear();
             for (var x in snapShot.data!.docs) {
-              AdminStudentUidModel a1 = AdminStudentUidModel(
+              AdminResultModel a1 = AdminResultModel(
                 uid: x['uid'],
                 mobile: x['mobile'],
                 name: x['name'],
@@ -696,7 +730,7 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
                     ? Container()
                     : InkWell(
                         onTap: () {
-                          AdminStudentUidModel r1 = AdminStudentUidModel(
+                          AdminResultModel r1 = AdminResultModel(
                             uid: adminResultControllor.allStdList[index].uid,
                             name: adminResultControllor.allStdList[index].name,
                             std: adminResultControllor.allStdList[index].std,
@@ -728,8 +762,7 @@ class _AdminResultScreenState extends State<AdminResultScreen> {
           );
         },
       );
-    }
-    else {
+    } else {
       return Text(
         "Bad Choice",
       );

@@ -59,41 +59,51 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                     children: [
                       Container(
                         height: 50.sp,
+                        width: double.infinity,
                         decoration: BoxDecoration(
-                          color: Color(0xffE85720),
                           borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(25.sp),
-                            bottomLeft: Radius.circular(25.sp),
-                          ),
+                              bottomLeft: Radius.circular(20.sp),
+                              bottomRight: Radius.circular(20.sp)),
+                          color: Color(0xffE85720),
                         ),
-                        alignment: Alignment.center,
-                        child: Row(
+                        child: Stack(
                           children: [
-                            IconButton(
-                              onPressed: () {
-                                Get.back();
-                              },
-                              icon: Icon(
-                                Icons.arrow_back,
-                                size: 20.sp,
-                                color: Colors.white,
+                            Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  IconButton(
+                                    onPressed: () {
+                                      Get.offAndToNamed('/home');
+                                    },
+                                    icon: Icon(
+                                      Icons.arrow_back,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            SizedBox(
-                              width: 40.sp,
-                            ),
-                            Text(
-                              "Student Homework",
-                              style: TextStyle(
-                                fontSize: 18.sp,
-                                // fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                            Center(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Home Work",
+                                    style: TextStyle(
+                                      fontSize: 15.sp,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
                         ),
                       ),
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [

@@ -67,6 +67,23 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                     child: Stack(
                       children: [
                         Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  Get.offAndToNamed('/home');
+                                },
+                                icon: Icon(
+                                  Icons.arrow_back,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Center(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -85,6 +102,36 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                       ],
                     ),
                   ),
+                  // Container(
+                  //   height: 50.sp,
+                  //   width: double.infinity,
+                  //   decoration: BoxDecoration(
+                  //     borderRadius: BorderRadius.only(
+                  //         bottomLeft: Radius.circular(20.sp),
+                  //         bottomRight: Radius.circular(20.sp)),
+                  //     color: Color(0xffE85720),
+                  //   ),
+                  //   child: Stack(
+                  //     children: [
+                  //       Center(
+                  //         child: Column(
+                  //           crossAxisAlignment: CrossAxisAlignment.center,
+                  //           mainAxisAlignment: MainAxisAlignment.center,
+                  //           children: [
+                  //             Text(
+                  //               "Student List",
+                  //               style: TextStyle(
+                  //                 fontSize: 15.sp,
+                  //                 fontWeight: FontWeight.bold,
+                  //                 color: Colors.white,
+                  //               ),
+                  //             ),
+                  //           ],
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [

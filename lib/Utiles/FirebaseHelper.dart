@@ -2,7 +2,6 @@ import 'package:classes_app/Admin/AdminHomeWork/ShowHomeWork/Model/HomeWorkModel
 import 'package:classes_app/Admin/AdminMassage/Model/AdminMassageModel.dart';
 import 'package:classes_app/Admin/AdminProfile/Model/AdminProfileModel.dart';
 import 'package:classes_app/Admin/AdminResult/Model/AdminResultModel.dart';
-import 'package:classes_app/Admin/AdminResult/Model/AdminStudentUidModel.dart';
 import 'package:classes_app/Admin/AdminStudent/AdminAddStudent/Model/AdminStudentModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -355,18 +354,24 @@ class FirebaseHelper {
     return firebaseFirestore.collection("massage").doc(m1.key).delete();
   }
 
+  // result
+
   void insertResult({
     required AdminResultModel r1,
   }) {
     firebaseFirestore.collection("result").add(
       {
         "math": r1.math,
-        "ss": r1.socialScience,
-        "sci": r1.science,
-        "eng": r1.english,
+        "socialScience": r1.socialScience,
+        "science": r1.science,
+        "english": r1.english,
         "total": r1.total,
         "uid": r1.uid,
         "totalOutOf": r1.totalOutOf,
+        "monthNumber": r1.monthNumber,
+        "std": r1.std,
+        "mobile": r1.mobile,
+        "name": r1.name,
       },
     );
   }
@@ -374,14 +379,20 @@ class FirebaseHelper {
   void updateResult({
     required AdminResultModel r1,
   }) {
-    firebaseFirestore.collection("result").add(
+    print(r1.key);
+    firebaseFirestore.collection("result").doc(r1.key).set(
       {
         "math": r1.math,
-        "ss": r1.socialScience,
-        "sci": r1.science,
-        "eng": r1.english,
+        "socialScience": r1.socialScience,
+        "science": r1.science,
+        "english": r1.english,
         "total": r1.total,
         "uid": r1.uid,
+        "totalOutOf": r1.totalOutOf,
+        "monthNumber": r1.monthNumber,
+        "std": r1.std,
+        "mobile": r1.mobile,
+        "name": r1.name,
       },
     );
   }
@@ -390,26 +401,15 @@ class FirebaseHelper {
     return firebaseFirestore.collection("result").snapshots();
   }
 
-  Future<void> deleteStudentResult({
-    required AdminResultModel a1,
+  Future<void> deleteResult({
+    required AdminResultModel r1,
   }) {
-    return firebaseFirestore.collection("result").doc(a1.key).delete();
+    return firebaseFirestore.collection("result").doc(r1.key).delete();
   }
 
-  // AddStudentResult
+  // readStudentOnResult
 
-  insertStudentResult({required AdminStudentUidModel a1}) {
-    firebaseFirestore.collection("student").add(
-      {
-        "name": a1.name,
-        "uid": a1.uid,
-        "mobile": a1.mobile,
-        "std": a1.std,
-      },
-    );
-  }
-
-  Stream<QuerySnapshot<Map<String, dynamic>>> readStudentResult() {
+  Stream<QuerySnapshot<Map<String, dynamic>>> readStudentOnResult() {
     return firebaseFirestore.collection("student").snapshots();
   }
 }
