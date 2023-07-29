@@ -1,6 +1,4 @@
 import 'dart:math';
-
-import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:classes_app/Admin/AdminHome/Controllor/AdminHomeControllor.dart';
 import 'package:classes_app/Admin/AdminImageSet/Model/AdminImageSetModel.dart';
@@ -8,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
 class AdminHomeScreen extends StatefulWidget {
@@ -22,8 +21,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
     AdminHomeControllor(),
   );
 
-  final drawerController =
-      AdvancedDrawerController(AdvancedDrawerValue.hidden());
+  var drawerController = AdvancedDrawerController(AdvancedDrawerValue.hidden());
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +77,10 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                       "Assets/Images/home.png",
                       height: 20.sp,
                     ),
-                    title: Text("Home"),
+                    title: Text(
+                      "Home",
+                      style: GoogleFonts.archivo(),
+                    ),
                   ),
                   ListTile(
                     onTap: () {
@@ -89,7 +90,10 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                       "Assets/Images/student.png",
                       height: 15.sp,
                     ),
-                    title: Text("Student"),
+                    title: Text(
+                      "Student",
+                      style: GoogleFonts.archivo(),
+                    ),
                   ),
                   ListTile(
                     onTap: () {
@@ -99,7 +103,10 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                       "Assets/Images/homeWork.png",
                       height: 20.sp,
                     ),
-                    title: Text("Home Work"),
+                    title: Text(
+                      "Home Work",
+                      style: GoogleFonts.archivo(),
+                    ),
                   ),
                   ListTile(
                     onTap: () {
@@ -109,7 +116,10 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                       "Assets/Images/result.png",
                       height: 20.sp,
                     ),
-                    title: Text("Result"),
+                    title: Text(
+                      "Result",
+                      style: GoogleFonts.archivo(),
+                    ),
                   ),
                   ListTile(
                     onTap: () {
@@ -119,7 +129,10 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                       "Assets/Images/announcement.png",
                       height: 20.sp,
                     ),
-                    title: Text("Announcement"),
+                    title: Text(
+                      "Announcement",
+                      style: GoogleFonts.archivo(),
+                    ),
                   ),
                   ListTile(
                     onTap: () {
@@ -129,7 +142,10 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                       "Assets/Images/profile.png",
                       height: 20.sp,
                     ),
-                    title: Text("Profile"),
+                    title: Text(
+                      "Profile",
+                      style: GoogleFonts.archivo(),
+                    ),
                   ),
                   Spacer(),
                 ],
@@ -176,7 +192,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                           children: [
                             Text(
                               "Bright Education Classes",
-                              style: TextStyle(
+                              style: GoogleFonts.archivo(
                                 fontSize: 15.sp,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
@@ -301,7 +317,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                     alignment: Alignment.center,
                                     child: Text(
                                       "${homeControllor.Types[0].name}",
-                                      style: TextStyle(
+                                      style: GoogleFonts.archivo(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 15.sp,
                                         color: Color(0xff4754ff),
@@ -368,7 +384,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                     alignment: Alignment.center,
                                     child: Text(
                                       "${homeControllor.Types[1].name}",
-                                      style: TextStyle(
+                                      style: GoogleFonts.archivo(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 15.sp,
                                         color: Color(0xff4754ff),
@@ -440,7 +456,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                     alignment: Alignment.center,
                                     child: Text(
                                       "${homeControllor.Types[2].name}",
-                                      style: TextStyle(
+                                      style: GoogleFonts.archivo(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 15.sp,
                                         color: Color(0xff4754ff),

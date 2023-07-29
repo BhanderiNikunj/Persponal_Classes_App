@@ -5,6 +5,7 @@ import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sizer/sizer.dart';
 
@@ -110,9 +111,9 @@ class _AdminAddStudentScreenState extends State<AdminAddStudentScreen> {
                         Center(
                           child: Text(
                             s1.isCheck == 1 ? "Update Detail" : "Add Detail",
-                            style: TextStyle(
+                            style: GoogleFonts.archivo(
                               fontSize: 15.sp,
-                              // fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
                           ),
@@ -163,9 +164,15 @@ class _AdminAddStudentScreenState extends State<AdminAddStudentScreen> {
                         ),
                         Text(
                           "Enter First Name",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(height: 5.sp),
                         TextField(
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                           controller: addStudentControllor.txtf_name,
                           decoration: InputDecoration(
                             hintText: "Ex. abcd",
@@ -186,9 +193,15 @@ class _AdminAddStudentScreenState extends State<AdminAddStudentScreen> {
                         SizedBox(height: 10.sp),
                         Text(
                           "Enter Last Name",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(height: 5.sp),
                         TextField(
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                           controller: addStudentControllor.txtl_name,
                           decoration: InputDecoration(
                             hintText: "Ex. abcd",
@@ -209,9 +222,15 @@ class _AdminAddStudentScreenState extends State<AdminAddStudentScreen> {
                         SizedBox(height: 10.sp),
                         Text(
                           "Enter Father Name",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(height: 5.sp),
                         TextField(
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                           controller: addStudentControllor.txtfatherName,
                           decoration: InputDecoration(
                             hintText: "Ex. abcd",
@@ -232,6 +251,9 @@ class _AdminAddStudentScreenState extends State<AdminAddStudentScreen> {
                         SizedBox(height: 10.sp),
                         Text(
                           "Select Student Std",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(height: 5.sp),
                         Obx(
@@ -242,60 +264,90 @@ class _AdminAddStudentScreenState extends State<AdminAddStudentScreen> {
                               DropdownMenuItem(
                                 child: Text(
                                   "Std 1",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 value: 1,
                               ),
                               DropdownMenuItem(
                                 child: Text(
                                   "Std 2",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 value: 2,
                               ),
                               DropdownMenuItem(
                                 child: Text(
                                   "Std 3",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 value: 3,
                               ),
                               DropdownMenuItem(
                                 child: Text(
                                   "Std 4",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 value: 4,
                               ),
                               DropdownMenuItem(
                                 child: Text(
                                   "Std 5",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 value: 5,
                               ),
                               DropdownMenuItem(
                                 child: Text(
                                   "Std 6",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 value: 6,
                               ),
                               DropdownMenuItem(
                                 child: Text(
                                   "Std 7",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 value: 7,
                               ),
                               DropdownMenuItem(
                                 child: Text(
                                   "Std 8",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 value: 8,
                               ),
                               DropdownMenuItem(
                                 child: Text(
                                   "Std 9",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 value: 9,
                               ),
                               DropdownMenuItem(
                                 child: Text(
                                   "Std 10",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 value: 10,
                               ),
@@ -308,9 +360,15 @@ class _AdminAddStudentScreenState extends State<AdminAddStudentScreen> {
                         SizedBox(height: 10.sp),
                         Text(
                           "Enter Mobile No.",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(height: 5.sp),
                         TextField(
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                           controller: addStudentControllor.txtmobile_no,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
@@ -332,9 +390,15 @@ class _AdminAddStudentScreenState extends State<AdminAddStudentScreen> {
                         SizedBox(height: 10.sp),
                         Text(
                           "Enter Total Fees",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(height: 5.sp),
                         TextField(
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                           controller: addStudentControllor.txttotal_fees,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
@@ -356,9 +420,15 @@ class _AdminAddStudentScreenState extends State<AdminAddStudentScreen> {
                         SizedBox(height: 10.sp),
                         Text(
                           "Enter Paid Fees",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(height: 5.sp),
                         TextField(
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                           controller: addStudentControllor.txtpaid_fees,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
@@ -382,7 +452,8 @@ class _AdminAddStudentScreenState extends State<AdminAddStudentScreen> {
                           child: InkWell(
                             onTap: () async {
                               if (s1.isCheck == 1) {
-                                AdminStudentModel studentModel = AdminStudentModel(
+                                AdminStudentModel studentModel =
+                                    AdminStudentModel(
                                   std: addStudentControllor.std.value,
                                   father_name:
                                       addStudentControllor.txtfatherName.text,
@@ -408,7 +479,8 @@ class _AdminAddStudentScreenState extends State<AdminAddStudentScreen> {
                                 print(
                                   "${addStudentControllor.ipath}",
                                 );
-                                AdminStudentModel studentModel = AdminStudentModel(
+                                AdminStudentModel studentModel =
+                                    AdminStudentModel(
                                   std: addStudentControllor.std.value,
                                   father_name:
                                       addStudentControllor.txtfatherName.text,
@@ -435,7 +507,9 @@ class _AdminAddStudentScreenState extends State<AdminAddStudentScreen> {
                                 ? allButton(
                                     string: "Submit",
                                   )
-                                : allButton(string: "Update"),
+                                : allButton(
+                                    string: "Update",
+                                  ),
                           ),
                         ),
                       ],

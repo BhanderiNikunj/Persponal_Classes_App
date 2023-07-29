@@ -5,6 +5,7 @@ import 'package:classes_app/Admin/AdminStudent/readStudent/Controllor/readStuden
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
 class AdminReadStudentScreen extends StatefulWidget {
@@ -90,7 +91,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                             children: [
                               Text(
                                 "Student List",
-                                style: TextStyle(
+                                style: GoogleFonts.archivo(
                                   fontSize: 15.sp,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
@@ -146,66 +147,99 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                 value: 0,
                                 child: Text(
                                   "All",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                               DropdownMenuItem(
                                 value: 1,
                                 child: Text(
                                   "Std 1",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                               DropdownMenuItem(
                                 value: 2,
                                 child: Text(
                                   "Std 2",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                               DropdownMenuItem(
                                 value: 3,
                                 child: Text(
                                   "Std 3",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                               DropdownMenuItem(
                                 value: 4,
                                 child: Text(
                                   "Std 4",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                               DropdownMenuItem(
                                 value: 5,
                                 child: Text(
                                   "Std 5",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                               DropdownMenuItem(
                                 value: 6,
                                 child: Text(
                                   "Std 6",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                               DropdownMenuItem(
                                 value: 7,
                                 child: Text(
                                   "Std 7",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                               DropdownMenuItem(
                                 value: 8,
                                 child: Text(
                                   "Std 8",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                               DropdownMenuItem(
                                 value: 9,
                                 child: Text(
                                   "Std 9",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                               DropdownMenuItem(
                                 value: 10,
                                 child: Text(
                                   "Std 10",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ],
@@ -230,6 +264,20 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
             );
           },
           stream: adminReadStudentControllor.readStudentDetail(),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            AdminStudentModel a1 = AdminStudentModel(
+              isCheck: 0,
+            );
+            Get.toNamed(
+              '/addStudent',
+              arguments: a1,
+            );
+          },
+          child: Icon(
+            Icons.add,
+          ),
         ),
       ),
     );
@@ -271,6 +319,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                               .StudentDataList[index].std,
                           father_name: adminReadStudentControllor
                               .StudentDataList[index].father_name,
+                          isCheck: 1,
                         );
                         Get.toNamed(
                           '/showDetail',
@@ -317,17 +366,26 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                   child: Text(
                                     overflow: TextOverflow.ellipsis,
                                     "Name :- ${adminReadStudentControllor.StudentDataList[index].f_name} ${adminReadStudentControllor.StudentDataList[index].l_name}",
+                                    style: GoogleFonts.archivo(
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                                 SizedBox(height: 5.sp),
                                 Text(
                                   "Mobile No :- +91 ${adminReadStudentControllor.StudentDataList[index].mobile_no}",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 SizedBox(height: 5.sp),
                                 Container(
                                   width: 150.sp,
                                   child: Text(
                                     "Email Id :- ${adminReadStudentControllor.StudentDataList[index].email_id}",
+                                    style: GoogleFonts.archivo(
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
@@ -401,8 +459,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
           itemCount: adminReadStudentControllor.StudentDataList.length,
         ),
       );
-    }
-    else if (std == 2) {
+    } else if (std == 2) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
@@ -565,8 +622,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
           itemCount: adminReadStudentControllor.StudentDataList.length,
         ),
       );
-    }
-    else if (std == 3) {
+    } else if (std == 3) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
@@ -729,8 +785,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
           itemCount: adminReadStudentControllor.StudentDataList.length,
         ),
       );
-    }
-    else if (std == 4) {
+    } else if (std == 4) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
@@ -893,8 +948,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
           itemCount: adminReadStudentControllor.StudentDataList.length,
         ),
       );
-    }
-    else if (std == 5) {
+    } else if (std == 5) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
@@ -1057,8 +1111,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
           itemCount: adminReadStudentControllor.StudentDataList.length,
         ),
       );
-    }
-    else if (std == 6) {
+    } else if (std == 6) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
@@ -1221,8 +1274,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
           itemCount: adminReadStudentControllor.StudentDataList.length,
         ),
       );
-    }
-    else if (std == 7) {
+    } else if (std == 7) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
@@ -1385,8 +1437,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
           itemCount: adminReadStudentControllor.StudentDataList.length,
         ),
       );
-    }
-    else if (std == 8) {
+    } else if (std == 8) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
@@ -1549,8 +1600,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
           itemCount: adminReadStudentControllor.StudentDataList.length,
         ),
       );
-    }
-    else if (std == 9) {
+    } else if (std == 9) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
@@ -1713,8 +1763,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
           itemCount: adminReadStudentControllor.StudentDataList.length,
         ),
       );
-    }
-    else if (std == 10) {
+    } else if (std == 10) {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
@@ -1877,8 +1926,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
           itemCount: adminReadStudentControllor.StudentDataList.length,
         ),
       );
-    }
-    else {
+    } else {
       return Expanded(
         child: ListView.builder(
           itemBuilder: (context, index) {
@@ -1887,10 +1935,9 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
               child: InkWell(
                 onTap: () {
                   AdminStudentModel s1 = AdminStudentModel(
-                    image: adminReadStudentControllor
-                        .StudentDataList[index].image,
-                    key: adminReadStudentControllor
-                        .StudentDataList[index].key,
+                    image:
+                        adminReadStudentControllor.StudentDataList[index].image,
+                    key: adminReadStudentControllor.StudentDataList[index].key,
                     email_id: adminReadStudentControllor
                         .StudentDataList[index].email_id,
                     f_name: adminReadStudentControllor
@@ -1905,8 +1952,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                         .StudentDataList[index].total_fees,
                     address: adminReadStudentControllor
                         .StudentDataList[index].address,
-                    std: adminReadStudentControllor
-                        .StudentDataList[index].std,
+                    std: adminReadStudentControllor.StudentDataList[index].std,
                     father_name: adminReadStudentControllor
                         .StudentDataList[index].father_name,
                   );

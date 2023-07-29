@@ -2,6 +2,7 @@ import 'dart:typed_data';
 import 'package:classes_app/Admin/AdminStudent/AdminAddStudent/Model/AdminStudentModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -12,7 +13,7 @@ class AdminShowDetailScreen extends StatefulWidget {
   State<AdminShowDetailScreen> createState() => _AdminShowDetailScreenState();
 }
 
-class _AdminShowDetailScreenState extends State<AdminShowDetailScreen> with SingleTickerProviderStateMixin {
+class _AdminShowDetailScreenState extends State<AdminShowDetailScreen> {
   AdminStudentModel s1 = Get.arguments;
 
   @override
@@ -72,16 +73,17 @@ class _AdminShowDetailScreenState extends State<AdminShowDetailScreen> with Sing
                     SizedBox(height: 10.sp),
                     Text(
                       "${s1.f_name} ${s1.l_name}",
-                      style: TextStyle(
+                      style: GoogleFonts.archivo(
                         color: Colors.white,
-                        // fontWeight: FontWeight.bold,
                         fontSize: 18.sp,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     SizedBox(height: 5.sp),
                     Text(
                       "class :- ${s1.std}",
-                      style: TextStyle(
+                      style: GoogleFonts.archivo(
+                        fontWeight: FontWeight.bold,
                         color: Colors.white,
                         fontSize: 13.sp,
                       ),
@@ -93,12 +95,8 @@ class _AdminShowDetailScreenState extends State<AdminShowDetailScreen> with Sing
                 children: [
                   Center(
                     child: Image.asset(
-                      "Assets/Images/bright.png",
+                      "Assets/Images/bright_op.png",
                       height: 200.sp,
-                      opacity: AnimationController(
-                        vsync: this,
-                        value: 0.2,
-                      ),
                     ),
                   ),
                   Container(
@@ -116,7 +114,8 @@ class _AdminShowDetailScreenState extends State<AdminShowDetailScreen> with Sing
                         children: [
                           Text(
                             "Father Name     :-    ${s1.father_name}",
-                            style: TextStyle(
+                            style: GoogleFonts.archivo(
+                              fontWeight: FontWeight.bold,
                               fontSize: 10.sp,
                             ),
                           ),
@@ -130,7 +129,8 @@ class _AdminShowDetailScreenState extends State<AdminShowDetailScreen> with Sing
                             child: Text(
                               overflow: TextOverflow.ellipsis,
                               "Email Id              :-    ${s1.email_id}",
-                              style: TextStyle(
+                              style: GoogleFonts.archivo(
+                                fontWeight: FontWeight.bold,
                                 fontSize: 10.sp,
                               ),
                             ),
@@ -146,7 +146,8 @@ class _AdminShowDetailScreenState extends State<AdminShowDetailScreen> with Sing
                             children: [
                               Text(
                                 "Mobile No          :-    ${s1.mobile_no}",
-                                style: TextStyle(
+                                style: GoogleFonts.archivo(
+                                  fontWeight: FontWeight.bold,
                                   fontSize: 10.sp,
                                 ),
                               ),
@@ -171,7 +172,8 @@ class _AdminShowDetailScreenState extends State<AdminShowDetailScreen> with Sing
                           SizedBox(height: 5.sp),
                           Text(
                             "Address              :-    ${s1.address}",
-                            style: TextStyle(
+                            style: GoogleFonts.archivo(
+                              fontWeight: FontWeight.bold,
                               fontSize: 10.sp,
                             ),
                           ),
@@ -183,7 +185,8 @@ class _AdminShowDetailScreenState extends State<AdminShowDetailScreen> with Sing
                           SizedBox(height: 5.sp),
                           Text(
                             "Total Fees          :-    ${s1.total_fees}",
-                            style: TextStyle(
+                            style: GoogleFonts.archivo(
+                              fontWeight: FontWeight.bold,
                               fontSize: 10.sp,
                             ),
                           ),
@@ -194,7 +197,8 @@ class _AdminShowDetailScreenState extends State<AdminShowDetailScreen> with Sing
                           SizedBox(height: 5.sp),
                           Text(
                             "Paid Fees           :-    ${s1.paid_fees}",
-                            style: TextStyle(
+                            style: GoogleFonts.archivo(
+                              fontWeight: FontWeight.bold,
                               fontSize: 10.sp,
                             ),
                           ),
@@ -205,7 +209,8 @@ class _AdminShowDetailScreenState extends State<AdminShowDetailScreen> with Sing
                           SizedBox(height: 5.sp),
                           Text(
                             "Less Fees           :-    ${s1.total_fees! - s1.paid_fees!}",
-                            style: TextStyle(
+                            style: GoogleFonts.archivo(
+                              fontWeight: FontWeight.bold,
                               fontSize: 10.sp,
                             ),
                           ),
@@ -247,7 +252,7 @@ class _AdminShowDetailScreenState extends State<AdminShowDetailScreen> with Sing
         ),
         child: Text(
           "Call",
-          style: TextStyle(color: Colors.white),
+          style: GoogleFonts.archivo(color: Colors.white),
         ),
       ),
     );

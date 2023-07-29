@@ -3,6 +3,7 @@ import 'package:classes_app/Admin/AdminHomeWork/ShowHomeWork/Model/HomeWorkModel
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
 class AdminAddHomeWorkScreen extends StatefulWidget {
@@ -89,9 +90,9 @@ class _AdminAddHomeWorkScreenState extends State<AdminAddHomeWorkScreen> {
                         Center(
                           child: Text(
                             "Add Home Work",
-                            style: TextStyle(
+                            style: GoogleFonts.archivo(
                               fontSize: 15.sp,
-                              // fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
                           ),
@@ -107,13 +108,17 @@ class _AdminAddHomeWorkScreenState extends State<AdminAddHomeWorkScreen> {
                         SizedBox(height: 20.sp),
                         Text(
                           "Enter HomeWork Title",
-                          style: TextStyle(
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
                             color: Colors.black,
                             fontSize: 10.sp,
                           ),
                         ),
                         SizedBox(height: 5.sp),
                         TextField(
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                           controller: addHomeWorkControllor.txtTitle,
                           decoration: InputDecoration(
                             hintText: "Ex. abcd",
@@ -134,13 +139,16 @@ class _AdminAddHomeWorkScreenState extends State<AdminAddHomeWorkScreen> {
                         SizedBox(height: 10.sp),
                         Text(
                           "Enter HomeWork Due Date",
-                          style: TextStyle(
+                          style: GoogleFonts.archivo(
                             color: Colors.black,
+                            fontWeight: FontWeight.bold,
                             fontSize: 10.sp,
                           ),
                         ),
                         SizedBox(height: 5.sp),
                         TextField(
+                          style:
+                              GoogleFonts.archivo(fontWeight: FontWeight.bold),
                           controller: addHomeWorkControllor.txtDueData,
                           decoration: InputDecoration(
                             prefixIcon: IconButton(
@@ -186,24 +194,36 @@ class _AdminAddHomeWorkScreenState extends State<AdminAddHomeWorkScreen> {
                               DropdownMenuItem(
                                 child: Text(
                                   "Maths",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 value: "math",
                               ),
                               DropdownMenuItem(
                                 child: Text(
                                   "Social Science",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 value: "social_science",
                               ),
                               DropdownMenuItem(
                                 child: Text(
                                   "Science",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 value: "science",
                               ),
                               DropdownMenuItem(
                                 child: Text(
                                   "English",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 value: "english",
                               ),
@@ -222,60 +242,90 @@ class _AdminAddHomeWorkScreenState extends State<AdminAddHomeWorkScreen> {
                               DropdownMenuItem(
                                 child: Text(
                                   "Std 1",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 value: 1,
                               ),
                               DropdownMenuItem(
                                 child: Text(
                                   "Std 2",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 value: 2,
                               ),
                               DropdownMenuItem(
                                 child: Text(
                                   "Std 3",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 value: 3,
                               ),
                               DropdownMenuItem(
                                 child: Text(
                                   "Std 4",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 value: 4,
                               ),
                               DropdownMenuItem(
                                 child: Text(
                                   "Std 5",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 value: 5,
                               ),
                               DropdownMenuItem(
                                 child: Text(
                                   "Std 6",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 value: 6,
                               ),
                               DropdownMenuItem(
                                 child: Text(
                                   "Std 7",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 value: 7,
                               ),
                               DropdownMenuItem(
                                 child: Text(
                                   "Std 8",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 value: 8,
                               ),
                               DropdownMenuItem(
                                 child: Text(
                                   "Std 9",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 value: 9,
                               ),
                               DropdownMenuItem(
                                 child: Text(
                                   "Std 10",
+                                  style: GoogleFonts.archivo(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 value: 10,
                               ),
@@ -291,7 +341,8 @@ class _AdminAddHomeWorkScreenState extends State<AdminAddHomeWorkScreen> {
                             onTap: () async {
                               if (h1.check == 1) {
                                 HomeWorkModel homeWork = HomeWorkModel(
-                                  dueDate: addHomeWorkControllor.txtDueData.text,
+                                  dueDate:
+                                      addHomeWorkControllor.txtDueData.text,
                                   subject: addHomeWorkControllor.subject.value,
                                   title: addHomeWorkControllor.txtTitle.text,
                                   std: addHomeWorkControllor.std.value,
@@ -309,10 +360,10 @@ class _AdminAddHomeWorkScreenState extends State<AdminAddHomeWorkScreen> {
                                     "",
                                   );
                                 }
-                              }
-                              else {
+                              } else {
                                 HomeWorkModel homeWork = HomeWorkModel(
-                                  dueDate: addHomeWorkControllor.txtDueData.text,
+                                  dueDate:
+                                      addHomeWorkControllor.txtDueData.text,
                                   subject: addHomeWorkControllor.subject.value,
                                   title: addHomeWorkControllor.txtTitle.text,
                                   std: addHomeWorkControllor.std.value,
@@ -332,7 +383,11 @@ class _AdminAddHomeWorkScreenState extends State<AdminAddHomeWorkScreen> {
                                 }
                               }
                             },
-                            child: h1.check == 1?allButton(string: "Update"):allButton(string: "Submit",),
+                            child: h1.check == 1
+                                ? allButton(string: "Update")
+                                : allButton(
+                                    string: "Submit",
+                                  ),
                           ),
                         ),
                       ],

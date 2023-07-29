@@ -4,6 +4,7 @@ import 'package:classes_app/Admin/AdminHomeWork/ShowHomeWork/Model/HomeWorkModel
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
 class AdminShowHomeWorkScreen extends StatefulWidget {
@@ -14,8 +15,7 @@ class AdminShowHomeWorkScreen extends StatefulWidget {
       _AdminShowHomeWorkScreenState();
 }
 
-class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
-    with SingleTickerProviderStateMixin {
+class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen> {
   AddAdminHomeWorkControllor addHomeWorkControllor = Get.put(
     AddAdminHomeWorkControllor(),
   );
@@ -31,6 +31,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
               return Center(
                 child: Text(
                   "${snapshot.error}",
+                  style: GoogleFonts.archivo(),
                 ),
               );
             } else if (snapshot.hasData) {
@@ -92,7 +93,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 children: [
                                   Text(
                                     "Home Work",
-                                    style: TextStyle(
+                                    style: GoogleFonts.archivo(
                                       fontSize: 15.sp,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
@@ -118,66 +119,110 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                     value: 0,
                                     child: Text(
                                       "All",
+                                      style: GoogleFonts.archivo(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                   DropdownMenuItem(
                                     value: 1,
                                     child: Text(
                                       "Std 1",
+                                      style: GoogleFonts.archivo(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                   DropdownMenuItem(
                                     value: 2,
                                     child: Text(
                                       "Std 2",
+                                      style: GoogleFonts.archivo(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                   DropdownMenuItem(
                                     value: 3,
                                     child: Text(
                                       "Std 3",
+                                      style: GoogleFonts.archivo(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                   DropdownMenuItem(
                                     value: 4,
                                     child: Text(
                                       "Std 4",
+                                      style: GoogleFonts.archivo(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                   DropdownMenuItem(
                                     value: 5,
                                     child: Text(
                                       "Std 5",
+                                      style: GoogleFonts.archivo(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                   DropdownMenuItem(
                                     value: 6,
                                     child: Text(
                                       "Std 6",
+                                      style: GoogleFonts.archivo(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                   DropdownMenuItem(
                                     value: 7,
                                     child: Text(
                                       "Std 7",
+                                      style: GoogleFonts.archivo(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                   DropdownMenuItem(
                                     value: 8,
                                     child: Text(
                                       "Std 8",
+                                      style: GoogleFonts.archivo(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                   DropdownMenuItem(
                                     value: 9,
                                     child: Text(
                                       "Std 9",
+                                      style: GoogleFonts.archivo(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                   DropdownMenuItem(
                                     value: 10,
                                     child: Text(
                                       "Std 10",
+                                      style: GoogleFonts.archivo(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -189,7 +234,6 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                           ),
                         ],
                       ),
-
                       Obx(
                         () => homeWork(
                           std: addHomeWorkControllor.checkStd.value,
@@ -266,6 +310,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   "Home Work :- ${addHomeWorkControllor.homeWorkList[index].title}",
+                                  style: GoogleFonts.archivo(),
                                 ),
                               ),
                               SizedBox(height: 5.sp),
@@ -274,6 +319,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   "Due Date :- ${addHomeWorkControllor.homeWorkList[index].dueDate}",
+                                  style: GoogleFonts.archivo(),
                                 ),
                               ),
                               SizedBox(height: 5.sp),
@@ -281,6 +327,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 width: 150.sp,
                                 child: Text(
                                   "Subject :- ${addHomeWorkControllor.homeWorkList[index].subject}",
+                                  style: GoogleFonts.archivo(),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -289,6 +336,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 width: 150.sp,
                                 child: Text(
                                   "Std :- ${addHomeWorkControllor.homeWorkList[index].std}",
+                                  style: GoogleFonts.archivo(),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -388,6 +436,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   "Home Work :- ${addHomeWorkControllor.homeWorkList[index].title}",
+                                  style: GoogleFonts.archivo(),
                                 ),
                               ),
                               SizedBox(height: 5.sp),
@@ -396,6 +445,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   "Due Date :- ${addHomeWorkControllor.homeWorkList[index].dueDate}",
+                                  style: GoogleFonts.archivo(),
                                 ),
                               ),
                               SizedBox(height: 5.sp),
@@ -403,6 +453,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 width: 150.sp,
                                 child: Text(
                                   "Subject :- ${addHomeWorkControllor.homeWorkList[index].subject}",
+                                  style: GoogleFonts.archivo(),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -411,6 +462,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 width: 150.sp,
                                 child: Text(
                                   "Std :- ${addHomeWorkControllor.homeWorkList[index].std}",
+                                  style: GoogleFonts.archivo(),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -510,6 +562,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   "Home Work :- ${addHomeWorkControllor.homeWorkList[index].title}",
+                                  style: GoogleFonts.archivo(),
                                 ),
                               ),
                               SizedBox(height: 5.sp),
@@ -518,6 +571,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   "Due Date :- ${addHomeWorkControllor.homeWorkList[index].dueDate}",
+                                  style: GoogleFonts.archivo(),
                                 ),
                               ),
                               SizedBox(height: 5.sp),
@@ -525,6 +579,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 width: 150.sp,
                                 child: Text(
                                   "Subject :- ${addHomeWorkControllor.homeWorkList[index].subject}",
+                                  style: GoogleFonts.archivo(),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -533,6 +588,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 width: 150.sp,
                                 child: Text(
                                   "Std :- ${addHomeWorkControllor.homeWorkList[index].std}",
+                                  style: GoogleFonts.archivo(),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -632,6 +688,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   "Home Work :- ${addHomeWorkControllor.homeWorkList[index].title}",
+                                  style: GoogleFonts.archivo(),
                                 ),
                               ),
                               SizedBox(height: 5.sp),
@@ -640,6 +697,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   "Due Date :- ${addHomeWorkControllor.homeWorkList[index].dueDate}",
+                                  style: GoogleFonts.archivo(),
                                 ),
                               ),
                               SizedBox(height: 5.sp),
@@ -647,6 +705,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 width: 150.sp,
                                 child: Text(
                                   "Subject :- ${addHomeWorkControllor.homeWorkList[index].subject}",
+                                  style: GoogleFonts.archivo(),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -655,6 +714,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 width: 150.sp,
                                 child: Text(
                                   "Std :- ${addHomeWorkControllor.homeWorkList[index].std}",
+                                  style: GoogleFonts.archivo(),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -754,6 +814,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   "Home Work :- ${addHomeWorkControllor.homeWorkList[index].title}",
+                                  style: GoogleFonts.archivo(),
                                 ),
                               ),
                               SizedBox(height: 5.sp),
@@ -762,6 +823,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   "Due Date :- ${addHomeWorkControllor.homeWorkList[index].dueDate}",
+                                  style: GoogleFonts.archivo(),
                                 ),
                               ),
                               SizedBox(height: 5.sp),
@@ -769,6 +831,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 width: 150.sp,
                                 child: Text(
                                   "Subject :- ${addHomeWorkControllor.homeWorkList[index].subject}",
+                                  style: GoogleFonts.archivo(),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -777,6 +840,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 width: 150.sp,
                                 child: Text(
                                   "Std :- ${addHomeWorkControllor.homeWorkList[index].std}",
+                                  style: GoogleFonts.archivo(),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -876,6 +940,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   "Home Work :- ${addHomeWorkControllor.homeWorkList[index].title}",
+                                  style: GoogleFonts.archivo(),
                                 ),
                               ),
                               SizedBox(height: 5.sp),
@@ -884,6 +949,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   "Due Date :- ${addHomeWorkControllor.homeWorkList[index].dueDate}",
+                                  style: GoogleFonts.archivo(),
                                 ),
                               ),
                               SizedBox(height: 5.sp),
@@ -891,6 +957,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 width: 150.sp,
                                 child: Text(
                                   "Subject :- ${addHomeWorkControllor.homeWorkList[index].subject}",
+                                  style: GoogleFonts.archivo(),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -899,6 +966,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 width: 150.sp,
                                 child: Text(
                                   "Std :- ${addHomeWorkControllor.homeWorkList[index].std}",
+                                  style: GoogleFonts.archivo(),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -998,6 +1066,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   "Home Work :- ${addHomeWorkControllor.homeWorkList[index].title}",
+                                  style: GoogleFonts.archivo(),
                                 ),
                               ),
                               SizedBox(height: 5.sp),
@@ -1006,6 +1075,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   "Due Date :- ${addHomeWorkControllor.homeWorkList[index].dueDate}",
+                                  style: GoogleFonts.archivo(),
                                 ),
                               ),
                               SizedBox(height: 5.sp),
@@ -1013,6 +1083,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 width: 150.sp,
                                 child: Text(
                                   "Subject :- ${addHomeWorkControllor.homeWorkList[index].subject}",
+                                  style: GoogleFonts.archivo(),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -1021,6 +1092,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 width: 150.sp,
                                 child: Text(
                                   "Std :- ${addHomeWorkControllor.homeWorkList[index].std}",
+                                  style: GoogleFonts.archivo(),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -1120,6 +1192,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   "Home Work :- ${addHomeWorkControllor.homeWorkList[index].title}",
+                                  style: GoogleFonts.archivo(),
                                 ),
                               ),
                               SizedBox(height: 5.sp),
@@ -1128,6 +1201,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   "Due Date :- ${addHomeWorkControllor.homeWorkList[index].dueDate}",
+                                  style: GoogleFonts.archivo(),
                                 ),
                               ),
                               SizedBox(height: 5.sp),
@@ -1135,6 +1209,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 width: 150.sp,
                                 child: Text(
                                   "Subject :- ${addHomeWorkControllor.homeWorkList[index].subject}",
+                                  style: GoogleFonts.archivo(),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -1143,6 +1218,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 width: 150.sp,
                                 child: Text(
                                   "Std :- ${addHomeWorkControllor.homeWorkList[index].std}",
+                                  style: GoogleFonts.archivo(),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -1242,6 +1318,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   "Home Work :- ${addHomeWorkControllor.homeWorkList[index].title}",
+                                  style: GoogleFonts.archivo(),
                                 ),
                               ),
                               SizedBox(height: 5.sp),
@@ -1250,6 +1327,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   "Due Date :- ${addHomeWorkControllor.homeWorkList[index].dueDate}",
+                                  style: GoogleFonts.archivo(),
                                 ),
                               ),
                               SizedBox(height: 5.sp),
@@ -1257,6 +1335,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 width: 150.sp,
                                 child: Text(
                                   "Subject :- ${addHomeWorkControllor.homeWorkList[index].subject}",
+                                  style: GoogleFonts.archivo(),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -1265,6 +1344,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 width: 150.sp,
                                 child: Text(
                                   "Std :- ${addHomeWorkControllor.homeWorkList[index].std}",
+                                  style: GoogleFonts.archivo(),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -1364,6 +1444,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   "Home Work :- ${addHomeWorkControllor.homeWorkList[index].title}",
+                                  style: GoogleFonts.archivo(),
                                 ),
                               ),
                               SizedBox(height: 5.sp),
@@ -1372,6 +1453,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   "Due Date :- ${addHomeWorkControllor.homeWorkList[index].dueDate}",
+                                  style: GoogleFonts.archivo(),
                                 ),
                               ),
                               SizedBox(height: 5.sp),
@@ -1379,6 +1461,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 width: 150.sp,
                                 child: Text(
                                   "Subject :- ${addHomeWorkControllor.homeWorkList[index].subject}",
+                                  style: GoogleFonts.archivo(),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -1387,6 +1470,7 @@ class _AdminShowHomeWorkScreenState extends State<AdminShowHomeWorkScreen>
                                 width: 150.sp,
                                 child: Text(
                                   "Std :- ${addHomeWorkControllor.homeWorkList[index].std}",
+                                  style: GoogleFonts.archivo(),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),

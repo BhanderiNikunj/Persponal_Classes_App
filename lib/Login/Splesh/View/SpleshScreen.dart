@@ -52,10 +52,12 @@ class _SpleshScreenState extends State<SpleshScreen> {
             Duration(
               seconds: 3,
             ),
-            () {
+            () async {
 
               if (dataList.isNotEmpty) {
                 if (dataList[0].adminUser == 1) {
+                  String? fcm = await FirebaseHelper.firebaseHelper.findFCMToken();
+                  print(fcm);
                   Get.offAndToNamed('/home');
                 } else {
                   Get.offAndToNamed('/userHome');

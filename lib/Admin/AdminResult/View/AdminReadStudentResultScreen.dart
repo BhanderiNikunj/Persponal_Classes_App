@@ -3,6 +3,7 @@ import 'package:classes_app/Admin/AdminResult/Model/AdminResultModel.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
 class AdminReadStudentResultScreen extends StatefulWidget {
@@ -30,8 +31,50 @@ class _AdminReadStudentResultScreenState
             Padding(
               padding: EdgeInsets.all(8.sp),
               child: Container(
+                height: 80.sp,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.sp),
+                  color: Colors.black12,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      "Assets/Images/bright.png",
+                      height: 50.sp,
+                    ),
+                    SizedBox(width: 10.sp),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Bright",
+                          style: GoogleFonts.archivo(
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                        Text(
+                          "Education Classes",
+                          style: GoogleFonts.archivo(
+                            fontSize: 15  .sp,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(8.sp),
+              child: Container(
                 height: 120.sp,
                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.sp),
                   color: Colors.black12,
                 ),
                 child: Row(
@@ -43,14 +86,14 @@ class _AdminReadStudentResultScreenState
                         children: [
                           Text(
                             "Name :- ${r1.name}",
-                            style: TextStyle(
+                            style: GoogleFonts.archivo(
                               fontWeight: FontWeight.bold,
                               fontSize: 12.sp,
                             ),
                           ),
                           Text(
                             "Std :- ${r1.std}",
-                            style: TextStyle(
+                            style: GoogleFonts.archivo(
                               fontWeight: FontWeight.bold,
                               fontSize: 12.sp,
                             ),

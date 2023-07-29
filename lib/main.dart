@@ -24,6 +24,7 @@ import 'package:classes_app/Utiles/notification.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
 Future<void> main() async {
@@ -59,6 +60,8 @@ Future<void> main() async {
               name: '/addUserDetail',
               page: () => AddUserDetailScreen(),
             ),
+
+
 
 
 
@@ -114,6 +117,14 @@ Future<void> main() async {
 
 
 
+
+
+
+
+
+
+
+
             GetPage(
               name: '/userHome',
               page: () => UserHomeScreen(),
@@ -157,15 +168,10 @@ Widget allButton({
     alignment: Alignment.center,
     child: Text(
       "$string",
-      style: TextStyle(
+      style: GoogleFonts.archivo(
         fontSize: 12.sp,
         color: Colors.white,
       ),
     ),
   );
 }
-
-
-
-
-
