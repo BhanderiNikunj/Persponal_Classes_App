@@ -84,4 +84,43 @@ class FirebaseHelper {
       },
     );
   }
+
+  // Image
+
+  Future<String> insertImage({
+    required String image,
+  }) async {
+    return await firebaseFirestore
+        .collection("image")
+        .add(
+      {
+        "image": "$image",
+      },
+    )
+        .then(
+          (value) => "success",
+    )
+        .catchError(
+          (e) => "$e",
+    );
+  }
+
+  Future<String> deleteImage({
+    required id,
+  }) async {
+    return await firebaseFirestore
+        .collection("image")
+        .doc(id)
+        .delete()
+        .then(
+          (value) => "success",
+    )
+        .catchError(
+          (e) => "$e",
+    );
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> readImage() {
+    return firebaseFirestore.collection("image").snapshots();
+  }
 }

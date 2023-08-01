@@ -34,15 +34,11 @@ Future<void> main() async {
               page: () => AddAllDetailScreen(),
             ),
 
-
-
             // Admin
             GetPage(
               name: '/adminHome',
               page: () => AdminHomeScreen(),
             ),
-
-
 
             // User
             GetPage(
@@ -76,6 +72,41 @@ Widget allButton({
         fontSize: 12.sp,
         color: Colors.white,
       ),
+    ),
+  );
+}
+
+Widget allAppBar({
+  required String text,
+}) {
+  return Container(
+    height: 50.sp,
+    width: double.infinity,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(20.sp),
+          bottomRight: Radius.circular(20.sp)),
+      color: Color(0xffE85720),
+    ),
+    child: Stack(
+      children: [
+        Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "$text",
+                style: GoogleFonts.archivo(
+                  fontSize: 15.sp,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     ),
   );
 }
