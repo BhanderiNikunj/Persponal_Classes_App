@@ -50,7 +50,11 @@ class FirebaseHelper {
   void insertDetail({
     required AddAllDetailModel addAllDetailModel,
   }) {
-    firebaseFirestore.collection("detail").doc(findUid()).collection("data").add({
+    firebaseFirestore
+        .collection("detail")
+        .doc(findUid())
+        .collection("data")
+        .add({
       "f_name": addAllDetailModel.f_name,
       "l_name": addAllDetailModel.l_name,
       "mobile_no": addAllDetailModel.mobile,
@@ -61,6 +65,23 @@ class FirebaseHelper {
   }
 
   Stream<QuerySnapshot<Map<String, dynamic>>> readDetail() {
-    return firebaseFirestore.collection("detail").doc(findUid()).collection("data").snapshots();
+    return firebaseFirestore
+        .collection("detail")
+        .doc(findUid())
+        .collection("data")
+        .snapshots();
+  }
+
+  // Add Student
+
+  void insertStudent() {
+    firebaseFirestore.collection("student").add(
+      {
+        "f_name":"",
+        "l_name":"",
+        "father_name":"",
+        "mobile_no":"",
+      },
+    );
   }
 }

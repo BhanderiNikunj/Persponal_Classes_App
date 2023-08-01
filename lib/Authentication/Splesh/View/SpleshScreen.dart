@@ -61,12 +61,14 @@ class _SpleshScreenState extends State<SpleshScreen> {
                         Get.offAndToNamed('/addDetail');
                       } else {
                         // home
+                        Get.offAndToNamed('/adminHome');
                       }
                     } else {
                       if (spleshController.detailList.isEmpty) {
                         Get.offAndToNamed('/addDetail');
                       } else {
                         // userHome
+                        Get.offAndToNamed('/userHome');
                       }
                     }
                   } else {

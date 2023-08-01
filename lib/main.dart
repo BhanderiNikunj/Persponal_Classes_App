@@ -1,6 +1,8 @@
 import 'package:classes_app/Authentication/AddAllData/View/AddAllDataScreen.dart';
 import 'package:classes_app/Authentication/Splesh/View/SpleshScreen.dart';
 import 'package:classes_app/Authentication/logIn/View/LogInScreen.dart';
+import 'package:classes_app/Screens/Home/Admin/View/AdminHomeScreen.dart';
+import 'package:classes_app/Screens/Home/User/View/UserHomeScreen.dart';
 import 'package:classes_app/Utiles/notification.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +32,22 @@ Future<void> main() async {
             GetPage(
               name: '/addDetail',
               page: () => AddAllDetailScreen(),
+            ),
+
+
+
+            // Admin
+            GetPage(
+              name: '/adminHome',
+              page: () => AdminHomeScreen(),
+            ),
+
+
+
+            // User
+            GetPage(
+              name: '/userHome',
+              page: () => UserHomeScreen(),
             ),
           ],
         );
