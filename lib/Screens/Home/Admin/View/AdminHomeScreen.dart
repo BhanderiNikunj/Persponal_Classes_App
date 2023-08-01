@@ -5,6 +5,7 @@ import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
 class AdminHomeScreen extends StatefulWidget {
@@ -21,7 +22,6 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -32,7 +32,31 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
           color: Colors.white,
           child: Column(
             children: [
-              Text("hello"),
+              InkWell(
+                onTap: () {
+                  Get.toNamed(
+                    '/adminStudentRead',
+                  );
+                },
+                child: ListTile(
+                  leading: Container(
+                    height: 50.sp,
+                    width: 50.sp,
+                    decoration: BoxDecoration(),
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      "Assets/Images/student.png",
+                    ),
+                  ),
+                  title: Text(
+                    "Student",
+                    style: GoogleFonts.archivo(
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -109,7 +133,6 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                 );
               },
             ),
-
           ],
         ),
       ),

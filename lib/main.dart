@@ -3,6 +3,8 @@ import 'package:classes_app/Authentication/Splesh/View/SpleshScreen.dart';
 import 'package:classes_app/Authentication/logIn/View/LogInScreen.dart';
 import 'package:classes_app/Screens/Home/Admin/View/AdminHomeScreen.dart';
 import 'package:classes_app/Screens/Home/User/View/UserHomeScreen.dart';
+import 'package:classes_app/Screens/Student/Admin/View/AdminAddStudentScreen.dart';
+import 'package:classes_app/Screens/Student/Admin/View/AdminReadStudentSreen.dart';
 import 'package:classes_app/Utiles/notification.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -39,6 +41,14 @@ Future<void> main() async {
               name: '/adminHome',
               page: () => AdminHomeScreen(),
             ),
+            GetPage(
+              name: '/adminStudentRead',
+              page: () => AdminReadStudentScreen(),
+            ),
+            GetPage(
+              name: '/adminStudentAdd',
+              page: () => AdminAddStudentScreen(),
+            ),
 
             // User
             GetPage(
@@ -51,6 +61,12 @@ Future<void> main() async {
     ),
   );
 }
+
+/*
+*
+* GoogleFonts.archivo
+*
+* */
 
 Widget allButton({
   required string,
@@ -71,6 +87,7 @@ Widget allButton({
       style: GoogleFonts.archivo(
         fontSize: 12.sp,
         color: Colors.white,
+        fontWeight: FontWeight.bold,
       ),
     ),
   );

@@ -1,6 +1,6 @@
-import 'package:classes_app/Authentication/AddAllData/Model/AddAllDetailModel.dart';
+import 'package:classes_app/Models/AddAllDetailModel.dart';
 import 'package:classes_app/Authentication/logIn/Controller/LogInController.dart';
-import 'package:classes_app/Authentication/logIn/Model/LogInModel.dart';
+import 'package:classes_app/Models/LogInModel.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -171,11 +171,6 @@ class _LogInScreenState extends State<LogInScreen> {
                             else{
                               Get.offAndToNamed('/home');
                             }
-
-                            // Get.snackbar(
-                            //   "Success",
-                            //   "",
-                            // );
                           } else {
                             Get.snackbar(
                               "$msg",

@@ -1,5 +1,6 @@
-import 'package:classes_app/Authentication/AddAllData/Model/AddAllDetailModel.dart';
-import 'package:classes_app/Authentication/logIn/Model/LogInModel.dart';
+import 'package:classes_app/Models/AddAllDetailModel.dart';
+import 'package:classes_app/Models/LogInModel.dart';
+import 'package:classes_app/Models/StudentModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -22,15 +23,15 @@ class FirebaseHelper {
   }) async {
     return await firebaseAuth
         .signInWithEmailAndPassword(
-          email: logInModel.email!,
-          password: logInModel.password!,
-        )
+      email: logInModel.email!,
+      password: logInModel.password!,
+    )
         .then(
           (value) => "success",
-        )
+    )
         .catchError(
           (e) => "$e",
-        );
+    );
   }
 
   bool checkLogin() {
@@ -74,15 +75,78 @@ class FirebaseHelper {
 
   // Add Student
 
-  void insertStudent() {
+  void insertStudent({
+    required StudentModel s1,
+  }) {
     firebaseFirestore.collection("student").add(
       {
-        "f_name":"",
-        "l_name":"",
-        "father_name":"",
-        "mobile_no":"",
+        "f_name": s1.f_name,
+        "l_name": s1.l_name,
+        "father_name": s1.father_name,
+        "mobile_no": s1.mobile_no,
+        "std": s1.std,
       },
     );
+  }
+
+  void updateStudent({
+    required StudentModel s1,
+  }) {
+    firebaseFirestore.collection("student").doc(s1.key).set(
+      {
+        "f_name": s1.f_name,
+        "l_name": s1.l_name,
+        "father_name": s1.father_name,
+        "mobile_no": s1.mobile_no,
+        "std": s1.std,
+      },
+    );
+  }
+
+  void deleteStudent({
+    required StudentModel s1,
+  }) {
+    firebaseFirestore.collection("student").doc(s1.key).delete();
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> readStudent() {
+    return firebaseFirestore.collection("student").snapshots();
+  }
+
+  // Fees
+
+  void insertFees() {
+    firebaseFirestore.collection("fees").add(
+      {
+        "Total Fees": 15000,
+        "Paid Fees": 10000,
+        "Less Fees": 5000,
+        "student_name": "",
+        "uid":"",
+      },
+    );
+  }
+
+  void updateFees() {
+    firebaseFirestore.collection("fees").doc().set(
+      {
+        "Total Fees": 15000,
+        "Paid Fees": 10000,
+        "Less Fees": 5000,
+        "student_name": "",
+        "uid":"",
+      },
+    );
+  }
+
+  void deleteFees({
+    required StudentModel s1,
+  }) {
+    firebaseFirestore.collection("fees").doc(s1.key).delete();
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> readFees() {
+    return firebaseFirestore.collection("fees").snapshots();
   }
 
   // Image

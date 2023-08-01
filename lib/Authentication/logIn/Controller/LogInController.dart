@@ -1,5 +1,5 @@
-import 'package:classes_app/Authentication/AddAllData/Model/AddAllDetailModel.dart';
-import 'package:classes_app/Authentication/logIn/Model/LogInModel.dart';
+import 'package:classes_app/Models/AddAllDetailModel.dart';
+import 'package:classes_app/Models/LogInModel.dart';
 import 'package:classes_app/Utiles/FirebaseHelper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
