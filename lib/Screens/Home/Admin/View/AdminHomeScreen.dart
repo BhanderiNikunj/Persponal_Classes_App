@@ -57,6 +57,32 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                   ),
                 ),
               ),
+              InkWell(
+                onTap: () {
+                  Get.toNamed(
+                    '/adminStudentHomeWorkRead',
+                  );
+                },
+                child: ListTile(
+                  leading: Container(
+                    height: 50.sp,
+                    width: 50.sp,
+                    decoration: BoxDecoration(),
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      "Assets/Images/homeWork.png",
+                      height: 35.sp,
+                    ),
+                  ),
+                  title: Text(
+                    "Home Work",
+                    style: GoogleFonts.archivo(
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),

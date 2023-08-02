@@ -1,21 +1,22 @@
-import 'package:classes_app/Models/StudentModel.dart';
-import 'package:classes_app/Screens/Student/Admin/Controller/StudentController.dart';
+import 'package:classes_app/Models/HomeWorkModel.dart';
+import 'package:classes_app/Screens/HomeWork/Controller/StudentHomeWorkController.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
-class AdminReadStudentScreen extends StatefulWidget {
-  const AdminReadStudentScreen({super.key});
+class AdminReadStudentHomeWork extends StatefulWidget {
+  const AdminReadStudentHomeWork({super.key});
 
   @override
-  State<AdminReadStudentScreen> createState() => _AdminReadStudentScreenState();
+  State<AdminReadStudentHomeWork> createState() =>
+      _AdminReadStudentHomeWorkState();
 }
 
-class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
-  StudentController studentController = Get.put(
-    StudentController(),
+class _AdminReadStudentHomeWorkState extends State<AdminReadStudentHomeWork> {
+  StudentHomeWorkController studentHomeWorkController = Get.put(
+    StudentHomeWorkController(),
   );
 
   @override
@@ -27,7 +28,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
             Stack(
               children: [
                 allAppBar(
-                  text: "Student Detail",
+                  text: "Home Work",
                 ),
                 Container(
                   height: 50.sp,
@@ -50,7 +51,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                   width: 150,
                   child: DropdownButton(
                     isExpanded: true,
-                    value: studentController.std!.value,
+                    value: studentHomeWorkController.std.value,
                     items: [
                       DropdownMenuItem(
                         value: 0,
@@ -153,7 +154,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                       ),
                     ],
                     onChanged: (value) {
-                      studentController.std!.value = value!;
+                      studentHomeWorkController.std.value = value!;
                       setState(() {});
                     },
                   ),
@@ -161,7 +162,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
               ],
             ),
             StreamBuilder(
-              stream: studentController.readStudent(),
+              stream: studentHomeWorkController.readStudentHomeWork(),
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
                   return Center(
@@ -170,25 +171,27 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                     ),
                   );
                 } else if (snapshot.hasData) {
-                  studentController.studentList.clear();
+                  studentHomeWorkController.studentHomeWorkList.clear();
                   for (var x in snapshot.data!.docs) {
-                    StudentModel s1 = StudentModel(
-                      f_name: x['f_name'],
-                      std: x['std'],
-                      father_name: x['father_name'],
-                      l_name: x['l_name'],
+                    HomeWorkModel h1 = HomeWorkModel(
+                      title: x['title'],
+                      dueDate: x['dueDate'],
                       key: x.id,
-                      mobile_no: x['mobile_no'],
+                      subject: x['subject'],
+                      std: x['std'],
                     );
 
-                    studentController.studentList.add(s1);
+                    studentHomeWorkController.studentHomeWorkList.add(h1);
                   }
                   return Expanded(
                     child: ListView.builder(
-                      itemCount: studentController.studentList.length,
+                      itemCount:
+                          studentHomeWorkController.studentHomeWorkList.length,
                       itemBuilder: (context, index) {
-                        if (studentController.std == 1) {
-                          return studentController.studentList[index].std != 1
+                        if (studentHomeWorkController.std == 1) {
+                          return studentHomeWorkController
+                                      .studentHomeWorkList[index].std !=
+                                  1
                               ? Container()
                               : Padding(
                                   padding: EdgeInsets.all(10.sp),
@@ -216,7 +219,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                "name :- ${studentController.studentList[index].f_name} ${studentController.studentList[index].l_name}",
+                                                "Title :- ${studentHomeWorkController.studentHomeWorkList[index].title}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 15.sp,
                                                   fontWeight: FontWeight.bold,
@@ -224,7 +227,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Father Name :- ${studentController.studentList[index].father_name}",
+                                                "Subject :- ${studentHomeWorkController.studentHomeWorkList[index].subject}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -232,7 +235,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Mobile No :- ${studentController.studentList[index].mobile_no}",
+                                                "Due Date :- ${studentHomeWorkController.studentHomeWorkList[index].dueDate}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -240,7 +243,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Std :- ${studentController.studentList[index].std}",
+                                                "Std :- ${studentHomeWorkController.studentHomeWorkList[index].std}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -257,28 +260,37 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                           children: [
                                             IconButton(
                                               onPressed: () {
-                                                StudentModel s1 = StudentModel(
-                                                  mobile_no: studentController
-                                                      .studentList[index]
-                                                      .mobile_no,
-                                                  l_name: studentController
-                                                      .studentList[index]
-                                                      .l_name,
-                                                  father_name: studentController
-                                                      .studentList[index]
-                                                      .father_name,
-                                                  std: studentController
-                                                      .studentList[index].std,
-                                                  f_name: studentController
-                                                      .studentList[index]
-                                                      .f_name,
-                                                  checkUpdate: 1,
-                                                  key: studentController
-                                                      .studentList[index].key,
+                                                HomeWorkModel h1 =
+                                                    HomeWorkModel(
+                                                  subject:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .subject,
+                                                  std: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .std,
+                                                  dueDate:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .dueDate,
+                                                  title:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .title,
+                                                  key: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .key,
+                                                  check: 1,
                                                 );
+
                                                 Get.toNamed(
-                                                  '/adminStudentAdd',
-                                                  arguments: s1,
+                                                  '/adminStudentHomeWorkAdd',
+                                                  arguments: h1,
                                                 );
                                               },
                                               icon: Icon(
@@ -288,13 +300,16 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                             SizedBox(height: 10.sp),
                                             IconButton(
                                               onPressed: () {
-                                                StudentModel s1 = StudentModel(
-                                                  key: studentController
-                                                      .studentList[index].key,
+                                                HomeWorkModel h1 =
+                                                    HomeWorkModel(
+                                                  key: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .key,
                                                 );
-                                                studentController.deleteStudent(
-                                                  s1: s1,
-                                                );
+                                                studentHomeWorkController
+                                                    .deleteStudentHomeWork(
+                                                        h1: h1);
                                               },
                                               icon: Icon(
                                                 Icons.delete,
@@ -306,8 +321,10 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                     ),
                                   ),
                                 );
-                        } else if (studentController.std == 2) {
-                          return studentController.studentList[index].std != 2
+                        } else if (studentHomeWorkController.std == 2) {
+                          return studentHomeWorkController
+                                      .studentHomeWorkList[index].std !=
+                                  2
                               ? Container()
                               : Padding(
                                   padding: EdgeInsets.all(10.sp),
@@ -338,7 +355,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  "name :- ${studentController.studentList[index].f_name} ${studentController.studentList[index].l_name}",
+                                                  "Title :- ${studentHomeWorkController.studentHomeWorkList[index].title}",
                                                   style: GoogleFonts.archivo(
                                                     fontSize: 15.sp,
                                                     fontWeight: FontWeight.bold,
@@ -346,7 +363,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                                 ),
                                                 SizedBox(height: 10.sp),
                                                 Text(
-                                                  "Father Name :- ${studentController.studentList[index].father_name}",
+                                                  "Subject :- ${studentHomeWorkController.studentHomeWorkList[index].subject}",
                                                   style: GoogleFonts.archivo(
                                                     fontSize: 12.sp,
                                                     fontWeight: FontWeight.w600,
@@ -354,7 +371,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                                 ),
                                                 SizedBox(height: 10.sp),
                                                 Text(
-                                                  "Mobile No :- ${studentController.studentList[index].mobile_no}",
+                                                  "Due Date :- ${studentHomeWorkController.studentHomeWorkList[index].dueDate}",
                                                   style: GoogleFonts.archivo(
                                                     fontSize: 12.sp,
                                                     fontWeight: FontWeight.w600,
@@ -362,7 +379,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                                 ),
                                                 SizedBox(height: 10.sp),
                                                 Text(
-                                                  "Std :- ${studentController.studentList[index].std}",
+                                                  "Std :- ${studentHomeWorkController.studentHomeWorkList[index].std}",
                                                   style: GoogleFonts.archivo(
                                                     fontSize: 12.sp,
                                                     fontWeight: FontWeight.w600,
@@ -379,46 +396,14 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             IconButton(
-                                              onPressed: () {
-                                                StudentModel s1 = StudentModel(
-                                                  mobile_no: studentController
-                                                      .studentList[index]
-                                                      .mobile_no,
-                                                  l_name: studentController
-                                                      .studentList[index]
-                                                      .l_name,
-                                                  father_name: studentController
-                                                      .studentList[index]
-                                                      .father_name,
-                                                  std: studentController
-                                                      .studentList[index].std,
-                                                  f_name: studentController
-                                                      .studentList[index]
-                                                      .f_name,
-                                                  checkUpdate: 1,
-                                                  key: studentController
-                                                      .studentList[index].key,
-                                                );
-                                                Get.toNamed(
-                                                  '/adminStudentAdd',
-                                                  arguments: s1,
-                                                );
-                                              },
+                                              onPressed: () {},
                                               icon: Icon(
                                                 Icons.edit,
                                               ),
                                             ),
                                             SizedBox(height: 10.sp),
                                             IconButton(
-                                              onPressed: () {
-                                                StudentModel s1 = StudentModel(
-                                                  key: studentController
-                                                      .studentList[index].key,
-                                                );
-                                                studentController.deleteStudent(
-                                                  s1: s1,
-                                                );
-                                              },
+                                              onPressed: () {},
                                               icon: Icon(
                                                 Icons.delete,
                                               ),
@@ -429,8 +414,10 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                     ),
                                   ),
                                 );
-                        } else if (studentController.std == 3) {
-                          return studentController.studentList[index].std != 3
+                        } else if (studentHomeWorkController.std == 3) {
+                          return studentHomeWorkController
+                                      .studentHomeWorkList[index].std !=
+                                  3
                               ? Container()
                               : Padding(
                                   padding: EdgeInsets.all(10.sp),
@@ -458,7 +445,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                "name :- ${studentController.studentList[index].f_name} ${studentController.studentList[index].l_name}",
+                                                "Title :- ${studentHomeWorkController.studentHomeWorkList[index].title}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 15.sp,
                                                   fontWeight: FontWeight.bold,
@@ -466,7 +453,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Father Name :- ${studentController.studentList[index].father_name}",
+                                                "Subject :- ${studentHomeWorkController.studentHomeWorkList[index].subject}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -474,7 +461,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Mobile No :- ${studentController.studentList[index].mobile_no}",
+                                                "Due Date :- ${studentHomeWorkController.studentHomeWorkList[index].dueDate}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -482,7 +469,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Std :- ${studentController.studentList[index].std}",
+                                                "Std :- ${studentHomeWorkController.studentHomeWorkList[index].std}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -498,46 +485,14 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             IconButton(
-                                              onPressed: () {
-                                                StudentModel s1 = StudentModel(
-                                                  mobile_no: studentController
-                                                      .studentList[index]
-                                                      .mobile_no,
-                                                  l_name: studentController
-                                                      .studentList[index]
-                                                      .l_name,
-                                                  father_name: studentController
-                                                      .studentList[index]
-                                                      .father_name,
-                                                  std: studentController
-                                                      .studentList[index].std,
-                                                  f_name: studentController
-                                                      .studentList[index]
-                                                      .f_name,
-                                                  checkUpdate: 1,
-                                                  key: studentController
-                                                      .studentList[index].key,
-                                                );
-                                                Get.toNamed(
-                                                  '/adminStudentAdd',
-                                                  arguments: s1,
-                                                );
-                                              },
+                                              onPressed: () {},
                                               icon: Icon(
                                                 Icons.edit,
                                               ),
                                             ),
                                             SizedBox(height: 10.sp),
                                             IconButton(
-                                              onPressed: () {
-                                                StudentModel s1 = StudentModel(
-                                                  key: studentController
-                                                      .studentList[index].key,
-                                                );
-                                                studentController.deleteStudent(
-                                                  s1: s1,
-                                                );
-                                              },
+                                              onPressed: () {},
                                               icon: Icon(
                                                 Icons.delete,
                                               ),
@@ -548,8 +503,10 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                     ),
                                   ),
                                 );
-                        } else if (studentController.std == 4) {
-                          return studentController.studentList[index].std != 4
+                        } else if (studentHomeWorkController.std == 4) {
+                          return studentHomeWorkController
+                                      .studentHomeWorkList[index].std !=
+                                  4
                               ? Container()
                               : Padding(
                                   padding: EdgeInsets.all(10.sp),
@@ -577,7 +534,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                "name :- ${studentController.studentList[index].f_name} ${studentController.studentList[index].l_name}",
+                                                "Title :- ${studentHomeWorkController.studentHomeWorkList[index].title}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 15.sp,
                                                   fontWeight: FontWeight.bold,
@@ -585,7 +542,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Father Name :- ${studentController.studentList[index].father_name}",
+                                                "Subject :- ${studentHomeWorkController.studentHomeWorkList[index].subject}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -593,7 +550,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Mobile No :- ${studentController.studentList[index].mobile_no}",
+                                                "Due Date :- ${studentHomeWorkController.studentHomeWorkList[index].dueDate}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -601,7 +558,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Std :- ${studentController.studentList[index].std}",
+                                                "Std :- ${studentHomeWorkController.studentHomeWorkList[index].std}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -617,46 +574,14 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             IconButton(
-                                              onPressed: () {
-                                                StudentModel s1 = StudentModel(
-                                                  mobile_no: studentController
-                                                      .studentList[index]
-                                                      .mobile_no,
-                                                  l_name: studentController
-                                                      .studentList[index]
-                                                      .l_name,
-                                                  father_name: studentController
-                                                      .studentList[index]
-                                                      .father_name,
-                                                  std: studentController
-                                                      .studentList[index].std,
-                                                  f_name: studentController
-                                                      .studentList[index]
-                                                      .f_name,
-                                                  checkUpdate: 1,
-                                                  key: studentController
-                                                      .studentList[index].key,
-                                                );
-                                                Get.toNamed(
-                                                  '/adminStudentAdd',
-                                                  arguments: s1,
-                                                );
-                                              },
+                                              onPressed: () {},
                                               icon: Icon(
                                                 Icons.edit,
                                               ),
                                             ),
                                             SizedBox(height: 10.sp),
                                             IconButton(
-                                              onPressed: () {
-                                                StudentModel s1 = StudentModel(
-                                                  key: studentController
-                                                      .studentList[index].key,
-                                                );
-                                                studentController.deleteStudent(
-                                                  s1: s1,
-                                                );
-                                              },
+                                              onPressed: () {},
                                               icon: Icon(
                                                 Icons.delete,
                                               ),
@@ -667,8 +592,10 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                     ),
                                   ),
                                 );
-                        } else if (studentController.std == 5) {
-                          return studentController.studentList[index].std != 5
+                        } else if (studentHomeWorkController.std == 5) {
+                          return studentHomeWorkController
+                                      .studentHomeWorkList[index].std !=
+                                  5
                               ? Container()
                               : Padding(
                                   padding: EdgeInsets.all(10.sp),
@@ -696,7 +623,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                "name :- ${studentController.studentList[index].f_name} ${studentController.studentList[index].l_name}",
+                                                "Title :- ${studentHomeWorkController.studentHomeWorkList[index].title}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 15.sp,
                                                   fontWeight: FontWeight.bold,
@@ -704,7 +631,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Father Name :- ${studentController.studentList[index].father_name}",
+                                                "Subject :- ${studentHomeWorkController.studentHomeWorkList[index].subject}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -712,7 +639,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Mobile No :- ${studentController.studentList[index].mobile_no}",
+                                                "Due Date :- ${studentHomeWorkController.studentHomeWorkList[index].dueDate}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -720,7 +647,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Std :- ${studentController.studentList[index].std}",
+                                                "Std :- ${studentHomeWorkController.studentHomeWorkList[index].std}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -736,46 +663,14 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             IconButton(
-                                              onPressed: () {
-                                                StudentModel s1 = StudentModel(
-                                                  mobile_no: studentController
-                                                      .studentList[index]
-                                                      .mobile_no,
-                                                  l_name: studentController
-                                                      .studentList[index]
-                                                      .l_name,
-                                                  father_name: studentController
-                                                      .studentList[index]
-                                                      .father_name,
-                                                  std: studentController
-                                                      .studentList[index].std,
-                                                  f_name: studentController
-                                                      .studentList[index]
-                                                      .f_name,
-                                                  checkUpdate: 1,
-                                                  key: studentController
-                                                      .studentList[index].key,
-                                                );
-                                                Get.toNamed(
-                                                  '/adminStudentAdd',
-                                                  arguments: s1,
-                                                );
-                                              },
+                                              onPressed: () {},
                                               icon: Icon(
                                                 Icons.edit,
                                               ),
                                             ),
                                             SizedBox(height: 10.sp),
                                             IconButton(
-                                              onPressed: () {
-                                                StudentModel s1 = StudentModel(
-                                                  key: studentController
-                                                      .studentList[index].key,
-                                                );
-                                                studentController.deleteStudent(
-                                                  s1: s1,
-                                                );
-                                              },
+                                              onPressed: () {},
                                               icon: Icon(
                                                 Icons.delete,
                                               ),
@@ -786,8 +681,10 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                     ),
                                   ),
                                 );
-                        } else if (studentController.std == 6) {
-                          return studentController.studentList[index].std != 6
+                        } else if (studentHomeWorkController.std == 6) {
+                          return studentHomeWorkController
+                                      .studentHomeWorkList[index].std !=
+                                  6
                               ? Container()
                               : Padding(
                                   padding: EdgeInsets.all(10.sp),
@@ -815,7 +712,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                "name :- ${studentController.studentList[index].f_name} ${studentController.studentList[index].l_name}",
+                                                "Title :- ${studentHomeWorkController.studentHomeWorkList[index].title}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 15.sp,
                                                   fontWeight: FontWeight.bold,
@@ -823,7 +720,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Father Name :- ${studentController.studentList[index].father_name}",
+                                                "Subject :- ${studentHomeWorkController.studentHomeWorkList[index].subject}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -831,7 +728,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Mobile No :- ${studentController.studentList[index].mobile_no}",
+                                                "Due Date :- ${studentHomeWorkController.studentHomeWorkList[index].dueDate}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -839,7 +736,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Std :- ${studentController.studentList[index].std}",
+                                                "Std :- ${studentHomeWorkController.studentHomeWorkList[index].std}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -855,46 +752,14 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             IconButton(
-                                              onPressed: () {
-                                                StudentModel s1 = StudentModel(
-                                                  mobile_no: studentController
-                                                      .studentList[index]
-                                                      .mobile_no,
-                                                  l_name: studentController
-                                                      .studentList[index]
-                                                      .l_name,
-                                                  father_name: studentController
-                                                      .studentList[index]
-                                                      .father_name,
-                                                  std: studentController
-                                                      .studentList[index].std,
-                                                  f_name: studentController
-                                                      .studentList[index]
-                                                      .f_name,
-                                                  checkUpdate: 1,
-                                                  key: studentController
-                                                      .studentList[index].key,
-                                                );
-                                                Get.toNamed(
-                                                  '/adminStudentAdd',
-                                                  arguments: s1,
-                                                );
-                                              },
+                                              onPressed: () {},
                                               icon: Icon(
                                                 Icons.edit,
                                               ),
                                             ),
                                             SizedBox(height: 10.sp),
                                             IconButton(
-                                              onPressed: () {
-                                                StudentModel s1 = StudentModel(
-                                                  key: studentController
-                                                      .studentList[index].key,
-                                                );
-                                                studentController.deleteStudent(
-                                                  s1: s1,
-                                                );
-                                              },
+                                              onPressed: () {},
                                               icon: Icon(
                                                 Icons.delete,
                                               ),
@@ -905,8 +770,10 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                     ),
                                   ),
                                 );
-                        } else if (studentController.std == 7) {
-                          return studentController.studentList[index].std != 7
+                        } else if (studentHomeWorkController.std == 7) {
+                          return studentHomeWorkController
+                                      .studentHomeWorkList[index].std !=
+                                  7
                               ? Container()
                               : Padding(
                                   padding: EdgeInsets.all(10.sp),
@@ -934,7 +801,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                "name :- ${studentController.studentList[index].f_name} ${studentController.studentList[index].l_name}",
+                                                "Title :- ${studentHomeWorkController.studentHomeWorkList[index].title}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 15.sp,
                                                   fontWeight: FontWeight.bold,
@@ -942,7 +809,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Father Name :- ${studentController.studentList[index].father_name}",
+                                                "Subject :- ${studentHomeWorkController.studentHomeWorkList[index].subject}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -950,7 +817,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Mobile No :- ${studentController.studentList[index].mobile_no}",
+                                                "Due Date :- ${studentHomeWorkController.studentHomeWorkList[index].dueDate}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -958,7 +825,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Std :- ${studentController.studentList[index].std}",
+                                                "Std :- ${studentHomeWorkController.studentHomeWorkList[index].std}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -974,46 +841,14 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             IconButton(
-                                              onPressed: () {
-                                                StudentModel s1 = StudentModel(
-                                                  mobile_no: studentController
-                                                      .studentList[index]
-                                                      .mobile_no,
-                                                  l_name: studentController
-                                                      .studentList[index]
-                                                      .l_name,
-                                                  father_name: studentController
-                                                      .studentList[index]
-                                                      .father_name,
-                                                  std: studentController
-                                                      .studentList[index].std,
-                                                  f_name: studentController
-                                                      .studentList[index]
-                                                      .f_name,
-                                                  checkUpdate: 1,
-                                                  key: studentController
-                                                      .studentList[index].key,
-                                                );
-                                                Get.toNamed(
-                                                  '/adminStudentAdd',
-                                                  arguments: s1,
-                                                );
-                                              },
+                                              onPressed: () {},
                                               icon: Icon(
                                                 Icons.edit,
                                               ),
                                             ),
                                             SizedBox(height: 10.sp),
                                             IconButton(
-                                              onPressed: () {
-                                                StudentModel s1 = StudentModel(
-                                                  key: studentController
-                                                      .studentList[index].key,
-                                                );
-                                                studentController.deleteStudent(
-                                                  s1: s1,
-                                                );
-                                              },
+                                              onPressed: () {},
                                               icon: Icon(
                                                 Icons.delete,
                                               ),
@@ -1024,8 +859,10 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                     ),
                                   ),
                                 );
-                        } else if (studentController.std == 8) {
-                          return studentController.studentList[index].std != 8
+                        } else if (studentHomeWorkController.std == 8) {
+                          return studentHomeWorkController
+                                      .studentHomeWorkList[index].std !=
+                                  8
                               ? Container()
                               : Padding(
                                   padding: EdgeInsets.all(10.sp),
@@ -1053,7 +890,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                "name :- ${studentController.studentList[index].f_name} ${studentController.studentList[index].l_name}",
+                                                "Title :- ${studentHomeWorkController.studentHomeWorkList[index].title}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 15.sp,
                                                   fontWeight: FontWeight.bold,
@@ -1061,7 +898,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Father Name :- ${studentController.studentList[index].father_name}",
+                                                "Subject :- ${studentHomeWorkController.studentHomeWorkList[index].subject}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -1069,7 +906,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Mobile No :- ${studentController.studentList[index].mobile_no}",
+                                                "Due Date :- ${studentHomeWorkController.studentHomeWorkList[index].dueDate}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -1077,7 +914,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Std :- ${studentController.studentList[index].std}",
+                                                "Std :- ${studentHomeWorkController.studentHomeWorkList[index].std}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -1093,46 +930,14 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             IconButton(
-                                              onPressed: () {
-                                                StudentModel s1 = StudentModel(
-                                                  mobile_no: studentController
-                                                      .studentList[index]
-                                                      .mobile_no,
-                                                  l_name: studentController
-                                                      .studentList[index]
-                                                      .l_name,
-                                                  father_name: studentController
-                                                      .studentList[index]
-                                                      .father_name,
-                                                  std: studentController
-                                                      .studentList[index].std,
-                                                  f_name: studentController
-                                                      .studentList[index]
-                                                      .f_name,
-                                                  checkUpdate: 1,
-                                                  key: studentController
-                                                      .studentList[index].key,
-                                                );
-                                                Get.toNamed(
-                                                  '/adminStudentAdd',
-                                                  arguments: s1,
-                                                );
-                                              },
+                                              onPressed: () {},
                                               icon: Icon(
                                                 Icons.edit,
                                               ),
                                             ),
                                             SizedBox(height: 10.sp),
                                             IconButton(
-                                              onPressed: () {
-                                                StudentModel s1 = StudentModel(
-                                                  key: studentController
-                                                      .studentList[index].key,
-                                                );
-                                                studentController.deleteStudent(
-                                                  s1: s1,
-                                                );
-                                              },
+                                              onPressed: () {},
                                               icon: Icon(
                                                 Icons.delete,
                                               ),
@@ -1143,8 +948,10 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                     ),
                                   ),
                                 );
-                        } else if (studentController.std == 9) {
-                          return studentController.studentList[index].std != 9
+                        } else if (studentHomeWorkController.std == 9) {
+                          return studentHomeWorkController
+                                      .studentHomeWorkList[index].std !=
+                                  9
                               ? Container()
                               : Padding(
                                   padding: EdgeInsets.all(10.sp),
@@ -1172,7 +979,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                "name :- ${studentController.studentList[index].f_name} ${studentController.studentList[index].l_name}",
+                                                "Title :- ${studentHomeWorkController.studentHomeWorkList[index].title}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 15.sp,
                                                   fontWeight: FontWeight.bold,
@@ -1180,7 +987,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Father Name :- ${studentController.studentList[index].father_name}",
+                                                "Subject :- ${studentHomeWorkController.studentHomeWorkList[index].subject}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -1188,7 +995,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Mobile No :- ${studentController.studentList[index].mobile_no}",
+                                                "Due Date :- ${studentHomeWorkController.studentHomeWorkList[index].dueDate}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -1196,7 +1003,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Std :- ${studentController.studentList[index].std}",
+                                                "Std :- ${studentHomeWorkController.studentHomeWorkList[index].std}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -1212,46 +1019,14 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             IconButton(
-                                              onPressed: () {
-                                                StudentModel s1 = StudentModel(
-                                                  mobile_no: studentController
-                                                      .studentList[index]
-                                                      .mobile_no,
-                                                  l_name: studentController
-                                                      .studentList[index]
-                                                      .l_name,
-                                                  father_name: studentController
-                                                      .studentList[index]
-                                                      .father_name,
-                                                  std: studentController
-                                                      .studentList[index].std,
-                                                  f_name: studentController
-                                                      .studentList[index]
-                                                      .f_name,
-                                                  checkUpdate: 1,
-                                                  key: studentController
-                                                      .studentList[index].key,
-                                                );
-                                                Get.toNamed(
-                                                  '/adminStudentAdd',
-                                                  arguments: s1,
-                                                );
-                                              },
+                                              onPressed: () {},
                                               icon: Icon(
                                                 Icons.edit,
                                               ),
                                             ),
                                             SizedBox(height: 10.sp),
                                             IconButton(
-                                              onPressed: () {
-                                                StudentModel s1 = StudentModel(
-                                                  key: studentController
-                                                      .studentList[index].key,
-                                                );
-                                                studentController.deleteStudent(
-                                                  s1: s1,
-                                                );
-                                              },
+                                              onPressed: () {},
                                               icon: Icon(
                                                 Icons.delete,
                                               ),
@@ -1262,8 +1037,10 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                     ),
                                   ),
                                 );
-                        } else if (studentController.std == 10) {
-                          return studentController.studentList[index].std != 10
+                        } else if (studentHomeWorkController.std == 10) {
+                          return studentHomeWorkController
+                                      .studentHomeWorkList[index].std !=
+                                  10
                               ? Container()
                               : Padding(
                                   padding: EdgeInsets.all(10.sp),
@@ -1291,7 +1068,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                "name :- ${studentController.studentList[index].f_name} ${studentController.studentList[index].l_name}",
+                                                "Title :- ${studentHomeWorkController.studentHomeWorkList[index].title}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 15.sp,
                                                   fontWeight: FontWeight.bold,
@@ -1299,7 +1076,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Father Name :- ${studentController.studentList[index].father_name}",
+                                                "Subject :- ${studentHomeWorkController.studentHomeWorkList[index].subject}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -1307,7 +1084,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Mobile No :- ${studentController.studentList[index].mobile_no}",
+                                                "Due Date :- ${studentHomeWorkController.studentHomeWorkList[index].dueDate}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -1315,7 +1092,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               ),
                                               SizedBox(height: 10.sp),
                                               Text(
-                                                "Std :- ${studentController.studentList[index].std}",
+                                                "Std :- ${studentHomeWorkController.studentHomeWorkList[index].std}",
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w600,
@@ -1331,46 +1108,14 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             IconButton(
-                                              onPressed: () {
-                                                StudentModel s1 = StudentModel(
-                                                  mobile_no: studentController
-                                                      .studentList[index]
-                                                      .mobile_no,
-                                                  l_name: studentController
-                                                      .studentList[index]
-                                                      .l_name,
-                                                  father_name: studentController
-                                                      .studentList[index]
-                                                      .father_name,
-                                                  std: studentController
-                                                      .studentList[index].std,
-                                                  f_name: studentController
-                                                      .studentList[index]
-                                                      .f_name,
-                                                  checkUpdate: 1,
-                                                  key: studentController
-                                                      .studentList[index].key,
-                                                );
-                                                Get.toNamed(
-                                                  '/adminStudentAdd',
-                                                  arguments: s1,
-                                                );
-                                              },
+                                              onPressed: () {},
                                               icon: Icon(
                                                 Icons.edit,
                                               ),
                                             ),
                                             SizedBox(height: 10.sp),
                                             IconButton(
-                                              onPressed: () {
-                                                StudentModel s1 = StudentModel(
-                                                  key: studentController
-                                                      .studentList[index].key,
-                                                );
-                                                studentController.deleteStudent(
-                                                  s1: s1,
-                                                );
-                                              },
+                                              onPressed: () {},
                                               icon: Icon(
                                                 Icons.delete,
                                               ),
@@ -1407,7 +1152,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          "name :- ${studentController.studentList[index].f_name} ${studentController.studentList[index].l_name}",
+                                          "Title :- ${studentHomeWorkController.studentHomeWorkList[index].title}",
                                           style: GoogleFonts.archivo(
                                             fontSize: 15.sp,
                                             fontWeight: FontWeight.bold,
@@ -1415,7 +1160,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                         ),
                                         SizedBox(height: 10.sp),
                                         Text(
-                                          "Father Name :- ${studentController.studentList[index].father_name}",
+                                          "Subject :- ${studentHomeWorkController.studentHomeWorkList[index].subject}",
                                           style: GoogleFonts.archivo(
                                             fontSize: 12.sp,
                                             fontWeight: FontWeight.w600,
@@ -1423,7 +1168,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                         ),
                                         SizedBox(height: 10.sp),
                                         Text(
-                                          "Mobile No :- ${studentController.studentList[index].mobile_no}",
+                                          "Due Date :- ${studentHomeWorkController.studentHomeWorkList[index].dueDate}",
                                           style: GoogleFonts.archivo(
                                             fontSize: 12.sp,
                                             fontWeight: FontWeight.w600,
@@ -1431,7 +1176,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                         ),
                                         SizedBox(height: 10.sp),
                                         Text(
-                                          "Std :- ${studentController.studentList[index].std}",
+                                          "Std :- ${studentHomeWorkController.studentHomeWorkList[index].std}",
                                           style: GoogleFonts.archivo(
                                             fontSize: 12.sp,
                                             fontWeight: FontWeight.w600,
@@ -1446,42 +1191,14 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                                         CrossAxisAlignment.center,
                                     children: [
                                       IconButton(
-                                        onPressed: () {
-                                          StudentModel s1 = StudentModel(
-                                            mobile_no: studentController
-                                                .studentList[index].mobile_no,
-                                            l_name: studentController
-                                                .studentList[index].l_name,
-                                            father_name: studentController
-                                                .studentList[index].father_name,
-                                            std: studentController
-                                                .studentList[index].std,
-                                            f_name: studentController
-                                                .studentList[index].f_name,
-                                            checkUpdate: 1,
-                                            key: studentController
-                                                .studentList[index].key,
-                                          );
-                                          Get.toNamed(
-                                            '/adminStudentAdd',
-                                            arguments: s1,
-                                          );
-                                        },
+                                        onPressed: () {},
                                         icon: Icon(
                                           Icons.edit,
                                         ),
                                       ),
                                       SizedBox(height: 10.sp),
                                       IconButton(
-                                        onPressed: () {
-                                          StudentModel s1 = StudentModel(
-                                            key: studentController
-                                                .studentList[index].key,
-                                          );
-                                          studentController.deleteStudent(
-                                            s1: s1,
-                                          );
-                                        },
+                                        onPressed: () {},
                                         icon: Icon(
                                           Icons.delete,
                                         ),
@@ -1496,6 +1213,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                       },
                     ),
                   );
+                  // return Text("${studentHomeWorkController.studentHomeWorkList.length}");
                 }
                 return Center(
                   child: CircularProgressIndicator(),
@@ -1506,12 +1224,13 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            StudentModel s1 = StudentModel(
-              checkUpdate: 0,
+            HomeWorkModel h1 = HomeWorkModel(
+              check: 0,
             );
+
             Get.toNamed(
-              '/adminStudentAdd',
-              arguments: s1,
+              '/adminStudentHomeWorkAdd',
+              arguments: h1,
             );
           },
           backgroundColor: Color(0xff2660A6),

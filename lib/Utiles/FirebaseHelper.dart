@@ -1,4 +1,5 @@
 import 'package:classes_app/Models/AddAllDetailModel.dart';
+import 'package:classes_app/Models/HomeWorkModel.dart';
 import 'package:classes_app/Models/LogInModel.dart';
 import 'package:classes_app/Models/StudentModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -23,15 +24,15 @@ class FirebaseHelper {
   }) async {
     return await firebaseAuth
         .signInWithEmailAndPassword(
-      email: logInModel.email!,
-      password: logInModel.password!,
-    )
+          email: logInModel.email!,
+          password: logInModel.password!,
+        )
         .then(
           (value) => "success",
-    )
+        )
         .catchError(
           (e) => "$e",
-    );
+        );
   }
 
   bool checkLogin() {
@@ -113,6 +114,44 @@ class FirebaseHelper {
     return firebaseFirestore.collection("student").snapshots();
   }
 
+  // HomeWork
+
+  void insertHomeWork({
+    required HomeWorkModel h1,
+  }) {
+    firebaseFirestore.collection("homeWork").add(
+      {
+        "title": h1.title,
+        "subject": h1.subject,
+        "dueDate": h1.dueDate,
+        "std": h1.std,
+      },
+    );
+  }
+
+  void updateHomeWork({
+    required HomeWorkModel h1,
+  }) {
+    firebaseFirestore.collection("homeWork").doc(h1.key).set(
+      {
+        "title": h1.title,
+        "subject": h1.subject,
+        "dueDate": h1.dueDate,
+        "std": h1.std,
+      },
+    );
+  }
+
+  void deleteHomeWork({
+    required HomeWorkModel h1,
+  }) {
+    firebaseFirestore.collection("homeWork").doc(h1.key).delete();
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> readHomeWork() {
+    return firebaseFirestore.collection("homeWork").snapshots();
+  }
+
   // Fees
 
   void insertFees() {
@@ -122,7 +161,7 @@ class FirebaseHelper {
         "Paid Fees": 10000,
         "Less Fees": 5000,
         "student_name": "",
-        "uid":"",
+        "uid": "",
       },
     );
   }
@@ -134,7 +173,7 @@ class FirebaseHelper {
         "Paid Fees": 10000,
         "Less Fees": 5000,
         "student_name": "",
-        "uid":"",
+        "uid": "",
       },
     );
   }
@@ -157,16 +196,16 @@ class FirebaseHelper {
     return await firebaseFirestore
         .collection("image")
         .add(
-      {
-        "image": "$image",
-      },
-    )
+          {
+            "image": "$image",
+          },
+        )
         .then(
           (value) => "success",
-    )
+        )
         .catchError(
           (e) => "$e",
-    );
+        );
   }
 
   Future<String> deleteImage({
@@ -178,10 +217,10 @@ class FirebaseHelper {
         .delete()
         .then(
           (value) => "success",
-    )
+        )
         .catchError(
           (e) => "$e",
-    );
+        );
   }
 
   Stream<QuerySnapshot<Map<String, dynamic>>> readImage() {

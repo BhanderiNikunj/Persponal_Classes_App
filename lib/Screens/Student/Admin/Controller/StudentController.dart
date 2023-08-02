@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 class StudentController extends GetxController {
   List<StudentModel> studentList = [];
+  RxInt? std = 1.obs;
 
   // Add Data
 

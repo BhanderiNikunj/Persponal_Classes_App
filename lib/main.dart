@@ -3,6 +3,8 @@ import 'package:classes_app/Authentication/Splesh/View/SpleshScreen.dart';
 import 'package:classes_app/Authentication/logIn/View/LogInScreen.dart';
 import 'package:classes_app/Screens/Home/Admin/View/AdminHomeScreen.dart';
 import 'package:classes_app/Screens/Home/User/View/UserHomeScreen.dart';
+import 'package:classes_app/Screens/HomeWork/Admin/View/AdminAddStudentHomeWork.dart';
+import 'package:classes_app/Screens/HomeWork/Admin/View/AdminReadStudentHomeWork.dart';
 import 'package:classes_app/Screens/Student/Admin/View/AdminAddStudentScreen.dart';
 import 'package:classes_app/Screens/Student/Admin/View/AdminReadStudentSreen.dart';
 import 'package:classes_app/Utiles/notification.dart';
@@ -48,6 +50,14 @@ Future<void> main() async {
             GetPage(
               name: '/adminStudentAdd',
               page: () => AdminAddStudentScreen(),
+            ),
+            GetPage(
+              name: '/adminStudentHomeWorkRead',
+              page: () => AdminReadStudentHomeWork(),
+            ),
+            GetPage(
+              name: '/adminStudentHomeWorkAdd',
+              page: () => AdminAddStudentHomeWork(),
             ),
 
             // User
