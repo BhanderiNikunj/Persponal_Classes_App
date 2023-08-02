@@ -307,9 +307,13 @@ class _AdminReadStudentHomeWorkState extends State<AdminReadStudentHomeWork> {
                                                           index]
                                                       .key,
                                                 );
+                                                print(studentHomeWorkController
+                                                    .studentHomeWorkList[index]
+                                                    .key);
                                                 studentHomeWorkController
                                                     .deleteStudentHomeWork(
-                                                        h1: h1);
+                                                  h1: h1,
+                                                );
                                               },
                                               icon: Icon(
                                                 Icons.delete,
@@ -396,14 +400,62 @@ class _AdminReadStudentHomeWorkState extends State<AdminReadStudentHomeWork> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                HomeWorkModel h1 =
+                                                    HomeWorkModel(
+                                                  subject:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .subject,
+                                                  std: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .std,
+                                                  dueDate:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .dueDate,
+                                                  title:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .title,
+                                                  key: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .key,
+                                                  check: 1,
+                                                );
+
+                                                Get.toNamed(
+                                                  '/adminStudentHomeWorkAdd',
+                                                  arguments: h1,
+                                                );
+                                              },
                                               icon: Icon(
                                                 Icons.edit,
                                               ),
                                             ),
                                             SizedBox(height: 10.sp),
                                             IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                HomeWorkModel h1 =
+                                                    HomeWorkModel(
+                                                  key: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .key,
+                                                );
+                                                print(studentHomeWorkController
+                                                    .studentHomeWorkList[index]
+                                                    .key);
+                                                studentHomeWorkController
+                                                    .deleteStudentHomeWork(
+                                                  h1: h1,
+                                                );
+                                              },
                                               icon: Icon(
                                                 Icons.delete,
                                               ),
@@ -485,14 +537,62 @@ class _AdminReadStudentHomeWorkState extends State<AdminReadStudentHomeWork> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                HomeWorkModel h1 =
+                                                    HomeWorkModel(
+                                                  subject:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .subject,
+                                                  std: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .std,
+                                                  dueDate:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .dueDate,
+                                                  title:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .title,
+                                                  key: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .key,
+                                                  check: 1,
+                                                );
+
+                                                Get.toNamed(
+                                                  '/adminStudentHomeWorkAdd',
+                                                  arguments: h1,
+                                                );
+                                              },
                                               icon: Icon(
                                                 Icons.edit,
                                               ),
                                             ),
                                             SizedBox(height: 10.sp),
                                             IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                HomeWorkModel h1 =
+                                                    HomeWorkModel(
+                                                  key: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .key,
+                                                );
+                                                print(studentHomeWorkController
+                                                    .studentHomeWorkList[index]
+                                                    .key);
+                                                studentHomeWorkController
+                                                    .deleteStudentHomeWork(
+                                                  h1: h1,
+                                                );
+                                              },
                                               icon: Icon(
                                                 Icons.delete,
                                               ),
@@ -574,14 +674,62 @@ class _AdminReadStudentHomeWorkState extends State<AdminReadStudentHomeWork> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                HomeWorkModel h1 =
+                                                    HomeWorkModel(
+                                                  subject:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .subject,
+                                                  std: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .std,
+                                                  dueDate:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .dueDate,
+                                                  title:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .title,
+                                                  key: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .key,
+                                                  check: 1,
+                                                );
+
+                                                Get.toNamed(
+                                                  '/adminStudentHomeWorkAdd',
+                                                  arguments: h1,
+                                                );
+                                              },
                                               icon: Icon(
                                                 Icons.edit,
                                               ),
                                             ),
                                             SizedBox(height: 10.sp),
                                             IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                HomeWorkModel h1 =
+                                                    HomeWorkModel(
+                                                  key: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .key,
+                                                );
+                                                print(studentHomeWorkController
+                                                    .studentHomeWorkList[index]
+                                                    .key);
+                                                studentHomeWorkController
+                                                    .deleteStudentHomeWork(
+                                                  h1: h1,
+                                                );
+                                              },
                                               icon: Icon(
                                                 Icons.delete,
                                               ),
@@ -663,14 +811,62 @@ class _AdminReadStudentHomeWorkState extends State<AdminReadStudentHomeWork> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                HomeWorkModel h1 =
+                                                    HomeWorkModel(
+                                                  subject:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .subject,
+                                                  std: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .std,
+                                                  dueDate:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .dueDate,
+                                                  title:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .title,
+                                                  key: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .key,
+                                                  check: 1,
+                                                );
+
+                                                Get.toNamed(
+                                                  '/adminStudentHomeWorkAdd',
+                                                  arguments: h1,
+                                                );
+                                              },
                                               icon: Icon(
                                                 Icons.edit,
                                               ),
                                             ),
                                             SizedBox(height: 10.sp),
                                             IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                HomeWorkModel h1 =
+                                                    HomeWorkModel(
+                                                  key: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .key,
+                                                );
+                                                print(studentHomeWorkController
+                                                    .studentHomeWorkList[index]
+                                                    .key);
+                                                studentHomeWorkController
+                                                    .deleteStudentHomeWork(
+                                                  h1: h1,
+                                                );
+                                              },
                                               icon: Icon(
                                                 Icons.delete,
                                               ),
@@ -752,14 +948,62 @@ class _AdminReadStudentHomeWorkState extends State<AdminReadStudentHomeWork> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                HomeWorkModel h1 =
+                                                    HomeWorkModel(
+                                                  subject:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .subject,
+                                                  std: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .std,
+                                                  dueDate:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .dueDate,
+                                                  title:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .title,
+                                                  key: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .key,
+                                                  check: 1,
+                                                );
+
+                                                Get.toNamed(
+                                                  '/adminStudentHomeWorkAdd',
+                                                  arguments: h1,
+                                                );
+                                              },
                                               icon: Icon(
                                                 Icons.edit,
                                               ),
                                             ),
                                             SizedBox(height: 10.sp),
                                             IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                HomeWorkModel h1 =
+                                                    HomeWorkModel(
+                                                  key: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .key,
+                                                );
+                                                print(studentHomeWorkController
+                                                    .studentHomeWorkList[index]
+                                                    .key);
+                                                studentHomeWorkController
+                                                    .deleteStudentHomeWork(
+                                                  h1: h1,
+                                                );
+                                              },
                                               icon: Icon(
                                                 Icons.delete,
                                               ),
@@ -841,14 +1085,62 @@ class _AdminReadStudentHomeWorkState extends State<AdminReadStudentHomeWork> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                HomeWorkModel h1 =
+                                                    HomeWorkModel(
+                                                  subject:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .subject,
+                                                  std: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .std,
+                                                  dueDate:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .dueDate,
+                                                  title:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .title,
+                                                  key: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .key,
+                                                  check: 1,
+                                                );
+
+                                                Get.toNamed(
+                                                  '/adminStudentHomeWorkAdd',
+                                                  arguments: h1,
+                                                );
+                                              },
                                               icon: Icon(
                                                 Icons.edit,
                                               ),
                                             ),
                                             SizedBox(height: 10.sp),
                                             IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                HomeWorkModel h1 =
+                                                    HomeWorkModel(
+                                                  key: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .key,
+                                                );
+                                                print(studentHomeWorkController
+                                                    .studentHomeWorkList[index]
+                                                    .key);
+                                                studentHomeWorkController
+                                                    .deleteStudentHomeWork(
+                                                  h1: h1,
+                                                );
+                                              },
                                               icon: Icon(
                                                 Icons.delete,
                                               ),
@@ -930,14 +1222,62 @@ class _AdminReadStudentHomeWorkState extends State<AdminReadStudentHomeWork> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                HomeWorkModel h1 =
+                                                    HomeWorkModel(
+                                                  subject:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .subject,
+                                                  std: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .std,
+                                                  dueDate:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .dueDate,
+                                                  title:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .title,
+                                                  key: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .key,
+                                                  check: 1,
+                                                );
+
+                                                Get.toNamed(
+                                                  '/adminStudentHomeWorkAdd',
+                                                  arguments: h1,
+                                                );
+                                              },
                                               icon: Icon(
                                                 Icons.edit,
                                               ),
                                             ),
                                             SizedBox(height: 10.sp),
                                             IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                HomeWorkModel h1 =
+                                                    HomeWorkModel(
+                                                  key: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .key,
+                                                );
+                                                print(studentHomeWorkController
+                                                    .studentHomeWorkList[index]
+                                                    .key);
+                                                studentHomeWorkController
+                                                    .deleteStudentHomeWork(
+                                                  h1: h1,
+                                                );
+                                              },
                                               icon: Icon(
                                                 Icons.delete,
                                               ),
@@ -1019,14 +1359,62 @@ class _AdminReadStudentHomeWorkState extends State<AdminReadStudentHomeWork> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                HomeWorkModel h1 =
+                                                    HomeWorkModel(
+                                                  subject:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .subject,
+                                                  std: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .std,
+                                                  dueDate:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .dueDate,
+                                                  title:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .title,
+                                                  key: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .key,
+                                                  check: 1,
+                                                );
+
+                                                Get.toNamed(
+                                                  '/adminStudentHomeWorkAdd',
+                                                  arguments: h1,
+                                                );
+                                              },
                                               icon: Icon(
                                                 Icons.edit,
                                               ),
                                             ),
                                             SizedBox(height: 10.sp),
                                             IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                HomeWorkModel h1 =
+                                                    HomeWorkModel(
+                                                  key: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .key,
+                                                );
+                                                print(studentHomeWorkController
+                                                    .studentHomeWorkList[index]
+                                                    .key);
+                                                studentHomeWorkController
+                                                    .deleteStudentHomeWork(
+                                                  h1: h1,
+                                                );
+                                              },
                                               icon: Icon(
                                                 Icons.delete,
                                               ),
@@ -1108,14 +1496,59 @@ class _AdminReadStudentHomeWorkState extends State<AdminReadStudentHomeWork> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                HomeWorkModel h1 =
+                                                    HomeWorkModel(
+                                                  subject:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .subject,
+                                                  std: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .std,
+                                                  dueDate:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .dueDate,
+                                                  title:
+                                                      studentHomeWorkController
+                                                          .studentHomeWorkList[
+                                                              index]
+                                                          .title,
+                                                  key: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .key,
+                                                  check: 1,
+                                                );
+
+                                                Get.toNamed(
+                                                  '/adminStudentHomeWorkAdd',
+                                                  arguments: h1,
+                                                );
+                                              },
                                               icon: Icon(
                                                 Icons.edit,
                                               ),
                                             ),
                                             SizedBox(height: 10.sp),
                                             IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                HomeWorkModel h1 =
+                                                    HomeWorkModel(
+                                                  key: studentHomeWorkController
+                                                      .studentHomeWorkList[
+                                                          index]
+                                                      .key,
+                                                );
+                                                studentHomeWorkController
+                                                    .deleteStudentHomeWork(
+                                                  h1: h1,
+                                                );
+                                              },
                                               icon: Icon(
                                                 Icons.delete,
                                               ),
@@ -1191,14 +1624,45 @@ class _AdminReadStudentHomeWorkState extends State<AdminReadStudentHomeWork> {
                                         CrossAxisAlignment.center,
                                     children: [
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          HomeWorkModel h1 = HomeWorkModel(
+                                            subject: studentHomeWorkController
+                                                .studentHomeWorkList[index]
+                                                .subject,
+                                            std: studentHomeWorkController
+                                                .studentHomeWorkList[index].std,
+                                            dueDate: studentHomeWorkController
+                                                .studentHomeWorkList[index]
+                                                .dueDate,
+                                            title: studentHomeWorkController
+                                                .studentHomeWorkList[index]
+                                                .title,
+                                            key: studentHomeWorkController
+                                                .studentHomeWorkList[index].key,
+                                            check: 1,
+                                          );
+
+                                          Get.toNamed(
+                                            '/adminStudentHomeWorkAdd',
+                                            arguments: h1,
+                                          );
+                                        },
                                         icon: Icon(
                                           Icons.edit,
                                         ),
                                       ),
                                       SizedBox(height: 10.sp),
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          HomeWorkModel h1 = HomeWorkModel(
+                                            key: studentHomeWorkController
+                                                .studentHomeWorkList[index].key,
+                                          );
+                                          studentHomeWorkController
+                                              .deleteStudentHomeWork(
+                                            h1: h1,
+                                          );
+                                        },
                                         icon: Icon(
                                           Icons.delete,
                                         ),
@@ -1213,7 +1677,6 @@ class _AdminReadStudentHomeWorkState extends State<AdminReadStudentHomeWork> {
                       },
                     ),
                   );
-                  // return Text("${studentHomeWorkController.studentHomeWorkList.length}");
                 }
                 return Center(
                   child: CircularProgressIndicator(),

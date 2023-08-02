@@ -5,6 +5,8 @@ import 'package:classes_app/Screens/Home/Admin/View/AdminHomeScreen.dart';
 import 'package:classes_app/Screens/Home/User/View/UserHomeScreen.dart';
 import 'package:classes_app/Screens/HomeWork/Admin/View/AdminAddStudentHomeWork.dart';
 import 'package:classes_app/Screens/HomeWork/Admin/View/AdminReadStudentHomeWork.dart';
+import 'package:classes_app/Screens/Leave/View/AdminUserLeaveAddScreen.dart';
+import 'package:classes_app/Screens/Leave/View/AdminUserLeaveReadScreen.dart';
 import 'package:classes_app/Screens/Student/Admin/View/AdminAddStudentScreen.dart';
 import 'package:classes_app/Screens/Student/Admin/View/AdminReadStudentSreen.dart';
 import 'package:classes_app/Utiles/notification.dart';
@@ -58,6 +60,14 @@ Future<void> main() async {
             GetPage(
               name: '/adminStudentHomeWorkAdd',
               page: () => AdminAddStudentHomeWork(),
+            ),
+            GetPage(
+              name: '/leaveRead',
+              page: () => AdminUserLeaveReadScreen(),
+            ),
+            GetPage(
+              name: '/leaveAdd',
+              page: () => AdminUserLeaveAddScreen(),
             ),
 
             // User

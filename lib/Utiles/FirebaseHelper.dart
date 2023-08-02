@@ -145,6 +145,7 @@ class FirebaseHelper {
   void deleteHomeWork({
     required HomeWorkModel h1,
   }) {
+    print(h1.key);
     firebaseFirestore.collection("homeWork").doc(h1.key).delete();
   }
 
@@ -154,39 +155,39 @@ class FirebaseHelper {
 
   // Fees
 
-  void insertFees() {
-    firebaseFirestore.collection("fees").add(
-      {
-        "Total Fees": 15000,
-        "Paid Fees": 10000,
-        "Less Fees": 5000,
-        "student_name": "",
-        "uid": "",
-      },
-    );
-  }
-
-  void updateFees() {
-    firebaseFirestore.collection("fees").doc().set(
-      {
-        "Total Fees": 15000,
-        "Paid Fees": 10000,
-        "Less Fees": 5000,
-        "student_name": "",
-        "uid": "",
-      },
-    );
-  }
-
-  void deleteFees({
-    required StudentModel s1,
-  }) {
-    firebaseFirestore.collection("fees").doc(s1.key).delete();
-  }
-
-  Stream<QuerySnapshot<Map<String, dynamic>>> readFees() {
-    return firebaseFirestore.collection("fees").snapshots();
-  }
+  // void insertFees() {
+  //   firebaseFirestore.collection("fees").add(
+  //     {
+  //       "Total Fees": 15000,
+  //       "Paid Fees": 10000,
+  //       "Less Fees": 5000,
+  //       "student_name": "",
+  //       "uid": "",
+  //     },
+  //   );
+  // }
+  //
+  // void updateFees() {
+  //   firebaseFirestore.collection("fees").doc().set(
+  //     {
+  //       "Total Fees": 15000,
+  //       "Paid Fees": 10000,
+  //       "Less Fees": 5000,
+  //       "student_name": "",
+  //       "uid": "",
+  //     },
+  //   );
+  // }
+  //
+  // void deleteFees({
+  //   required StudentModel s1,
+  // }) {
+  //   firebaseFirestore.collection("fees").doc(s1.key).delete();
+  // }
+  //
+  // Stream<QuerySnapshot<Map<String, dynamic>>> readFees() {
+  //   return firebaseFirestore.collection("fees").snapshots();
+  // }
 
   // Image
 
@@ -225,5 +226,37 @@ class FirebaseHelper {
 
   Stream<QuerySnapshot<Map<String, dynamic>>> readImage() {
     return firebaseFirestore.collection("image").snapshots();
+  }
+
+  // Leave
+
+  void insertLeave() {
+    firebaseFirestore.collection("leave").add(
+      {
+        "name": "nikunj bhanderi",
+        "detail": "-",
+        "date_form": "",
+        "date_to": "",
+      },
+    );
+  }
+
+  void updateLeave() {
+    firebaseFirestore.collection("leave").doc().set(
+      {
+        "name": "nikunj bhanderi",
+        "detail": "-",
+        "date_form": "",
+        "date_to": "",
+      },
+    );
+  }
+
+  void deleteLeave() {
+    firebaseFirestore.collection("leave").doc().delete();
+  }
+
+  Stream<DocumentSnapshot<Map<String, dynamic>>> readLeave() {
+    return firebaseFirestore.collection("leave").doc().snapshots();
   }
 }
