@@ -1,6 +1,8 @@
 import 'package:classes_app/Models/AddAllDetailModel.dart';
 import 'package:classes_app/Models/HomeWorkModel.dart';
+import 'package:classes_app/Models/LeaveModel.dart';
 import 'package:classes_app/Models/LogInModel.dart';
+import 'package:classes_app/Models/MassageModel.dart';
 import 'package:classes_app/Models/StudentModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -230,33 +232,77 @@ class FirebaseHelper {
 
   // Leave
 
-  void insertLeave() {
+  void insertLeave({
+    required LeaveModel l1,
+  }) {
     firebaseFirestore.collection("leave").add(
       {
-        "name": "nikunj bhanderi",
-        "detail": "-",
-        "date_form": "",
-        "date_to": "",
+        "name": l1.name,
+        "detail": l1.detail,
+        "date_form": l1.date_form,
+        "date_to": l1.date_to,
+        "std": l1.std,
       },
     );
   }
 
-  void updateLeave() {
-    firebaseFirestore.collection("leave").doc().set(
+  void updateLeave({
+    required LeaveModel l1,
+  }) {
+    firebaseFirestore.collection("leave").doc(l1.key).set(
       {
-        "name": "nikunj bhanderi",
-        "detail": "-",
-        "date_form": "",
-        "date_to": "",
+        "name": l1.name,
+        "detail": l1.detail,
+        "date_form": l1.date_form,
+        "date_to": l1.date_to,
+        "std": l1.std,
       },
     );
   }
 
-  void deleteLeave() {
-    firebaseFirestore.collection("leave").doc().delete();
+  void deleteLeave({
+    required LeaveModel l1,
+  }) {
+    firebaseFirestore.collection("leave").doc(l1.key).delete();
   }
 
-  Stream<DocumentSnapshot<Map<String, dynamic>>> readLeave() {
-    return firebaseFirestore.collection("leave").doc().snapshots();
+  Stream<QuerySnapshot<Map<String, dynamic>>> readLeave() {
+    return firebaseFirestore.collection("leave").snapshots();
+  }
+
+  // Massage
+
+  void insertMassage({
+    required MassageModel m1,
+  }) {
+    firebaseFirestore.collection("massage").add(
+      {
+        "title": m1.title,
+        "date": m1.date,
+        "time": m1.time,
+      },
+    );
+  }
+
+  void updateMassage({
+    required MassageModel m1,
+  }) {
+    firebaseFirestore.collection("massage").doc(m1.key).set(
+      {
+        "title": m1.title,
+        "date": m1.date,
+        "time": m1.time,
+      },
+    );
+  }
+
+  void deleteMassage({
+    required MassageModel m1,
+  }) {
+    firebaseFirestore.collection("massage").doc(m1.key).delete();
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> readMassage() {
+    return firebaseFirestore.collection("massage").snapshots();
   }
 }

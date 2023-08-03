@@ -55,8 +55,7 @@ class _SpleshScreenState extends State<SpleshScreen> {
                   seconds: 3,
                 ),
                 () {
-                  if (spleshController.checkLogin())
-                  {
+                  if (spleshController.checkLogin()) {
                     if (spleshController.detailList[0].adminUser == 1) {
                       if (spleshController.detailList.isEmpty) {
                         Get.offAndToNamed('/addDetail');
@@ -64,8 +63,7 @@ class _SpleshScreenState extends State<SpleshScreen> {
                         // home
                         Get.offAndToNamed('/adminHome');
                       }
-                    }
-                    else {
+                    } else {
                       if (spleshController.detailList.isEmpty) {
                         Get.offAndToNamed('/addDetail');
                       } else {
@@ -73,8 +71,7 @@ class _SpleshScreenState extends State<SpleshScreen> {
                         Get.offAndToNamed('/userHome');
                       }
                     }
-                  }
-                  else {
+                  } else {
                     Get.offAndToNamed('/login');
                   }
                 },

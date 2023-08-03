@@ -34,7 +34,7 @@ class _AdminReadStudentHomeWorkState extends State<AdminReadStudentHomeWork> {
                   height: 50.sp,
                   child: IconButton(
                     onPressed: () {
-                      Get.back();
+                      Get.offAndToNamed('/adminHome');
                     },
                     icon: Icon(
                       Icons.arrow_back,

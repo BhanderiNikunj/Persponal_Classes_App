@@ -96,12 +96,38 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                     decoration: BoxDecoration(),
                     alignment: Alignment.center,
                     child: Image.asset(
-                      "Assets/Images/homeWork.png",
+                      "Assets/Images/leave.png",
+                      height: 30.sp,
+                    ),
+                  ),
+                  title: Text(
+                    "Leave",
+                    style: GoogleFonts.archivo(
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Get.toNamed(
+                    '/adminMessageRead',
+                  );
+                },
+                child: ListTile(
+                  leading: Container(
+                    height: 50.sp,
+                    width: 50.sp,
+                    decoration: BoxDecoration(),
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      "Assets/Images/announcement.png",
                       height: 35.sp,
                     ),
                   ),
                   title: Text(
-                    "Home Work",
+                    "Announcement",
                     style: GoogleFonts.archivo(
                       fontSize: 15.sp,
                       fontWeight: FontWeight.bold,

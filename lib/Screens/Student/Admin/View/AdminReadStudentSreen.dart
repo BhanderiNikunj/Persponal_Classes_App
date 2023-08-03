@@ -33,7 +33,7 @@ class _AdminReadStudentScreenState extends State<AdminReadStudentScreen> {
                   height: 50.sp,
                   child: IconButton(
                     onPressed: () {
-                      Get.back();
+                      Get.offAndToNamed('/adminHome');
                     },
                     icon: Icon(
                       Icons.arrow_back,
