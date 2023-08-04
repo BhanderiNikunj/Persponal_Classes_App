@@ -162,39 +162,39 @@ class FirebaseHelper {
 
   // Fees
 
-  // void insertFees() {
-  //   firebaseFirestore.collection("fees").add(
-  //     {
-  //       "Total Fees": 15000,
-  //       "Paid Fees": 10000,
-  //       "Less Fees": 5000,
-  //       "student_name": "",
-  //       "uid": "",
-  //     },
-  //   );
-  // }
-  //
-  // void updateFees() {
-  //   firebaseFirestore.collection("fees").doc().set(
-  //     {
-  //       "Total Fees": 15000,
-  //       "Paid Fees": 10000,
-  //       "Less Fees": 5000,
-  //       "student_name": "",
-  //       "uid": "",
-  //     },
-  //   );
-  // }
-  //
-  // void deleteFees({
-  //   required StudentModel s1,
-  // }) {
-  //   firebaseFirestore.collection("fees").doc(s1.key).delete();
-  // }
-  //
-  // Stream<QuerySnapshot<Map<String, dynamic>>> readFees() {
-  //   return firebaseFirestore.collection("fees").snapshots();
-  // }
+  void insertFees() {
+    firebaseFirestore.collection("detail").add(
+      {
+        "total_fees": 15000,
+        "paid_fees": 10000,
+        "less_fees": 5000,
+        "student_name": "",
+        "uid": "",
+      },
+    );
+  }
+
+  void updateFees() {
+    firebaseFirestore.collection("fees").doc().set(
+      {
+        "Total Fees": 15000,
+        "Paid Fees": 10000,
+        "Less Fees": 5000,
+        "student_name": "",
+        "uid": "",
+      },
+    );
+  }
+
+  void deleteFees({
+    required StudentModel s1,
+  }) {
+    firebaseFirestore.collection("fees").doc(s1.key).delete();
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> readFees() {
+    return firebaseFirestore.collection("fees").snapshots();
+  }
 
   // Image
 
