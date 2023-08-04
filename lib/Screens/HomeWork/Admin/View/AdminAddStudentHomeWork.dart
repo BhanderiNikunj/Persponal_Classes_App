@@ -34,6 +34,8 @@ class _AdminAddStudentHomeWorkState extends State<AdminAddStudentHomeWork> {
       studentHomeWorkController.subject = "${homeWorkModel.subject}";
       studentHomeWorkController.std.value = homeWorkModel.std!;
     }
+
+    studentHomeWorkController.std.value = 1;
   }
 
   @override

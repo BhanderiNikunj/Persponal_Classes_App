@@ -5,12 +5,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 class HomeControllor extends GetxController {
-
   List<ImageModel> imageList = [];
 
   CarouselController buttonCarouselController = CarouselController();
 
   Stream<QuerySnapshot<Map<String, dynamic>>> readImage() {
     return FirebaseHelper.firebaseHelper.readImage();
+  }
+
+  void signOut() {
+    FirebaseHelper.firebaseHelper.signOut();
+    Get.offAndToNamed('/logIn');
   }
 }

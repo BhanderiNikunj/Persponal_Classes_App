@@ -32,6 +32,16 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
           color: Colors.white,
           child: Column(
             children: [
+              SizedBox(
+                height: 30.sp,
+              ),
+              Image.asset(
+                "Assets/Images/bright.png",
+                height: 100.sp,
+              ),
+              SizedBox(
+                height: 40.sp,
+              ),
               InkWell(
                 onTap: () {
                   Get.toNamed(
@@ -128,6 +138,82 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                   ),
                   title: Text(
                     "Announcement",
+                    style: GoogleFonts.archivo(
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Get.toNamed(
+                    '/adminImageRead',
+                  );
+                },
+                child: ListTile(
+                  leading: Container(
+                    height: 50.sp,
+                    width: 50.sp,
+                    decoration: BoxDecoration(),
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      "Assets/Images/image.png",
+                      height: 30.sp,
+                    ),
+                  ),
+                  title: Text(
+                    "Image Add",
+                    style: GoogleFonts.archivo(
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Get.toNamed(
+                    '/adminImageRead',
+                  );
+                },
+                child: ListTile(
+                  leading: Container(
+                    height: 50.sp,
+                    width: 50.sp,
+                    decoration: BoxDecoration(),
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      "Assets/Images/fees.png",
+                      height: 35.sp,
+                    ),
+                  ),
+                  title: Text(
+                    "Fees",
+                    style: GoogleFonts.archivo(
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  homeControllor.signOut();
+                },
+                child: ListTile(
+                  leading: Container(
+                    height: 50.sp,
+                    width: 50.sp,
+                    decoration: BoxDecoration(),
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      "Assets/Images/logOut.png",
+                      height: 40.sp,
+                    ),
+                  ),
+                  title: Text(
+                    "Log Out",
                     style: GoogleFonts.archivo(
                       fontSize: 15.sp,
                       fontWeight: FontWeight.bold,

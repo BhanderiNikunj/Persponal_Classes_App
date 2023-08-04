@@ -5,6 +5,7 @@ import 'package:classes_app/Screens/Home/Admin/View/AdminHomeScreen.dart';
 import 'package:classes_app/Screens/Home/User/View/UserHomeScreen.dart';
 import 'package:classes_app/Screens/HomeWork/Admin/View/AdminAddStudentHomeWork.dart';
 import 'package:classes_app/Screens/HomeWork/Admin/View/AdminReadStudentHomeWork.dart';
+import 'package:classes_app/Screens/Image/View/AdminImageReadScreen.dart';
 import 'package:classes_app/Screens/Leave/View/AdminUserLeaveAddScreen.dart';
 import 'package:classes_app/Screens/Leave/View/AdminUserLeaveReadScreen.dart';
 import 'package:classes_app/Screens/Message/Admin/View/AdminMessageReadScreen.dart';
@@ -27,6 +28,8 @@ Future<void> main() async {
     Sizer(
       builder: (context, orientation, deviceType) {
         return GetMaterialApp(
+
+          // initialRoute: '/adminImageRead',
           getPages: [
             GetPage(
               name: '/',
@@ -73,6 +76,10 @@ Future<void> main() async {
             GetPage(
               name: '/adminMessageRead',
               page: () => AdminMessageReadScreen(),
+            ),
+            GetPage(
+              name: '/adminImageRead',
+              page: () => AdminImageReadScreen(),
             ),
 
             // User

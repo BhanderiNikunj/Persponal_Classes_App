@@ -1,7 +1,8 @@
 class ImageModel {
-  String? image;
+  String? image, key;
 
   ImageModel({
     this.image,
+    this.key,
   });
 }

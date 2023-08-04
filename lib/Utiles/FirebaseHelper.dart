@@ -1,5 +1,6 @@
 import 'package:classes_app/Models/AddAllDetailModel.dart';
 import 'package:classes_app/Models/HomeWorkModel.dart';
+import 'package:classes_app/Models/ImageModel.dart';
 import 'package:classes_app/Models/LeaveModel.dart';
 import 'package:classes_app/Models/LogInModel.dart';
 import 'package:classes_app/Models/MassageModel.dart';
@@ -35,6 +36,10 @@ class FirebaseHelper {
         .catchError(
           (e) => "$e",
         );
+  }
+
+  void signOut() {
+    firebaseAuth.signOut();
   }
 
   bool checkLogin() {
@@ -193,37 +198,20 @@ class FirebaseHelper {
 
   // Image
 
-  Future<String> insertImage({
-    required String image,
+  void insertImage({
+    required ImageModel i1,
   }) async {
-    return await firebaseFirestore
-        .collection("image")
-        .add(
-          {
-            "image": "$image",
-          },
-        )
-        .then(
-          (value) => "success",
-        )
-        .catchError(
-          (e) => "$e",
-        );
+    firebaseFirestore.collection("image").add(
+      {
+        "image": i1.image,
+      },
+    );
   }
 
-  Future<String> deleteImage({
-    required id,
+  void deleteImage({
+    required ImageModel i1,
   }) async {
-    return await firebaseFirestore
-        .collection("image")
-        .doc(id)
-        .delete()
-        .then(
-          (value) => "success",
-        )
-        .catchError(
-          (e) => "$e",
-        );
+    firebaseFirestore.collection("image").doc(i1.key).delete();
   }
 
   Stream<QuerySnapshot<Map<String, dynamic>>> readImage() {
