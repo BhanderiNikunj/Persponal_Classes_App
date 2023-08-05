@@ -6,14 +6,14 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
-class AdminFeesReadScreen extends StatefulWidget {
-  const AdminFeesReadScreen({super.key});
+class AdminStudentRead extends StatefulWidget {
+  const AdminStudentRead({super.key});
 
   @override
-  State<AdminFeesReadScreen> createState() => _AdminFeesReadScreenState();
+  State<AdminStudentRead> createState() => _AdminStudentReadState();
 }
 
-class _AdminFeesReadScreenState extends State<AdminFeesReadScreen> {
+class _AdminStudentReadState extends State<AdminStudentRead> {
   FeesControllor feesControllor = Get.put(
     FeesControllor(),
   );
@@ -154,7 +154,6 @@ class _AdminFeesReadScreenState extends State<AdminFeesReadScreen> {
       ),
     );
   }
-
   Widget studentName({
     required int std,
   }) {
@@ -185,24 +184,24 @@ class _AdminFeesReadScreenState extends State<AdminFeesReadScreen> {
                 return feesControllor.studentNameList[index].std != 10
                     ? Container()
                     : InkWell(
-                        onTap: () {
-                          Get.toNamed(
-                            '/adminFeesAdd',
-                            arguments: feesControllor.studentNameList[index],
-                          );
-                        },
-                        child: ListTile(
-                          title: Text(
-                            "${feesControllor.studentNameList[index].name}",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          leading: Text(
-                            "${feesControllor.studentNameList[index].std}",
-                          ),
-                        ),
-                      );
+                  onTap: () {
+                    Get.toNamed(
+                      '/adminFeesAdd',
+                      arguments: feesControllor.studentNameList[index],
+                    );
+                  },
+                  child: ListTile(
+                    title: Text(
+                      "${feesControllor.studentNameList[index].name}",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    leading: Text(
+                      "${feesControllor.studentNameList[index].std}",
+                    ),
+                  ),
+                );
               },
             );
           }
@@ -238,24 +237,24 @@ class _AdminFeesReadScreenState extends State<AdminFeesReadScreen> {
                 return feesControllor.studentNameList[index].std != 9
                     ? Container()
                     : InkWell(
-                        onTap: () {
-                          Get.toNamed(
-                            '/adminFeesAdd',
-                            arguments: feesControllor.studentNameList[index],
-                          );
-                        },
-                        child: ListTile(
-                          title: Text(
-                            "${feesControllor.studentNameList[index].name}",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          leading: Text(
-                            "${feesControllor.studentNameList[index].std}",
-                          ),
-                        ),
-                      );
+                  onTap: () {
+                    Get.toNamed(
+                      '/adminFeesAdd',
+                      arguments: feesControllor.studentNameList[index],
+                    );
+                  },
+                  child: ListTile(
+                    title: Text(
+                      "${feesControllor.studentNameList[index].name}",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    leading: Text(
+                      "${feesControllor.studentNameList[index].std}",
+                    ),
+                  ),
+                );
               },
             );
           }
@@ -291,24 +290,24 @@ class _AdminFeesReadScreenState extends State<AdminFeesReadScreen> {
                 return feesControllor.studentNameList[index].std != 8
                     ? Container()
                     : InkWell(
-                        onTap: () {
-                          Get.toNamed(
-                            '/adminFeesAdd',
-                            arguments: feesControllor.studentNameList[index],
-                          );
-                        },
-                        child: ListTile(
-                          title: Text(
-                            "${feesControllor.studentNameList[index].name}",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          leading: Text(
-                            "${feesControllor.studentNameList[index].std}",
-                          ),
-                        ),
-                      );
+                  onTap: () {
+                    Get.toNamed(
+                      '/adminFeesAdd',
+                      arguments: feesControllor.studentNameList[index],
+                    );
+                  },
+                  child: ListTile(
+                    title: Text(
+                      "${feesControllor.studentNameList[index].name}",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    leading: Text(
+                      "${feesControllor.studentNameList[index].std}",
+                    ),
+                  ),
+                );
               },
             );
           }
@@ -344,24 +343,24 @@ class _AdminFeesReadScreenState extends State<AdminFeesReadScreen> {
                 return feesControllor.studentNameList[index].std != 7
                     ? Container()
                     : InkWell(
-                        onTap: () {
-                          Get.toNamed(
-                            '/adminFeesAdd',
-                            arguments: feesControllor.studentNameList[index],
-                          );
-                        },
-                        child: ListTile(
-                          title: Text(
-                            "${feesControllor.studentNameList[index].name}",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          leading: Text(
-                            "${feesControllor.studentNameList[index].std}",
-                          ),
-                        ),
-                      );
+                  onTap: () {
+                    Get.toNamed(
+                      '/adminFeesAdd',
+                      arguments: feesControllor.studentNameList[index],
+                    );
+                  },
+                  child: ListTile(
+                    title: Text(
+                      "${feesControllor.studentNameList[index].name}",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    leading: Text(
+                      "${feesControllor.studentNameList[index].std}",
+                    ),
+                  ),
+                );
               },
             );
           }
@@ -397,24 +396,24 @@ class _AdminFeesReadScreenState extends State<AdminFeesReadScreen> {
                 return feesControllor.studentNameList[index].std != 6
                     ? Container()
                     : InkWell(
-                        onTap: () {
-                          Get.toNamed(
-                            '/adminFeesAdd',
-                            arguments: feesControllor.studentNameList[index],
-                          );
-                        },
-                        child: ListTile(
-                          title: Text(
-                            "${feesControllor.studentNameList[index].name}",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          leading: Text(
-                            "${feesControllor.studentNameList[index].std}",
-                          ),
-                        ),
-                      );
+                  onTap: () {
+                    Get.toNamed(
+                      '/adminFeesAdd',
+                      arguments: feesControllor.studentNameList[index],
+                    );
+                  },
+                  child: ListTile(
+                    title: Text(
+                      "${feesControllor.studentNameList[index].name}",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    leading: Text(
+                      "${feesControllor.studentNameList[index].std}",
+                    ),
+                  ),
+                );
               },
             );
           }
@@ -450,24 +449,24 @@ class _AdminFeesReadScreenState extends State<AdminFeesReadScreen> {
                 return feesControllor.studentNameList[index].std != 5
                     ? Container()
                     : InkWell(
-                        onTap: () {
-                          Get.toNamed(
-                            '/adminFeesAdd',
-                            arguments: feesControllor.studentNameList[index],
-                          );
-                        },
-                        child: ListTile(
-                          title: Text(
-                            "${feesControllor.studentNameList[index].name}",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          leading: Text(
-                            "${feesControllor.studentNameList[index].std}",
-                          ),
-                        ),
-                      );
+                  onTap: () {
+                    Get.toNamed(
+                      '/adminFeesAdd',
+                      arguments: feesControllor.studentNameList[index],
+                    );
+                  },
+                  child: ListTile(
+                    title: Text(
+                      "${feesControllor.studentNameList[index].name}",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    leading: Text(
+                      "${feesControllor.studentNameList[index].std}",
+                    ),
+                  ),
+                );
               },
             );
           }
@@ -503,24 +502,24 @@ class _AdminFeesReadScreenState extends State<AdminFeesReadScreen> {
                 return feesControllor.studentNameList[index].std != 4
                     ? Container()
                     : InkWell(
-                        onTap: () {
-                          Get.toNamed(
-                            '/adminFeesAdd',
-                            arguments: feesControllor.studentNameList[index],
-                          );
-                        },
-                        child: ListTile(
-                          title: Text(
-                            "${feesControllor.studentNameList[index].name}",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          leading: Text(
-                            "${feesControllor.studentNameList[index].std}",
-                          ),
-                        ),
-                      );
+                  onTap: () {
+                    Get.toNamed(
+                      '/adminFeesAdd',
+                      arguments: feesControllor.studentNameList[index],
+                    );
+                  },
+                  child: ListTile(
+                    title: Text(
+                      "${feesControllor.studentNameList[index].name}",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    leading: Text(
+                      "${feesControllor.studentNameList[index].std}",
+                    ),
+                  ),
+                );
               },
             );
           }
@@ -556,24 +555,24 @@ class _AdminFeesReadScreenState extends State<AdminFeesReadScreen> {
                 return feesControllor.studentNameList[index].std != 3
                     ? Container()
                     : InkWell(
-                        onTap: () {
-                          Get.toNamed(
-                            '/adminFeesAdd',
-                            arguments: feesControllor.studentNameList[index],
-                          );
-                        },
-                        child: ListTile(
-                          title: Text(
-                            "${feesControllor.studentNameList[index].name}",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          leading: Text(
-                            "${feesControllor.studentNameList[index].std}",
-                          ),
-                        ),
-                      );
+                  onTap: () {
+                    Get.toNamed(
+                      '/adminFeesAdd',
+                      arguments: feesControllor.studentNameList[index],
+                    );
+                  },
+                  child: ListTile(
+                    title: Text(
+                      "${feesControllor.studentNameList[index].name}",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    leading: Text(
+                      "${feesControllor.studentNameList[index].std}",
+                    ),
+                  ),
+                );
               },
             );
           }
@@ -609,24 +608,24 @@ class _AdminFeesReadScreenState extends State<AdminFeesReadScreen> {
                 return feesControllor.studentNameList[index].std != 2
                     ? Container()
                     : InkWell(
-                        onTap: () {
-                          Get.toNamed(
-                            '/adminFeesAdd',
-                            arguments: feesControllor.studentNameList[index],
-                          );
-                        },
-                        child: ListTile(
-                          title: Text(
-                            "${feesControllor.studentNameList[index].name}",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          leading: Text(
-                            "${feesControllor.studentNameList[index].std}",
-                          ),
-                        ),
-                      );
+                  onTap: () {
+                    Get.toNamed(
+                      '/adminFeesAdd',
+                      arguments: feesControllor.studentNameList[index],
+                    );
+                  },
+                  child: ListTile(
+                    title: Text(
+                      "${feesControllor.studentNameList[index].name}",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    leading: Text(
+                      "${feesControllor.studentNameList[index].std}",
+                    ),
+                  ),
+                );
               },
             );
           }
@@ -662,24 +661,24 @@ class _AdminFeesReadScreenState extends State<AdminFeesReadScreen> {
                 return feesControllor.studentNameList[index].std != 1
                     ? Container()
                     : InkWell(
-                        onTap: () {
-                          Get.toNamed(
-                            '/adminFeesAdd',
-                            arguments: feesControllor.studentNameList[index],
-                          );
-                        },
-                        child: ListTile(
-                          title: Text(
-                            "${feesControllor.studentNameList[index].name}",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          leading: Text(
-                            "${feesControllor.studentNameList[index].std}",
-                          ),
-                        ),
-                      );
+                  onTap: () {
+                    Get.toNamed(
+                      '/adminFeesAdd',
+                      arguments: feesControllor.studentNameList[index],
+                    );
+                  },
+                  child: ListTile(
+                    title: Text(
+                      "${feesControllor.studentNameList[index].name}",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    leading: Text(
+                      "${feesControllor.studentNameList[index].std}",
+                    ),
+                  ),
+                );
               },
             );
           }

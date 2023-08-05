@@ -74,6 +74,7 @@ class FirebaseHelper {
   }
 
   Stream<QuerySnapshot<Map<String, dynamic>>> readDetail() {
+    print(findUid());
     return firebaseFirestore
         .collection("detail")
         .doc(findUid())
@@ -162,7 +163,11 @@ class FirebaseHelper {
 
   // Fees
 
-  void insertFees() {
+  Stream<QuerySnapshot<Map<String, dynamic>>> readStudentName() {
+    return firebaseFirestore.collection("fees_student").snapshots();
+  }
+
+  void insertFees({required FeesModel}) {
     firebaseFirestore.collection("detail").add(
       {
         "total_fees": 15000,

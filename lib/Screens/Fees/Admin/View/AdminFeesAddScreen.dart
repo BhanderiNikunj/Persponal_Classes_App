@@ -1,3 +1,5 @@
+import 'package:classes_app/Models/ReadStudentNameModel.dart';
+import 'package:classes_app/Screens/Fees/Controllor/FeesControllor.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,6 +14,12 @@ class AdminFeesAddScreen extends StatefulWidget {
 }
 
 class _AdminFeesAddScreenState extends State<AdminFeesAddScreen> {
+  FeesControllor feesControllor = Get.put(
+    FeesControllor(),
+  );
+
+  ReadStudentNameModel readStudentNameModel = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -105,6 +113,7 @@ class _AdminFeesAddScreenState extends State<AdminFeesAddScreen> {
                       ),
                     ),
                   ),
+                  SizedBox(height: 10.sp),
                 ],
               ),
             ),

@@ -196,7 +196,7 @@ class _AdminReadStudentHomeWorkState extends State<AdminReadStudentHomeWork> {
                               : Padding(
                                   padding: EdgeInsets.all(10.sp),
                                   child: Container(
-                                    height: 120.sp,
+                                    height: 130.sp,
                                     decoration: BoxDecoration(
                                       color: Colors.white38,
                                       boxShadow: [

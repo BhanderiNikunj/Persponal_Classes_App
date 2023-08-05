@@ -1,8 +1,10 @@
 import 'package:classes_app/Authentication/AddAllData/View/AddAllDataScreen.dart';
+import 'package:classes_app/Authentication/GotoHome/View/GotoHomeScreen.dart';
 import 'package:classes_app/Authentication/Splesh/View/SpleshScreen.dart';
 import 'package:classes_app/Authentication/logIn/View/LogInScreen.dart';
 import 'package:classes_app/Screens/Fees/Admin/View/AdminFeesAddScreen.dart';
 import 'package:classes_app/Screens/Fees/Admin/View/AdminFeesReadScreen.dart';
+import 'package:classes_app/Screens/Fees/Admin/View/AdminStudentRead.dart';
 import 'package:classes_app/Screens/Home/Admin/View/AdminHomeScreen.dart';
 import 'package:classes_app/Screens/Home/User/View/UserHomeScreen.dart';
 import 'package:classes_app/Screens/HomeWork/Admin/View/AdminAddStudentHomeWork.dart';
@@ -30,7 +32,7 @@ Future<void> main() async {
     Sizer(
       builder: (context, orientation, deviceType) {
         return GetMaterialApp(
-          // debugShowCheckedModeBanner: false,
+          theme: ThemeData(useMaterial3: true),
           getPages: [
             GetPage(
               name: '/',
@@ -39,6 +41,10 @@ Future<void> main() async {
             GetPage(
               name: '/login',
               page: () => LogInScreen(),
+            ),
+            GetPage(
+              name: '/gotoHome',
+              page: () => GotoHomeScreen(),
             ),
             GetPage(
               name: '/addDetail',
@@ -81,6 +87,10 @@ Future<void> main() async {
             GetPage(
               name: '/adminImageRead',
               page: () => AdminImageReadScreen(),
+            ),
+            GetPage(
+              name: '/adminStudentRead',
+              page: () => AdminStudentRead(),
             ),
             GetPage(
               name: '/adminFeesRead',

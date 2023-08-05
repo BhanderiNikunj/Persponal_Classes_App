@@ -174,7 +174,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
               InkWell(
                 onTap: () {
                   Get.toNamed(
-                    '/adminFeesRead',
+                    '/adminStudentRead',
                   );
                 },
                 child: ListTile(
