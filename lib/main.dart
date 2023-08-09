@@ -1,20 +1,8 @@
-import 'package:classes_app/Authentication/AddAllData/View/AddAllDataScreen.dart';
-import 'package:classes_app/Authentication/GotoHome/View/GotoHomeScreen.dart';
-import 'package:classes_app/Authentication/Splesh/View/SpleshScreen.dart';
-import 'package:classes_app/Authentication/logIn/View/LogInScreen.dart';
-import 'package:classes_app/Screens/Fees/Admin/View/AdminFeesAddScreen.dart';
-import 'package:classes_app/Screens/Fees/Admin/View/AdminFeesReadScreen.dart';
-import 'package:classes_app/Screens/Fees/Admin/View/AdminStudentRead.dart';
-import 'package:classes_app/Screens/Home/Admin/View/AdminHomeScreen.dart';
-import 'package:classes_app/Screens/Home/User/View/UserHomeScreen.dart';
-import 'package:classes_app/Screens/HomeWork/Admin/View/AdminAddStudentHomeWork.dart';
-import 'package:classes_app/Screens/HomeWork/Admin/View/AdminReadStudentHomeWork.dart';
-import 'package:classes_app/Screens/Image/View/AdminImageReadScreen.dart';
-import 'package:classes_app/Screens/Leave/View/AdminUserLeaveAddScreen.dart';
-import 'package:classes_app/Screens/Leave/View/AdminUserLeaveReadScreen.dart';
-import 'package:classes_app/Screens/Message/Admin/View/AdminMessageReadScreen.dart';
-import 'package:classes_app/Screens/Student/Admin/View/AdminAddStudentScreen.dart';
-import 'package:classes_app/Screens/Student/Admin/View/AdminReadStudentSreen.dart';
+import 'package:classes_app/Admin/Home/View/HomeScreen.dart';
+import 'package:classes_app/Admin/Student/View/StudentAddScreen.dart';
+import 'package:classes_app/Admin/Student/View/StudentReadScreen.dart';
+import 'package:classes_app/Login/LogIn/View/LogInScreen.dart';
+import 'package:classes_app/Login/Splesh/View/SpleshScreen.dart';
 import 'package:classes_app/Utiles/notification.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -34,78 +22,11 @@ Future<void> main() async {
         return GetMaterialApp(
           theme: ThemeData(useMaterial3: true),
           getPages: [
-            GetPage(
-              name: '/',
-              page: () => SpleshScreen(),
-            ),
-            GetPage(
-              name: '/login',
-              page: () => LogInScreen(),
-            ),
-            GetPage(
-              name: '/gotoHome',
-              page: () => GotoHomeScreen(),
-            ),
-            GetPage(
-              name: '/addDetail',
-              page: () => AddAllDetailScreen(),
-            ),
-
-            // Admin
-            GetPage(
-              name: '/adminHome',
-              page: () => AdminHomeScreen(),
-            ),
-            GetPage(
-              name: '/adminStudentRead',
-              page: () => AdminReadStudentScreen(),
-            ),
-            GetPage(
-              name: '/adminStudentAdd',
-              page: () => AdminAddStudentScreen(),
-            ),
-            GetPage(
-              name: '/adminStudentHomeWorkRead',
-              page: () => AdminReadStudentHomeWork(),
-            ),
-            GetPage(
-              name: '/adminStudentHomeWorkAdd',
-              page: () => AdminAddStudentHomeWork(),
-            ),
-            GetPage(
-              name: '/leaveRead',
-              page: () => AdminUserLeaveReadScreen(),
-            ),
-            GetPage(
-              name: '/leaveAdd',
-              page: () => AdminUserLeaveAddScreen(),
-            ),
-            GetPage(
-              name: '/adminMessageRead',
-              page: () => AdminMessageReadScreen(),
-            ),
-            GetPage(
-              name: '/adminImageRead',
-              page: () => AdminImageReadScreen(),
-            ),
-            GetPage(
-              name: '/adminStudentRead',
-              page: () => AdminStudentRead(),
-            ),
-            GetPage(
-              name: '/adminFeesRead',
-              page: () => AdminFeesReadScreen(),
-            ),
-            GetPage(
-              name: '/adminFeesAdd',
-              page: () => AdminFeesAddScreen(),
-            ),
-
-            // User
-            GetPage(
-              name: '/userHome',
-              page: () => UserHomeScreen(),
-            ),
+            GetPage(name: '/', page: () => SpleshScreen(),),
+            GetPage(name: '/logIn', page: () => LogInScreen(),),
+            GetPage(name: '/home', page: () => HomeScreen(),),
+            GetPage(name: '/studentRead', page: () => StudentReadScreen(),),
+            GetPage(name: '/studentAdd', page: () => StudentAddScreen(),),
           ],
         );
       },
@@ -118,6 +39,10 @@ Future<void> main() async {
 * GoogleFonts.archivo
 *
 * */
+
+// Object
+
+
 
 Widget allButton({
   required string,
