@@ -1,3 +1,5 @@
+import 'package:classes_app/Admin/Fees/View/StudentFeesAddScreen.dart';
+import 'package:classes_app/Admin/Fees/View/StudentFeesReadScreen.dart';
 import 'package:classes_app/Admin/Home/View/HomeScreen.dart';
 import 'package:classes_app/Admin/Student/View/StudentAddScreen.dart';
 import 'package:classes_app/Admin/Student/View/StudentReadScreen.dart';
@@ -27,6 +29,8 @@ Future<void> main() async {
             GetPage(name: '/home', page: () => HomeScreen(),),
             GetPage(name: '/studentRead', page: () => StudentReadScreen(),),
             GetPage(name: '/studentAdd', page: () => StudentAddScreen(),),
+            GetPage(name: '/studentFeesRead', page: () => StudentFeesReadScreen(),),
+            GetPage(name: '/studentFeesAdd', page: () => StudentFeesAddScreen(),),
           ],
         );
       },

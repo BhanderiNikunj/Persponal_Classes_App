@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:classes_app/Models/FeesModel.dart';
 import 'package:classes_app/Models/StudentModel.dart';
 import 'package:http/http.dart' as http;
 
@@ -7,6 +8,8 @@ class ApiHelper {
   static ApiHelper apiHelper = ApiHelper._();
 
   ApiHelper._();
+
+  // Student
 
   Future<bool> insertStudent({
     required StudentModel s1,
@@ -92,5 +95,87 @@ class ApiHelper {
     List studentList = json.map((e) => StudentModel.fromJson(e)).toList();
 
     return studentList;
+  }
+
+  // Fees
+
+  Future<bool> insertFees({
+    required FeesModel f1,
+  }) async {
+    Uri uri = Uri.parse(
+        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/Fees/insertFees.php");
+
+    var response = await http.post(
+      uri,
+      body: {
+        "firstName": f1.firstName,
+        "std": f1.std,
+        "uid": f1.uid,
+        "totalFees": f1.totalFees,
+        "paidFees": f1.paidFees,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    }
+    return false;
+  }
+
+  Future<bool> updateFees() async {
+    Uri uri = Uri.parse(
+        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/Fees/updateFees.php");
+
+    var response = await http.post(
+      uri,
+      body: {
+        "id": "",
+        "firstName": "",
+        "std": "",
+        "uid": "",
+        "totalFees": "",
+        "paidFees": "",
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    }
+    return false;
+  }
+
+  Future<bool> deleteFees() async {
+    Uri uri = Uri.parse(
+        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/leave/deleteLeave.php");
+
+    var response = await http.post(
+      uri,
+      body: {
+        "id": "",
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    }
+    return false;
+  }
+
+  Future<List> readFees() async {
+    Uri uri = Uri.parse(
+        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/Fees/readFees.php");
+
+    var response = await http.post(
+      uri,
+    );
+
+    var json = jsonDecode(response.body);
+
+    List l1 = json.map((e) => FeesModel.fromJson(e)).toList();
+
+    if (response.statusCode == 200) {
+      return l1;
+    }
+    return [];
   }
 }

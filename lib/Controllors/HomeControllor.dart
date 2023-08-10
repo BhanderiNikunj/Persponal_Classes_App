@@ -14,6 +14,7 @@ class HomeControllor extends GetxController {
     ),
     TitleModel(
       name: "Fees",
+      routes: '/studentFeesRead',
       image: "Assets/Images/fees.png",
     ),
     TitleModel(
