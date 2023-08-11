@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:classes_app/Models/FeesModel.dart';
 import 'package:classes_app/Models/StudentModel.dart';
+import 'package:classes_app/Models/StudentUidModel.dart';
 import 'package:http/http.dart' as http;
 
 class ApiHelper {
@@ -122,19 +123,21 @@ class ApiHelper {
     return false;
   }
 
-  Future<bool> updateFees() async {
+  Future<bool> updateFees({
+    required FeesModel f1,
+  }) async {
     Uri uri = Uri.parse(
         "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/Fees/updateFees.php");
 
     var response = await http.post(
       uri,
       body: {
-        "id": "",
-        "firstName": "",
-        "std": "",
-        "uid": "",
-        "totalFees": "",
-        "paidFees": "",
+        "id": f1.id,
+        "firstName": f1.firstName,
+        "std": f1.std,
+        "uid": f1.uid,
+        "totalFees": f1.totalFees,
+        "paidFees": f1.paidFees,
       },
     );
 
@@ -144,14 +147,16 @@ class ApiHelper {
     return false;
   }
 
-  Future<bool> deleteFees() async {
+  Future<bool> deleteFees({
+    required FeesModel f1,
+  }) async {
     Uri uri = Uri.parse(
         "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/leave/deleteLeave.php");
 
     var response = await http.post(
       uri,
       body: {
-        "id": "",
+        "id": f1.id,
       },
     );
 
@@ -177,5 +182,17 @@ class ApiHelper {
       return l1;
     }
     return [];
+  }
+
+  Future<List> readStudentUid() async {
+    Uri uri = Uri.parse(
+        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/StudentUid/readStudentUid.php");
+
+    var response = await http.get(uri);
+
+    var json = jsonDecode(response.body);
+
+    List l1 = json.map((e) => StudentUidModel.fromJson(e)).toList();
+    return l1;
   }
 }

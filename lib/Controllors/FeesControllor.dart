@@ -20,12 +20,20 @@ class FeesControllor extends GetxController {
     );
   }
 
-  Future<bool> updateFees() {
-    return ApiHelper.apiHelper.updateFees();
+  Future<bool> updateFees({
+    required FeesModel f1,
+  }) {
+    return ApiHelper.apiHelper.updateFees(
+      f1: f1,
+    );
   }
 
-  Future<bool> deleteFees() {
-    return ApiHelper.apiHelper.deleteFees();
+  Future<bool> deleteFees({
+    required FeesModel f1,
+  }) {
+    return ApiHelper.apiHelper.deleteFees(
+      f1: f1,
+    );
   }
 
   Future<List> readFees() {
