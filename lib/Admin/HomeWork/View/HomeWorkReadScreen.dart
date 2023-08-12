@@ -205,7 +205,7 @@ class _HomeWorkReadScreenState extends State<HomeWorkReadScreen> {
           );
         } else if (snapshot.hasData) {
           homeWorkControllor.homeWorkList = snapshot.data!;
-          if ((std?.compareTo("1") != 1)) {
+          if (std?.compareTo("1") != 1) {
             return ListView.builder(
               itemCount: homeWorkControllor.homeWorkList.length,
               itemBuilder: (context, index) {
@@ -297,7 +297,8 @@ class _HomeWorkReadScreenState extends State<HomeWorkReadScreen> {
                       );
               },
             );
-          } else if (std?.compareTo("2") != 1) {
+          }
+          else if (std?.compareTo("2") != 1) {
             return ListView.builder(
               itemCount: homeWorkControllor.homeWorkList.length,
               itemBuilder: (context, index) {
