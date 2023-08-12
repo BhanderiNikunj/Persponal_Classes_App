@@ -6,17 +6,34 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
-class StudentFeesAddScreen extends StatefulWidget {
-  const StudentFeesAddScreen({super.key});
+class FeesAddScreen extends StatefulWidget {
+  const FeesAddScreen({super.key});
 
   @override
-  State<StudentFeesAddScreen> createState() => _StudentFeesAddScreenState();
+  State<FeesAddScreen> createState() => _FeesAddScreenState();
 }
 
-class _StudentFeesAddScreenState extends State<StudentFeesAddScreen> {
+class _FeesAddScreenState extends State<FeesAddScreen> {
   FeesControllor feesControllor = Get.put(
     FeesControllor(),
   );
+
+  FeesModel feesModel = Get.arguments;
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (feesModel.check == 1) {
+      feesControllor.txtStd = TextEditingController(text: "${feesModel.std!}");
+      feesControllor.txtName =
+          TextEditingController(text: "${feesModel.firstName!}");
+      feesControllor.txtTotalFees =
+          TextEditingController(text: "${feesModel.totalFees!}");
+      feesControllor.txtPaidFees =
+          TextEditingController(text: "${feesModel.paidFees!}");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +52,7 @@ class _StudentFeesAddScreenState extends State<StudentFeesAddScreen> {
                     children: [
                       IconButton(
                         onPressed: () {
-                          Get.offAndToNamed(
-                            '/studentRead',
-                          );
+                          Get.back();
                         },
                         icon: Icon(
                           Icons.arrow_back,
@@ -130,92 +145,55 @@ class _StudentFeesAddScreenState extends State<StudentFeesAddScreen> {
                   SizedBox(height: 20.sp),
                   InkWell(
                     onTap: () async {
-                      FeesModel f1 = FeesModel(
-                        uid: "-",
-                        std: feesControllor.txtStd.text,
-                        totalFees: feesControllor.txtPaidFees.text,
-                        paidFees: feesControllor.txtPaidFees.text,
-                        firstName: feesControllor.txtName.text,
-                      );
-
-                      bool check = await feesControllor.insertFees(
-                        f1: f1,
-                      );
-
-                      if (check) {
-                        Get.back();
-                      } else {
-                        Get.snackbar(
-                          "Failed",
-                          "",
+                      if (feesModel.check == 1) {
+                        FeesModel f1 = FeesModel(
+                          uid: "-",
+                          id: feesModel.id,
+                          std: feesControllor.txtStd.text,
+                          totalFees: feesControllor.txtPaidFees.text,
+                          paidFees: feesControllor.txtPaidFees.text,
+                          firstName: feesControllor.txtName.text,
                         );
+
+                        bool check = await feesControllor.updateFees(
+                          f1: f1,
+                        );
+
+                        if (check) {
+                          Get.back();
+                        } else {
+                          Get.snackbar(
+                            "Failed",
+                            "",
+                          );
+                        }
+                      } else {
+                        FeesModel f1 = FeesModel(
+                          uid: "-",
+                          std: feesControllor.txtStd.text,
+                          totalFees: feesControllor.txtPaidFees.text,
+                          paidFees: feesControllor.txtPaidFees.text,
+                          firstName: feesControllor.txtName.text,
+                        );
+
+                        bool check = await feesControllor.insertFees(
+                          f1: f1,
+                        );
+
+                        if (check) {
+                          Get.back();
+                        } else {
+                          Get.snackbar(
+                            "Failed",
+                            "",
+                          );
+                        }
                       }
                     },
                     child: allButton(
-                      string: "Add",
+                      string: feesModel.check == 1 ? "Update" : "Add",
                     ),
                   ),
-                  // InkWell(
-                  //   onTap: () async {
-                  //     if (studentModel.check == 1) {
-                  //       StudentModel s1 = StudentModel(
-                  //         id: studentModel.id,
-                  //         firstName: studentControllor.txtFName.text,
-                  //         lastName: studentControllor.txtLName.text,
-                  //         fatherName: studentControllor.txtFaName.text,
-                  //         std: studentControllor.txtStd.text,
-                  //         mobileNumber: studentControllor.txtMobileNo.text,
-                  //       );
-                  //
-                  //       bool check = await studentControllor.updateStudent(
-                  //         s1: s1,
-                  //       );
-                  //
-                  //       if (check) {
-                  //         studentControllor.txtLName.clear();
-                  //         studentControllor.txtFName.clear();
-                  //         studentControllor.txtFaName.clear();
-                  //         studentControllor.txtMobileNo.clear();
-                  //         studentControllor.txtStd.clear();
-                  //         Get.back();
-                  //         Get.snackbar("Success", "");
-                  //       } else {
-                  //         // Get.back();
-                  //         Get.snackbar("Failed", "");
-                  //       }
-                  //     } else {
-                  //       StudentModel s1 = StudentModel(
-                  //         id: "0",
-                  //         firstName: studentControllor.txtFName.text,
-                  //         lastName: studentControllor.txtLName.text,
-                  //         fatherName: studentControllor.txtFaName.text,
-                  //         std: studentControllor.txtStd.text,
-                  //         mobileNumber: studentControllor.txtMobileNo.text,
-                  //       );
-                  //
-                  //       bool check = await studentControllor.insertStudent(
-                  //         s1: s1,
-                  //       );
-                  //
-                  //       if (check) {
-                  //         studentControllor.txtLName.clear();
-                  //         studentControllor.txtFName.clear();
-                  //         studentControllor.txtFaName.clear();
-                  //         studentControllor.txtMobileNo.clear();
-                  //         studentControllor.txtStd.clear();
-                  //         Get.back();
-                  //         Get.snackbar("Success", "");
-                  //       } else {
-                  //         // Get.back();
-                  //         Get.snackbar("Failed", "");
-                  //       }
-                  //     }
-                  //   },
-                  //   child: allButton(
-                  //     string: "Add",
-                  //     // string: studentModel.check == 1 ? "Update" : "Add",
-                  //   ),
-                  // ),
                 ],
               ),
             ),

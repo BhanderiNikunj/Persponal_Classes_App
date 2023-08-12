@@ -52,7 +52,9 @@ class _StudentReadScreenState extends State<StudentReadScreen> {
               children: [
                 IconButton(
                   onPressed: () {
-                    listOfStudent();
+                    studentControllor.std = "1";
+                    listOfStudent(std: "1");
+                    setState(() {});
                   },
                   icon: Icon(
                     Icons.refresh,
@@ -356,8 +358,7 @@ class _StudentReadScreenState extends State<StudentReadScreen> {
                       );
               },
             );
-          }
-          else if (std.compareTo("2") != 1) {
+          } else if (std.compareTo("2") != 1) {
             return ListView.builder(
               itemCount: studentControllor.studentList.length,
               itemBuilder: (context, index) {
@@ -488,8 +489,7 @@ class _StudentReadScreenState extends State<StudentReadScreen> {
                       );
               },
             );
-          }
-          else if (std.compareTo("3") != 1) {
+          } else if (std.compareTo("3") != 1) {
             return ListView.builder(
               itemCount: studentControllor.studentList.length,
               itemBuilder: (context, index) {
@@ -620,8 +620,7 @@ class _StudentReadScreenState extends State<StudentReadScreen> {
                       );
               },
             );
-          }
-          else if (std.compareTo("4") != 1) {
+          } else if (std.compareTo("4") != 1) {
             return ListView.builder(
               itemCount: studentControllor.studentList.length,
               itemBuilder: (context, index) {
@@ -752,8 +751,7 @@ class _StudentReadScreenState extends State<StudentReadScreen> {
                       );
               },
             );
-          }
-          else if (std.compareTo("5") != 1) {
+          } else if (std.compareTo("5") != 1) {
             return ListView.builder(
               itemCount: studentControllor.studentList.length,
               itemBuilder: (context, index) {
@@ -884,8 +882,7 @@ class _StudentReadScreenState extends State<StudentReadScreen> {
                       );
               },
             );
-          }
-          else if (std.compareTo("6") != 1) {
+          } else if (std.compareTo("6") != 1) {
             return ListView.builder(
               itemCount: studentControllor.studentList.length,
               itemBuilder: (context, index) {
@@ -1016,8 +1013,7 @@ class _StudentReadScreenState extends State<StudentReadScreen> {
                       );
               },
             );
-          }
-          else if (std.compareTo("7") != 1) {
+          } else if (std.compareTo("7") != 1) {
             return ListView.builder(
               itemCount: studentControllor.studentList.length,
               itemBuilder: (context, index) {
@@ -1148,8 +1144,7 @@ class _StudentReadScreenState extends State<StudentReadScreen> {
                       );
               },
             );
-          }
-          else if (std.compareTo("8") != 1) {
+          } else if (std.compareTo("8") != 1) {
             return ListView.builder(
               itemCount: studentControllor.studentList.length,
               itemBuilder: (context, index) {
@@ -1280,8 +1275,7 @@ class _StudentReadScreenState extends State<StudentReadScreen> {
                       );
               },
             );
-          }
-          else if (std.compareTo("9") != 1) {
+          } else if (std.compareTo("9") != 1) {
             return ListView.builder(
               itemCount: studentControllor.studentList.length,
               itemBuilder: (context, index) {
@@ -1412,8 +1406,7 @@ class _StudentReadScreenState extends State<StudentReadScreen> {
                       );
               },
             );
-          }
-          else if (std.compareTo("10") != 1) {
+          } else if (std.compareTo("10") != 1) {
             return ListView.builder(
               itemCount: studentControllor.studentList.length,
               itemBuilder: (context, index) {
@@ -1544,8 +1537,7 @@ class _StudentReadScreenState extends State<StudentReadScreen> {
                       );
               },
             );
-          }
-          else {
+          } else {
             return Text(
               "Bad choice",
               style: GoogleFonts.archivo(),

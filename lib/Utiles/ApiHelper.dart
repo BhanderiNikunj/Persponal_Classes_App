@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:classes_app/Models/FeesModel.dart';
+import 'package:classes_app/Models/MassageModel.dart';
 import 'package:classes_app/Models/StudentModel.dart';
-import 'package:classes_app/Models/StudentUidModel.dart';
 import 'package:http/http.dart' as http;
 
 class ApiHelper {
@@ -151,7 +151,7 @@ class ApiHelper {
     required FeesModel f1,
   }) async {
     Uri uri = Uri.parse(
-        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/leave/deleteLeave.php");
+        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/Fees/deleteFees.php");
 
     var response = await http.post(
       uri,
@@ -184,15 +184,97 @@ class ApiHelper {
     return [];
   }
 
-  Future<List> readStudentUid() async {
+  // Future<List> readStudentUid() async {
+  //   Uri uri = Uri.parse(
+  //       "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/StudentUid/readStudentUid.php");
+  //
+  //   var response = await http.get(uri);
+  //
+  //   var json = jsonDecode(response.body);
+  //
+  //   List l1 = json.map((e) => StudentUidModel.fromJson(e)).toList();
+  //   return l1;
+  // }
+
+  Future<bool> insertMassage({
+    required MassageModel m1,
+  }) async {
     Uri uri = Uri.parse(
-        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/StudentUid/readStudentUid.php");
+        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/massage/insertMassage.php");
 
-    var response = await http.get(uri);
+    var response = await http.post(
+      uri,
+      body: {
+        "massage": m1.massage,
+        "time": m1.time,
+        "date": m1.date,
+      },
+    );
 
-    var json = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      return true;
+    }
+    return false;
+  }
 
-    List l1 = json.map((e) => StudentUidModel.fromJson(e)).toList();
-    return l1;
+  Future<bool> updateMassage({
+    required MassageModel m1,
+  }) async {
+    Uri uri = Uri.parse(
+        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/massage/updateMassage.php");
+
+    var response = await http.post(
+      uri,
+      body: {
+        "massage": m1.massage,
+        "time": m1.time,
+        "date": m1.date,
+        "id": m1.id,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    }
+    return false;
+  }
+
+  Future<bool> deleteMassage({
+    required MassageModel m1,
+  }) async {
+    Uri uri = Uri.parse(
+        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/massage/deleteMassage.php");
+
+    var response = await http.post(
+      uri,
+      body: {
+        "id": m1.id,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    }
+    return false;
+  }
+
+  Future<List> readMassage() async {
+    Uri uri = Uri.parse(
+        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/massage/readMassage.php");
+
+    var response = await http.get(
+      uri,
+    );
+
+    var json = jsonDecode(
+      response.body,
+    );
+
+    List l1 = await json.map((e) => MassageModel.fromJson(e)).toList();
+
+    if (response.statusCode == 200) {
+      return l1;
+    }
+    return [];
   }
 }

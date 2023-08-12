@@ -1,18 +1,19 @@
 import 'package:classes_app/Controllors/FeesControllor.dart';
+import 'package:classes_app/Models/FeesModel.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
-class StudentFeesReadScreen extends StatefulWidget {
-  const StudentFeesReadScreen({super.key});
+class FeesReadScreen extends StatefulWidget {
+  const FeesReadScreen({super.key});
 
   @override
-  State<StudentFeesReadScreen> createState() => _StudentFeesReadScreenState();
+  State<FeesReadScreen> createState() => _FeesReadScreenState();
 }
 
-class _StudentFeesReadScreenState extends State<StudentFeesReadScreen> {
+class _FeesReadScreenState extends State<FeesReadScreen> {
   FeesControllor feesControllor = Get.put(
     FeesControllor(),
   );
@@ -51,9 +52,11 @@ class _StudentFeesReadScreenState extends State<StudentFeesReadScreen> {
               children: [
                 IconButton(
                   onPressed: () {
+                    feesControllor.std = "1";
                     listOfFees(
-                      std: feesControllor.std,
+                      std: "1",
                     );
+                    setState(() {});
                   },
                   icon: Icon(
                     Icons.refresh,
@@ -165,7 +168,13 @@ class _StudentFeesReadScreenState extends State<StudentFeesReadScreen> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Get.toNamed('/studentFeesAdd');
+            FeesModel f1 = FeesModel(
+              check: 0,
+            );
+            Get.toNamed(
+              '/feesAdd',
+              arguments: f1,
+            );
           },
           backgroundColor: Color(0xff5055C4),
           shape: BeveledRectangleBorder(
@@ -189,7 +198,8 @@ class _StudentFeesReadScreenState extends State<StudentFeesReadScreen> {
             return Text(
               "${snapshot.error}",
             );
-          } else if (snapshot.hasData) {
+          }
+          else if (snapshot.hasData) {
             feesControllor.feesList = snapshot.data!;
             return ListView.builder(
               itemCount: feesControllor.feesList.length,
@@ -278,13 +288,61 @@ class _StudentFeesReadScreenState extends State<StudentFeesReadScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          FeesModel f1 = FeesModel(
+                                            firstName: feesControllor
+                                                .feesList[index].firstName,
+                                            std: feesControllor
+                                                .feesList[index].std,
+                                            totalFees: feesControllor
+                                                .feesList[index].totalFees,
+                                            paidFees: feesControllor
+                                                .feesList[index].paidFees,
+                                            uid: feesControllor
+                                                .feesList[index].uid,
+                                            id: feesControllor
+                                                .feesList[index].id,
+                                            lessFees: feesControllor
+                                                .feesList[index].lessFees,
+                                            check: 1,
+                                          );
+                                          Get.toNamed(
+                                            '/feesAdd',
+                                            arguments: f1,
+                                          );
+                                        },
                                         icon: Icon(
                                           Icons.edit,
                                         ),
                                       ),
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () async {
+                                          FeesModel f1 = FeesModel(
+                                            id: feesControllor
+                                                .feesList[index].id,
+                                          );
+
+                                          bool check =
+                                              await feesControllor.deleteFees(
+                                            f1: f1,
+                                          );
+
+                                          if (check) {
+                                            Get.snackbar(
+                                              "Success Fully Delete",
+                                              "",
+                                            );
+
+                                            listOfFees(
+                                              std: "1",
+                                            );
+                                          } else {
+                                            Get.snackbar(
+                                              "Un Success Fully Delete",
+                                              "",
+                                            );
+                                          }
+                                        },
                                         icon: Icon(
                                           Icons.delete,
                                         ),
@@ -296,7 +354,8 @@ class _StudentFeesReadScreenState extends State<StudentFeesReadScreen> {
                             ),
                           ),
                         );
-                } else if (std!.compareTo("2") == 0) {
+                }
+                else if (std!.compareTo("2") == 0) {
                   return feesControllor.feesList[index].std.compareTo("$std") !=
                           0
                       ? Container()
@@ -380,13 +439,61 @@ class _StudentFeesReadScreenState extends State<StudentFeesReadScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          FeesModel f1 = FeesModel(
+                                            firstName: feesControllor
+                                                .feesList[index].firstName,
+                                            std: feesControllor
+                                                .feesList[index].std,
+                                            totalFees: feesControllor
+                                                .feesList[index].totalFees,
+                                            paidFees: feesControllor
+                                                .feesList[index].paidFees,
+                                            uid: feesControllor
+                                                .feesList[index].uid,
+                                            id: feesControllor
+                                                .feesList[index].id,
+                                            lessFees: feesControllor
+                                                .feesList[index].lessFees,
+                                            check: 1,
+                                          );
+                                          Get.toNamed(
+                                            '/feesAdd',
+                                            arguments: f1,
+                                          );
+                                        },
                                         icon: Icon(
                                           Icons.edit,
                                         ),
                                       ),
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () async {
+                                          FeesModel f1 = FeesModel(
+                                            id: feesControllor
+                                                .feesList[index].id,
+                                          );
+
+                                          bool check =
+                                              await feesControllor.deleteFees(
+                                            f1: f1,
+                                          );
+
+                                          if (check) {
+                                            Get.snackbar(
+                                              "Success Fully Delete",
+                                              "",
+                                            );
+
+                                            listOfFees(
+                                              std: "2",
+                                            );
+                                          } else {
+                                            Get.snackbar(
+                                              "Un Success Fully Delete",
+                                              "",
+                                            );
+                                          }
+                                        },
                                         icon: Icon(
                                           Icons.delete,
                                         ),
@@ -398,7 +505,8 @@ class _StudentFeesReadScreenState extends State<StudentFeesReadScreen> {
                             ),
                           ),
                         );
-                } else if (std!.compareTo("3") == 0) {
+                }
+                else if (std!.compareTo("3") == 0) {
                   return feesControllor.feesList[index].std.compareTo("$std") !=
                           0
                       ? Container()
@@ -482,13 +590,61 @@ class _StudentFeesReadScreenState extends State<StudentFeesReadScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          FeesModel f1 = FeesModel(
+                                            firstName: feesControllor
+                                                .feesList[index].firstName,
+                                            std: feesControllor
+                                                .feesList[index].std,
+                                            totalFees: feesControllor
+                                                .feesList[index].totalFees,
+                                            paidFees: feesControllor
+                                                .feesList[index].paidFees,
+                                            uid: feesControllor
+                                                .feesList[index].uid,
+                                            id: feesControllor
+                                                .feesList[index].id,
+                                            lessFees: feesControllor
+                                                .feesList[index].lessFees,
+                                            check: 1,
+                                          );
+                                          Get.toNamed(
+                                            '/feesAdd',
+                                            arguments: f1,
+                                          );
+                                        },
                                         icon: Icon(
                                           Icons.edit,
                                         ),
                                       ),
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () async {
+                                          FeesModel f1 = FeesModel(
+                                            id: feesControllor
+                                                .feesList[index].id,
+                                          );
+
+                                          bool check =
+                                              await feesControllor.deleteFees(
+                                            f1: f1,
+                                          );
+
+                                          if (check) {
+                                            Get.snackbar(
+                                              "Success Fully Delete",
+                                              "",
+                                            );
+
+                                            listOfFees(
+                                              std: "3",
+                                            );
+                                          } else {
+                                            Get.snackbar(
+                                              "Un Success Fully Delete",
+                                              "",
+                                            );
+                                          }
+                                        },
                                         icon: Icon(
                                           Icons.delete,
                                         ),
@@ -500,7 +656,8 @@ class _StudentFeesReadScreenState extends State<StudentFeesReadScreen> {
                             ),
                           ),
                         );
-                } else if (std!.compareTo("4") == 0) {
+                }
+                else if (std!.compareTo("4") == 0) {
                   return feesControllor.feesList[index].std.compareTo("$std") !=
                           0
                       ? Container()
@@ -584,13 +741,61 @@ class _StudentFeesReadScreenState extends State<StudentFeesReadScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          FeesModel f1 = FeesModel(
+                                            firstName: feesControllor
+                                                .feesList[index].firstName,
+                                            std: feesControllor
+                                                .feesList[index].std,
+                                            totalFees: feesControllor
+                                                .feesList[index].totalFees,
+                                            paidFees: feesControllor
+                                                .feesList[index].paidFees,
+                                            uid: feesControllor
+                                                .feesList[index].uid,
+                                            id: feesControllor
+                                                .feesList[index].id,
+                                            lessFees: feesControllor
+                                                .feesList[index].lessFees,
+                                            check: 1,
+                                          );
+                                          Get.toNamed(
+                                            '/feesAdd',
+                                            arguments: f1,
+                                          );
+                                        },
                                         icon: Icon(
                                           Icons.edit,
                                         ),
                                       ),
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () async {
+                                          FeesModel f1 = FeesModel(
+                                            id: feesControllor
+                                                .feesList[index].id,
+                                          );
+
+                                          bool check =
+                                              await feesControllor.deleteFees(
+                                            f1: f1,
+                                          );
+
+                                          if (check) {
+                                            Get.snackbar(
+                                              "Success Fully Delete",
+                                              "",
+                                            );
+
+                                            listOfFees(
+                                              std: "4",
+                                            );
+                                          } else {
+                                            Get.snackbar(
+                                              "Un Success Fully Delete",
+                                              "",
+                                            );
+                                          }
+                                        },
                                         icon: Icon(
                                           Icons.delete,
                                         ),
@@ -602,7 +807,8 @@ class _StudentFeesReadScreenState extends State<StudentFeesReadScreen> {
                             ),
                           ),
                         );
-                } else if (std!.compareTo("5") == 0) {
+                }
+                else if (std!.compareTo("5") == 0) {
                   return feesControllor.feesList[index].std.compareTo("$std") !=
                           0
                       ? Container()
@@ -686,13 +892,61 @@ class _StudentFeesReadScreenState extends State<StudentFeesReadScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          FeesModel f1 = FeesModel(
+                                            firstName: feesControllor
+                                                .feesList[index].firstName,
+                                            std: feesControllor
+                                                .feesList[index].std,
+                                            totalFees: feesControllor
+                                                .feesList[index].totalFees,
+                                            paidFees: feesControllor
+                                                .feesList[index].paidFees,
+                                            uid: feesControllor
+                                                .feesList[index].uid,
+                                            id: feesControllor
+                                                .feesList[index].id,
+                                            lessFees: feesControllor
+                                                .feesList[index].lessFees,
+                                            check: 1,
+                                          );
+                                          Get.toNamed(
+                                            '/feesAdd',
+                                            arguments: f1,
+                                          );
+                                        },
                                         icon: Icon(
                                           Icons.edit,
                                         ),
                                       ),
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () async {
+                                          FeesModel f1 = FeesModel(
+                                            id: feesControllor
+                                                .feesList[index].id,
+                                          );
+
+                                          bool check =
+                                              await feesControllor.deleteFees(
+                                            f1: f1,
+                                          );
+
+                                          if (check) {
+                                            Get.snackbar(
+                                              "Success Fully Delete",
+                                              "",
+                                            );
+
+                                            listOfFees(
+                                              std: "5",
+                                            );
+                                          } else {
+                                            Get.snackbar(
+                                              "Un Success Fully Delete",
+                                              "",
+                                            );
+                                          }
+                                        },
                                         icon: Icon(
                                           Icons.delete,
                                         ),
@@ -704,7 +958,8 @@ class _StudentFeesReadScreenState extends State<StudentFeesReadScreen> {
                             ),
                           ),
                         );
-                } else if (std!.compareTo("6") == 0) {
+                }
+                else if (std!.compareTo("6") == 0) {
                   return feesControllor.feesList[index].std.compareTo("$std") !=
                           0
                       ? Container()
@@ -788,13 +1043,61 @@ class _StudentFeesReadScreenState extends State<StudentFeesReadScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          FeesModel f1 = FeesModel(
+                                            firstName: feesControllor
+                                                .feesList[index].firstName,
+                                            std: feesControllor
+                                                .feesList[index].std,
+                                            totalFees: feesControllor
+                                                .feesList[index].totalFees,
+                                            paidFees: feesControllor
+                                                .feesList[index].paidFees,
+                                            uid: feesControllor
+                                                .feesList[index].uid,
+                                            id: feesControllor
+                                                .feesList[index].id,
+                                            lessFees: feesControllor
+                                                .feesList[index].lessFees,
+                                            check: 1,
+                                          );
+                                          Get.toNamed(
+                                            '/feesAdd',
+                                            arguments: f1,
+                                          );
+                                        },
                                         icon: Icon(
                                           Icons.edit,
                                         ),
                                       ),
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () async {
+                                          FeesModel f1 = FeesModel(
+                                            id: feesControllor
+                                                .feesList[index].id,
+                                          );
+
+                                          bool check =
+                                              await feesControllor.deleteFees(
+                                            f1: f1,
+                                          );
+
+                                          if (check) {
+                                            Get.snackbar(
+                                              "Success Fully Delete",
+                                              "",
+                                            );
+
+                                            listOfFees(
+                                              std: "6",
+                                            );
+                                          } else {
+                                            Get.snackbar(
+                                              "Un Success Fully Delete",
+                                              "",
+                                            );
+                                          }
+                                        },
                                         icon: Icon(
                                           Icons.delete,
                                         ),
@@ -806,7 +1109,8 @@ class _StudentFeesReadScreenState extends State<StudentFeesReadScreen> {
                             ),
                           ),
                         );
-                } else if (std!.compareTo("7") == 0) {
+                }
+                else if (std!.compareTo("7") == 0) {
                   return feesControllor.feesList[index].std.compareTo("$std") !=
                           0
                       ? Container()
@@ -890,13 +1194,61 @@ class _StudentFeesReadScreenState extends State<StudentFeesReadScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          FeesModel f1 = FeesModel(
+                                            firstName: feesControllor
+                                                .feesList[index].firstName,
+                                            std: feesControllor
+                                                .feesList[index].std,
+                                            totalFees: feesControllor
+                                                .feesList[index].totalFees,
+                                            paidFees: feesControllor
+                                                .feesList[index].paidFees,
+                                            uid: feesControllor
+                                                .feesList[index].uid,
+                                            id: feesControllor
+                                                .feesList[index].id,
+                                            lessFees: feesControllor
+                                                .feesList[index].lessFees,
+                                            check: 1,
+                                          );
+                                          Get.toNamed(
+                                            '/feesAdd',
+                                            arguments: f1,
+                                          );
+                                        },
                                         icon: Icon(
                                           Icons.edit,
                                         ),
                                       ),
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () async {
+                                          FeesModel f1 = FeesModel(
+                                            id: feesControllor
+                                                .feesList[index].id,
+                                          );
+
+                                          bool check =
+                                              await feesControllor.deleteFees(
+                                            f1: f1,
+                                          );
+
+                                          if (check) {
+                                            Get.snackbar(
+                                              "Success Fully Delete",
+                                              "",
+                                            );
+
+                                            listOfFees(
+                                              std: "7",
+                                            );
+                                          } else {
+                                            Get.snackbar(
+                                              "Un Success Fully Delete",
+                                              "",
+                                            );
+                                          }
+                                        },
                                         icon: Icon(
                                           Icons.delete,
                                         ),
@@ -908,7 +1260,8 @@ class _StudentFeesReadScreenState extends State<StudentFeesReadScreen> {
                             ),
                           ),
                         );
-                } else if (std!.compareTo("8") == 0) {
+                }
+                else if (std!.compareTo("8") == 0) {
                   return feesControllor.feesList[index].std.compareTo("$std") !=
                           0
                       ? Container()
@@ -992,13 +1345,61 @@ class _StudentFeesReadScreenState extends State<StudentFeesReadScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          FeesModel f1 = FeesModel(
+                                            firstName: feesControllor
+                                                .feesList[index].firstName,
+                                            std: feesControllor
+                                                .feesList[index].std,
+                                            totalFees: feesControllor
+                                                .feesList[index].totalFees,
+                                            paidFees: feesControllor
+                                                .feesList[index].paidFees,
+                                            uid: feesControllor
+                                                .feesList[index].uid,
+                                            id: feesControllor
+                                                .feesList[index].id,
+                                            lessFees: feesControllor
+                                                .feesList[index].lessFees,
+                                            check: 1,
+                                          );
+                                          Get.toNamed(
+                                            '/feesAdd',
+                                            arguments: f1,
+                                          );
+                                        },
                                         icon: Icon(
                                           Icons.edit,
                                         ),
                                       ),
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () async {
+                                          FeesModel f1 = FeesModel(
+                                            id: feesControllor
+                                                .feesList[index].id,
+                                          );
+
+                                          bool check =
+                                              await feesControllor.deleteFees(
+                                            f1: f1,
+                                          );
+
+                                          if (check) {
+                                            Get.snackbar(
+                                              "Success Fully Delete",
+                                              "",
+                                            );
+
+                                            listOfFees(
+                                              std: "8",
+                                            );
+                                          } else {
+                                            Get.snackbar(
+                                              "Un Success Fully Delete",
+                                              "",
+                                            );
+                                          }
+                                        },
                                         icon: Icon(
                                           Icons.delete,
                                         ),
@@ -1010,7 +1411,8 @@ class _StudentFeesReadScreenState extends State<StudentFeesReadScreen> {
                             ),
                           ),
                         );
-                } else if (std!.compareTo("9") == 0) {
+                }
+                else if (std!.compareTo("9") == 0) {
                   return feesControllor.feesList[index].std.compareTo("$std") !=
                           0
                       ? Container()
@@ -1094,13 +1496,61 @@ class _StudentFeesReadScreenState extends State<StudentFeesReadScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          FeesModel f1 = FeesModel(
+                                            firstName: feesControllor
+                                                .feesList[index].firstName,
+                                            std: feesControllor
+                                                .feesList[index].std,
+                                            totalFees: feesControllor
+                                                .feesList[index].totalFees,
+                                            paidFees: feesControllor
+                                                .feesList[index].paidFees,
+                                            uid: feesControllor
+                                                .feesList[index].uid,
+                                            id: feesControllor
+                                                .feesList[index].id,
+                                            lessFees: feesControllor
+                                                .feesList[index].lessFees,
+                                            check: 1,
+                                          );
+                                          Get.toNamed(
+                                            '/feesAdd',
+                                            arguments: f1,
+                                          );
+                                        },
                                         icon: Icon(
                                           Icons.edit,
                                         ),
                                       ),
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () async {
+                                          FeesModel f1 = FeesModel(
+                                            id: feesControllor
+                                                .feesList[index].id,
+                                          );
+
+                                          bool check =
+                                              await feesControllor.deleteFees(
+                                            f1: f1,
+                                          );
+
+                                          if (check) {
+                                            Get.snackbar(
+                                              "Success Fully Delete",
+                                              "",
+                                            );
+
+                                            listOfFees(
+                                              std: "9",
+                                            );
+                                          } else {
+                                            Get.snackbar(
+                                              "Un Success Fully Delete",
+                                              "",
+                                            );
+                                          }
+                                        },
                                         icon: Icon(
                                           Icons.delete,
                                         ),
@@ -1112,7 +1562,8 @@ class _StudentFeesReadScreenState extends State<StudentFeesReadScreen> {
                             ),
                           ),
                         );
-                } else if (std!.compareTo("10") == 0) {
+                } 
+                else if (std!.compareTo("10") == 0) {
                   return feesControllor.feesList[index].std.compareTo("$std") !=
                           0
                       ? Container()
@@ -1196,13 +1647,61 @@ class _StudentFeesReadScreenState extends State<StudentFeesReadScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          FeesModel f1 = FeesModel(
+                                            firstName: feesControllor
+                                                .feesList[index].firstName,
+                                            std: feesControllor
+                                                .feesList[index].std,
+                                            totalFees: feesControllor
+                                                .feesList[index].totalFees,
+                                            paidFees: feesControllor
+                                                .feesList[index].paidFees,
+                                            uid: feesControllor
+                                                .feesList[index].uid,
+                                            id: feesControllor
+                                                .feesList[index].id,
+                                            lessFees: feesControllor
+                                                .feesList[index].lessFees,
+                                            check: 1,
+                                          );
+                                          Get.toNamed(
+                                            '/feesAdd',
+                                            arguments: f1,
+                                          );
+                                        },
                                         icon: Icon(
                                           Icons.edit,
                                         ),
                                       ),
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () async {
+                                          FeesModel f1 = FeesModel(
+                                            id: feesControllor
+                                                .feesList[index].id,
+                                          );
+
+                                          bool check =
+                                              await feesControllor.deleteFees(
+                                            f1: f1,
+                                          );
+
+                                          if (check) {
+                                            Get.snackbar(
+                                              "Success Fully Delete",
+                                              "",
+                                            );
+
+                                            listOfFees(
+                                              std: "10",
+                                            );
+                                          } else {
+                                            Get.snackbar(
+                                              "Un Success Fully Delete",
+                                              "",
+                                            );
+                                          }
+                                        },
                                         icon: Icon(
                                           Icons.delete,
                                         ),
@@ -1214,7 +1713,8 @@ class _StudentFeesReadScreenState extends State<StudentFeesReadScreen> {
                             ),
                           ),
                         );
-                } else {
+                }
+                else {
                   return Text(
                     "Bad Choice",
                   );

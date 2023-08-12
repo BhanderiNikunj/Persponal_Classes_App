@@ -56,9 +56,7 @@ class _StudentAddScreenState extends State<StudentAddScreen> {
                       children: [
                         IconButton(
                           onPressed: () {
-                            Get.offAndToNamed(
-                              '/studentRead',
-                            );
+                            Get.back();
                           },
                           icon: Icon(
                             Icons.arrow_back,
