@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
 class FeesReadScreen extends StatefulWidget {
-  const FeesReadScreen({super.key});
+  const  FeesReadScreen({super.key});
 
   @override
   State<FeesReadScreen> createState() => _FeesReadScreenState();

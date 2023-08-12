@@ -277,4 +277,88 @@ class ApiHelper {
     }
     return [];
   }
+
+  // HomeWork
+
+  Future<bool> insertHomeWork({
+    required MassageModel m1,
+  }) async {
+    Uri uri = Uri.parse(
+        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/massage/insertHomeWork.php");
+
+    var response = await http.post(
+      uri,
+      body: {
+        "massage": m1.massage,
+        "time": m1.time,
+        "date": m1.date,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    }
+    return false;
+  }
+
+  Future<bool> updateHomeWork({
+    required MassageModel m1,
+  }) async {
+    Uri uri = Uri.parse(
+        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/massage/updateHomeWork.php");
+
+    var response = await http.post(
+      uri,
+      body: {
+        "massage": m1.massage,
+        "time": m1.time,
+        "date": m1.date,
+        "id": m1.id,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    }
+    return false;
+  }
+
+  Future<bool> deleteHomeWork({
+    required MassageModel m1,
+  }) async {
+    Uri uri = Uri.parse(
+        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/massage/deleteHomeWork.php");
+
+    var response = await http.post(
+      uri,
+      body: {
+        "id": m1.id,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    }
+    return false;
+  }
+
+  Future<List> readHomeWork() async {
+    Uri uri = Uri.parse(
+        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/massage/readHomeWork.php");
+
+    var response = await http.get(
+      uri,
+    );
+
+    var json = jsonDecode(
+      response.body,
+    );
+
+    List l1 = await json.map((e) => MassageModel.fromJson(e)).toList();
+
+    if (response.statusCode == 200) {
+      return l1;
+    }
+    return [];
+  }
 }
