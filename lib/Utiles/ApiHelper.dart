@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:classes_app/Models/FeesModel.dart';
+import 'package:classes_app/Models/HomeWorkModel.dart';
 import 'package:classes_app/Models/MassageModel.dart';
 import 'package:classes_app/Models/StudentModel.dart';
 import 'package:http/http.dart' as http;
@@ -281,17 +282,17 @@ class ApiHelper {
   // HomeWork
 
   Future<bool> insertHomeWork({
-    required MassageModel m1,
+    required HomeWorkModel h1,
   }) async {
     Uri uri = Uri.parse(
-        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/massage/insertHomeWork.php");
+        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/homwWork/insertHomeWork.php");
 
     var response = await http.post(
       uri,
       body: {
-        "massage": m1.massage,
-        "time": m1.time,
-        "date": m1.date,
+        "homeWork": h1.homeWork,
+        "subject": h1.subject,
+        "dueDate": h1.dueDate,
       },
     );
 
@@ -302,7 +303,7 @@ class ApiHelper {
   }
 
   Future<bool> updateHomeWork({
-    required MassageModel m1,
+    required HomeWorkModel h1,
   }) async {
     Uri uri = Uri.parse(
         "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/massage/updateHomeWork.php");
@@ -310,10 +311,10 @@ class ApiHelper {
     var response = await http.post(
       uri,
       body: {
-        "massage": m1.massage,
-        "time": m1.time,
-        "date": m1.date,
-        "id": m1.id,
+        "id": h1.id,
+        "homeWork": h1.homeWork,
+        "subject": h1.subject,
+        "dueDate": h1.dueDate,
       },
     );
 
@@ -324,7 +325,7 @@ class ApiHelper {
   }
 
   Future<bool> deleteHomeWork({
-    required MassageModel m1,
+    required HomeWorkModel h1,
   }) async {
     Uri uri = Uri.parse(
         "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/massage/deleteHomeWork.php");
@@ -332,7 +333,7 @@ class ApiHelper {
     var response = await http.post(
       uri,
       body: {
-        "id": m1.id,
+        "id": h1.id,
       },
     );
 
@@ -344,7 +345,7 @@ class ApiHelper {
 
   Future<List> readHomeWork() async {
     Uri uri = Uri.parse(
-        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/massage/readHomeWork.php");
+        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/homwWork/readHomeWork.php");
 
     var response = await http.get(
       uri,
@@ -353,8 +354,7 @@ class ApiHelper {
     var json = jsonDecode(
       response.body,
     );
-
-    List l1 = await json.map((e) => MassageModel.fromJson(e)).toList();
+    List l1 = await json.map((e) => HomeWorkModel.fromJson(e)).toList();
 
     if (response.statusCode == 200) {
       return l1;
