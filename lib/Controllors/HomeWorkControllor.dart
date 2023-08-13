@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 class HomeWorkControllor extends GetxController {
   List<dynamic> homeWorkList = [];
   String subject = "Math";
+  String std = "1";
 
   TextEditingController txtTitle = TextEditingController();
   TextEditingController txtDueDate = TextEditingController(

@@ -63,7 +63,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemBuilder: (context, index) {
                           return InkWell(
                             onTap: () {
-                              Get.toNamed('${homeControllor.titleList[index].routes}');
+                              Get.toNamed(
+                                  '${homeControllor.titleList[index].routes}');
                             },
                             child: Container(
                               margin: EdgeInsets.all(5.sp),

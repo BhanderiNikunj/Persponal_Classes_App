@@ -19,6 +19,21 @@ class _HomeWorkAddScreenState extends State<HomeWorkAddScreen> {
   );
 
   HomeWorkModel homeWorkModel = Get.arguments;
+  @override
+  void initState() {
+    super.initState();
+
+    homeWorkControllor.std = "1";
+
+    if (homeWorkModel.check == 1) {
+      homeWorkControllor.subject = homeWorkModel.subject!;
+      homeWorkControllor.txtDueDate =
+          TextEditingController(text: "${homeWorkModel.dueDate}");
+      homeWorkControllor.txtTitle =
+          TextEditingController(text: "${homeWorkModel.homeWork}");
+      homeWorkControllor.std = homeWorkModel.std!;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -158,6 +173,76 @@ class _HomeWorkAddScreenState extends State<HomeWorkAddScreen> {
                       setState(() {});
                     },
                   ),
+                  DropdownButton(
+                    isExpanded: true,
+                    value: homeWorkControllor.std,
+                    items: [
+                      DropdownMenuItem(
+                        value: "1",
+                        child: Text(
+                          "Std 1",
+                        ),
+                      ),
+                      DropdownMenuItem(
+                        value: "2",
+                        child: Text(
+                          "Std 2",
+                        ),
+                      ),
+                      DropdownMenuItem(
+                        value: "3",
+                        child: Text(
+                          "Std 3",
+                        ),
+                      ),
+                      DropdownMenuItem(
+                        value: "4",
+                        child: Text(
+                          "Std 14",
+                        ),
+                      ),
+                      DropdownMenuItem(
+                        value: "5",
+                        child: Text(
+                          "Std 5",
+                        ),
+                      ),
+                      DropdownMenuItem(
+                        value: "6",
+                        child: Text(
+                          "Std 6",
+                        ),
+                      ),
+                      DropdownMenuItem(
+                        value: "7",
+                        child: Text(
+                          "Std 7",
+                        ),
+                      ),
+                      DropdownMenuItem(
+                        value: "8",
+                        child: Text(
+                          "Std 8",
+                        ),
+                      ),
+                      DropdownMenuItem(
+                        value: "9",
+                        child: Text(
+                          "Std 9",
+                        ),
+                      ),
+                      DropdownMenuItem(
+                        value: "10",
+                        child: Text(
+                          "Std 10",
+                        ),
+                      ),
+                    ],
+                    onChanged: (value) {
+                      homeWorkControllor.std = value!;
+                      setState(() {});
+                    },
+                  ),
                   SizedBox(height: 20.sp),
                   InkWell(
                     onTap: () async {
@@ -167,6 +252,7 @@ class _HomeWorkAddScreenState extends State<HomeWorkAddScreen> {
                           subject: homeWorkControllor.subject,
                           homeWork: homeWorkControllor.txtTitle.text,
                           dueDate: homeWorkControllor.txtDueDate.text,
+                          std: homeWorkControllor.std,
                         );
 
                         bool check = await homeWorkControllor.updateHomeWork(
@@ -177,7 +263,7 @@ class _HomeWorkAddScreenState extends State<HomeWorkAddScreen> {
                           Get.back();
 
                           Get.snackbar(
-                            "Add Success",
+                            "Update Success",
                             "",
                           );
                           homeWorkControllor.txtTitle.clear();
@@ -192,6 +278,7 @@ class _HomeWorkAddScreenState extends State<HomeWorkAddScreen> {
                           subject: homeWorkControllor.subject,
                           homeWork: homeWorkControllor.txtTitle.text,
                           dueDate: homeWorkControllor.txtDueDate.text,
+                          std: homeWorkControllor.std,
                         );
 
                         print(h1.dueDate);

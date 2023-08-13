@@ -293,6 +293,7 @@ class ApiHelper {
         "homeWork": h1.homeWork,
         "subject": h1.subject,
         "dueDate": h1.dueDate,
+        "std": h1.std,
       },
     );
 
@@ -306,7 +307,7 @@ class ApiHelper {
     required HomeWorkModel h1,
   }) async {
     Uri uri = Uri.parse(
-        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/massage/updateHomeWork.php");
+        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/homwWork/updateHomeWork.php");
 
     var response = await http.post(
       uri,
@@ -315,6 +316,7 @@ class ApiHelper {
         "homeWork": h1.homeWork,
         "subject": h1.subject,
         "dueDate": h1.dueDate,
+        "std": h1.std,
       },
     );
 
