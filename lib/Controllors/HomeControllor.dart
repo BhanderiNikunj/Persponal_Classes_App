@@ -15,13 +15,18 @@ class HomeControllor extends GetxController {
     ),
     TitleModel(
       name: "Fees",
-      routes: '/feesRead',
+      routes: '/studentNameForFees',
       image: "Assets/Images/fees.png",
     ),
     TitleModel(
       name: "Massage",
       image: "Assets/Images/massage.png",
       routes: '/massageRead',
+    ),
+    TitleModel(
+      name: "Leave",
+      image: "Assets/Images/leave.png",
+      routes: '/leaveRead',
     ),
   ];
 }

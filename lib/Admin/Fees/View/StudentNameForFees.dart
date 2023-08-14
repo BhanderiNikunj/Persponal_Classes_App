@@ -1,4 +1,6 @@
+import 'package:classes_app/Controllors/FeesControllor.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class StudentNameForFeesScreen extends StatefulWidget {
@@ -10,6 +12,10 @@ class StudentNameForFeesScreen extends StatefulWidget {
 }
 
 class _StudentNameForFeesScreenState extends State<StudentNameForFeesScreen> {
+  FeesControllor feesControllor = Get.put(
+    FeesControllor(),
+  );
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -19,7 +25,7 @@ class _StudentNameForFeesScreenState extends State<StudentNameForFeesScreen> {
             Row(
               children: [
                 DropdownButton(
-                  // value: studentControllor.std,
+                  value: feesControllor.std,
                   items: [
                     DropdownMenuItem(
                       value: "1",
@@ -113,15 +119,75 @@ class _StudentNameForFeesScreenState extends State<StudentNameForFeesScreen> {
                     ),
                   ],
                   onChanged: (value) {
-                    // studentControllor.std = value!;
+                    feesControllor.std = value!;
                     setState(() {});
                   },
                 ),
               ],
-            )
+            ),
+            Expanded(
+              child: lisOfStudent(
+                std: feesControllor.std,
+              ),
+            ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget lisOfStudent({
+    String? std,
+  }) {
+    return FutureBuilder(
+      future: feesControllor.readStudentUid(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Text(
+            "${snapshot.error}",
+            style: GoogleFonts.archivo(),
+          );
+        } else if (snapshot.hasData) {
+          feesControllor.studentUidList = snapshot.data!;
+          return ListView.builder(
+            itemCount: feesControllor.studentUidList.length,
+            itemBuilder: (context, index) {
+              return feesControllor.studentUidList[index].std
+                          .compareTo("$std") !=
+                      0
+                  ? Text(
+                      "",
+                      style: GoogleFonts.archivo(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )
+                  : InkWell(
+                      onTap: () {
+                        Get.toNamed(
+                          '/feesRead',
+                          arguments: feesControllor.studentUidList[index],
+                        );
+                      },
+                      child: ListTile(
+                        title: Text(
+                          "${feesControllor.studentUidList[index].firstName}",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        leading: Text(
+                          "${feesControllor.studentUidList[index].std}",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    );
+            },
+          );
+        }
+        return CircularProgressIndicator();
+      },
     );
   }
 }

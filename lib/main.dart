@@ -1,5 +1,6 @@
 import 'package:classes_app/Admin/Fees/View/FeesAddScreen.dart';
 import 'package:classes_app/Admin/Fees/View/FeesReadScreen.dart';
+import 'package:classes_app/Admin/Fees/View/StudentNameForFees.dart';
 import 'package:classes_app/Admin/Home/View/HomeScreen.dart';
 import 'package:classes_app/Admin/HomeWork/View/HomeWorkAddScreen.dart';
 import 'package:classes_app/Admin/HomeWork/View/HomeWorkReadScreen.dart';
@@ -33,12 +34,15 @@ Future<void> main() async {
             GetPage(name: '/home', page: () => HomeScreen(),),
             GetPage(name: '/studentRead', page: () => StudentReadScreen(),),
             GetPage(name: '/studentAdd', page: () => StudentAddScreen(),),
+            GetPage(name: '/homeWorkRead', page: () => HomeWorkReadScreen(),),
+            GetPage(name: '/homeWorkAdd', page: () => HomeWorkAddScreen(),),
+            GetPage(name: '/studentNameForFees', page: () => StudentNameForFeesScreen(),),
             GetPage(name: '/feesRead', page: () => FeesReadScreen(),),
             GetPage(name: '/feesAdd', page: () => FeesAddScreen(),),
             GetPage(name: '/massageRead', page: () => MassageReadScreen(),),
             GetPage(name: '/massageAdd', page: () => MassageAddScreen(),),
-            GetPage(name: '/homeWorkRead', page: () => HomeWorkReadScreen(),),
-            GetPage(name: '/homeWorkAdd', page: () => HomeWorkAddScreen(),),
+            GetPage(name: '/leaveRead', page: () => MassageReadScreen(),),
+            GetPage(name: '/leaveAdd', page: () => MassageAddScreen(),),
           ],
         );
       },

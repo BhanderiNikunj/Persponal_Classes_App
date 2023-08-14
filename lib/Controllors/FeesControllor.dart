@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 class FeesControllor extends GetxController {
   List feesList = [];
+  List studentUidList = [];
   String std = "1";
 
   TextEditingController txtName = TextEditingController();
@@ -38,5 +39,9 @@ class FeesControllor extends GetxController {
 
   Future<List> readFees() {
     return ApiHelper.apiHelper.readFees();
+  }
+
+  Future<List> readStudentUid() {
+    return ApiHelper.apiHelper.readStudentUid();
   }
 }

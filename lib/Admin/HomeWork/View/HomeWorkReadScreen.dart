@@ -323,9 +323,19 @@ class _HomeWorkReadScreenState extends State<HomeWorkReadScreen> {
                                       );
 
                                       if (check) {
-                                        print("object");
+                                        Get.snackbar(
+                                          "Success Fully Delete",
+                                          "",
+                                        );
+
+                                        homeWorkControllor.homeWorkList =
+                                        await homeWorkControllor.readHomeWork();
+                                        setState(() {});
                                       } else {
-                                        print("object1");
+                                        Get.snackbar(
+                                          "Un Success Fully Delete",
+                                          "",
+                                        );
                                       }
                                     },
                                     icon: Icon(

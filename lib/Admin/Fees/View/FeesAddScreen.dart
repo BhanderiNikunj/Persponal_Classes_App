@@ -32,6 +32,10 @@ class _FeesAddScreenState extends State<FeesAddScreen> {
           TextEditingController(text: "${feesModel.totalFees!}");
       feesControllor.txtPaidFees =
           TextEditingController(text: "${feesModel.paidFees!}");
+    } else {
+      feesControllor.txtName =
+          TextEditingController(text: "${feesModel.firstName!}");
+      feesControllor.txtStd = TextEditingController(text: "${feesModel.std!}");
     }
   }
 
@@ -85,44 +89,27 @@ class _FeesAddScreenState extends State<FeesAddScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 10.sp),
-                  TextField(
-                    keyboardType: TextInputType.number,
-                    controller: feesControllor.txtStd,
-                    style: GoogleFonts.archivo(),
-                    cursorColor: Color(0xffe85720),
-                    cursorWidth: 1,
-                    cursorRadius: Radius.circular(50),
-                    decoration: InputDecoration(
-                      hintText: "Ex. 10",
-                      hintStyle: GoogleFonts.archivo(),
-                      filled: true,
-                      fillColor: Color(0x27e85720),
-                      label: Text(
-                        "Student Std",
-                        style: GoogleFonts.archivo(),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10.sp),
-                  TextField(
-                    keyboardType: TextInputType.number,
-                    controller: feesControllor.txtTotalFees,
-                    style: GoogleFonts.archivo(),
-                    cursorColor: Color(0xffe85720),
-                    cursorWidth: 1,
-                    cursorRadius: Radius.circular(50),
-                    decoration: InputDecoration(
-                      hintText: "Ex. 10000",
-                      hintStyle: GoogleFonts.archivo(),
-                      filled: true,
-                      fillColor: Color(0x27e85720),
-                      label: Text(
-                        "Student Total Fees",
-                        style: GoogleFonts.archivo(),
-                      ),
-                    ),
-                  ),
+                  feesModel.check == 1 ? Container() : SizedBox(height: 10.sp),
+                  feesModel.check == 1
+                      ? Container()
+                      : TextField(
+                          keyboardType: TextInputType.number,
+                          controller: feesControllor.txtTotalFees,
+                          style: GoogleFonts.archivo(),
+                          cursorColor: Color(0xffe85720),
+                          cursorWidth: 1,
+                          cursorRadius: Radius.circular(50),
+                          decoration: InputDecoration(
+                            hintText: "Ex. 10000",
+                            hintStyle: GoogleFonts.archivo(),
+                            filled: true,
+                            fillColor: Color(0x27e85720),
+                            label: Text(
+                              "Student Total Fees",
+                              style: GoogleFonts.archivo(),
+                            ),
+                          ),
+                        ),
                   SizedBox(height: 10.sp),
                   TextField(
                     controller: feesControllor.txtPaidFees,
@@ -146,11 +133,12 @@ class _FeesAddScreenState extends State<FeesAddScreen> {
                   InkWell(
                     onTap: () async {
                       if (feesModel.check == 1) {
+                        print(feesModel.uid);
                         FeesModel f1 = FeesModel(
-                          uid: "-",
+                          uid: feesModel.uid,
                           id: feesModel.id,
                           std: feesControllor.txtStd.text,
-                          totalFees: feesControllor.txtPaidFees.text,
+                          totalFees: feesModel.totalFees,
                           paidFees: feesControllor.txtPaidFees.text,
                           firstName: feesControllor.txtName.text,
                         );
@@ -169,9 +157,9 @@ class _FeesAddScreenState extends State<FeesAddScreen> {
                         }
                       } else {
                         FeesModel f1 = FeesModel(
-                          uid: "-",
-                          std: feesControllor.txtStd.text,
-                          totalFees: feesControllor.txtPaidFees.text,
+                          uid: feesModel.uid,
+                          std: feesModel.std,
+                          totalFees: feesControllor.txtTotalFees.text,
                           paidFees: feesControllor.txtPaidFees.text,
                           firstName: feesControllor.txtName.text,
                         );

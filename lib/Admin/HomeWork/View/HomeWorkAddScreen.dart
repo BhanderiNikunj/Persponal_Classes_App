@@ -19,6 +19,7 @@ class _HomeWorkAddScreenState extends State<HomeWorkAddScreen> {
   );
 
   HomeWorkModel homeWorkModel = Get.arguments;
+
   @override
   void initState() {
     super.initState();
@@ -118,6 +119,7 @@ class _HomeWorkAddScreenState extends State<HomeWorkAddScreen> {
                         "Enter Title",
                         style: GoogleFonts.archivo(),
                       ),
+                      labelStyle: GoogleFonts.archivo(),
                     ),
                   ),
                   SizedBox(height: 10.sp),
@@ -129,42 +131,63 @@ class _HomeWorkAddScreenState extends State<HomeWorkAddScreen> {
                         value: "Math",
                         child: Text(
                           "Math's",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       DropdownMenuItem(
                         value: "Science",
                         child: Text(
                           "Science",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       DropdownMenuItem(
                         value: "English",
                         child: Text(
                           "English",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       DropdownMenuItem(
                         value: "Social Science",
                         child: Text(
                           "Social Science",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       DropdownMenuItem(
                         value: "Hindi",
                         child: Text(
                           "Hindi",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       DropdownMenuItem(
                         value: "Gujarati",
                         child: Text(
                           "Gujarati",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       DropdownMenuItem(
                         value: "Sanskrit",
                         child: Text(
                           "Sanskrit",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ],
@@ -181,60 +204,90 @@ class _HomeWorkAddScreenState extends State<HomeWorkAddScreen> {
                         value: "1",
                         child: Text(
                           "Std 1",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       DropdownMenuItem(
                         value: "2",
                         child: Text(
                           "Std 2",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       DropdownMenuItem(
                         value: "3",
                         child: Text(
                           "Std 3",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       DropdownMenuItem(
                         value: "4",
                         child: Text(
-                          "Std 14",
+                          "Std 4",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       DropdownMenuItem(
                         value: "5",
                         child: Text(
                           "Std 5",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       DropdownMenuItem(
                         value: "6",
                         child: Text(
                           "Std 6",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       DropdownMenuItem(
                         value: "7",
                         child: Text(
                           "Std 7",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       DropdownMenuItem(
                         value: "8",
                         child: Text(
                           "Std 8",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       DropdownMenuItem(
                         value: "9",
                         child: Text(
                           "Std 9",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       DropdownMenuItem(
                         value: "10",
                         child: Text(
                           "Std 10",
+                          style: GoogleFonts.archivo(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ],
