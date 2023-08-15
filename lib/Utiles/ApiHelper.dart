@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:classes_app/Models/FeesModel.dart';
 import 'package:classes_app/Models/HomeWorkModel.dart';
+import 'package:classes_app/Models/LeaveModel.dart';
 import 'package:classes_app/Models/MassageModel.dart';
 import 'package:classes_app/Models/StudentModel.dart';
 import 'package:classes_app/Models/StudentUidModel.dart';
@@ -186,6 +187,8 @@ class ApiHelper {
     return [];
   }
 
+  // Student Uid
+
   Future<List> readStudentUid() async {
     Uri uri = Uri.parse(
         "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/StudentUid/readStudentUid.php");
@@ -364,6 +367,68 @@ class ApiHelper {
       response.body,
     );
     List l1 = await json.map((e) => HomeWorkModel.fromJson(e)).toList();
+
+    if (response.statusCode == 200) {
+      return l1;
+    }
+    return [];
+  }
+
+  // Leave
+
+  Future<bool> insertLeave() async {
+    Uri uri = Uri.parse(
+        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/leave/insertLeave.php");
+
+    var response = await http.post(
+      uri,
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    }
+    return false;
+  }
+
+  Future<bool> updateLeave() async {
+    Uri uri = Uri.parse(
+        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/leave/updateLeave.php");
+
+    var response = await http.post(
+      uri,
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    }
+    return false;
+  }
+
+  Future<bool> deleteLeave() async {
+    Uri uri = Uri.parse(
+        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/leave/deleteLeave.php");
+
+    var response = await http.post(
+      uri,
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    }
+    return false;
+  }
+
+  Future<List> readLeave() async {
+    Uri uri = Uri.parse(
+        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/leave/readLeave.php");
+
+    var response = await http.post(
+      uri,
+    );
+
+    var json = jsonDecode(response.body);
+
+    List l1 = json.map((e) => LeaveModel.fromJson(e)).toList();
 
     if (response.statusCode == 200) {
       return l1;
