@@ -376,12 +376,21 @@ class ApiHelper {
 
   // Leave
 
-  Future<bool> insertLeave() async {
+  Future<bool> insertLeave({
+    required LeaveModel l1,
+  }) async {
     Uri uri = Uri.parse(
         "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/leave/insertLeave.php");
 
     var response = await http.post(
       uri,
+      body: {
+        "firstName": l1.firstName,
+        "std": l1.std,
+        "resion": l1.resion,
+        "dateFrom": l1.dateForm,
+        "dateTo": l1.dateTo,
+      },
     );
 
     if (response.statusCode == 200) {
@@ -390,12 +399,22 @@ class ApiHelper {
     return false;
   }
 
-  Future<bool> updateLeave() async {
+  Future<bool> updateLeave({
+    required LeaveModel l1,
+  }) async {
     Uri uri = Uri.parse(
         "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/leave/updateLeave.php");
 
     var response = await http.post(
       uri,
+      body: {
+        "id": l1.id,
+        "firstName": l1.firstName,
+        "std": l1.std,
+        "resion": l1.resion,
+        "dateFrom": l1.dateForm,
+        "dateTo": l1.dateTo,
+      },
     );
 
     if (response.statusCode == 200) {
@@ -404,12 +423,17 @@ class ApiHelper {
     return false;
   }
 
-  Future<bool> deleteLeave() async {
+  Future<bool> deleteLeave({
+    required LeaveModel l1,
+  }) async {
     Uri uri = Uri.parse(
         "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/leave/deleteLeave.php");
 
     var response = await http.post(
       uri,
+      body: {
+        "id": l1.id,
+      },
     );
 
     if (response.statusCode == 200) {
@@ -422,7 +446,7 @@ class ApiHelper {
     Uri uri = Uri.parse(
         "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/leave/readLeave.php");
 
-    var response = await http.post(
+    var response = await http.get(
       uri,
     );
 
