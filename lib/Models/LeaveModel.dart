@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-List<LeaveModel> leaveModelFromJson(String str) => List<LeaveModel>.from(json.decode(str).map((x) => LeaveModel.fromJson(x)));
+List<LeaveModel> leaveModelFromJson(String str) =>
+    List<LeaveModel>.from(json.decode(str).map((x) => LeaveModel.fromJson(x)));
 
-String leaveModelToJson(List<LeaveModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String leaveModelToJson(List<LeaveModel> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class LeaveModel {
   String? id;
@@ -15,6 +17,7 @@ class LeaveModel {
   String? resion;
   String? dateForm;
   String? dateTo;
+  int? check;
 
   LeaveModel({
     this.id,
@@ -23,23 +26,24 @@ class LeaveModel {
     this.resion,
     this.dateForm,
     this.dateTo,
+    this.check,
   });
 
   factory LeaveModel.fromJson(Map<String, dynamic> json) => LeaveModel(
-    id: json["id"],
-    firstName: json["firstName"],
-    std: json["std"],
-    resion: json["resion"],
-    dateForm: json["dateForm"],
-    dateTo: json["dateTo"],
-  );
+        id: json["id"],
+        firstName: json["firstName"],
+        std: json["std"],
+        resion: json["resion"],
+        dateForm: json["dateForm"],
+        dateTo: json["dateTo"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "firstName": firstName,
-    "std": std,
-    "resion": resion,
-    "dateForm": dateForm,
-    "dateTo": dateTo,
-  };
+        "id": id,
+        "firstName": firstName,
+        "std": std,
+        "resion": resion,
+        "dateForm": dateForm,
+        "dateTo": dateTo,
+      };
 }
