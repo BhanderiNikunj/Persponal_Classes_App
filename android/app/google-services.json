@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "783247301794",
-    "project_id": "my-app-9c940",
-    "storage_bucket": "my-app-9c940.appspot.com"
+    "project_number": "678841674131",
+    "project_id": "bright-3727d",
+    "storage_bucket": "bright-3727d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:783247301794:android:fdd2fa47626b5ded11cbfb",
+        "mobilesdk_app_id": "1:678841674131:android:8ad0c5441e91d233fde066",
         "android_client_info": {
           "package_name": "com.example.classes_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "783247301794-31b8p7n72kdf08fi66lj9893apbqju3c.apps.googleusercontent.com",
+          "client_id": "678841674131-i807qvcp2nc617ug1rkisgvrb5bg7l25.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA9J6LSxYa5vwzu3xEkgQ00JLah6HMFTSk"
+          "current_key": "AIzaSyAGP0OLeaFs28mhpOiz_gXAeWr6AMfjyB8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "783247301794-31b8p7n72kdf08fi66lj9893apbqju3c.apps.googleusercontent.com",
+              "client_id": "678841674131-i807qvcp2nc617ug1rkisgvrb5bg7l25.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
