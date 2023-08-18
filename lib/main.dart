@@ -7,6 +7,7 @@ import 'package:classes_app/Admin/HomeWork/View/HomeWorkReadScreen.dart';
 import 'package:classes_app/Admin/Leave/View/LeaveAddScreen.dart';
 import 'package:classes_app/Admin/Leave/View/LeaveReadScreen.dart';
 import 'package:classes_app/Admin/Massage/View/MassageAddScreen.dart';
+import 'package:classes_app/Login/Check/View/CheckScreen.dart';
 import 'package:classes_app/User/Home/View/UserHomeScreen.dart';
 import 'package:classes_app/User/Massage/View/UserMassageScreen.dart';
 import 'package:classes_app/Admin/Massage/View/MassageReadScreen.dart';
@@ -35,6 +36,7 @@ Future<void> main() async {
           getPages: [
             GetPage(name: '/', page: () => SpleshScreen(),),
             GetPage(name: '/logIn', page: () => LogInScreen(),),
+            GetPage(name: '/check', page: () => CheckScreen(),),
             GetPage(name: '/home', page: () => HomeScreen(),),
             GetPage(name: '/studentRead', page: () => StudentReadScreen(),),
             GetPage(name: '/studentAdd', page: () => StudentAddScreen(),),

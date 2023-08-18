@@ -24,6 +24,8 @@ class _LogInScreenState extends State<LogInScreen> {
       child: Scaffold(
         body: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset(
                 "Assets/Images/bright_op.png",
@@ -37,74 +39,88 @@ class _LogInScreenState extends State<LogInScreen> {
                   fontWeight: FontWeight.w900,
                 ),
               ),
-              TextField(
-                controller: logInControllor.txtEmail,
-                decoration: InputDecoration(
-                  label: Text(
-                    "Enter Email Id.",
-                    style: GoogleFonts.archivo(
-                      fontWeight: FontWeight.bold,
+              Padding(
+                padding: EdgeInsets.all(10.sp),
+                child: TextField(
+                  controller: logInControllor.txtEmail,
+                  style: GoogleFonts.archivo(),
+                  cursorColor: Color(0xffe85720),
+                  cursorWidth: 1,
+                  cursorRadius: Radius.circular(50),
+                  decoration: InputDecoration(
+                    prefixIcon: IconButton(
+                      onPressed: () async {},
+                      icon: Icon(
+                        Icons.email,
+                      ),
                     ),
-                  ),
-                  hintText: "Ex. user@gmail.com",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.sp),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.sp),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.sp),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.sp),
-                  ),
-                  disabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.sp),
+                    filled: true,
+                    fillColor: Color(0x27e85720),
+                    hintText: "Ex. user@gmail.com",
+                    hintStyle: GoogleFonts.archivo(),
+                    label: Text(
+                      "Enter Email",
+                      style: GoogleFonts.archivo(),
+                    ),
+                    labelStyle: GoogleFonts.archivo(),
                   ),
                 ),
               ),
-              SizedBox(height: 10.sp),
-              TextField(
-                controller: logInControllor.txtPassword,
-                decoration: InputDecoration(
-                  label: Text(
-                    "Enter Email Id.",
-                    style: GoogleFonts.archivo(
-                      fontWeight: FontWeight.bold,
+              Padding(
+                padding: EdgeInsets.all(10.sp),
+                child: TextField(
+                  controller: logInControllor.txtPassword,
+                  style: GoogleFonts.archivo(),
+                  cursorColor: Color(0xffe85720),
+                  cursorWidth: 1,
+                  cursorRadius: Radius.circular(50),
+                  decoration: InputDecoration(
+                    prefixIcon: IconButton(
+                      onPressed: () async {},
+                      icon: Icon(
+                        Icons.lock,
+                      ),
                     ),
-                  ),
-                  hintText: "Ex. user@gmail.com",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.sp),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.sp),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.sp),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.sp),
-                  ),
-                  disabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.sp),
+                    filled: true,
+                    fillColor: Color(0x27e85720),
+                    hintText: "Ex. * * * * * * * ",
+                    hintStyle: GoogleFonts.archivo(),
+                    label: Text(
+                      "Enter Password",
+                      style: GoogleFonts.archivo(),
+                    ),
+                    labelStyle: GoogleFonts.archivo(),
                   ),
                 ),
               ),
               SizedBox(height: 20.sp),
               InkWell(
-                onTap: () {
+                onTap: () async {
                   LoginModel l1 = LoginModel(
                     email: logInControllor.txtEmail.text,
                     password: logInControllor.txtPassword.text,
                   );
 
-                  logInControllor.logIn(
+                  bool check = await logInControllor.logIn(
                     loginModel: l1,
                   );
 
+                  if (check) {
+                    Get.snackbar(
+                      "LogIn Success",
+                      "",
+                    );
 
+                    Get.offAndToNamed(
+                      '/check',
+                      arguments: logInControllor.txtEmail.text,
+                    );
+                  } else {
+                    Get.snackbar(
+                      "LogIn Un Success",
+                      "",
+                    );
+                  }
                 },
                 child: allButton(
                   string: "Log In",

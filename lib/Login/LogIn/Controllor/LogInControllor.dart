@@ -8,10 +8,10 @@ class LogInControllor extends GetxController {
   TextEditingController txtEmail = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
 
-  void logIn({
+  Future<bool> logIn({
     required LoginModel loginModel,
   }) {
-    FirebaseHelper.firebaseHelper.logIn(
+    return FirebaseHelper.firebaseHelper.logIn(
       loginModel: loginModel,
     );
   }

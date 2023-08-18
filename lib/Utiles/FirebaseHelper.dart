@@ -16,7 +16,7 @@ class FirebaseHelper {
 
   // Login
 
-  Future<String> logIn({
+  Future<bool> logIn({
     required LoginModel loginModel,
   }) async {
     return await firebaseAuth
@@ -25,10 +25,10 @@ class FirebaseHelper {
           password: loginModel.password!,
         )
         .then(
-          (value) => "success",
+          (value) => true,
         )
         .catchError(
-          (e) => "$e",
+          (e) => false,
         );
   }
 
