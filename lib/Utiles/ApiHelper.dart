@@ -1,11 +1,13 @@
 import 'dart:convert';
 
+import 'package:classes_app/Models/CheckUserModel.dart';
 import 'package:classes_app/Models/FeesModel.dart';
 import 'package:classes_app/Models/HomeWorkModel.dart';
 import 'package:classes_app/Models/LeaveModel.dart';
 import 'package:classes_app/Models/MassageModel.dart';
 import 'package:classes_app/Models/StudentModel.dart';
 import 'package:classes_app/Models/StudentUidModel.dart';
+import 'package:classes_app/Utiles/FirebaseHelper.dart';
 import 'package:http/http.dart' as http;
 
 class ApiHelper {
@@ -453,6 +455,56 @@ class ApiHelper {
     var json = jsonDecode(response.body);
 
     List l1 = json.map((e) => LeaveModel.fromJson(e)).toList();
+
+    if (response.statusCode == 200) {
+      return l1;
+    }
+    return [];
+  }
+
+  // UserDetail
+
+  Future<bool> insertUserDetail({
+    required CheckUserModel c1,
+  }) async {
+    Uri uri = Uri.parse(
+        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/userDetail/insertDetail.php");
+
+    var response = await http.post(
+      uri,
+      body: {
+        "firstName": c1.firstName,
+        "lastName": c1.lastName,
+        "fatherName": c1.fatherName,
+        "emailId": c1.emailId,
+        "std": c1.std,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    }
+    return false;
+  }
+
+  Future<List> readUserDetail({
+    String? email,
+  }) async {
+    Uri uri = Uri.parse(
+        "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/userDetail/selectUserDetail.php");
+
+    var response = await http.post(
+      uri,
+      body: {
+        "email": FirebaseHelper.firebaseHelper.findEmail() == null
+            ? email
+            : FirebaseHelper.firebaseHelper.findEmail(),
+      },
+    );
+
+    var json = jsonDecode(response.body);
+
+    List l1 = json.map((e) => CheckUserModel.fromJson(e)).toList();
 
     if (response.statusCode == 200) {
       return l1;

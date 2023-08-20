@@ -1,5 +1,6 @@
 import 'package:classes_app/Controllors/HomeWorkControllor.dart';
 import 'package:classes_app/Models/HomeWorkModel.dart';
+import 'package:classes_app/Utiles/AdsHelper.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,6 +20,13 @@ class _HomeWorkReadScreenState extends State<HomeWorkReadScreen> {
   );
 
   @override
+  void initState() {
+    super.initState();
+
+    AdsHelper.adsHelper.loadInterstitialAds();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -35,11 +43,8 @@ class _HomeWorkReadScreenState extends State<HomeWorkReadScreen> {
                     children: [
                       IconButton(
                         onPressed: () {
-                          homeWorkControllor.std = "1";
-                          listOfHomeWork(
-                            std: "1",
-                          );
-                          setState(() {});
+                          AdsHelper.adsHelper.loadInterstitialAds();
+                          AdsHelper.adsHelper.interstitialAd?.show();
                           Get.back();
                         },
                         icon: Icon(
@@ -165,8 +170,163 @@ class _HomeWorkReadScreenState extends State<HomeWorkReadScreen> {
               ],
             ),
             Expanded(
-              child: listOfHomeWork(
-                std: homeWorkControllor.std,
+              child: FutureBuilder(
+                future: homeWorkControllor.readHomeWork(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    print(snapshot.error);
+                    return Center(
+                      child: Text(
+                        "${snapshot.error}",
+                        style: GoogleFonts.archivo(),
+                      ),
+                    );
+                  } else if (snapshot.hasData) {
+                    homeWorkControllor.homeWorkList = snapshot.data!;
+                    return ListView.builder(
+                      itemCount: homeWorkControllor.homeWorkList.length,
+                      itemBuilder: (context, index) {
+                        return homeWorkControllor.homeWorkList[index].std
+                            .compareTo(homeWorkControllor.std) !=
+                            0
+                            ? Container()
+                            : Padding(
+                          padding: EdgeInsets.all(8.sp),
+                          child: Container(
+                            height: 100.sp,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.sp),
+                              color: Colors.white70,
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 10,
+                                  color: Colors.black12,
+                                  offset: Offset(
+                                    0,
+                                    0,
+                                  ),
+                                  spreadRadius: 7,
+                                ),
+                              ],
+                            ),
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: 10.sp,
+                                ),
+                                Container(
+                                  width: 200.sp,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "Home Work :- ${homeWorkControllor.homeWorkList[index].homeWork}",
+                                        style: GoogleFonts.archivo(
+                                          fontSize: 15.sp,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Subject :- ${homeWorkControllor.homeWorkList[index].subject}",
+                                        style: GoogleFonts.archivo(
+                                          fontSize: 12.sp,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Due Date :- ${homeWorkControllor.homeWorkList[index].dueDate}",
+                                        style: GoogleFonts.archivo(
+                                          fontSize: 12.sp,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Std :- ${homeWorkControllor.homeWorkList[index].std}",
+                                        style: GoogleFonts.archivo(
+                                          fontSize: 12.sp,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10.sp,
+                                ),
+                                Container(
+                                  width: 20.sp,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      IconButton(
+                                        onPressed: () {
+                                          HomeWorkModel h1 = HomeWorkModel(
+                                            subject: homeWorkControllor
+                                                .homeWorkList[index].subject,
+                                            std: homeWorkControllor
+                                                .homeWorkList[index].std,
+                                            dueDate: homeWorkControllor
+                                                .homeWorkList[index].dueDate,
+                                            homeWork: homeWorkControllor
+                                                .homeWorkList[index].homeWork,
+                                            id: homeWorkControllor
+                                                .homeWorkList[index].id,
+                                            check: 1,
+                                          );
+                                          Get.toNamed(
+                                            '/homeWorkAdd',
+                                            arguments: h1,
+                                          );
+                                        },
+                                        icon: Icon(
+                                          Icons.edit,
+                                        ),
+                                      ),
+                                      IconButton(
+                                        onPressed: () async {
+                                          HomeWorkModel h1 = HomeWorkModel(
+                                            id: homeWorkControllor
+                                                .homeWorkList[index].id,
+                                          );
+                                          bool check = await homeWorkControllor
+                                              .deleteHomeWork(
+                                            h1: h1,
+                                          );
+
+                                          if (check) {
+                                            Get.snackbar(
+                                              "Success Fully Delete",
+                                              "",
+                                            );
+
+                                            homeWorkControllor.homeWorkList =
+                                            await homeWorkControllor.readHomeWork();
+                                            setState(() {});
+                                          } else {
+                                            Get.snackbar(
+                                              "Un Success Fully Delete",
+                                              "",
+                                            );
+                                          }
+                                        },
+                                        icon: Icon(
+                                          Icons.delete,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  }
+                  return CircularProgressIndicator();
+                },
               ),
             ),
           ],
@@ -191,169 +351,6 @@ class _HomeWorkReadScreenState extends State<HomeWorkReadScreen> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget listOfHomeWork({
-    String? std,
-  }) {
-    return FutureBuilder(
-      future: homeWorkControllor.readHomeWork(),
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          print(snapshot.error);
-          return Center(
-            child: Text(
-              "${snapshot.error}",
-              style: GoogleFonts.archivo(),
-            ),
-          );
-        } else if (snapshot.hasData) {
-          homeWorkControllor.homeWorkList = snapshot.data!;
-          return ListView.builder(
-            itemCount: homeWorkControllor.homeWorkList.length,
-            itemBuilder: (context, index) {
-              return homeWorkControllor.homeWorkList[index].std
-                          .compareTo("$std") !=
-                      0
-                  ? Container()
-                  : Padding(
-                      padding: EdgeInsets.all(8.sp),
-                      child: Container(
-                        height: 100.sp,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.sp),
-                          color: Colors.white70,
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 10,
-                              color: Colors.black12,
-                              offset: Offset(
-                                0,
-                                0,
-                              ),
-                              spreadRadius: 7,
-                            ),
-                          ],
-                        ),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 10.sp,
-                            ),
-                            Container(
-                              width: 200.sp,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "Home Work :- ${homeWorkControllor.homeWorkList[index].homeWork}",
-                                    style: GoogleFonts.archivo(
-                                      fontSize: 15.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    "Subject :- ${homeWorkControllor.homeWorkList[index].subject}",
-                                    style: GoogleFonts.archivo(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    "Due Date :- ${homeWorkControllor.homeWorkList[index].dueDate}",
-                                    style: GoogleFonts.archivo(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    "Std :- ${homeWorkControllor.homeWorkList[index].std}",
-                                    style: GoogleFonts.archivo(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              width: 10.sp,
-                            ),
-                            Container(
-                              width: 20.sp,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  IconButton(
-                                    onPressed: () {
-                                      HomeWorkModel h1 = HomeWorkModel(
-                                        subject: homeWorkControllor
-                                            .homeWorkList[index].subject,
-                                        std: homeWorkControllor
-                                            .homeWorkList[index].std,
-                                        dueDate: homeWorkControllor
-                                            .homeWorkList[index].dueDate,
-                                        homeWork: homeWorkControllor
-                                            .homeWorkList[index].homeWork,
-                                        id: homeWorkControllor
-                                            .homeWorkList[index].id,
-                                        check: 1,
-                                      );
-                                      Get.toNamed(
-                                        '/homeWorkAdd',
-                                        arguments: h1,
-                                      );
-                                    },
-                                    icon: Icon(
-                                      Icons.edit,
-                                    ),
-                                  ),
-                                  IconButton(
-                                    onPressed: () async {
-                                      HomeWorkModel h1 = HomeWorkModel(
-                                        id: homeWorkControllor
-                                            .homeWorkList[index].id,
-                                      );
-                                      bool check = await homeWorkControllor
-                                          .deleteHomeWork(
-                                        h1: h1,
-                                      );
-
-                                      if (check) {
-                                        Get.snackbar(
-                                          "Success Fully Delete",
-                                          "",
-                                        );
-
-                                        homeWorkControllor.homeWorkList =
-                                        await homeWorkControllor.readHomeWork();
-                                        setState(() {});
-                                      } else {
-                                        Get.snackbar(
-                                          "Un Success Fully Delete",
-                                          "",
-                                        );
-                                      }
-                                    },
-                                    icon: Icon(
-                                      Icons.delete,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-            },
-          );
-        }
-        return CircularProgressIndicator();
-      },
     );
   }
 }

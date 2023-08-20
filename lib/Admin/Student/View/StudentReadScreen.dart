@@ -1,5 +1,6 @@
 import 'package:classes_app/Controllors/StudentControllor.dart';
 import 'package:classes_app/Models/StudentModel.dart';
+import 'package:classes_app/Utiles/AdsHelper.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,6 +20,13 @@ class _StudentReadScreenState extends State<StudentReadScreen> {
   );
 
   @override
+  void initState() {
+    super.initState();
+
+    AdsHelper.adsHelper.loadInterstitialAds();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -35,6 +43,8 @@ class _StudentReadScreenState extends State<StudentReadScreen> {
                     children: [
                       IconButton(
                         onPressed: () {
+                          AdsHelper.adsHelper.loadInterstitialAds();
+                          AdsHelper.adsHelper.interstitialAd?.show();
                           Get.back();
                         },
                         icon: Icon(
@@ -52,8 +62,6 @@ class _StudentReadScreenState extends State<StudentReadScreen> {
               children: [
                 IconButton(
                   onPressed: () {
-                    studentControllor.std = "1";
-                    listOfStudent(std: "1");
                     setState(() {});
                   },
                   icon: Icon(
@@ -183,7 +191,188 @@ class _StudentReadScreenState extends State<StudentReadScreen> {
             ),
             SizedBox(height: 10.sp),
             Expanded(
-              child: listOfStudent(std: studentControllor.std),
+              child: FutureBuilder(
+                future: studentControllor.readStudent(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return Center(
+                      child: Text(
+                        "${snapshot.error}",
+                        style: GoogleFonts.archivo(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    );
+                  } else if (snapshot.hasData) {
+                    studentControllor.studentList = snapshot.data!;
+                    return ListView.builder(
+                      itemCount: studentControllor.studentList.length,
+                      itemBuilder: (context, index) {
+                        return studentControllor.studentList[index].std
+                                    .compareTo(studentControllor.std) !=
+                                0
+                            ? Container()
+                            : Padding(
+                                padding: EdgeInsets.all(8.sp),
+                                child: Container(
+                                  height: 120.sp,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.sp),
+                                    color: Colors.white70,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 10,
+                                        color: Colors.black12,
+                                        offset: Offset(
+                                          0,
+                                          0,
+                                        ),
+                                        spreadRadius: 7,
+                                      ),
+                                    ],
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 10.sp,
+                                      ),
+                                      Container(
+                                        width: 200.sp,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "Name :- ${studentControllor.studentList[index].firstName} ${studentControllor.studentList[index].lastName}",
+                                              style: GoogleFonts.archivo(
+                                                fontSize: 15.sp,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            Text(
+                                              "Father Name :- ${studentControllor.studentList[index].fatherName}",
+                                              style: GoogleFonts.archivo(
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            Text(
+                                              "Mobile No :- ${studentControllor.studentList[index].mobileNumber}",
+                                              style: GoogleFonts.archivo(
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            Text(
+                                              "Std :- ${studentControllor.studentList[index].std}",
+                                              style: GoogleFonts.archivo(
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 10.sp,
+                                      ),
+                                      Container(
+                                        width: 20.sp,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            IconButton(
+                                              onPressed: () {
+                                                StudentModel s1 = StudentModel(
+                                                  id: studentControllor
+                                                      .studentList[index].id,
+                                                  check: 1,
+                                                  firstName: studentControllor
+                                                      .studentList[index]
+                                                      .firstName,
+                                                  lastName: studentControllor
+                                                      .studentList[index]
+                                                      .lastName,
+                                                  fatherName: studentControllor
+                                                      .studentList[index]
+                                                      .fatherName,
+                                                  std: studentControllor
+                                                      .studentList[index].std,
+                                                  mobileNumber:
+                                                      studentControllor
+                                                          .studentList[index]
+                                                          .mobileNumber,
+                                                );
+
+                                                Get.toNamed(
+                                                  '/studentAdd',
+                                                  arguments: s1,
+                                                );
+                                              },
+                                              icon: Icon(
+                                                Icons.edit,
+                                              ),
+                                            ),
+                                            IconButton(
+                                              onPressed: () async {
+                                                StudentModel s1 = StudentModel(
+                                                  id: studentControllor
+                                                      .studentList[index].id,
+                                                );
+
+                                                bool check =
+                                                    await studentControllor
+                                                        .deleteStudent(
+                                                  s1: s1,
+                                                );
+
+                                                if (check) {
+                                                  Get.snackbar(
+                                                    "Success Fully Delete",
+                                                    "",
+                                                  );
+
+                                                  studentControllor
+                                                          .studentList =
+                                                      await studentControllor
+                                                          .readStudent();
+                                                  setState(() {});
+                                                } else {
+                                                  Get.snackbar(
+                                                    "Un Success Fully Delete",
+                                                    "",
+                                                  );
+                                                }
+                                              },
+                                              icon: Icon(
+                                                Icons.delete,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                      },
+                    );
+                  }
+                  return Center(
+                    child: Text(
+                      "Work In Process",
+                      style: GoogleFonts.archivo(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
           ],
         ),
@@ -207,182 +396,6 @@ class _StudentReadScreenState extends State<StudentReadScreen> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget listOfStudent({
-    String? std,
-  }) {
-    return FutureBuilder(
-      future: studentControllor.readStudent(),
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return Center(
-            child: Text(
-              "${snapshot.error}",
-              style: GoogleFonts.archivo(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          );
-        } else if (snapshot.hasData) {
-          studentControllor.studentList = snapshot.data!;
-          return ListView.builder(
-            itemCount: studentControllor.studentList.length,
-            itemBuilder: (context, index) {
-              return studentControllor.studentList[index].std
-                          .compareTo("$std") !=
-                      0
-                  ? Container()
-                  : Padding(
-                      padding: EdgeInsets.all(8.sp),
-                      child: Container(
-                        height: 120.sp,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.sp),
-                          color: Colors.white70,
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 10,
-                              color: Colors.black12,
-                              offset: Offset(
-                                0,
-                                0,
-                              ),
-                              spreadRadius: 7,
-                            ),
-                          ],
-                        ),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 10.sp,
-                            ),
-                            Container(
-                              width: 200.sp,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "Name :- ${studentControllor.studentList[index].firstName} ${studentControllor.studentList[index].lastName}",
-                                    style: GoogleFonts.archivo(
-                                      fontSize: 15.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    "Father Name :- ${studentControllor.studentList[index].fatherName}",
-                                    style: GoogleFonts.archivo(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    "Mobile No :- ${studentControllor.studentList[index].mobileNumber}",
-                                    style: GoogleFonts.archivo(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    "Std :- ${studentControllor.studentList[index].std}",
-                                    style: GoogleFonts.archivo(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              width: 10.sp,
-                            ),
-                            Container(
-                              width: 20.sp,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  IconButton(
-                                    onPressed: () {
-                                      StudentModel s1 = StudentModel(
-                                        id: studentControllor
-                                            .studentList[index].id,
-                                        check: 1,
-                                        firstName: studentControllor
-                                            .studentList[index].firstName,
-                                        lastName: studentControllor
-                                            .studentList[index].lastName,
-                                        fatherName: studentControllor
-                                            .studentList[index].fatherName,
-                                        std: studentControllor
-                                            .studentList[index].std,
-                                        mobileNumber: studentControllor
-                                            .studentList[index].mobileNumber,
-                                      );
-
-                                      Get.toNamed(
-                                        '/studentAdd',
-                                        arguments: s1,
-                                      );
-                                    },
-                                    icon: Icon(
-                                      Icons.edit,
-                                    ),
-                                  ),
-                                  IconButton(
-                                    onPressed: () async {
-                                      StudentModel s1 = StudentModel(
-                                        id: studentControllor
-                                            .studentList[index].id,
-                                      );
-
-                                      bool check =
-                                          await studentControllor.deleteStudent(
-                                        s1: s1,
-                                      );
-
-                                      if (check) {
-                                        Get.snackbar(
-                                          "Success Fully Delete",
-                                          "",
-                                        );
-
-                                        studentControllor.studentList =
-                                            await studentControllor
-                                                .readStudent();
-                                        setState(() {});
-                                      } else {
-                                        Get.snackbar(
-                                          "Un Success Fully Delete",
-                                          "",
-                                        );
-                                      }
-                                    },
-                                    icon: Icon(
-                                      Icons.delete,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-            },
-          );
-        }
-        return Center(
-          child: Text(
-            "Work In Process",
-            style: GoogleFonts.archivo(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        );
-      },
     );
   }
 }

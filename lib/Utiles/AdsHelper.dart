@@ -6,6 +6,7 @@ class AdsHelper {
   AdsHelper._();
 
   // ca-app-pub-3940256099942544/6300978111 // Banner
+  // ca-app-pub-1456785417505368/6085175664 // Banner my
   // ca-app-pub-3940256099942544/1033173712 // Interstitial
   // ca-app-pub-3940256099942544/3419835294 // Open Ads
   BannerAd? bannerAd;
@@ -16,7 +17,11 @@ class AdsHelper {
     bannerAd = BannerAd(
       size: AdSize.banner,
       adUnitId: "ca-app-pub-3940256099942544/6300978111",
-      listener: BannerAdListener(),
+      listener: BannerAdListener(
+        onAdLoaded: (ad) {
+          bannerAd = ad as BannerAd?;
+        },
+      ),
       request: AdRequest(),
     )..load();
   }
@@ -33,18 +38,18 @@ class AdsHelper {
       ),
     );
   }
-
-  void loadOpenAdsAds() {
-    AppOpenAd.load(
-      adUnitId: "ca-app-pub-3940256099942544/3419835294",
-      request: AdRequest(),
-      adLoadCallback: AppOpenAdLoadCallback(
-        onAdLoaded: (ad) {
-          appOpenAd = ad;
-        },
-        onAdFailedToLoad: (error) {},
-      ),
-      orientation: AppOpenAd.orientationPortrait,
-    );
-  }
+  //
+  // void loadOpenAdsAds() {
+  //   AppOpenAd.load(
+  //     adUnitId: "ca-app-pub-3940256099942544/3419835294",
+  //     request: AdRequest(),
+  //     adLoadCallback: AppOpenAdLoadCallback(
+  //       onAdLoaded: (ad) {
+  //         appOpenAd = ad;
+  //       },
+  //       onAdFailedToLoad: (error) {},
+  //     ),
+  //     orientation: AppOpenAd.orientationPortrait,
+  //   );
+  // }
 }

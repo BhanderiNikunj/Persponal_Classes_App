@@ -1,6 +1,7 @@
 import 'package:classes_app/Controllors/FeesControllor.dart';
 import 'package:classes_app/Models/FeesModel.dart';
 import 'package:classes_app/Models/StudentUidModel.dart';
+import 'package:classes_app/Utiles/AdsHelper.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,6 +19,13 @@ class _FeesReadScreenState extends State<FeesReadScreen> {
   FeesControllor feesControllor = Get.put(
     FeesControllor(),
   );
+
+  @override
+  void initState() {
+    super.initState();
+
+    AdsHelper.adsHelper.loadInterstitialAds();
+  }
 
   StudentUidModel studentUidModel = Get.arguments;
 
@@ -38,6 +46,8 @@ class _FeesReadScreenState extends State<FeesReadScreen> {
                     children: [
                       IconButton(
                         onPressed: () {
+                          AdsHelper.adsHelper.loadInterstitialAds();
+                          AdsHelper.adsHelper.interstitialAd?.show();
                           Get.back();
                         },
                         icon: Icon(

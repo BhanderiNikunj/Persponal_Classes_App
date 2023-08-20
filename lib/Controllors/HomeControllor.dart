@@ -28,5 +28,10 @@ class HomeControllor extends GetxController {
       image: "Assets/Images/leave.png",
       routes: '/leaveRead',
     ),
+    TitleModel(
+      name: "Profile",
+      image: "Assets/Images/profile.png",
+      routes: '/profile',
+    ),
   ];
 }
