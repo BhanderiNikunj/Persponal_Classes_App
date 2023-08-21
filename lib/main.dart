@@ -1,3 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:sizer/sizer.dart';
+import 'package:classes_app/Admin/Student/View/StudentReadScreen.dart';
+import 'package:classes_app/Admin/Student/View/StudentAddScreen.dart';
 import 'package:classes_app/Admin/Fees/View/FeesAddScreen.dart';
 import 'package:classes_app/Admin/Fees/View/FeesReadScreen.dart';
 import 'package:classes_app/Admin/Fees/View/StudentNameForFees.dart';
@@ -13,16 +19,10 @@ import 'package:classes_app/Login/Profie/View/ProfileScreen.dart';
 import 'package:classes_app/User/Home/View/UserHomeScreen.dart';
 import 'package:classes_app/User/Massage/View/UserMassageScreen.dart';
 import 'package:classes_app/Admin/Massage/View/MassageReadScreen.dart';
-import 'package:classes_app/Admin/Student/View/StudentAddScreen.dart';
-import 'package:classes_app/Admin/Student/View/StudentReadScreen.dart';
 import 'package:classes_app/Login/LogIn/View/LogInScreen.dart';
 import 'package:classes_app/Login/Splesh/View/SpleshScreen.dart';
 import 'package:classes_app/Utiles/notification.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:sizer/sizer.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
