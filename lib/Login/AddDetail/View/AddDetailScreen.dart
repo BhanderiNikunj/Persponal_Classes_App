@@ -24,131 +24,122 @@ class _AddDetailScreenState extends State<AddDetailScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          children: [
-            Stack(
-              children: [
-                allAppBar(
-                  text: "Add Your Detail",
-                ),
-              ],
-            ),
-            Padding(
-              padding: EdgeInsets.all(10.sp),
-              child: Column(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Stack(
                 children: [
-                  TextField(
-                    controller: addDetailContorllor.txtFName,
-                    style: GoogleFonts.archivo(),
-                    cursorColor: Color(0xffe85720),
-                    cursorWidth: 1,
-                    cursorRadius: Radius.circular(50),
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0x27e85720),
-                      hintText: "Ex. user",
-                      hintStyle: GoogleFonts.archivo(),
-                      label: Text(
-                        "Your First Name",
-                        style: GoogleFonts.archivo(),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10.sp),
-                  TextField(
-                    controller: addDetailContorllor.txtLName,
-                    style: GoogleFonts.archivo(),
-                    cursorColor: Color(0xffe85720),
-                    cursorWidth: 1,
-                    cursorRadius: Radius.circular(50),
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0x27e85720),
-                      hintText: "Ex. user",
-                      hintStyle: GoogleFonts.archivo(),
-                      label: Text(
-                        "Student Last Name",
-                        style: GoogleFonts.archivo(),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10.sp),
-                  TextField(
-                    controller: addDetailContorllor.txtFaName,
-                    style: GoogleFonts.archivo(),
-                    cursorColor: Color(0xffe85720),
-                    cursorWidth: 1,
-                    cursorRadius: Radius.circular(50),
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0x27e85720),
-                      hintText: "Ex. user",
-                      hintStyle: GoogleFonts.archivo(),
-                      label: Text(
-                        "Student Father Name",
-                        style: GoogleFonts.archivo(),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10.sp),
-                  TextField(
-                    controller: addDetailContorllor.txtStd,
-                    style: GoogleFonts.archivo(),
-                    cursorColor: Color(0xffe85720),
-                    cursorWidth: 1,
-                    cursorRadius: Radius.circular(50),
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0x27e85720),
-                      hintText: "Ex. 10",
-                      hintStyle: GoogleFonts.archivo(),
-                      label: Text(
-                        "Student Std",
-                        style: GoogleFonts.archivo(),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10.sp),
-                  TextField(
-                    controller: addDetailContorllor.txtEmail,
-                    style: GoogleFonts.archivo(),
-                    cursorColor: Color(0xffe85720),
-                    cursorWidth: 1,
-                    cursorRadius: Radius.circular(50),
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0x27e85720),
-                      hintText: "Ex. user@gmail.com",
-                      hintStyle: GoogleFonts.archivo(),
-                      label: Text(
-                        "Student Email",
-                        style: GoogleFonts.archivo(),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20.sp),
-                  InkWell(
-                    onTap: () {
-                      CheckUserModel c1 = CheckUserModel(
-                        chechAdmin: "0",
-                        fatherName: addDetailContorllor.txtFaName.text,
-                        firstName: addDetailContorllor.txtFName.text,
-                        std: addDetailContorllor.txtStd.text,
-                        lastName: addDetailContorllor.txtLName.text,
-                        emailId: email,
-                      );
-                      addDetailContorllor.insertUserDetail(
-                        c1: c1,
-                      );
-                    },
-                    child: allButton(
-                      string: "Add",
-                    ),
+                  allAppBar(
+                    text: "Add Your Detail",
                   ),
                 ],
               ),
-            ),
-          ],
+              Padding(
+                padding: EdgeInsets.all(10.sp),
+                child: Column(
+                  children: [
+                    TextField(
+                      controller: addDetailContorllor.txtFName,
+                      style: GoogleFonts.archivo(),
+                      cursorColor: Color(0xffe85720),
+                      cursorWidth: 1,
+                      cursorRadius: Radius.circular(50),
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Color(0x27e85720),
+                        hintText: "Ex. user",
+                        hintStyle: GoogleFonts.archivo(),
+                        label: Text(
+                          "Your First Name",
+                          style: GoogleFonts.archivo(),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10.sp),
+                    TextField(
+                      controller: addDetailContorllor.txtLName,
+                      style: GoogleFonts.archivo(),
+                      cursorColor: Color(0xffe85720),
+                      cursorWidth: 1,
+                      cursorRadius: Radius.circular(50),
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Color(0x27e85720),
+                        hintText: "Ex. user",
+                        hintStyle: GoogleFonts.archivo(),
+                        label: Text(
+                          "Student Last Name",
+                          style: GoogleFonts.archivo(),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10.sp),
+                    TextField(
+                      controller: addDetailContorllor.txtFaName,
+                      style: GoogleFonts.archivo(),
+                      cursorColor: Color(0xffe85720),
+                      cursorWidth: 1,
+                      cursorRadius: Radius.circular(50),
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Color(0x27e85720),
+                        hintText: "Ex. user",
+                        hintStyle: GoogleFonts.archivo(),
+                        label: Text(
+                          "Student Father Name",
+                          style: GoogleFonts.archivo(),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10.sp),
+                    TextField(
+                      controller: addDetailContorllor.txtStd,
+                      style: GoogleFonts.archivo(),
+                      cursorColor: Color(0xffe85720),
+                      cursorWidth: 1,
+                      cursorRadius: Radius.circular(50),
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Color(0x27e85720),
+                        hintText: "Ex. 10",
+                        hintStyle: GoogleFonts.archivo(),
+                        label: Text(
+                          "Student Std",
+                          style: GoogleFonts.archivo(),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20.sp),
+                    InkWell(
+                      onTap: () async {
+                        CheckUserModel c1 = CheckUserModel(
+                          chechAdmin: "0",
+                          fatherName: addDetailContorllor.txtFaName.text,
+                          firstName: addDetailContorllor.txtFName.text,
+                          std: addDetailContorllor.txtStd.text,
+                          lastName: addDetailContorllor.txtLName.text,
+                          emailId: email,
+                        );
+                        bool check = await addDetailContorllor.insertUserDetail(
+                          c1: c1,
+                        );
+                        if (check) {
+                          Get.offAndToNamed('/userHome');
+                          Get.snackbar(
+                            "Data Add Success Fully",
+                            "",
+                          );
+                        }
+                      },
+                      child: allButton(
+                        string: "Add",
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

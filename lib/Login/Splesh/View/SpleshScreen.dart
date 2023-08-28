@@ -1,10 +1,8 @@
 import 'dart:async';
-import 'package:classes_app/Utiles/AdsHelper.dart';
 import 'package:classes_app/Utiles/ApiHelper.dart';
 import 'package:classes_app/Utiles/FirebaseHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:sizer/sizer.dart';
 
 class SpleshScreen extends StatefulWidget {
@@ -18,19 +16,12 @@ class _SpleshScreenState extends State<SpleshScreen> {
   @override
   void initState() {
     super.initState();
-    AdsHelper.adsHelper.loadBannerAds();
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        bottomNavigationBar: SizedBox(
-          height: 50.sp,
-          child: AdWidget(
-            ad: AdsHelper.adsHelper.bannerAd!,
-          ),
-        ),
         body: FirebaseHelper.firebaseHelper.checkLogin() == false
             ? notLogIn()
             : logIn(),
@@ -55,7 +46,7 @@ class _SpleshScreenState extends State<SpleshScreen> {
                 if (l1.isEmpty) {
                   Get.offAndToNamed('/logIn');
                 } else {
-                  if (l1[0].chechAdmin!.compareTo("1") == 0) {
+                  if (l1[0].chechAdmin?.compareTo("1") == 0) {
                     Get.offAndToNamed('/home');
                   } else {
                     Get.offAndToNamed('/userHome');

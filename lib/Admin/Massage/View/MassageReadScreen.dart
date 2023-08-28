@@ -1,6 +1,5 @@
 import 'package:classes_app/Controllors/MassageControllor.dart';
 import 'package:classes_app/Models/MassageModel.dart';
-import 'package:classes_app/Utiles/AdsHelper.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,8 +21,6 @@ class _MassageReadScreenState extends State<MassageReadScreen> {
   @override
   void initState() {
     super.initState();
-
-    AdsHelper.adsHelper.loadInterstitialAds();
   }
 
   @override
@@ -43,8 +40,6 @@ class _MassageReadScreenState extends State<MassageReadScreen> {
                     children: [
                       IconButton(
                         onPressed: () {
-                          AdsHelper.adsHelper.loadInterstitialAds();
-                          AdsHelper.adsHelper.interstitialAd?.show();
                           Get.back();
                         },
                         icon: Icon(
@@ -177,7 +172,30 @@ class _MassageReadScreenState extends State<MassageReadScreen> {
                                         ),
                                       ),
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () async {
+                                          MassageModel m1 = MassageModel(
+                                            id: massageControllor
+                                                .massageList[index].id,
+                                          );
+                                          bool check = await massageControllor
+                                              .deleteMassage(
+                                            m1: m1,
+                                          );
+
+                                          if (check) {
+                                            Get.snackbar(
+                                              "Delete Success Fully",
+                                              "",
+                                            );
+
+                                            massageControllor.readMassage();
+                                          } else {
+                                            Get.snackbar(
+                                              "Delete Un Success Fully",
+                                              "",
+                                            );
+                                          }
+                                        },
                                         icon: Icon(
                                           Icons.delete,
                                         ),

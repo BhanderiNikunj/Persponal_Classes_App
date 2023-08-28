@@ -1,3 +1,6 @@
+import 'package:classes_app/User/HomeWork/View/UserHomeWorkScreen.dart';
+import 'package:classes_app/User/Leave/View/UserLeaveAddScreen.dart';
+import 'package:classes_app/User/Leave/View/UserLeaveReadScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -40,7 +43,6 @@ Future<void> main() async {
             GetPage(name: '/logIn', page: () => LogInScreen(),),
             GetPage(name: '/addDetail', page: () => AddDetailScreen(),),
             GetPage(name: '/check', page: () => CheckScreen(),),
-            GetPage(name: '/profile', page: () => ProfileScreen(),),
             GetPage(name: '/home', page: () => HomeScreen(),),
             GetPage(name: '/studentRead', page: () => StudentReadScreen(),),
             GetPage(name: '/studentAdd', page: () => StudentAddScreen(),),
@@ -53,8 +55,12 @@ Future<void> main() async {
             GetPage(name: '/massageAdd', page: () => MassageAddScreen(),),
             GetPage(name: '/leaveRead', page: () => LeaveReadScreen(),),
             GetPage(name: '/leaveAdd', page: () => LeaveAddScreen(),),
+            GetPage(name: '/profile', page: () => ProfileScreen(),),
             GetPage(name: '/userHome', page: () => UserHomeScreen(),),
             GetPage(name: '/userMassage', page: () => UserMassageScreen(),),
+            GetPage(name: '/userHomeWork', page: () => UserHomeWorkScreen(),),
+            GetPage(name: '/userLeaveRead', page: () => UserLeaveReadScreen(),),
+            GetPage(name: '/userLeaveAdd', page: () => UserLeaveAddScreen(),),
           ],
         );
       },

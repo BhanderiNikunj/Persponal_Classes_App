@@ -34,4 +34,27 @@ class HomeControllor extends GetxController {
       routes: '/profile',
     ),
   ];
+
+  List<TitleModel> userTitleList = [
+    TitleModel(
+      name: "Home Work",
+      image: "Assets/Images/homeWork.png",
+      routes: '/userHomeWork',
+    ),
+    TitleModel(
+      name: "Massage",
+      image: "Assets/Images/massage.png",
+      routes: '/userMassage',
+    ),
+    TitleModel(
+      name: "Leave",
+      image: "Assets/Images/leave.png",
+      routes: '/userLeaveRead',
+    ),
+    TitleModel(
+      name: "Profile",
+      image: "Assets/Images/profile.png",
+      // routes: '/profile',
+    ),
+  ];
 }

@@ -6,14 +6,14 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
-class LeaveReadScreen extends StatefulWidget {
-  const LeaveReadScreen({super.key});
+class UserLeaveReadScreen extends StatefulWidget {
+  const UserLeaveReadScreen({super.key});
 
   @override
-  State<LeaveReadScreen> createState() => _LeaveReadScreenState();
+  State<UserLeaveReadScreen> createState() => _UserLeaveReadScreenState();
 }
 
-class _LeaveReadScreenState extends State<LeaveReadScreen> {
+class _UserLeaveReadScreenState extends State<UserLeaveReadScreen> {
   LeaveControllor leaveControllor = Get.put(
     LeaveControllor(),
   );
@@ -48,7 +48,7 @@ class _LeaveReadScreenState extends State<LeaveReadScreen> {
               ],
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
                   onPressed: () {
@@ -57,106 +57,6 @@ class _LeaveReadScreenState extends State<LeaveReadScreen> {
                   icon: Icon(
                     Icons.refresh,
                   ),
-                ),
-                DropdownButton(
-                  // value: homeWorkControllor.std,
-                  value: leaveControllor.std,
-                  items: [
-                    DropdownMenuItem(
-                      value: "1",
-                      child: Text(
-                        "Std 1",
-                        style: GoogleFonts.archivo(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    DropdownMenuItem(
-                      value: "2",
-                      child: Text(
-                        "Std 2",
-                        style: GoogleFonts.archivo(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    DropdownMenuItem(
-                      value: "3",
-                      child: Text(
-                        "Std 3",
-                        style: GoogleFonts.archivo(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    DropdownMenuItem(
-                      value: "4",
-                      child: Text(
-                        "Std 4",
-                        style: GoogleFonts.archivo(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    DropdownMenuItem(
-                      value: "5",
-                      child: Text(
-                        "Std 5",
-                        style: GoogleFonts.archivo(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    DropdownMenuItem(
-                      value: "6",
-                      child: Text(
-                        "Std 6",
-                        style: GoogleFonts.archivo(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    DropdownMenuItem(
-                      value: "7",
-                      child: Text(
-                        "Std 7",
-                        style: GoogleFonts.archivo(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    DropdownMenuItem(
-                      value: "8",
-                      child: Text(
-                        "Std 8",
-                        style: GoogleFonts.archivo(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    DropdownMenuItem(
-                      value: "9",
-                      child: Text(
-                        "Std 9",
-                        style: GoogleFonts.archivo(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    DropdownMenuItem(
-                      value: "10",
-                      child: Text(
-                        "Std 10",
-                        style: GoogleFonts.archivo(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                  onChanged: (value) {
-                    leaveControllor.std = value!;
-                    setState(() {});
-                  },
                 ),
               ],
             ),
@@ -174,9 +74,7 @@ class _LeaveReadScreenState extends State<LeaveReadScreen> {
                     return ListView.builder(
                       itemCount: leaveControllor.leaveList.length,
                       itemBuilder: (context, index) {
-                        return leaveControllor.leaveList[index].std.compareTo(leaveControllor.std) != 0
-                            ? Container()
-                            : Padding(
+                        return Padding(
                           padding: EdgeInsets.all(8.sp),
                           child: Container(
                             height: 160.sp,
@@ -203,7 +101,8 @@ class _LeaveReadScreenState extends State<LeaveReadScreen> {
                                 Container(
                                   width: 200.sp,
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
@@ -255,7 +154,8 @@ class _LeaveReadScreenState extends State<LeaveReadScreen> {
                                 Container(
                                   width: 20.sp,
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       IconButton(
@@ -263,7 +163,8 @@ class _LeaveReadScreenState extends State<LeaveReadScreen> {
                                           LeaveModel l1 = LeaveModel(
                                             std: leaveControllor
                                                 .leaveList[index].std,
-                                            id: leaveControllor.leaveList[index].id,
+                                            id: leaveControllor
+                                                .leaveList[index].id,
                                             firstName: leaveControllor
                                                 .leaveList[index].firstName,
                                             dateForm: leaveControllor
@@ -287,10 +188,11 @@ class _LeaveReadScreenState extends State<LeaveReadScreen> {
                                       IconButton(
                                         onPressed: () async {
                                           LeaveModel l1 = LeaveModel(
-                                            id: leaveControllor.leaveList[index].id,
+                                            id: leaveControllor
+                                                .leaveList[index].id,
                                           );
                                           bool check =
-                                          await leaveControllor.deleteLeave(
+                                              await leaveControllor.deleteLeave(
                                             l1: l1,
                                           );
 
@@ -300,7 +202,8 @@ class _LeaveReadScreenState extends State<LeaveReadScreen> {
                                               "",
                                             );
                                             leaveControllor.leaveList =
-                                            await leaveControllor.readLeave();
+                                                await leaveControllor
+                                                    .readLeave();
                                             setState(() {});
                                           }
                                         },

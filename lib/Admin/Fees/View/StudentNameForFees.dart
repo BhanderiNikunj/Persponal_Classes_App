@@ -1,5 +1,4 @@
 import 'package:classes_app/Controllors/FeesControllor.dart';
-import 'package:classes_app/Utiles/AdsHelper.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,8 +21,6 @@ class _StudentNameForFeesScreenState extends State<StudentNameForFeesScreen> {
   @override
   void initState() {
     super.initState();
-
-    AdsHelper.adsHelper.loadInterstitialAds();
   }
 
   @override
@@ -43,8 +40,6 @@ class _StudentNameForFeesScreenState extends State<StudentNameForFeesScreen> {
                     children: [
                       IconButton(
                         onPressed: () {
-                          AdsHelper.adsHelper.loadInterstitialAds();
-                          AdsHelper.adsHelper.interstitialAd?.show();
                           Get.back();
                         },
                         icon: Icon(
@@ -190,8 +185,6 @@ class _StudentNameForFeesScreenState extends State<StudentNameForFeesScreen> {
                               )
                             : InkWell(
                                 onTap: () {
-                                  AdsHelper.adsHelper.loadInterstitialAds();
-                                  AdsHelper.adsHelper.interstitialAd?.show();
                                   Get.toNamed(
                                     '/feesRead',
                                     arguments:

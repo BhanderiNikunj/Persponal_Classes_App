@@ -1,12 +1,10 @@
 import 'package:classes_app/Login/LogIn/Controllor/LogInControllor.dart';
 import 'package:classes_app/Models/AllModel.dart';
-import 'package:classes_app/Utiles/AdsHelper.dart';
 import 'package:classes_app/Utiles/ApiHelper.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:sizer/sizer.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -24,7 +22,6 @@ class _LogInScreenState extends State<LogInScreen> {
   @override
   void initState() {
     super.initState();
-    AdsHelper.adsHelper.loadBannerAds();
   }
 
   @override
@@ -112,11 +109,11 @@ class _LogInScreenState extends State<LogInScreen> {
                       password: logInControllor.txtPassword.text,
                     );
 
-                    bool check = await logInControllor.logIn(
+                    String check = await logInControllor.logIn(
                       loginModel: l1,
                     );
 
-                    if (check) {
+                    if (check == "true") {
                       Get.snackbar(
                         "LogIn Success",
                         "",
@@ -142,7 +139,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       }
                     } else {
                       Get.snackbar(
-                        "LogIn Un Success",
+                        "$check",
                         "",
                       );
                     }
@@ -153,12 +150,6 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
               ],
             ),
-          ),
-        ),
-        bottomNavigationBar: SizedBox(
-          height: 50.sp,
-          child: AdWidget(
-            ad: AdsHelper.adsHelper.bannerAd!,
           ),
         ),
       ),

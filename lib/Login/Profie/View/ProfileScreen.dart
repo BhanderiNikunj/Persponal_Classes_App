@@ -59,8 +59,39 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   profileControllor.userDetail = snapshot.data!;
                   return InkWell(
                     onTap: () {
-                      FirebaseHelper.firebaseHelper.signOut();
-                      Get.offAndToNamed('/logIn');
+                      Get.defaultDialog(
+                        title: "Are You Sur For Log Out",
+                        titleStyle: GoogleFonts.archivo(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        content: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    Get.back();
+                                  },
+                                  child: allButton(
+                                    string: "No",
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    FirebaseHelper.firebaseHelper.signOut();
+                                    Get.offAndToNamed('/logIn');
+                                  },
+                                  child: allButton(
+                                    string: "Yes",
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      );
                     },
                     child: Text(
                       "${profileControllor.userDetail[0].firstName} ${profileControllor.userDetail[0].lastName}",

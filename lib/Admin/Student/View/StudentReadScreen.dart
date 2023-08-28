@@ -1,6 +1,5 @@
 import 'package:classes_app/Controllors/StudentControllor.dart';
 import 'package:classes_app/Models/StudentModel.dart';
-import 'package:classes_app/Utiles/AdsHelper.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,8 +21,6 @@ class _StudentReadScreenState extends State<StudentReadScreen> {
   @override
   void initState() {
     super.initState();
-
-    AdsHelper.adsHelper.loadInterstitialAds();
   }
 
   @override
@@ -43,8 +40,6 @@ class _StudentReadScreenState extends State<StudentReadScreen> {
                     children: [
                       IconButton(
                         onPressed: () {
-                          AdsHelper.adsHelper.loadInterstitialAds();
-                          AdsHelper.adsHelper.interstitialAd?.show();
                           Get.back();
                         },
                         icon: Icon(
@@ -244,18 +239,29 @@ class _StudentReadScreenState extends State<StudentReadScreen> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            Text(
-                                              "Name :- ${studentControllor.studentList[index].firstName} ${studentControllor.studentList[index].lastName}",
-                                              style: GoogleFonts.archivo(
-                                                fontSize: 15.sp,
-                                                fontWeight: FontWeight.bold,
+                                            Container(
+                                              height: 20.sp,
+                                              width: 200.sp,
+                                              child: Text(
+                                                overflow: TextOverflow.ellipsis,
+                                                "Name :- ${studentControllor.studentList[index].firstName} ${studentControllor.studentList[index].lastName}",
+                                                style: GoogleFonts.archivo(
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
                                             ),
-                                            Text(
-                                              "Father Name :- ${studentControllor.studentList[index].fatherName}",
-                                              style: GoogleFonts.archivo(
-                                                fontSize: 12.sp,
-                                                fontWeight: FontWeight.bold,
+                                            Container(
+                                              height: 25.sp,
+                                              width: 200.sp,
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                overflow: TextOverflow.ellipsis,
+                                                "Father Name :- ${studentControllor.studentList[index].fatherName}",
+                                                style: GoogleFonts.archivo(
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
                                             ),
                                             Text(
