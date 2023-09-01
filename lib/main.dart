@@ -1,3 +1,6 @@
+import 'package:classes_app/Admin/result/View/ResultAddScreen.dart';
+import 'package:classes_app/Admin/result/View/ResultReadScreen.dart';
+import 'package:classes_app/Admin/result/View/StudentNameForResult.dart';
 import 'package:classes_app/User/HomeWork/View/UserHomeWorkScreen.dart';
 import 'package:classes_app/User/Leave/View/UserLeaveAddScreen.dart';
 import 'package:classes_app/User/Leave/View/UserLeaveReadScreen.dart';
@@ -51,6 +54,9 @@ Future<void> main() async {
             GetPage(name: '/studentNameForFees', page: () => StudentNameForFeesScreen(),),
             GetPage(name: '/feesRead', page: () => FeesReadScreen(),),
             GetPage(name: '/feesAdd', page: () => FeesAddScreen(),),
+            GetPage(name: '/studentNameForResult', page: () => StudentNameForResultScreen(),),
+            GetPage(name: '/resultRead', page: () => ResultReadScreen(),),
+            GetPage(name: '/resultAdd', page: () => ResultAddScreen(),),
             GetPage(name: '/massageRead', page: () => MassageReadScreen(),),
             GetPage(name: '/massageAdd', page: () => MassageAddScreen(),),
             GetPage(name: '/leaveRead', page: () => LeaveReadScreen(),),
