@@ -5,6 +5,7 @@ import 'package:classes_app/Models/FeesModel.dart';
 import 'package:classes_app/Models/HomeWorkModel.dart';
 import 'package:classes_app/Models/LeaveModel.dart';
 import 'package:classes_app/Models/MassageModel.dart';
+import 'package:classes_app/Models/ResultModel.dart';
 import 'package:classes_app/Models/StudentModel.dart';
 import 'package:classes_app/Models/StudentUidModel.dart';
 import 'package:classes_app/Utiles/FirebaseHelper.dart';
@@ -510,5 +511,114 @@ class ApiHelper {
       return l1;
     }
     return [];
+  }
+
+  // Result
+
+  Future<bool> insertResult({
+    required ResultModel r1,
+  }) async {
+    Uri uri = Uri.parse(
+      "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/result/inssertResult.php",
+    );
+
+    var response = await http.post(
+      uri,
+      headers: {
+        "firstName": r1.firstName!,
+        "std": r1.std!,
+        "uid": r1.uid!,
+        "math": r1.math!,
+        "science": r1.science!,
+        "english": r1.english!,
+        "socialScience": r1.socialScience!,
+        "gujarati": r1.gujarati!,
+        "sanskrit": r1.sanskrit!,
+        "hindi": r1.hindi!,
+        "total": r1.total!,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> updateResult({
+    required ResultModel r1,
+  }) async {
+    Uri uri = Uri.parse(
+      "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/result/updaeResult.php",
+    );
+
+    var response = await http.post(
+      uri,
+      headers: {
+        "id": r1.id!,
+        "firstName": r1.firstName!,
+        "std": r1.std!,
+        "uid": r1.uid!,
+        "math": r1.math!,
+        "science": r1.science!,
+        "english": r1.english!,
+        "socialScience": r1.socialScience!,
+        "gujarati": r1.gujarati!,
+        "sanskrit": r1.sanskrit!,
+        "hindi": r1.hindi!,
+        "total": r1.total!,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> deleteResult({
+    required ResultModel r1,
+  }) async {
+    Uri uri = Uri.parse(
+      "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/result/deleteResult.php",
+    );
+
+    var response = await http.post(
+      uri,
+      headers: {
+        "id": r1.id!,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<List> readResult() async {
+    Uri uri = Uri.parse(
+      "https://dicotyledonous-rest.000webhostapp.com/Bright-Api/result/readResult.php",
+    );
+
+    var response = await http.post(
+      uri,
+      headers: {},
+    );
+
+    var json = jsonDecode(response.body);
+
+    print("$json");
+
+    List l1 = json.map((e) => ResultModel.fromJson(e)).toList();
+
+    if (response.statusCode == 200) {
+      return l1;
+    } else {
+      return [];
+    }
   }
 }
