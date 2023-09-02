@@ -63,7 +63,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           return InkWell(
                             onTap: () {
                               if (homeControllor.titleList[index].routes!.isNotEmpty) {
-                                print("hellohellohellohellohellohellohellohellohellohellohello");
                                 AdsHelper.adsHelper.loadInterstitialAd();
                                 AdsHelper.adsHelper.interstitialAd?.show();
                                 Get.toNamed(

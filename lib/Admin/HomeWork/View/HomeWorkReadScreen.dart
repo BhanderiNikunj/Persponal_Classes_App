@@ -173,7 +173,6 @@ class _HomeWorkReadScreenState extends State<HomeWorkReadScreen> {
                 future: homeWorkControllor.readHomeWork(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
-                    print(snapshot.error);
                     return Center(
                       child: Text(
                         "${snapshot.error}",

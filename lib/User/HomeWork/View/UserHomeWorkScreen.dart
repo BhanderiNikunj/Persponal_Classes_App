@@ -53,7 +53,6 @@ class _UserHomeWorkScreenState extends State<UserHomeWorkScreen> {
                 future: homeWorkControllor.readHomeWork(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
-                    print(snapshot.error);
                     return Center(
                       child: Text(
                         "${snapshot.error}",

@@ -137,7 +137,6 @@ class _FeesAddScreenState extends State<FeesAddScreen> {
                   InkWell(
                     onTap: () async {
                       if (feesModel.check == 1) {
-                        print(feesModel.uid);
                         FeesModel f1 = FeesModel(
                           uid: feesModel.uid,
                           id: feesModel.id,

@@ -77,8 +77,6 @@ class _ResultReadScreenState extends State<ResultReadScreen> {
                               itemCount:
                                   resultControllor.studentResultList.length,
                               itemBuilder: (context, index) {
-                                print(
-                                    "${resultControllor.uid}================= ${resultControllor.studentResultList[index].uid!}");
                                 return studentUidModel.uid!.compareTo(
                                             "${resultControllor.uid!}") !=
                                         0

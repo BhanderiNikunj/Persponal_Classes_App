@@ -338,12 +338,9 @@ class _HomeWorkAddScreenState extends State<HomeWorkAddScreen> {
                           std: homeWorkControllor.std,
                         );
 
-                        print(h1.dueDate);
                         bool check = await homeWorkControllor.insertHomeWork(
                           h1: h1,
                         );
-
-                        print(check);
 
                         if (check) {
                           Get.back();
