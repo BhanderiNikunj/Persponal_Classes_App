@@ -20,7 +20,7 @@ class HomeControllor extends GetxController {
     ),
     TitleModel(
       name: "Result",
-      routes: '/studentNameForResult',
+      routes: '',
       image: "Assets/Images/result.png",
     ),
     TitleModel(

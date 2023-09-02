@@ -1,10 +1,12 @@
 import 'package:classes_app/Controllors/FeesControllor.dart';
 import 'package:classes_app/Models/FeesModel.dart';
 import 'package:classes_app/Models/StudentUidModel.dart';
+import 'package:classes_app/Utiles/AdsHelper.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:sizer/sizer.dart';
 
 class FeesReadScreen extends StatefulWidget {
@@ -22,6 +24,8 @@ class _FeesReadScreenState extends State<FeesReadScreen> {
   @override
   void initState() {
     super.initState();
+
+    AdsHelper.adsHelper.loadBannerAd();
   }
 
   StudentUidModel studentUidModel = Get.arguments;
@@ -73,6 +77,12 @@ class _FeesReadScreenState extends State<FeesReadScreen> {
               name: studentUidModel.firstName,
             ),
           ],
+        ),
+        bottomNavigationBar: SizedBox(
+          height: 50.sp,
+          child: AdWidget(
+            ad: AdsHelper.adsHelper.bannerAd!,
+          ),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {

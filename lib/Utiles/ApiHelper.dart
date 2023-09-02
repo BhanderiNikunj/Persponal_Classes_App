@@ -611,8 +611,6 @@ class ApiHelper {
 
     var json = jsonDecode(response.body);
 
-    print("$json");
-
     List l1 = json.map((e) => ResultModel.fromJson(e)).toList();
 
     if (response.statusCode == 200) {

@@ -1,9 +1,11 @@
 import 'package:classes_app/Controllors/ResultControllor.dart';
 import 'package:classes_app/Models/ResultModel.dart';
+import 'package:classes_app/Utiles/AdsHelper.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:sizer/sizer.dart';
 
 class ResultAddScreen extends StatefulWidget {
@@ -23,6 +25,8 @@ class _ResultAddScreenState extends State<ResultAddScreen> {
   @override
   void initState() {
     super.initState();
+
+    AdsHelper.adsHelper.loadBannerAd();
 
     if (resultModel.check == 1) {
       resultControllor.txtTotal =
@@ -298,6 +302,9 @@ class _ResultAddScreenState extends State<ResultAddScreen> {
                             gujarati: resultControllor.txtGujarati.text,
                             sanskrit: resultControllor.txtSanskrit.text,
                             hindi: resultControllor.txtHindi.text,
+                            id: "0",
+                            check: 1,
+                            totalOutOf: "100",
                             science: resultControllor.txtScience.text,
                             socialScience:
                                 resultControllor.txtSocialScience.text,
@@ -305,6 +312,7 @@ class _ResultAddScreenState extends State<ResultAddScreen> {
                             firstName: resultControllor.txtName.text,
                             uid: resultModel.uid,
                           );
+
                           bool check = await resultControllor.insertResult(
                             r1: r1,
                           );
@@ -341,6 +349,12 @@ class _ResultAddScreenState extends State<ResultAddScreen> {
                 ),
               ),
             ],
+          ),
+        ),
+        bottomNavigationBar: SizedBox(
+          height: 50.sp,
+          child: AdWidget(
+            ad: AdsHelper.adsHelper.bannerAd!,
           ),
         ),
       ),

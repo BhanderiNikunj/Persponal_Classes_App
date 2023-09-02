@@ -1,9 +1,11 @@
 import 'package:classes_app/Controllors/LeaveControllor.dart';
 import 'package:classes_app/Models/LeaveModel.dart';
+import 'package:classes_app/Utiles/AdsHelper.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:sizer/sizer.dart';
 
 class LeaveAddScreen extends StatefulWidget {
@@ -23,6 +25,8 @@ class _LeaveAddScreenState extends State<LeaveAddScreen> {
   @override
   void initState() {
     super.initState();
+
+    AdsHelper.adsHelper.loadBannerAd();
 
     if (leaveModel.check == 1) {
       leaveControllor.txtName =
@@ -255,6 +259,12 @@ class _LeaveAddScreenState extends State<LeaveAddScreen> {
                 ),
               ),
             ],
+          ),
+        ),
+        bottomNavigationBar: SizedBox(
+          height: 50.sp,
+          child: AdWidget(
+            ad: AdsHelper.adsHelper.bannerAd!,
           ),
         ),
       ),

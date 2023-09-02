@@ -1,8 +1,10 @@
 import 'package:classes_app/Controllors/HomeControllor.dart';
+import 'package:classes_app/Utiles/AdsHelper.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:sizer/sizer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,6 +24,16 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+
+    AdsHelper.adsHelper.loadBannerAd();
+    AdsHelper.adsHelper.loadInterstitialAd();
+    AdsHelper.adsHelper.loadInterstitialAd();
+    AdsHelper.adsHelper.loadInterstitialAd();
+    AdsHelper.adsHelper.loadInterstitialAd();
+    AdsHelper.adsHelper.loadInterstitialAd();
+    AdsHelper.adsHelper.loadInterstitialAd();
+    AdsHelper.adsHelper.loadInterstitialAd();
+    AdsHelper.adsHelper.loadInterstitialAd();
   }
 
   @override
@@ -50,17 +62,24 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemBuilder: (context, index) {
                           return InkWell(
                             onTap: () {
-                              // AdsHelper.adsHelper.loadInterstitialAds();
-                              // AdsHelper.adsHelper.interstitialAd?.show();
-                              Get.toNamed(
-                                  '${homeControllor.titleList[index].routes}');
+                              if (homeControllor.titleList[index].routes!.isNotEmpty) {
+                                print("hellohellohellohellohellohellohellohellohellohellohello");
+                                AdsHelper.adsHelper.loadInterstitialAd();
+                                AdsHelper.adsHelper.interstitialAd?.show();
+                                Get.toNamed(
+                                  '${homeControllor.titleList[index].routes}',
+                                );
+                              }
+                              else {
+                                Get.toNamed('/pageNotFound');
+                              }
                             },
                             child: Container(
                               margin: EdgeInsets.all(5.sp),
                               // color: Colors.black12,
                               child: Column(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                                MainAxisAlignment.spaceAround,
                                 children: [
                                   Image.asset(
                                     "${homeControllor.titleList[index].image}",
@@ -93,12 +112,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        // bottomNavigationBar: SizedBox(
-        //   height: 50.sp,
-        //   child: AdWidget(
-        //     ad: AdsHelper.adsHelper.bannerAd!,
-        //   ),
-        // ),
+        bottomNavigationBar: SizedBox(
+          height: 50.sp,
+          child: AdWidget(
+            ad: AdsHelper.adsHelper.bannerAd!,
+          ),
+        ),
       ),
     );
   }

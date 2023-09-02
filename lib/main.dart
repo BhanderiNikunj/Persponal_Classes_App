@@ -1,6 +1,7 @@
 import 'package:classes_app/Admin/result/View/ResultAddScreen.dart';
 import 'package:classes_app/Admin/result/View/ResultReadScreen.dart';
 import 'package:classes_app/Admin/result/View/StudentNameForResult.dart';
+import 'package:classes_app/Login/PageNotFound/View/PageNotFoundScreen.dart';
 import 'package:classes_app/User/HomeWork/View/UserHomeWorkScreen.dart';
 import 'package:classes_app/User/Leave/View/UserLeaveAddScreen.dart';
 import 'package:classes_app/User/Leave/View/UserLeaveReadScreen.dart';
@@ -40,11 +41,13 @@ Future<void> main() async {
     Sizer(
       builder: (context, orientation, deviceType) {
         return GetMaterialApp(
+          // initialRoute: '/pageNotFound',
           theme: ThemeData(useMaterial3: true),
           getPages: [
             GetPage(name: '/', page: () => SpleshScreen(),),
             GetPage(name: '/logIn', page: () => LogInScreen(),),
             GetPage(name: '/addDetail', page: () => AddDetailScreen(),),
+            GetPage(name: '/pageNotFound', page: () => PageNotFoundScreen(),),
             GetPage(name: '/check', page: () => CheckScreen(),),
             GetPage(name: '/home', page: () => HomeScreen(),),
             GetPage(name: '/studentRead', page: () => StudentReadScreen(),),
@@ -89,7 +92,7 @@ Widget allButton({
 }) {
   return Container(
     height: 30.sp,
-    width: 60.sp,
+    width: 100.sp,
     decoration: BoxDecoration(
       border: Border.all(
         color: Color(0xff007060),

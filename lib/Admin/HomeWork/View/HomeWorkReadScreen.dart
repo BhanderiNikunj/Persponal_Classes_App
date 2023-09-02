@@ -1,9 +1,11 @@
 import 'package:classes_app/Controllors/HomeWorkControllor.dart';
 import 'package:classes_app/Models/HomeWorkModel.dart';
+import 'package:classes_app/Utiles/AdsHelper.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:sizer/sizer.dart';
 
 class HomeWorkReadScreen extends StatefulWidget {
@@ -21,6 +23,8 @@ class _HomeWorkReadScreenState extends State<HomeWorkReadScreen> {
   @override
   void initState() {
     super.initState();
+
+    AdsHelper.adsHelper.loadBannerAd();
   }
 
   @override
@@ -337,6 +341,12 @@ class _HomeWorkReadScreenState extends State<HomeWorkReadScreen> {
               ),
             ),
           ],
+        ),
+        bottomNavigationBar: SizedBox(
+          height: 50.sp,
+          child: AdWidget(
+            ad: AdsHelper.adsHelper.bannerAd!,
+          ),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {

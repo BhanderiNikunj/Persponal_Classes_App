@@ -1,10 +1,12 @@
 import 'package:classes_app/Controllors/ResultControllor.dart';
 import 'package:classes_app/Models/ResultModel.dart';
 import 'package:classes_app/Models/StudentUidModel.dart';
+import 'package:classes_app/Utiles/AdsHelper.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:sizer/sizer.dart';
 
 class ResultReadScreen extends StatefulWidget {
@@ -20,6 +22,13 @@ class _ResultReadScreenState extends State<ResultReadScreen> {
   );
 
   StudentUidModel studentUidModel = Get.arguments;
+
+  @override
+  void initState() {
+    super.initState();
+
+    AdsHelper.adsHelper.loadBannerAd();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -377,6 +386,12 @@ class _ResultReadScreenState extends State<ResultReadScreen> {
           child: Icon(
             Icons.add,
             color: Colors.white,
+          ),
+        ),
+        bottomNavigationBar: SizedBox(
+          height: 50.sp,
+          child: AdWidget(
+            ad: AdsHelper.adsHelper.bannerAd!,
           ),
         ),
       ),

@@ -1,8 +1,10 @@
 import 'package:classes_app/Controllors/HomeControllor.dart';
+import 'package:classes_app/Utiles/AdsHelper.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:sizer/sizer.dart';
 
 class UserHomeScreen extends StatefulWidget {
@@ -16,6 +18,13 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
   HomeControllor homeControllor = Get.put(
     HomeControllor(),
   );
+
+  @override
+  void initState() {
+    super.initState();
+
+    AdsHelper.adsHelper.loadBannerAd();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +71,12 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
               ),
             ),
           ],
+        ),
+        bottomNavigationBar: SizedBox(
+          height: 50.sp,
+          child: AdWidget(
+            ad: AdsHelper.adsHelper.bannerAd!,
+          ),
         ),
       ),
     );

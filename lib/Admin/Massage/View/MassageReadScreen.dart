@@ -1,9 +1,11 @@
 import 'package:classes_app/Controllors/MassageControllor.dart';
 import 'package:classes_app/Models/MassageModel.dart';
+import 'package:classes_app/Utiles/AdsHelper.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:sizer/sizer.dart';
 
 class MassageReadScreen extends StatefulWidget {
@@ -21,6 +23,8 @@ class _MassageReadScreenState extends State<MassageReadScreen> {
   @override
   void initState() {
     super.initState();
+
+    AdsHelper.adsHelper.loadBannerAd();
   }
 
   @override
@@ -235,6 +239,12 @@ class _MassageReadScreenState extends State<MassageReadScreen> {
           child: Icon(
             Icons.add,
             color: Colors.white,
+          ),
+        ),
+        bottomNavigationBar: SizedBox(
+          height: 50.sp,
+          child: AdWidget(
+            ad: AdsHelper.adsHelper.bannerAd!,
           ),
         ),
       ),

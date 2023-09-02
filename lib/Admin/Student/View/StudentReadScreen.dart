@@ -1,9 +1,11 @@
 import 'package:classes_app/Controllors/StudentControllor.dart';
 import 'package:classes_app/Models/StudentModel.dart';
+import 'package:classes_app/Utiles/AdsHelper.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:sizer/sizer.dart';
 
 class StudentReadScreen extends StatefulWidget {
@@ -21,6 +23,8 @@ class _StudentReadScreenState extends State<StudentReadScreen> {
   @override
   void initState() {
     super.initState();
+
+    AdsHelper.adsHelper.loadBannerAd();
   }
 
   @override
@@ -242,6 +246,7 @@ class _StudentReadScreenState extends State<StudentReadScreen> {
                                             Container(
                                               height: 20.sp,
                                               width: 200.sp,
+                                              alignment: Alignment.centerLeft,
                                               child: Text(
                                                 overflow: TextOverflow.ellipsis,
                                                 "Name :- ${studentControllor.studentList[index].firstName} ${studentControllor.studentList[index].lastName}",
@@ -254,7 +259,7 @@ class _StudentReadScreenState extends State<StudentReadScreen> {
                                             Container(
                                               height: 25.sp,
                                               width: 200.sp,
-                                              alignment: Alignment.center,
+                                              alignment: Alignment.centerLeft,
                                               child: Text(
                                                 overflow: TextOverflow.ellipsis,
                                                 "Father Name :- ${studentControllor.studentList[index].fatherName}",
@@ -381,6 +386,12 @@ class _StudentReadScreenState extends State<StudentReadScreen> {
               ),
             ),
           ],
+        ),
+        bottomNavigationBar: SizedBox(
+          height: 50.sp,
+          child: AdWidget(
+            ad: AdsHelper.adsHelper.bannerAd!,
+          ),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {

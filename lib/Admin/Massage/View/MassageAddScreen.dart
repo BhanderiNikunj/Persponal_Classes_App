@@ -1,9 +1,11 @@
 import 'package:classes_app/Controllors/MassageControllor.dart';
 import 'package:classes_app/Models/MassageModel.dart';
+import 'package:classes_app/Utiles/AdsHelper.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:sizer/sizer.dart';
 
 class MassageAddScreen extends StatefulWidget {
@@ -24,12 +26,16 @@ class _MassageAddScreenState extends State<MassageAddScreen> {
   void initState() {
     super.initState();
 
-    massageControllor.txtTime =
-        TextEditingController(text: "${massageModel.time}");
-    massageControllor.txtDate =
-        TextEditingController(text: "${massageModel.date}");
-    massageControllor.txtMassage =
-        TextEditingController(text: "${massageModel.massage}");
+    AdsHelper.adsHelper.loadBannerAd();
+
+    if (massageModel.check == 1) {
+      massageControllor.txtTime =
+          TextEditingController(text: "${massageModel.time}");
+      massageControllor.txtDate =
+          TextEditingController(text: "${massageModel.date}");
+      massageControllor.txtMassage =
+          TextEditingController(text: "${massageModel.massage}");
+    }
   }
 
   @override
@@ -219,6 +225,12 @@ class _MassageAddScreenState extends State<MassageAddScreen> {
               ),
             ),
           ],
+        ),
+        bottomNavigationBar: SizedBox(
+          height: 50.sp,
+          child: AdWidget(
+            ad: AdsHelper.adsHelper.bannerAd!,
+          ),
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:classes_app/Utiles/AdsHelper.dart';
 import 'package:classes_app/Utiles/ApiHelper.dart';
 import 'package:classes_app/Utiles/FirebaseHelper.dart';
 import 'package:flutter/material.dart';
@@ -53,6 +54,8 @@ class _SpleshScreenState extends State<SpleshScreen> {
                   }
                 }
               } else {
+                AdsHelper.adsHelper.loadInterstitialAd();
+                AdsHelper.adsHelper.interstitialAd?.show();
                 Get.offAndToNamed('/logIn');
               }
             },
@@ -79,6 +82,8 @@ class _SpleshScreenState extends State<SpleshScreen> {
     Timer(
       Duration(seconds: 3),
       () {
+        AdsHelper.adsHelper.loadInterstitialAd();
+        AdsHelper.adsHelper.interstitialAd?.show();
         Get.offAndToNamed('/logIn');
       },
     );
