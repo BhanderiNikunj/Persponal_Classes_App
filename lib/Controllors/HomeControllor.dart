@@ -59,7 +59,7 @@ class HomeControllor extends GetxController {
     TitleModel(
       name: "Profile",
       image: "Assets/Images/profile.png",
-      // routes: '/profile',
+      routes: '/profile',
     ),
   ];
 }
