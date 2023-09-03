@@ -20,7 +20,7 @@ class HomeControllor extends GetxController {
     ),
     TitleModel(
       name: "Result",
-      routes: '',
+      routes: '/studentNameForResult',
       image: "Assets/Images/result.png",
     ),
     TitleModel(
@@ -59,7 +59,7 @@ class HomeControllor extends GetxController {
     TitleModel(
       name: "Profile",
       image: "Assets/Images/profile.png",
-      routes: '/profile',
+      routes: '',
     ),
   ];
 }

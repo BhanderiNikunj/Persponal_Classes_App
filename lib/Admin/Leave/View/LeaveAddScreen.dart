@@ -145,6 +145,10 @@ class _LeaveAddScreenState extends State<LeaveAddScreen> {
                               firstDate: DateTime(2000),
                               lastDate: DateTime(3000),
                             );
+
+                            leaveControllor.txtDateFrom = TextEditingController(
+                                text: "${d1!.day} / ${d1.month} / ${d1.year}");
+                            setState(() {});
                           },
                           icon: Icon(
                             Icons.date_range,
@@ -176,6 +180,10 @@ class _LeaveAddScreenState extends State<LeaveAddScreen> {
                               firstDate: DateTime(2000),
                               lastDate: DateTime(3000),
                             );
+
+                            leaveControllor.txtDateTo = TextEditingController(
+                                text: "${d1!.day} / ${d1.month} / ${d1.year}");
+                            setState(() {});
                           },
                           icon: Icon(
                             Icons.date_range,

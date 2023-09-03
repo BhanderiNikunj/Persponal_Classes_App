@@ -302,14 +302,14 @@ class _ResultAddScreenState extends State<ResultAddScreen> {
                             gujarati: resultControllor.txtGujarati.text,
                             sanskrit: resultControllor.txtSanskrit.text,
                             hindi: resultControllor.txtHindi.text,
-                            id: "0",
+                            id: "1",
                             check: 1,
                             totalOutOf: "100",
                             science: resultControllor.txtScience.text,
                             socialScience:
                                 resultControllor.txtSocialScience.text,
-                            std: resultControllor.txtStd.text,
-                            firstName: resultControllor.txtName.text,
+                            std: resultModel.std,
+                            firstName: resultModel.firstName,
                             uid: resultModel.uid,
                           );
 

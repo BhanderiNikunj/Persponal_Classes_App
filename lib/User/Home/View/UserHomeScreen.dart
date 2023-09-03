@@ -24,6 +24,10 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
     super.initState();
 
     AdsHelper.adsHelper.loadBannerAd();
+    AdsHelper.adsHelper.loadBannerAd();
+    AdsHelper.adsHelper.loadInterstitialAd();
+    AdsHelper.adsHelper.loadInterstitialAd();
+    AdsHelper.adsHelper.loadInterstitialAd();
   }
 
   @override
@@ -43,7 +47,15 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {
-                      Get.toNamed('${homeControllor.userTitleList[index].routes}');
+                      if (homeControllor
+                          .userTitleList[index].routes!.isNotEmpty) {
+                        AdsHelper.adsHelper.loadInterstitialAd();
+                        AdsHelper.adsHelper.interstitialAd?.show();
+                        Get.toNamed(
+                            '${homeControllor.userTitleList[index].routes}');
+                      } else {
+                        Get.toNamed('/pageNotFound');
+                      }
                     },
                     child: Center(
                       child: Container(

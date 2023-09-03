@@ -11,7 +11,7 @@ class AdsHelper {
   void loadBannerAd() {
     bannerAd = BannerAd(
       size: AdSize.banner,
-      adUnitId: "ca-app-pub-3940256099942544/6300978111",
+      adUnitId: "ca-app-pub-1456785417505368/7882789711",
       listener: BannerAdListener(),
       request: AdRequest(),
     )..load();
@@ -19,7 +19,7 @@ class AdsHelper {
 
   void loadInterstitialAd() {
     InterstitialAd.load(
-      adUnitId: "ca-app-pub-3940256099942544/1033173712",
+      adUnitId: "ca-app-pub-1456785417505368/6156262196",
       request: AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) {

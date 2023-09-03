@@ -204,7 +204,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               content: Column(
                                 children: [
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
                                     children: [
                                       InkWell(
                                         onTap: () {
@@ -216,7 +217,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          FirebaseHelper.firebaseHelper.signOut();
+                                          FirebaseHelper.firebaseHelper
+                                              .signOut();
                                           Get.offAndToNamed('/logIn');
                                         },
                                         child: allButton(
@@ -240,7 +242,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   );
                 }
                 return Center(
-                  child: CircularProgressIndicator(),
+                  child: Text(
+                    "Wait",
+                    style: GoogleFonts.archivo(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 );
               },
             ),
