@@ -19,8 +19,7 @@ samples, guidance on mobile development, and a full API reference.
 <p>
 
   <img src = "https://github.com/BhanderiNikunj/Persponal_Classes_App/assets/113762162/4b199a30-0583-426b-817c-b2e08fa4cc81" hight="20%" width="20%">
-  
-
-
+  <img src = "https://github.com/BhanderiNikunj/Persponal_Classes_App/assets/113762162/99032b44-84da-47b9-abb6-a6aa3d6450fb" hight="20%" width="20%">
+  <img src = "https://github.com/BhanderiNikunj/Persponal_Classes_App/assets/113762162/40379803-3cb0-4d1b-b924-e668ec821c98" hight="20%" width="20%">
 
 </p>
