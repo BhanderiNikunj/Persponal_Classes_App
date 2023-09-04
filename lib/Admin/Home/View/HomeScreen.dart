@@ -26,14 +26,6 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
 
     AdsHelper.adsHelper.loadBannerAd();
-    AdsHelper.adsHelper.loadInterstitialAd();
-    AdsHelper.adsHelper.loadInterstitialAd();
-    AdsHelper.adsHelper.loadInterstitialAd();
-    AdsHelper.adsHelper.loadInterstitialAd();
-    AdsHelper.adsHelper.loadInterstitialAd();
-    AdsHelper.adsHelper.loadInterstitialAd();
-    AdsHelper.adsHelper.loadInterstitialAd();
-    AdsHelper.adsHelper.loadInterstitialAd();
   }
 
   @override

@@ -41,6 +41,7 @@ Future<void> main() async {
     Sizer(
       builder: (context, orientation, deviceType) {
         return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(useMaterial3: true),
           getPages: [
             GetPage(name: '/', page: () => SpleshScreen(),),
