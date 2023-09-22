@@ -84,8 +84,6 @@ Future<void> main() async {
 
 // Object
 
-
-
 Widget allButton({
   required string,
 }) {
