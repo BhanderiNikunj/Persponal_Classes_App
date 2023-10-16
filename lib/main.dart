@@ -2,6 +2,7 @@ import 'package:classes_app/Admin/result/View/ResultAddScreen.dart';
 import 'package:classes_app/Admin/result/View/ResultReadScreen.dart';
 import 'package:classes_app/Admin/result/View/StudentNameForResult.dart';
 import 'package:classes_app/Login/PageNotFound/View/PageNotFoundScreen.dart';
+import 'package:classes_app/Login/SignUp/View/LogInScreen.dart';
 import 'package:classes_app/User/HomeWork/View/UserHomeWorkScreen.dart';
 import 'package:classes_app/User/Leave/View/UserLeaveAddScreen.dart';
 import 'package:classes_app/User/Leave/View/UserLeaveReadScreen.dart';
@@ -28,47 +29,129 @@ import 'package:classes_app/User/Massage/View/UserMassageScreen.dart';
 import 'package:classes_app/Admin/Massage/View/MassageReadScreen.dart';
 import 'package:classes_app/Login/LogIn/View/LogInScreen.dart';
 import 'package:classes_app/Login/Splesh/View/SpleshScreen.dart';
-import 'package:classes_app/Utiles/notification.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
-  NotificationHelper.helper.initNotification();
 
   runApp(
     Sizer(
       builder: (context, orientation, deviceType) {
         return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(useMaterial3: true),
           getPages: [
-            GetPage(name: '/', page: () => SpleshScreen(),),
-            GetPage(name: '/logIn', page: () => LogInScreen(),),
-            GetPage(name: '/addDetail', page: () => AddDetailScreen(),),
-            GetPage(name: '/pageNotFound', page: () => PageNotFoundScreen(),),
-            GetPage(name: '/check', page: () => CheckScreen(),),
-            GetPage(name: '/home', page: () => HomeScreen(),),
-            GetPage(name: '/studentRead', page: () => StudentReadScreen(),),
-            GetPage(name: '/studentAdd', page: () => StudentAddScreen(),),
-            GetPage(name: '/homeWorkRead', page: () => HomeWorkReadScreen(),),
-            GetPage(name: '/homeWorkAdd', page: () => HomeWorkAddScreen(),),
-            GetPage(name: '/studentNameForFees', page: () => StudentNameForFeesScreen(),),
-            GetPage(name: '/feesRead', page: () => FeesReadScreen(),),
-            GetPage(name: '/feesAdd', page: () => FeesAddScreen(),),
-            GetPage(name: '/studentNameForResult', page: () => StudentNameForResultScreen(),),
-            GetPage(name: '/resultRead', page: () => ResultReadScreen(),),
-            GetPage(name: '/resultAdd', page: () => ResultAddScreen(),),
-            GetPage(name: '/massageRead', page: () => MassageReadScreen(),),
-            GetPage(name: '/massageAdd', page: () => MassageAddScreen(),),
-            GetPage(name: '/leaveRead', page: () => LeaveReadScreen(),),
-            GetPage(name: '/leaveAdd', page: () => LeaveAddScreen(),),
-            GetPage(name: '/profile', page: () => ProfileScreen(),),
-            GetPage(name: '/userHome', page: () => UserHomeScreen(),),
-            GetPage(name: '/userMassage', page: () => UserMassageScreen(),),
-            GetPage(name: '/userHomeWork', page: () => UserHomeWorkScreen(),),
-            GetPage(name: '/userLeaveRead', page: () => UserLeaveReadScreen(),),
-            GetPage(name: '/userLeaveAdd', page: () => UserLeaveAddScreen(),),
+            GetPage(
+              name: '/',
+              page: () => const SpleshScreen(),
+            ),
+            GetPage(
+              name: '/logIn',
+              page: () => const LogInScreen(),
+            ),
+            GetPage(
+              name: '/signUp',
+              page: () => const SignUpScreen(),
+            ),
+            GetPage(
+              name: '/addDetail',
+              page: () => const AddDetailScreen(),
+            ),
+            GetPage(
+              name: '/pageNotFound',
+              page: () => const PageNotFoundScreen(),
+            ),
+            GetPage(
+              name: '/check',
+              page: () => const CheckScreen(),
+            ),
+            GetPage(
+              name: '/home',
+              page: () => const HomeScreen(),
+            ),
+            GetPage(
+              name: '/studentRead',
+              page: () => const StudentReadScreen(),
+            ),
+            GetPage(
+              name: '/studentAdd',
+              page: () => const StudentAddScreen(),
+            ),
+            GetPage(
+              name: '/homeWorkRead',
+              page: () => const HomeWorkReadScreen(),
+            ),
+            GetPage(
+              name: '/homeWorkAdd',
+              page: () => const HomeWorkAddScreen(),
+            ),
+            GetPage(
+              name: '/studentNameForFees',
+              page: () => const StudentNameForFeesScreen(),
+            ),
+            GetPage(
+              name: '/feesRead',
+              page: () => const FeesReadScreen(),
+            ),
+            GetPage(
+              name: '/feesAdd',
+              page: () => const FeesAddScreen(),
+            ),
+            GetPage(
+              name: '/studentNameForResult',
+              page: () => const StudentNameForResultScreen(),
+            ),
+            GetPage(
+              name: '/resultRead',
+              page: () => const ResultReadScreen(),
+            ),
+            GetPage(
+              name: '/resultAdd',
+              page: () => const ResultAddScreen(),
+            ),
+            GetPage(
+              name: '/massageRead',
+              page: () => const MassageReadScreen(),
+            ),
+            GetPage(
+              name: '/massageAdd',
+              page: () => const MassageAddScreen(),
+            ),
+            GetPage(
+              name: '/leaveRead',
+              page: () => const LeaveReadScreen(),
+            ),
+            GetPage(
+              name: '/leaveAdd',
+              page: () => const LeaveAddScreen(),
+            ),
+            GetPage(
+              name: '/profile',
+              page: () => const ProfileScreen(),
+            ),
+            GetPage(
+              name: '/userHome',
+              page: () => const UserHomeScreen(),
+            ),
+            GetPage(
+              name: '/userMassage',
+              page: () => const UserMassageScreen(),
+            ),
+            GetPage(
+              name: '/userHomeWork',
+              page: () => const UserHomeWorkScreen(),
+            ),
+            GetPage(
+              name: '/userLeaveRead',
+              page: () => const UserLeaveReadScreen(),
+            ),
+            GetPage(
+              name: '/userLeaveAdd',
+              page: () => const UserLeaveAddScreen(),
+            ),
           ],
         );
       },

@@ -84,7 +84,7 @@ class _UserLeaveReadScreenState extends State<UserLeaveReadScreen> {
                               boxShadow: [
                                 BoxShadow(
                                   blurRadius: 10,
-                                  color: Colors.black12,
+                                  color: Colors.black26,
                                   offset: Offset(
                                     0,
                                     0,
@@ -221,7 +221,7 @@ class _UserLeaveReadScreenState extends State<UserLeaveReadScreen> {
                       },
                     );
                   }
-                  return CircularProgressIndicator();
+                  return Center(child: CircularProgressIndicator(),);
                 },
               ),
             ),

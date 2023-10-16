@@ -69,7 +69,7 @@ class _UserMassageScreenState extends State<UserMassageScreen> {
                               boxShadow: [
                                 BoxShadow(
                                   blurRadius: 10,
-                                  color: Colors.black12,
+                                  color: Colors.black26,
                                   offset: Offset(
                                     0,
                                     0,

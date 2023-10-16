@@ -198,7 +198,7 @@ class _HomeWorkReadScreenState extends State<HomeWorkReadScreen> {
                                     boxShadow: [
                                       BoxShadow(
                                         blurRadius: 10,
-                                        color: Colors.black12,
+                                        color: Colors.black26,
                                         offset: Offset(
                                           0,
                                           0,
@@ -335,7 +335,7 @@ class _HomeWorkReadScreenState extends State<HomeWorkReadScreen> {
                       },
                     );
                   }
-                  return CircularProgressIndicator();
+                  return Center(child: CircularProgressIndicator(),);
                 },
               ),
             ),

@@ -32,6 +32,22 @@ class FirebaseHelper {
         );
   }
 
+  Future<String> signUp({
+    required LoginModel loginModel,
+  }) async {
+    return await firebaseAuth
+        .createUserWithEmailAndPassword(
+          email: loginModel.email!,
+          password: loginModel.password!,
+        )
+        .then(
+          (value) => "true",
+        )
+        .catchError(
+          (e) => "$e",
+        );
+  }
+
   void signOut() {
     firebaseAuth.signOut();
   }

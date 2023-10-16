@@ -16,8 +16,9 @@ class _PageNotFoundScreenState extends State<PageNotFoundScreen> {
       child: Scaffold(
         body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              allAppBar(text: "Student Result",),
               Image.asset(
                 "Assets/Images/pageNotFound.png",
               ),
@@ -28,7 +29,8 @@ class _PageNotFoundScreenState extends State<PageNotFoundScreen> {
                 child: allButton(
                   string: "Back To Home",
                 ),
-              )
+              ),
+              SizedBox(height: 50),
             ],
           ),
         ),

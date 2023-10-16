@@ -1,4 +1,4 @@
-import 'package:classes_app/Login/LogIn/Controllor/LogInControllor.dart';
+import 'package:classes_app/Login/SignUp/Controllor/SignUpControllor.dart';
 import 'package:classes_app/Models/AllModel.dart';
 import 'package:classes_app/Utiles/ApiHelper.dart';
 import 'package:classes_app/main.dart';
@@ -7,16 +7,16 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
-class LogInScreen extends StatefulWidget {
-  const LogInScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<LogInScreen> createState() => _LogInScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LogInScreenState extends State<LogInScreen> {
-  LogInControllor logInControllor = Get.put(
-    LogInControllor(),
+class _SignUpScreenState extends State<SignUpScreen> {
+  SignUpControllor signUpControllor = Get.put(
+    SignUpControllor(),
   );
 
   @override
@@ -41,7 +41,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
                 SizedBox(height: 10.sp),
                 Text(
-                  "Log In",
+                  "Sign Up",
                   style: GoogleFonts.archivo(
                     fontSize: 25.sp,
                     fontWeight: FontWeight.w900,
@@ -50,7 +50,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 Padding(
                   padding: EdgeInsets.all(10.sp),
                   child: TextField(
-                    controller: logInControllor.txtEmail,
+                    controller: signUpControllor.txtEmail,
                     style: GoogleFonts.archivo(),
                     cursorColor: Color(0xffe85720),
                     cursorWidth: 1,
@@ -77,7 +77,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 Padding(
                   padding: EdgeInsets.all(10.sp),
                   child: TextField(
-                    controller: logInControllor.txtPassword,
+                    controller: signUpControllor.txtPassword,
                     style: GoogleFonts.archivo(),
                     cursorColor: Color(0xffe85720),
                     cursorWidth: 1,
@@ -105,11 +105,11 @@ class _LogInScreenState extends State<LogInScreen> {
                 InkWell(
                   onTap: () async {
                     LoginModel l1 = LoginModel(
-                      email: logInControllor.txtEmail.text,
-                      password: logInControllor.txtPassword.text,
+                      email: signUpControllor.txtEmail.text,
+                      password: signUpControllor.txtPassword.text,
                     );
 
-                    String check = await logInControllor.logIn(
+                    String check = await signUpControllor.signUp(
                       loginModel: l1,
                     );
 
@@ -120,7 +120,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       );
 
                       bool check = checkData(
-                        email: logInControllor.txtEmail.text,
+                        email: signUpControllor.txtEmail.text,
                       );
 
                       setState(() {});
@@ -128,14 +128,13 @@ class _LogInScreenState extends State<LogInScreen> {
                       if (check) {
                         Get.offAndToNamed(
                           '/check',
-                          arguments: logInControllor.txtEmail.text,
+                          arguments: signUpControllor.txtEmail.text,
                         );
                       } else {
                         Get.offAndToNamed(
                           '/check',
-                          arguments: logInControllor.txtEmail.text,
+                          arguments: signUpControllor.txtEmail.text,
                         );
-                        print("$check----------------------------------------");
                       }
                     } else {
                       Get.snackbar(
@@ -145,16 +144,16 @@ class _LogInScreenState extends State<LogInScreen> {
                     }
                   },
                   child: allButton(
-                    string: "Log In",
+                    string: "Sign Up",
                   ),
                 ),
-                SizedBox(height: 50),
+                SizedBox(height: 50,),
                 TextButton(
                   onPressed: () {
-                    Get.toNamed('/signUp');
+                    Get.back();
                   },
                   child: Text(
-                    "Create A New Account ? SignUp",
+                    "Already Have A Account ? Sign In",
                     style: GoogleFonts.archivo(),
                   ),
                 ),

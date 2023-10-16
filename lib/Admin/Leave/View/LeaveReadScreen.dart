@@ -183,151 +183,165 @@ class _LeaveReadScreenState extends State<LeaveReadScreen> {
                     return ListView.builder(
                       itemCount: leaveControllor.leaveList.length,
                       itemBuilder: (context, index) {
-                        return leaveControllor.leaveList[index].std.compareTo(leaveControllor.std) != 0
+                        return leaveControllor.leaveList[index].std
+                                    .compareTo(leaveControllor.std) !=
+                                0
                             ? Container()
                             : Padding(
-                          padding: EdgeInsets.all(8.sp),
-                          child: Container(
-                            height: 160.sp,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.sp),
-                              color: Colors.white70,
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 10,
-                                  color: Colors.black12,
-                                  offset: Offset(
-                                    0,
-                                    0,
-                                  ),
-                                  spreadRadius: 7,
-                                ),
-                              ],
-                            ),
-                            child: Row(
-                              children: [
-                                SizedBox(
-                                  width: 10.sp,
-                                ),
-                                Container(
-                                  width: 200.sp,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "Name :- ${leaveControllor.leaveList[index].firstName}",
-                                        style: GoogleFonts.archivo(
-                                          fontSize: 12.sp,
-                                          fontWeight: FontWeight.bold,
+                                padding: EdgeInsets.all(8.sp),
+                                child: Container(
+                                  height: 160.sp,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.sp),
+                                    color: Colors.white70,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 10,
+                                        color: Colors.black26,
+                                        offset: Offset(
+                                          0,
+                                          0,
                                         ),
+                                        spreadRadius: 7,
+                                      ),
+                                    ],
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 10.sp,
                                       ),
                                       Container(
-                                        height: 50.sp,
-                                        child: Text(
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                          "Massage :- ${leaveControllor.leaveList[index].resion}",
-                                          style: GoogleFonts.archivo(
-                                            fontSize: 12.sp,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                        width: 200.sp,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "Name :- ${leaveControllor.leaveList[index].firstName}",
+                                              style: GoogleFonts.archivo(
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            Container(
+                                              height: 50.sp,
+                                              child: Text(
+                                                maxLines: 2,
+                                                overflow: TextOverflow.ellipsis,
+                                                "Massage :- ${leaveControllor.leaveList[index].resion}",
+                                                style: GoogleFonts.archivo(
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                            Text(
+                                              "Date From :- ${leaveControllor.leaveList[index].dateForm}",
+                                              style: GoogleFonts.archivo(
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            Text(
+                                              "Date To :- ${leaveControllor.leaveList[index].dateTo}",
+                                              style: GoogleFonts.archivo(
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            Text(
+                                              "Std :- ${leaveControllor.leaveList[index].std}",
+                                              style: GoogleFonts.archivo(
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                      Text(
-                                        "Date From :- ${leaveControllor.leaveList[index].dateForm}",
-                                        style: GoogleFonts.archivo(
-                                          fontSize: 12.sp,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                      SizedBox(
+                                        width: 10.sp,
                                       ),
-                                      Text(
-                                        "Date To :- ${leaveControllor.leaveList[index].dateTo}",
-                                        style: GoogleFonts.archivo(
-                                          fontSize: 12.sp,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Text(
-                                        "Std :- ${leaveControllor.leaveList[index].std}",
-                                        style: GoogleFonts.archivo(
-                                          fontSize: 12.sp,
-                                          fontWeight: FontWeight.bold,
+                                      Container(
+                                        width: 20.sp,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            IconButton(
+                                              onPressed: () {
+                                                LeaveModel l1 = LeaveModel(
+                                                  std: leaveControllor
+                                                      .leaveList[index].std,
+                                                  id: leaveControllor
+                                                      .leaveList[index].id,
+                                                  firstName: leaveControllor
+                                                      .leaveList[index]
+                                                      .firstName,
+                                                  dateForm: leaveControllor
+                                                      .leaveList[index]
+                                                      .dateForm,
+                                                  dateTo: leaveControllor
+                                                      .leaveList[index].dateTo,
+                                                  resion: leaveControllor
+                                                      .leaveList[index].resion,
+                                                  check: 1,
+                                                );
+
+                                                Get.toNamed(
+                                                  '/leaveAdd',
+                                                  arguments: l1,
+                                                );
+                                              },
+                                              icon: Icon(
+                                                Icons.edit,
+                                              ),
+                                            ),
+                                            IconButton(
+                                              onPressed: () async {
+                                                LeaveModel l1 = LeaveModel(
+                                                  id: leaveControllor
+                                                      .leaveList[index].id,
+                                                );
+                                                bool check =
+                                                    await leaveControllor
+                                                        .deleteLeave(
+                                                  l1: l1,
+                                                );
+
+                                                if (check) {
+                                                  Get.snackbar(
+                                                    "Success Fully Delete",
+                                                    "",
+                                                  );
+                                                  leaveControllor.leaveList =
+                                                      await leaveControllor
+                                                          .readLeave();
+                                                  setState(() {});
+                                                }
+                                              },
+                                              icon: Icon(
+                                                Icons.delete,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 10.sp,
-                                ),
-                                Container(
-                                  width: 20.sp,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      IconButton(
-                                        onPressed: () {
-                                          LeaveModel l1 = LeaveModel(
-                                            std: leaveControllor
-                                                .leaveList[index].std,
-                                            id: leaveControllor.leaveList[index].id,
-                                            firstName: leaveControllor
-                                                .leaveList[index].firstName,
-                                            dateForm: leaveControllor
-                                                .leaveList[index].dateForm,
-                                            dateTo: leaveControllor
-                                                .leaveList[index].dateTo,
-                                            resion: leaveControllor
-                                                .leaveList[index].resion,
-                                            check: 1,
-                                          );
-
-                                          Get.toNamed(
-                                            '/leaveAdd',
-                                            arguments: l1,
-                                          );
-                                        },
-                                        icon: Icon(
-                                          Icons.edit,
-                                        ),
-                                      ),
-                                      IconButton(
-                                        onPressed: () async {
-                                          LeaveModel l1 = LeaveModel(
-                                            id: leaveControllor.leaveList[index].id,
-                                          );
-                                          bool check =
-                                          await leaveControllor.deleteLeave(
-                                            l1: l1,
-                                          );
-
-                                          if (check) {
-                                            Get.snackbar(
-                                              "Success Fully Delete",
-                                              "",
-                                            );
-                                            leaveControllor.leaveList =
-                                            await leaveControllor.readLeave();
-                                            setState(() {});
-                                          }
-                                        },
-                                        icon: Icon(
-                                          Icons.delete,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
+                              );
                       },
                     );
                   }
-                  return CircularProgressIndicator();
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
                 },
               ),
             ),

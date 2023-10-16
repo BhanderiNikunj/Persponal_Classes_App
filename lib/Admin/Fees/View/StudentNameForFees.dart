@@ -181,12 +181,7 @@ class _StudentNameForFeesScreenState extends State<StudentNameForFeesScreen> {
                         return feesControllor.studentUidList[index].std
                                     .compareTo(feesControllor.std) !=
                                 0
-                            ? Text(
-                                "",
-                                style: GoogleFonts.archivo(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              )
+                            ?Container()
                             : InkWell(
                                 onTap: () {
                                   Get.toNamed(
@@ -229,61 +224,6 @@ class _StudentNameForFeesScreenState extends State<StudentNameForFeesScreen> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget lisOfStudent({
-    String? std,
-  }) {
-    return FutureBuilder(
-      future: feesControllor.readStudentUid(),
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return Text(
-            "${snapshot.error}",
-            style: GoogleFonts.archivo(),
-          );
-        } else if (snapshot.hasData) {
-          feesControllor.studentUidList = snapshot.data!;
-          return ListView.builder(
-            itemCount: feesControllor.studentUidList.length,
-            itemBuilder: (context, index) {
-              return feesControllor.studentUidList[index].std
-                          .compareTo("$std") !=
-                      0
-                  ? Text(
-                      "",
-                      style: GoogleFonts.archivo(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
-                  : InkWell(
-                      onTap: () {
-                        Get.toNamed(
-                          '/feesRead',
-                          arguments: feesControllor.studentUidList[index],
-                        );
-                      },
-                      child: ListTile(
-                        title: Text(
-                          "${feesControllor.studentUidList[index].firstName}",
-                          style: GoogleFonts.archivo(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        leading: Text(
-                          "${feesControllor.studentUidList[index].std}",
-                          style: GoogleFonts.archivo(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    );
-            },
-          );
-        }
-        return CircularProgressIndicator();
-      },
     );
   }
 }
