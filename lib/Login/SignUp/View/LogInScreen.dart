@@ -3,9 +3,9 @@ import 'package:classes_app/Models/AllModel.dart';
 import 'package:classes_app/Utiles/ApiHelper.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sizer/sizer.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -147,7 +147,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     string: "Sign Up",
                   ),
                 ),
-                SizedBox(height: 50,),
+                SizedBox(
+                  height: 50,
+                ),
                 TextButton(
                   onPressed: () {
                     Get.back();

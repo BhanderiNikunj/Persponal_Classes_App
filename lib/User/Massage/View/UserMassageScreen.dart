@@ -2,9 +2,9 @@ import 'package:classes_app/Controllors/MassageControllor.dart';
 import 'package:classes_app/Models/MassageModel.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sizer/sizer.dart';
 
 class UserMassageScreen extends StatefulWidget {
   const UserMassageScreen({super.key});

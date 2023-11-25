@@ -3,10 +3,10 @@ import 'package:classes_app/Models/MassageModel.dart';
 import 'package:classes_app/Utiles/AdsHelper.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:sizer/sizer.dart';
 
 class MassageReadScreen extends StatefulWidget {
   const MassageReadScreen({super.key});
@@ -111,7 +111,8 @@ class _MassageReadScreenState extends State<MassageReadScreen> {
                                 Container(
                                   width: 200.sp,
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
@@ -151,20 +152,22 @@ class _MassageReadScreenState extends State<MassageReadScreen> {
                                 Container(
                                   width: 20.sp,
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       IconButton(
                                         onPressed: () {
                                           MassageModel m1 = MassageModel(
                                             check: 1,
-                                            time:
-                                            massageControllor.massageList[index].time,
-                                            date:
-                                            massageControllor.massageList[index].date,
+                                            time: massageControllor
+                                                .massageList[index].time,
+                                            date: massageControllor
+                                                .massageList[index].date,
                                             massage: massageControllor
                                                 .massageList[index].massage,
-                                            id: massageControllor.massageList[index].id,
+                                            id: massageControllor
+                                                .massageList[index].id,
                                           );
                                           Get.toNamed(
                                             '/massageAdd',

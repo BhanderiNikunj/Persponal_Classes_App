@@ -3,8 +3,8 @@ import 'package:classes_app/Utiles/AdsHelper.dart';
 import 'package:classes_app/Utiles/ApiHelper.dart';
 import 'package:classes_app/Utiles/FirebaseHelper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:sizer/sizer.dart';
 
 class SpleshScreen extends StatefulWidget {
   const SpleshScreen({super.key});

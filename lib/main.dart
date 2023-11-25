@@ -3,13 +3,14 @@ import 'package:classes_app/Admin/result/View/ResultReadScreen.dart';
 import 'package:classes_app/Admin/result/View/StudentNameForResult.dart';
 import 'package:classes_app/Login/PageNotFound/View/PageNotFoundScreen.dart';
 import 'package:classes_app/Login/SignUp/View/LogInScreen.dart';
+import 'package:classes_app/User/Fees/View/UserFeesReadScreen.dart';
 import 'package:classes_app/User/HomeWork/View/UserHomeWorkScreen.dart';
 import 'package:classes_app/User/Leave/View/UserLeaveAddScreen.dart';
 import 'package:classes_app/User/Leave/View/UserLeaveReadScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sizer/sizer.dart';
 import 'package:classes_app/Admin/Student/View/StudentReadScreen.dart';
 import 'package:classes_app/Admin/Student/View/StudentAddScreen.dart';
 import 'package:classes_app/Admin/Fees/View/FeesAddScreen.dart';
@@ -38,8 +39,8 @@ Future<void> main() async {
   await Firebase.initializeApp();
 
   runApp(
-    Sizer(
-      builder: (context, orientation, deviceType) {
+   ScreenUtilInit (
+      builder: (context, child) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(useMaterial3: true),
@@ -151,6 +152,10 @@ Future<void> main() async {
             GetPage(
               name: '/userLeaveAdd',
               page: () => const UserLeaveAddScreen(),
+            ),
+            GetPage(
+              name: '/userFeesRead',
+              page: () => const UserFeesReadScreen(),
             ),
           ],
         );

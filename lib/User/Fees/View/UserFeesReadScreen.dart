@@ -1,7 +1,6 @@
 import 'package:classes_app/Controllors/FeesControllor.dart';
-import 'package:classes_app/Models/FeesModel.dart';
-import 'package:classes_app/Models/StudentUidModel.dart';
 import 'package:classes_app/Utiles/AdsHelper.dart';
+import 'package:classes_app/Utiles/FirebaseHelper.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,19 +8,15 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-class FeesReadScreen extends StatefulWidget {
-  const FeesReadScreen({super.key});
+class UserFeesReadScreen extends StatefulWidget {
+  const UserFeesReadScreen({super.key});
 
   @override
-  State<FeesReadScreen> createState() => _FeesReadScreenState();
+  State<UserFeesReadScreen> createState() => _UserFeesReadScreenState();
 }
 
-class _FeesReadScreenState extends State<FeesReadScreen> {
-  FeesControllor feesControllor = Get.put(
-    FeesControllor(),
-  );
-
-  StudentUidModel studentUidModel = Get.arguments;
+class _UserFeesReadScreenState extends State<UserFeesReadScreen> {
+  FeesControllor feesControllor = Get.put(FeesControllor());
 
   @override
   void initState() {
@@ -88,9 +83,11 @@ class _FeesReadScreenState extends State<FeesReadScreen> {
                           child: ListView.builder(
                             itemCount: feesControllor.feesList.length,
                             itemBuilder: (context, index) {
-                              if (feesControllor.feesList[index].uid
-                                      .compareTo("${studentUidModel.uid}") !=
-                                  0) {
+                              if (FirebaseHelper.firebaseHelper
+                                      .findUid()
+                                      ?.compareTo(
+                                          "${feesControllor.feesList[index].uid}") ==
+                                  1) {
                                 return Text(
                                   "",
                                   style: GoogleFonts.archivo(
@@ -173,82 +170,6 @@ class _FeesReadScreenState extends State<FeesReadScreen> {
                                         SizedBox(
                                           width: 10.sp,
                                         ),
-                                        Container(
-                                          width: 20.sp,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              IconButton(
-                                                onPressed: () {
-                                                  FeesModel f1 = FeesModel(
-                                                    firstName: feesControllor
-                                                        .feesList[index]
-                                                        .firstName,
-                                                    std: feesControllor
-                                                        .feesList[index].std,
-                                                    totalFees: feesControllor
-                                                        .feesList[index]
-                                                        .totalFees,
-                                                    paidFees: feesControllor
-                                                        .feesList[index]
-                                                        .paidFees,
-                                                    uid: studentUidModel.uid,
-                                                    id: feesControllor
-                                                        .feesList[index].id,
-                                                    lessFees: feesControllor
-                                                        .feesList[index]
-                                                        .lessFees,
-                                                    check: 1,
-                                                  );
-                                                  Get.toNamed(
-                                                    '/feesAdd',
-                                                    arguments: f1,
-                                                  );
-                                                },
-                                                icon: Icon(
-                                                  Icons.edit,
-                                                ),
-                                              ),
-                                              IconButton(
-                                                onPressed: () async {
-                                                  FeesModel f1 = FeesModel(
-                                                    id: feesControllor
-                                                        .feesList[index].id,
-                                                  );
-
-                                                  bool check =
-                                                      await feesControllor
-                                                          .deleteFees(
-                                                    f1: f1,
-                                                  );
-
-                                                  if (check) {
-                                                    Get.snackbar(
-                                                      "Success Fully Delete",
-                                                      "",
-                                                    );
-
-                                                    feesControllor.feesList =
-                                                        await feesControllor
-                                                            .readFees();
-                                                    setState(() {});
-                                                  } else {
-                                                    Get.snackbar(
-                                                      "Un Success Fully Delete",
-                                                      "",
-                                                    );
-                                                  }
-                                                },
-                                                icon: Icon(
-                                                  Icons.delete,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
                                       ],
                                     ),
                                   ),
@@ -275,28 +196,6 @@ class _FeesReadScreenState extends State<FeesReadScreen> {
           height: 50.sp,
           child: AdWidget(
             ad: AdsHelper.adsHelper.bannerAd!,
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            FeesModel f1 = FeesModel(
-              check: 0,
-              firstName: studentUidModel.firstName,
-              uid: studentUidModel.uid,
-              std: studentUidModel.std,
-            );
-            Get.toNamed(
-              '/feesAdd',
-              arguments: f1,
-            );
-          },
-          backgroundColor: Color(0xff5055C4),
-          shape: BeveledRectangleBorder(
-            borderRadius: BorderRadius.circular(17.sp),
-          ),
-          child: Icon(
-            Icons.add,
-            color: Colors.white,
           ),
         ),
       ),

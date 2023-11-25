@@ -2,9 +2,9 @@ import 'package:classes_app/Controllors/LeaveControllor.dart';
 import 'package:classes_app/Models/LeaveModel.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sizer/sizer.dart';
 
 class UserLeaveReadScreen extends StatefulWidget {
   const UserLeaveReadScreen({super.key});
@@ -221,7 +221,9 @@ class _UserLeaveReadScreenState extends State<UserLeaveReadScreen> {
                       },
                     );
                   }
-                  return Center(child: CircularProgressIndicator(),);
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
                 },
               ),
             ),

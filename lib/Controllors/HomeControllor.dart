@@ -52,6 +52,11 @@ class HomeControllor extends GetxController {
       routes: '/userMassage',
     ),
     TitleModel(
+      name: "Fees",
+      image: "Assets/Images/fees.png",
+      routes: '/userFeesRead',
+    ),
+    TitleModel(
       name: "Leave",
       image: "Assets/Images/leave.png",
       routes: '/userLeaveRead',
@@ -59,7 +64,7 @@ class HomeControllor extends GetxController {
     TitleModel(
       name: "Profile",
       image: "Assets/Images/profile.png",
-      routes: '',
+      routes: '/profile',
     ),
   ];
 }

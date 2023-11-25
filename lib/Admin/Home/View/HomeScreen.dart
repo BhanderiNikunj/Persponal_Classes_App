@@ -2,10 +2,10 @@ import 'package:classes_app/Controllors/HomeControllor.dart';
 import 'package:classes_app/Utiles/AdsHelper.dart';
 import 'package:classes_app/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:sizer/sizer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -35,6 +35,12 @@ class _HomeScreenState extends State<HomeScreen> {
     AdsHelper.adsHelper.loadInterstitialAd();
     AdsHelper.adsHelper.loadInterstitialAd();
   }
+
+  // Future<void> printFcmToken() async {
+  //    String fcm = await  FirebaseHelper.firebaseHelper.findFCM();
+
+  //    print("$fcm*******************************");
+  // }
 
   @override
   Widget build(BuildContext context) {

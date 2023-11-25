@@ -63,4 +63,8 @@ class FirebaseHelper {
   String? findEmail() {
     return firebaseAuth.currentUser?.email;
   }
+
+  Future<String> findFCM() async {
+    return await firebaseMessaging.getToken() ?? "";
+  }
 }
